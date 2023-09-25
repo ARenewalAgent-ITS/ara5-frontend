@@ -6,8 +6,6 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
-  pageExtensions: ['page.tsx', 'api.ts'],
-
   // rewrites login to /auth/login & /register  to /auth/register
   async redirects() {
     return [
