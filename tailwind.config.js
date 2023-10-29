@@ -1,8 +1,19 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  safelist: [
+    {
+      pattern: /_(cols|rows)-(.+)/,
+      variants: ['sm', 'md', 'lg', 'xl'],
+    },
+    {
+      pattern: /grid-(rows|cols)-(.+)/,
+      variants: ['sm', 'md', 'lg', 'xl'],
+    },
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -372,5 +383,27 @@ module.exports = {
     },
   },
 
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    plugin(({ addComponents }) => {
+      const [_, ...values] = [...Array(13).keys(), 'full', 'auto'];
+      const gridRowCol = {};
+
+      for (let start of values) {
+        for (let span of values) {
+          gridRowCol[`._cols-${start}_${span}`] = {
+            gridColumnStart: `${start}`,
+            gridColumnEnd: `span ${span}`,
+          };
+
+          gridRowCol[`._rows-${start}_${span}`] = {
+            gridRowStart: `${start}`,
+            gridRowEnd: `span ${span}`,
+          };
+        }
+      }
+
+      addComponents(gridRowCol);
+    }),
+  ],
 };
