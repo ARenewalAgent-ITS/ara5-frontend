@@ -3,6 +3,7 @@
 import React from 'react';
 
 import Typography from '@/components/Typography';
+import Footer from '@/components/layouts/Footer';
 
 export default function page() {
   return (
@@ -23,6 +24,7 @@ export default function page() {
         <Typography font='baloo' weight='bold' variant='h1'>
           update app page ARA 5.0 @@ bold
         </Typography>
+        <Footer />
       </div>
     </>
   );
