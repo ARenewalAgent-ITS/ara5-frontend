@@ -1,5 +1,8 @@
-import Typography from '@/components/Typography';
 import Image from 'next/image';
+
+import Typography from '@/components/Typography';
+import LogoHmitBnw from '~/img/logo_hmit_bnw.svg';
+import LogoItBnw from '~/img/logo_it_bnw.png';
 
 interface LinkHeadline {
   text: string;
@@ -92,80 +95,101 @@ export default function Footer() {
   ];
 
   return (
-    <footer className='bg-[#393737] py-5'>
-      <div className='footer-logo flex justify-center items-center mt-6 mb-9'>
-        <Image
-          src='/img/LogoARA.svg'
-          width={185}
-          height={87}
-          alt='Logo ARA 5.0'
-          className='sm:w-[35%] sm:h-[35%]'
-        />
-      </div>
-      <div className='footer-links flex flex-col justify-center items-center'>
-        <div className='event flex flex-col items-center mb-5 text-white-50 text-center'>
-          <SVG text='Our Events' />
-          <a href='#' className='font-semibold mt-3 sm:text-lg'>
-            OlimpIT
-          </a>
-          <br />
-          <a href='#' className='font-semibold sm:text-lg'>
-            Capture The Flag
-          </a>
-          <br />
-          <a href='#' className='font-semibold sm:text-lg'>
-            ExploIT
-          </a>
-        </div>
-        <div className='event flex flex-col items-center mb-5 text-white-50 text-center'>
-          <SVG text='Quick Links' />
-          <a href='#' className='font-semibold mt-3 sm:text-lg'>
-            Register
-          </a>
-          <br />
-          <a href='#' className='font-semibold sm:text-lg'>
-            Login
-          </a>
-        </div>
-        <div className='event flex flex-col items-center mb-5 text-white-50 text-center'>
-          <SVG text='About Us' />
-          <a href='#' className='font-semibold mt-3 sm:text-lg'>
-            ARA 5.0
-          </a>
-          <br />
-          <a href='#' className='font-semibold sm:text-lg'>
-            HMIT ITS
-          </a>
-          <br />
-        </div>
-      </div>
-      <hr className='bg-white-50 h-[1px] w-[90%] mx-auto mt-8' />
-      <div className='social-links mb-2.5 text-center pt-7'>
-        {socialMedias.map((social) => (
-          <div className='link inline-block mx-2.5' key={social.link}>
-            <a
-              href={social.link}
-              className='flex items-center justify-center w-10 h-10 bg-white-50 rounded-full'
-            >
+    <footer className='bg-[#393737] py-12 pb-8 flex flex-col overflow-hidden'>
+      <div className='flex flex-col md:flex-row md:mx-auto md:gap-x-28 lg:justify-between lg:mx-0 md:px-6 lg:px-12 xl:px-20'>
+        <div className='footer-logo flex flex-col gap-y-11 justify-center md:items-start md:justify-between items-center mt-6 md:mt-0 mb-9'>
+          <Image
+            src='/img/LogoARA.svg'
+            width={185}
+            height={87}
+            alt='Logo ARA 5.0'
+            className='scale-110 md:scale-125 lg:scale-110 md:mt-2 lg:mt-0 md:ml-6 lg:ml-3'
+          />
+          <div className='hidden md:flex md:flex-col md:mb-3 lg:mb-0 md:gap-y-8'>
+            <SVG text='Supported By' />
+            <div className='flex flex-row gap-5'>
               <Image
-                src={social.img}
-                alt='IG'
-                width={0}
-                height={0}
-                style={{ width: '70%', height: '70%' }}
+                src={LogoHmitBnw}
+                width={100}
+                height={100}
+                alt='Logo ARA 5.0'
               />
+              <Image
+                src={LogoItBnw}
+                width={227}
+                height={80}
+                alt='Logo ARA 5.0'
+              />
+            </div>
+          </div>
+        </div>
+        <div className='footer-links flex flex-col lg:flex-row md:items-start md:gap-x-4 lg:gap-x-8 xl:gap-x-12 justify-center items-center'>
+          <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
+            <SVG text='Our Events' />
+            <a href='#' className='font-semibold mt-3 sm:text-lg'>
+              OlimpIT
+            </a>
+            <br />
+            <a href='#' className='font-semibold sm:text-lg'>
+              Capture The Flag
+            </a>
+            <br />
+            <a href='#' className='font-semibold sm:text-lg'>
+              ExploIT
             </a>
           </div>
-        ))}
+          <div className='event flex flex-col items-center lg:items-start mb-5 text-white-50 text-center'>
+            <SVG text='Quick Links' />
+            <a href='#' className='font-semibold mt-3 sm:text-lg'>
+              Register
+            </a>
+            <br />
+            <a href='#' className='font-semibold sm:text-lg'>
+              Login
+            </a>
+          </div>
+          <div className='event flex flex-col items-center lg:items-start mb-5 text-white-50 text-center'>
+            <SVG text='About Us' />
+            <a href='#' className='font-semibold mt-3 sm:text-lg'>
+              ARA 5.0
+            </a>
+            <br />
+            <a href='#' className='font-semibold sm:text-lg'>
+              HMIT ITS
+            </a>
+            <br />
+          </div>
+        </div>
       </div>
-      <Typography
-        variant='p'
-        weight='semibold'
-        color='white'
-        className='text-center mt-5 pb-5'
-      >
-        &copy; A Renewal Agent 5.0
-      </Typography>
+      <hr className='bg-white-50 h-[1px] w-[90%] lg:w-[92%] xl:w[94%] mx-auto' />
+      <div className='flex flex-col md:flex-row-reverse md:mt-5 md:px-7 md:pl-11 lg:pl-14 lg:px-10 xl:pl-16 xl:px-14 2xl:pl-20 2xl:px-16 md:justify-between md:w-full'>
+        <div className='social-links mb-2.5 text-center pt-7'>
+          {socialMedias.map((social) => (
+            <div className='link inline-block mx-2.5' key={social.link}>
+              <a
+                href={social.link}
+                className='flex items-center justify-center w-7 h-7 bg-white-50 rounded-full'
+              >
+                <Image
+                  src={social.img}
+                  alt='IG'
+                  width={0}
+                  height={0}
+                  style={{ width: '60%', height: '60%' }}
+                />
+              </a>
+            </div>
+          ))}
+        </div>
+        <Typography
+          variant='p'
+          weight='semibold'
+          color='white'
+          className='text-center mt-5 pb-5'
+        >
+          &copy; A Renewal Agent 5.0
+        </Typography>
+      </div>
     </footer>
   );
 }
