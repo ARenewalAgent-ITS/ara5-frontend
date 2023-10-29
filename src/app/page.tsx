@@ -24,6 +24,15 @@ export default function page() {
         <Typography font='baloo' weight='bold' variant='h1'>
           update app page ARA 5.0 @@ bold
         </Typography>
+        <Typography font='cinzel' variant='h1'>
+          update app page ARA 5.0
+        </Typography>
+        <Typography font='cinzel' variant='h1'>
+          update app page ARA 5.0
+        </Typography>
+        <Typography font='cinzel' variant='h1'>
+          update app page ARA 5.0
+        </Typography>
         <Footer />
       </div>
     </>
