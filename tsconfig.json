@@ -30,13 +30,15 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "types": ["next/image-types/global"],
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/declaration.d.ts"
   ],
   "exclude": [
     "node_modules"
