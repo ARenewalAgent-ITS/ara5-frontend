@@ -49,7 +49,7 @@ export default function SandboxPage() {
               key={page.title}
               href={page.href}
               className='mt-2'
-              variant='warning'
+              variant='primary'
             >
               {page.title}
             </ButtonLink>
