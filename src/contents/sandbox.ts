@@ -62,4 +62,8 @@ export const components = [
     title: 'Breadcrumb',
     href: '/sandbox/breadcrumb',
   },
+  {
+    title: 'Images',
+    href: '/sandbox/images',
+  },
 ];
