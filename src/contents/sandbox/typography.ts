@@ -7,7 +7,7 @@ interface fontStyle {
   sample: string;
 }
 
-export const dataRoman: fontStyle[] = [
+export const dataPoppins: fontStyle[] = [
   {
     style: 'c12',
     size: 12,
@@ -89,7 +89,7 @@ export const dataRoman: fontStyle[] = [
   },
 ];
 
-export const dataCavalier: fontStyle[] = [
+export const dataBaloo: fontStyle[] = [
   {
     style: 'c12',
     size: 12,

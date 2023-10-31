@@ -14,7 +14,7 @@ export default function HelperText({
     <div className='flex space-x-1'>
       <Typography
         variant='h6'
-        font='cavalier'
+        font='baloo'
         color='secondary'
         className={clsxm('!leading-tight', helperTextClassName)}
       >

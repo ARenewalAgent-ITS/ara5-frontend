@@ -47,7 +47,7 @@ export default function SearchableSelectInput({
         <Typography
           as='label'
           variant='bt'
-          font='romansd'
+          font='poppins'
           color='label'
           className='block'
         >
@@ -123,7 +123,7 @@ export default function SearchableSelectInput({
           {helperText && (
             <Typography
               variant='h6'
-              font='cavalier'
+              font='baloo'
               color='secondary'
               className='!leading-tight'
             >
@@ -133,7 +133,7 @@ export default function SearchableSelectInput({
           {error && (
             <Typography
               variant='h6'
-              font='cavalier'
+              font='baloo'
               className='!leading-tight text-danger-500'
             >
               {error?.message?.toString()}

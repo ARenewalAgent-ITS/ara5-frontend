@@ -53,7 +53,7 @@ export default function Input({
     <div className='w-full space-y-2'>
       {label && (
         <label htmlFor={id} className='flex space-x-1'>
-          <Typography font='romansd' variant='bt' color='label'>
+          <Typography font='poppins' variant='bt' color='label'>
             {label}
           </Typography>
           {validation?.required && (
@@ -73,7 +73,7 @@ export default function Input({
         {prefix && (
           <Typography
             variant='h6'
-            font='cavalier'
+            font='baloo'
             color='secondary'
             weight='medium'
             className='flex items-center px-3 bg-typo-outline'
@@ -153,7 +153,7 @@ export default function Input({
         {suffix && (
           <Typography
             variant='h6'
-            font='cavalier'
+            font='baloo'
             color='secondary'
             weight='medium'
             className='flex items-center px-3 bg-typo-outline'

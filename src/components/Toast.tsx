@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import { toast, ToastBar, Toaster, ToastOptions } from 'react-hot-toast';
 import { HiX } from 'react-icons/hi';

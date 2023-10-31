@@ -5,7 +5,7 @@ export default function ErrorMessage({ children }: { children: string }) {
     <div className='flex space-x-1'>
       <Typography
         variant='bt'
-        font='cavalier'
+        font='baloo'
         className='!leading-tight text-danger-500'
       >
         {children}

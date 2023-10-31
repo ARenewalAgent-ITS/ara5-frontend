@@ -6,9 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['var(--font-romansd)', ...fontFamily.sans],
-        secondary: ['var(--font-cavalier)', ...fontFamily.sans],
-        reserve: ['var(--font-cinzel)', ...fontFamily.sans],
+        primary: ['var(--font-poppins)', ...fontFamily.sans],
+        secondary: ['var(--font-baloo)', ...fontFamily.sans],
       },
       colors: {
         primary: {

@@ -65,7 +65,7 @@ export default function Breadcrumb({
             color='secondary'
             as='span'
             variant='btn'
-            font='cavalier'
+            font='baloo'
             weight='medium'
           >
             <PrimaryLink
@@ -83,7 +83,7 @@ export default function Breadcrumb({
         as='span'
         variant='bt'
         weight='medium'
-        font='cavalier'
+        font='baloo'
         color={crumbs.length == 0 ? breadcrumbs[lastCrumb].color : 'blue'}
       >
         {breadcrumbs[lastCrumb].title}

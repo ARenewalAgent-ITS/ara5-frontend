@@ -37,16 +37,20 @@ export enum TypographyColor {
 }
 
 enum FontVariant {
-  'romansd',
-  'cavalier',
-  'cinzel',
+  'poppins',
+  'baloo',
 }
 
 enum FontWeight {
+  'thin',
+  'light',
+  'extralight',
   'regular',
   'medium',
   'semibold',
   'bold',
+  'extrabold',
+  'black',
 }
 
 type TypographyProps<T extends React.ElementType> = {
@@ -65,7 +69,7 @@ export default function Typography<T extends React.ElementType>({
   weight = 'regular',
   className,
   color = 'primary',
-  font = 'romansd',
+  font = 'poppins',
   variant = 'p',
   ...props
 }: TypographyProps<T> &
@@ -76,23 +80,28 @@ export default function Typography<T extends React.ElementType>({
       className={clsxm(
         // *=============== Font Type ==================
         [
-          font === 'romansd' && [
+          font === 'poppins' && [
             'font-primary',
             [
-              weight === 'regular' && 'font-normal',
+              weight === 'thin' && 'font-thin',
+              weight === 'light' && 'font-light',
+              weight === 'extralight' && 'font-extralight',
+              weight === 'regular' && 'font-regular',
               weight === 'medium' && 'font-medium',
               weight === 'semibold' && 'font-semibold',
               weight === 'bold' && 'font-bold',
+              weight === 'extrabold' && 'font-extrabold',
+              weight === 'black' && 'font-black',
             ],
           ],
-          font === 'cavalier' && ['font-secondary leading-none'],
-          font === 'cinzel' && [
-            'font-reserve',
+          // font === 'baloo' && ['font-secondary leading-none'],
+          font === 'baloo' && [
+            'font-secondary',
             [
-              weight === 'regular' && 'font-normal',
               weight === 'medium' && 'font-medium',
-              weight === 'semibold' && 'font-semibold',
               weight === 'bold' && 'font-bold',
+              weight === 'extrabold' && 'font-extrabold',
+              weight === 'black' && 'font-black',
             ],
           ],
         ],
