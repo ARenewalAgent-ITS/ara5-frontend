@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import Typography from '@/components/Typography';
 import Footer from '@/components/layouts/Footer';
+import Typography from '@/components/Typography';
 
 export default function page() {
   return (
