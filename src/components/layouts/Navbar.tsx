@@ -110,28 +110,14 @@ function Navbar() {
             <div className='text-center group'>
               <Link href='#' onClick={click1}>
                 <div
-                  style={{
-                    color: showClick1
-                      ? '#986A4B'
-                      : showClick2
-                      ? ''
-                      : showClick3
-                      ? ''
-                      : '',
-                  }}
+                  style={{ color: showClick1 ? '#986A4B' : '' }}
                   className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
                 >
                   Home
                 </div>
                 <Image
                   style={{
-                    opacity: showClick1
-                      ? '1'
-                      : showClick2
-                      ? '0'
-                      : showClick3
-                      ? ''
-                      : '',
+                    opacity: showClick1 ? '1' : '',
                   }}
                   src={Ellipse}
                   alt='ellipse'
@@ -198,29 +184,13 @@ function Navbar() {
             <div className='text-center group'>
               <Link href='#' onClick={click2}>
                 <div
-                  style={{
-                    color: showClick2
-                      ? '#986A4B'
-                      : showClick1
-                      ? ''
-                      : showClick3
-                      ? ''
-                      : '',
-                  }}
+                  style={{ color: showClick2 ? '#986A4B' : '' }}
                   className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
                 >
                   HMIT
                 </div>
                 <Image
-                  style={{
-                    opacity: showClick2
-                      ? '1'
-                      : showClick1
-                      ? ''
-                      : showClick3
-                      ? ''
-                      : '',
-                  }}
+                  style={{ opacity: showClick2 ? '1' : '' }}
                   src={Ellipse}
                   alt='ellipse'
                   className='w-[56px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
@@ -230,29 +200,13 @@ function Navbar() {
             <div className='text-center group'>
               <Link href='#' onClick={click3}>
                 <div
-                  style={{
-                    color: showClick3
-                      ? '#986A4B'
-                      : showClick1
-                      ? ''
-                      : showClick2
-                      ? ''
-                      : '',
-                  }}
+                  style={{ color: showClick3 ? '#986A4B' : '' }}
                   className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
                 >
                   About
                 </div>
                 <Image
-                  style={{
-                    opacity: showClick3
-                      ? '1'
-                      : showClick1
-                      ? ''
-                      : showClick2
-                      ? ''
-                      : '',
-                  }}
+                  style={{ opacity: showClick3 ? '1' : '' }}
                   src={Ellipse}
                   alt='ellipse'
                   className='w-[56px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
