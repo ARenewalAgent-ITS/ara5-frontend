@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import Navbar from '@/components/layouts/Navbar';
 import Footer from '@/components/layouts/Footer';
 import Typography from '@/components/Typography';
 
@@ -9,6 +10,7 @@ export default function page() {
   return (
     <>
       <div>
+        <Navbar />
         <Typography
           font='poppins'
           weight='extrabold'
