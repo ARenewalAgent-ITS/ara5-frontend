@@ -18,7 +18,7 @@ function Navbar() {
   const [showMe2, setShowMe2] = useState(false);
   const [showMe3, setShowMe3] = useState(false);
   const [showMe4, setShowMe4] = useState(false);
-  const [showClick1, setShowClick1] = useState(true);
+  const [showClick1, setShowClick1] = useState(false);
   const [showClick2, setShowClick2] = useState(false);
   const [showClick3, setShowClick3] = useState(false);
 
