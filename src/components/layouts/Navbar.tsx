@@ -28,10 +28,12 @@ function Navbar() {
 
   function toggle2() {
     setShowMe2(!showMe2);
+    setShowMe3(false);
   }
 
   function toggle3() {
     setShowMe3(!showMe3);
+    setShowMe2(false);
   }
 
   function toggle4() {
@@ -249,16 +251,14 @@ function Navbar() {
 
       <div
         style={{ transform: showMe4 ? 'translateX(0)' : '' }}
-        className='z-50 fixed md:hidden duration-200 transform -translate-x-full min-h-screen bg-[#393737] w-[100%] flex flex-col justify-evenly px-[1.5rem]'
+        className='z-50 fixed md:hidden duration-200 transform -translate-x-full min-h-screen bg-[#393737] w-[100%] px-[1.5rem]'
       >
-        <div className='flex justify-center items-center'>
-          <Link href='/'>
+        <div>
+          <Link href='/' className='mt-[3rem] flex justify-center items-center'>
             <Image src={LogoSVG} alt='svg' className='w-36' />
           </Link>
-        </div>
 
-        <div>
-          <div className='text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
+          <div className='mt-10 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
             <div className='flex gap-2 text-[22px]' onClick={toggle2}>
               <div>Our Events</div>
               <div className='flex justify-center items-center'>
@@ -295,7 +295,7 @@ function Navbar() {
             </Link>
           </div>
 
-          <div className='mt-4 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
+          <div className='mt-3 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
             <div className='flex gap-2 text-[22px]' onClick={toggle3}>
               <div>About Us</div>
               <div className='flex justify-center items-center'>
@@ -327,10 +327,8 @@ function Navbar() {
               </Link>
             </div>
           </div>
-        </div>
 
-        <div>
-          <div className='w-[100%] text-[#ffffff] font-bold text-[18px]'>
+          <div className='mt-10 w-[100%] text-[#ffffff] font-bold text-[18px]'>
             <Link href='#' className='text-center'>
               <div className='p-2 bg-[#00B8FF] border-2 border-[#00B8FF] rounded-md'>
                 Login
@@ -347,7 +345,7 @@ function Navbar() {
 
         <div
           onClick={toggle4}
-          className='flex justify-center items-center cursor-pointer'
+          className='absolute bottom-[6rem] left-1/2 transform -translate-x-1/2 cursor-pointer'
         >
           <Image src={Cross} className='w-12' alt='cross'></Image>
         </div>
