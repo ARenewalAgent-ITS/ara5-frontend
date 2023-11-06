@@ -27,7 +27,7 @@ export default function Toast() {
                 {message}
                 {t.type !== 'loading' && (
                   <button
-                    className='rounded-full p-1 ring-primary-400 transition hover:bg-[#444] focus:outline-none focus-visible:ring'
+                    className='rounded-full p-1 ring-primary-400 transition hover:text-[#444] focus:outline-none focus-visible:ring'
                     onClick={() => toast.dismiss(t.id)}
                   >
                     <HiX />
@@ -63,10 +63,20 @@ const showToast = (message: string, options?: ToastOptions) => {
 
 export { createCustomToast, showToast };
 
+const INFO_TOAST = createCustomToast({
+  style: {
+    background: '#c3daf2',
+    color: '#357f8a',
+  },
+  icon: <RiErrorWarningLine size={30} />,
+  className: 'w-[375px] [&>div]:justify-start',
+  position: 'top-center',
+  duration: 5000,
+});
 const SUCCESS_TOAST = createCustomToast({
   style: {
-    background: '#E8F0E0',
-    color: '#8AB364',
+    background: '#b9e2cd',
+    color: '#1ca35f',
   },
   icon: <RiErrorWarningLine size={30} />,
   className: 'w-[375px] [&>div]:justify-start',
@@ -75,8 +85,8 @@ const SUCCESS_TOAST = createCustomToast({
 });
 const DANGER_TOAST = createCustomToast({
   style: {
-    background: '#F7DBDB',
-    color: '#D84A4D',
+    background: '#eebfc1',
+    color: '#c73036',
   },
   icon: <RiErrorWarningLine size={30} />,
   className: 'w-[375px] [&>div]:justify-start',
@@ -86,8 +96,8 @@ const DANGER_TOAST = createCustomToast({
 
 const WARNING_TOAST = createCustomToast({
   style: {
-    background: '#FFEFCC',
-    color: '#FEB100',
+    background: '#ffedca',
+    color: '#b58d3c',
   },
   icon: <RiErrorWarningLine size={30} />,
   className: 'w-[375px] [&>div]:justify-start',
@@ -95,4 +105,4 @@ const WARNING_TOAST = createCustomToast({
   duration: 5000,
 });
 
-export { DANGER_TOAST, SUCCESS_TOAST, WARNING_TOAST };
+export { DANGER_TOAST, INFO_TOAST, SUCCESS_TOAST, WARNING_TOAST };

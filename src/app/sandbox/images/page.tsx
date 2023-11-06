@@ -13,7 +13,7 @@ export default function Page() {
     <>
       <NextImage
         src={'/images/kereta.svg'}
-        width={300}
+        width={600}
         height={30}
         // className='bisa ditambahkan penyesuaian dalam implementasinya'
         alt='background 404'
