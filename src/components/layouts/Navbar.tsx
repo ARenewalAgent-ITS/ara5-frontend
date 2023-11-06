@@ -98,7 +98,7 @@ function Navbar() {
       <div className='container font-poppins'>
         <div
           style={{ backgroundColor: colorChange ? '#ffffff' : '' }}
-          className='z-50 duration-300 flex justify-between fixed w-[100%] min-h-[10vh] px-[2rem] py-[1rem] box-border'
+          className='z-50 duration-300 flex justify-between fixed w-[100%] min-h-[10vh] p-[1.5rem] md:px-[2rem] md:py-[1rem] box-border'
         >
           <div className='flex justify-between items-center'>
             <Link href='/'>
