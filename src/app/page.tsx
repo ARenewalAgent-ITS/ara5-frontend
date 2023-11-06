@@ -5,6 +5,7 @@ import React from 'react';
 import Footer from '@/components/layouts/Footer';
 import Typography from '@/components/Typography';
 import LandingMiddleSection from '@/containers/LandingMiddleSection';
+import Card from '@/components/layouts/Card';
 
 export default function page() {
   return (
@@ -23,6 +24,7 @@ export default function page() {
           update app page ARA 5.0
         </Typography>
         <LandingMiddleSection />
+        <Card />
         <Footer />
       </div>
     </>
