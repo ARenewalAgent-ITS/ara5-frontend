@@ -1,9 +1,11 @@
 'use-client';
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 import Marquee from 'react-fast-marquee';
-import LogoAra from '../components/layouts/nav-img/Group 934.svg';
+
 import Typography from '@/components/Typography';
+
+import LogoAra from '../components/layouts/nav-img/Group 934.svg';
 
 function LoopTechnaVita() {
   return (

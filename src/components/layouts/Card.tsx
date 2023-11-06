@@ -1,6 +1,7 @@
 'use-client';
-import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import React from 'react';
+
 import Logo from './card-img/Group 934.svg';
 
 function Card() {
