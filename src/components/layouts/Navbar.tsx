@@ -1,17 +1,18 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
+
+import Cross from './nav-img/Cross.svg';
+import Ellipse from './nav-img/Ellipse 102.png';
+import ExploIT from './nav-img/Group 899.png';
+import Olimpiade from './nav-img/Group.png';
+import LogoSVG from './nav-img/Logo-ARA.svg';
 import LogoAra from './nav-img/LogoARA(4).png';
 import Register from './nav-img/Register.png';
-import Ellipse from './nav-img/Ellipse 102.png';
-import Olimpiade from './nav-img/Group.png';
 import CTF from './nav-img/Vector.png';
-import ExploIT from './nav-img/Group 899.png';
-import LogoSVG from './nav-img/Logo-ARA.svg';
-import Cross from './nav-img/Cross.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faBars } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const [showMe1, setShowMe1] = useState(false);
@@ -58,9 +59,10 @@ function Navbar() {
     setShowClick2(false);
   }
 
+  /*event: MouseEvent*/
   const dropdown = useRef(null);
   useEffect(() => {
-    function handleClick(event: MouseEvent) {
+    function handleClick() {
       if (
         showMe1 &&
         dropdown.current &&
