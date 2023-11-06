@@ -3,12 +3,14 @@
 import React from 'react';
 
 import Footer from '@/components/layouts/Footer';
+import Navbar from '@/components/layouts/Navbar';
 import Typography from '@/components/Typography';
 
 export default function page() {
   return (
     <>
       <div>
+        <Navbar />
         <Typography
           font='poppins'
           weight='extrabold'
