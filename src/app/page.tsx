@@ -6,6 +6,7 @@ import Navbar from '@/components/layouts/Navbar';
 import Typography from '@/components/Typography';
 import LandingMiddleSection from '@/containers/LandingMiddleSection';
 import Card from '@/components/layouts/Card';
+import LoopTechnaVita from '@/containers/LoopTechnaVita';
 import Footer from '@/components/layouts/Footer';
 
 export default function page() {
@@ -27,6 +28,7 @@ export default function page() {
         </Typography>
         <LandingMiddleSection />
         <Card />
+        <LoopTechnaVita />
         <Footer />
       </div>
     </>
