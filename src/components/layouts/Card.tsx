@@ -8,7 +8,7 @@ function Card() {
     <>
       {/* Desktop View */}
 
-      <div className='hidden md:block'>
+      <div className='hidden lg:block'>
         <div className='w-[70%]'>
           <div className='flex text-[#FFFFFF] bg-[#393737] p-[3rem] gap-[2rem] rounded-2xl'>
             <div className='flex justify-center items-center'>
@@ -37,7 +37,7 @@ function Card() {
 
       {/* Mobile View */}
 
-      <div className='block md:hidden'>
+      <div className='lg:hidden block'>
         <div className='w-[90%]'>
           <div className='text-center block text-[#FFFFFF] bg-[#393737] p-[1.5rem] gap-[2rem] rounded-2xl'>
             <div className='text-4xl font-bold'>Techna Vita</div>
