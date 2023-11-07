@@ -1,7 +1,7 @@
 // TESTING APP PAGE && EXAMPLE PAGE FOR ROUTE APP
 
 import React from 'react';
-import { FiArrowRight } from 'react-icons/fi';
+import { FaArrowRight } from 'react-icons/fa';
 
 import Button from '@/components/buttons/Button';
 import Footer from '@/components/layouts/Footer';
@@ -9,6 +9,7 @@ import Navbar from '@/components/layouts/Navbar';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/LoopKereta';
+import clsxm from '@/lib/clsxm';
 
 export default function page() {
   return (
@@ -94,11 +95,28 @@ export default function page() {
               </Typography>
               <Button
                 variant='primary'
+                rightIcon={FaArrowRight}
+                rightIconClassName={clsxm(
+                  'w-[14.4px] h-4 ml-2 transform translate-x-0 group-hover:translate-x-3 transition-all duration-300 ease-in-out'
+                )}
+                className={clsxm(
+                  'mx-auto xl:py-1 px-4 group w-[30%] max-[475px]:w-[40%] py-2 lg:w-[30%] mt-5 sm:max-w-sm md:max-w-md'
+                )}
+              >
+                <Typography
+                  className={clsxm('text-white-50 font-semibold text-base')}
+                >
+                  About Us
+                </Typography>
+              </Button>
+
+              {/* <Button
+                variant='primary'
                 className='w-[30%] py-2 lg:w-[35%] mt-5 sm:max-w-sm md:max-w-md'
                 rightIcon={FiArrowRight}
               >
                 About Us
-              </Button>
+              </Button> */}
             </div>
           </div>
 
