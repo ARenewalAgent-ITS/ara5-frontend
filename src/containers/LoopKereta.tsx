@@ -26,7 +26,7 @@ export default function LoopKereta() {
       </Link> */}
       <div className='mt-[.2rem] relative h-[20px] w-full flex gap-80 justify-end items-end'>
         <Marquee loop={0} speed={100} delay={4} direction='left' className=''>
-          <Image src={Kereta} alt='kereta' className='h-[20px] w-[524px] ' />
+          <Image src={Kereta} alt='kereta' className='h-[25px] w-[624px] ' />
           <Image
             src={Kereta}
             alt='kereta'
