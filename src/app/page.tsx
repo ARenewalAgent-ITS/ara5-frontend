@@ -3,8 +3,8 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
-import Button from '@/components/buttons/Button';
 import Footer from '@/components/layouts/Footer';
+import ButtonLink from '@/components/links/ButtonLink';
 // import Navbar from '@/components/layouts/Navbar';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
@@ -93,7 +93,8 @@ export default function page() {
                 menyalurkan minat di bidang IT (teknologi informasi) bagi siswa
                 SMA/SMK dan mahasiswa.
               </Typography>
-              <Button
+              <ButtonLink
+                href='/'
                 variant='primary'
                 rightIcon={FaArrowRight}
                 rightIconClassName={clsxm(
@@ -108,15 +109,7 @@ export default function page() {
                 >
                   About Us
                 </Typography>
-              </Button>
-
-              {/* <Button
-                variant='primary'
-                className='w-[30%] py-2 lg:w-[35%] mt-5 sm:max-w-sm md:max-w-md'
-                rightIcon={FiArrowRight}
-              >
-                About Us
-              </Button> */}
+              </ButtonLink>
             </div>
           </div>
 
