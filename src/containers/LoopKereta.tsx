@@ -30,7 +30,7 @@ export default function LoopKereta() {
           <Image
             src={Kereta}
             alt='kereta'
-            className='h-[20px] w-[524px] mx-[72rem]'
+            className='h-[25px] w-[624px] mx-[72rem]'
           />
         </Marquee>
       </div>

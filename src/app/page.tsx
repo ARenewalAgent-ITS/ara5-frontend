@@ -23,58 +23,59 @@ export default function page() {
               alt='background'
               width={259.97}
               height={203.14}
-              className='absolute bottom-96 left-0 z-20'
+              className='absolute bottom-96 left-0 z-20 hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/awan_kiri_kecil.svg'}
               alt='background'
               width={169.97}
               height={103.14}
-              className='absolute bottom-80 left-40 z-20'
+              className='absolute bottom-80 left-40 z-20 hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/daun_kiri.svg'}
               alt='background'
               width={29.97}
               height={51.14}
-              className='absolute bottom-20 left-40 z-20'
+              className='absolute bottom-20 left-40 z-20 hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/awan_kanan.svg'}
               alt='background'
               width={259.97}
               height={203.14}
-              className='absolute bottom-96 right-0 z-20'
+              className='absolute bottom-96 right-0 z-20 hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/awan_kanan_kecil.svg'}
               alt='background'
               width={169.97}
               height={103.14}
-              className='absolute bottom-80 right-40 z-20'
+              className='absolute bottom-80 right-40 z-20 hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/daun_kanan.svg'}
               alt='background'
               width={29.97}
               height={51.14}
-              className='absolute bottom-20 right-40 z-20'
+              className='absolute bottom-20 right-40 z-20 hidden lg:inline-block'
             />
           </div>
-          <div className='w-full relative -top-[70%] flex justify-center flex-col items-center'>
+          <div className='w-full relative xl:-top-[70%] sm:-top-[70%] md:-top-[70%]  -top-[70%] flex justify-center flex-col items-center'>
             <NextImage
               src={'/images/landpage/ARA5.svg'}
               alt='background'
               width={259.97}
               height={103.14}
-              className=''
+              className='max-[500px]:w-[60%] w-[259.97px]'
             />
-            <div className='flex flex-col items-center text-center xl:px-48'>
+            <div className='flex flex-col items-center text-center '>
               <Typography
                 font='poppins'
                 variant='h5'
-                weight='bold'
+                // weight='bold'
                 color='label'
+                className='font-bold text-[25px]'
               >
                 A Renewal Agent 5.0
               </Typography>
@@ -83,7 +84,7 @@ export default function page() {
                 variant='p'
                 weight='semibold'
                 color='label'
-                className='mt-5 text-center px-72'
+                className='mt-5 text-center lg:max-w-2xl max-[500px]:text-[14px] px-10 sm:max-w-md md:max-w-lg'
               >
                 ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan
                 oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode
@@ -93,9 +94,8 @@ export default function page() {
               </Typography>
               <Button
                 variant='primary'
-                className='w-[15%] mt-5'
+                className='w-[30%] py-2 lg:w-[35%] mt-5 sm:max-w-sm md:max-w-md'
                 rightIcon={FiArrowRight}
-                rightIconClassName='hover:ml-5'
               >
                 About Us
               </Button>
@@ -108,63 +108,63 @@ export default function page() {
               alt='background'
               width={259.97}
               height={113.14}
-              className='bottom-56 left-0 relative'
+              className='bottom-56 left-0 relative hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/bush.svg'}
               alt='background'
               width={150.97}
               height={103.14}
-              className='bottom-80 left-72 absolute'
+              className='bottom-80 left-72 absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/tree_kiri.svg'}
               alt='background'
               width={105.97}
               height={73.14}
-              className='bottom-[24rem] left-[30rem] absolute'
+              className='bottom-[24rem] left-[30rem] absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/tree_kiri.svg'}
               alt='background'
               width={105.97}
               height={73.14}
-              className='bottom-[10rem] left-[26rem] absolute'
+              className='bottom-[10rem] left-[26rem] absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/batu_kiri.svg'}
               alt='background'
               width={85.97}
               height={73.14}
-              className='bottom-[6rem] left-[6rem] absolute'
+              className='bottom-[6rem] left-[6rem] absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/rock_kanan.svg'}
               alt='background'
               width={75.97}
               height={53.14}
-              className='bottom-[25.5rem] right-[25rem] absolute'
+              className='bottom-[25.5rem] right-[25rem] absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/maskot.svg'}
               alt='background'
               width={105.97}
               height={73.14}
-              className='bottom-[20.5rem] right-[5rem] absolute'
+              className='bottom-[20.5rem] right-[5rem] absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/tree_kanan.svg'}
               alt='background'
               width={105.97}
               height={73.14}
-              className='bottom-[15.5rem] right-[22rem] absolute'
+              className='bottom-[15.5rem] right-[22rem] absolute hidden lg:inline-block'
             />
             <NextImage
               src={'/images/landpage/rock_kanan.svg'}
               alt='background'
               width={85.97}
               height={83.14}
-              className='bottom-[5.5rem] right-[15rem] absolute'
+              className='bottom-[5.5rem] right-[15rem] absolute hidden lg:inline-block'
             />
           </div>
         </div>
