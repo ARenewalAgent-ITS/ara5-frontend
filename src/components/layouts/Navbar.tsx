@@ -99,10 +99,10 @@ function Navbar() {
     <>
       {/* Desktop View */}
 
-      <div className='container font-poppins'>
+      <div className='font-poppins z-40 w-full sticky top-0'>
         <div
           style={{ backgroundColor: colorChange ? '#ffffff' : '' }}
-          className='z-50 duration-300 flex justify-between fixed w-[100%] min-h-[10vh] px-[1.5rem] py-3 md:px-[2rem] md:py-[1rem] box-border'
+          className='bg-[#A3EDFF] duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]'
         >
           <div className='flex justify-between items-center'>
             <Link href='/'>
@@ -110,7 +110,7 @@ function Navbar() {
             </Link>
           </div>
 
-          <div className='md:flex hidden justify-between items-center gap-[2rem] text-[#393737]'>
+          <div className='hidden md:flex justify-center gap-[2rem] absolute left-1/2 transform -translate-x-1/2'>
             <div className='text-center group'>
               <Link href='#' onClick={click1}>
                 <div
@@ -253,7 +253,7 @@ function Navbar() {
 
       <div
         style={{ transform: showMe4 ? 'translateX(0)' : '' }}
-        className='z-50 fixed md:hidden duration-200 transform -translate-x-full min-h-screen bg-[#393737] w-[100%] px-[1.5rem]'
+        className='z-50 top-0 fixed md:hidden duration-200 transform -translate-x-full h-[100vh] bg-[#393737] w-[100%] px-[1.5rem]'
       >
         <div>
           <Link href='/' className='mt-[3rem] flex justify-center items-center'>
@@ -347,7 +347,7 @@ function Navbar() {
 
         <div
           onClick={toggle4}
-          className='absolute bottom-[6rem] left-1/2 transform -translate-x-1/2 cursor-pointer'
+          className='absolute bottom-[4rem] left-1/2 transform -translate-x-1/2 cursor-pointer'
         >
           <Image src={Cross} className='w-12' alt='cross'></Image>
         </div>
