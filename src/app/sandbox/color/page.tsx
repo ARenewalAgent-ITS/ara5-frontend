@@ -27,9 +27,6 @@ export default function ColorPage() {
               </Typography>
               <div className='w-full mb-3 flex flex-col items-center'>
                 <div
-                  className={`${items?.class50} w-28 h-10 mt-3 rounded-lg`}
-                ></div>
-                <div
                   className={`${items?.class100} w-28 h-10 mt-3 rounded-lg`}
                 ></div>
                 <div
@@ -55,6 +52,12 @@ export default function ColorPage() {
                 ></div>
                 <div
                   className={`${items?.class900} w-28 h-10 mt-3 rounded-lg`}
+                ></div>
+                <div
+                  className={`${items?.class1000} w-28 h-10 mt-3 rounded-lg`}
+                ></div>
+                <div
+                  className={`${items?.class1100} w-28 h-10 mt-3 rounded-lg`}
                 ></div>
               </div>
             </div>
