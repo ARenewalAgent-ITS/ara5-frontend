@@ -110,7 +110,7 @@ function Navbar() {
             </Link>
           </div>
 
-          <div className='hidden md:flex justify-center gap-[2rem] absolute left-1/2 transform -translate-x-1/2'>
+          <div className='hidden lg:flex justify-center gap-[2rem] absolute left-1/2 transform -translate-x-1/2'>
             <div className='text-center group'>
               <Link href='#' onClick={click1}>
                 <div
@@ -219,7 +219,7 @@ function Navbar() {
             </div>
           </div>
 
-          <div className='md:flex hidden justify-between items-center gap-[1.5rem]'>
+          <div className='lg:flex hidden justify-between items-center gap-[1.5rem]'>
             <div className='flex justify-between items-center'>
               <Link href='#'>
                 <div className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'>
@@ -240,7 +240,7 @@ function Navbar() {
 
           <div
             onClick={toggle4}
-            className='flex justify-between items-center cursor-pointer md:hidden'
+            className='flex justify-between items-center cursor-pointer lg:hidden'
           >
             <div className='text-[2rem]'>
               <FontAwesomeIcon icon={faBars} />
@@ -253,7 +253,7 @@ function Navbar() {
 
       <div
         style={{ transform: showMe4 ? 'translateX(0)' : '' }}
-        className='z-50 top-0 fixed md:hidden duration-200 transform -translate-x-full h-[100vh] bg-[#393737] w-[100%] px-[1.5rem]'
+        className='z-50 top-0 fixed lg:hidden duration-200 transform -translate-x-full h-[100vh] bg-[#393737] w-[100%] px-[1.5rem]'
       >
         <div>
           <Link href='/' className='mt-[3rem] flex justify-center items-center'>
