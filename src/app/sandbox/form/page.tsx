@@ -55,7 +55,24 @@ export default function FormSandbox() {
 
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)} className='w-fit space-y-4'>
-          <Input id='text' label='Text' placeholder='Placeholder' />
+          <Input
+            id='username'
+            label='Username'
+            placeholder='Enter your username'
+            validation={{
+              required: 'Username cannot be empty',
+            }}
+          />
+
+          <Input
+            id='password'
+            label='Password'
+            placeholder='Enter your password'
+            type='password'
+            validation={{
+              required: 'Password cannot be empty',
+            }}
+          />
 
           <Input
             id='textReadOnly'
@@ -64,19 +81,19 @@ export default function FormSandbox() {
             readOnly={true}
           />
 
-          <Input
+          {/* <Input
             id='textWithPrefix'
             label='Text With Prefix'
             placeholder='Placeholder'
             prefix='Prefix'
-          />
+          /> */}
 
-          <Input
+          {/* <Input
             id='textWithSuffix'
             label='Text With Suffix'
             placeholder='Placeholder'
             suffix='suffix'
-          />
+          /> */}
 
           <Input
             id='textWithHelper'
