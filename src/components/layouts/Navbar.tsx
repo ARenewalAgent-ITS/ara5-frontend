@@ -1,6 +1,6 @@
 'use client';
-// import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
@@ -81,7 +81,7 @@ function Navbar() {
 
   const [colorChange, setColorChange] = useState(false);
   const changeNavbarColor = () => {
-    if (window.scrollY >= 175) {
+    if (window.scrollY > 30) {
       setColorChange(true);
     } else {
       setColorChange(false);
@@ -102,7 +102,7 @@ function Navbar() {
       <div className='container font-poppins'>
         <div
           style={{ backgroundColor: colorChange ? '#ffffff' : '' }}
-          className='z-50 duration-300 flex justify-between fixed w-[100%] min-h-[10vh] p-[1.5rem] md:px-[2rem] md:py-[1rem] box-border'
+          className='z-50 duration-300 flex justify-between fixed w-[100%] min-h-[10vh] px-[1.5rem] py-3 md:px-[2rem] md:py-[1rem] box-border'
         >
           <div className='flex justify-between items-center'>
             <Link href='/'>
@@ -143,10 +143,10 @@ function Navbar() {
                       }}
                       className='flex items-center group-hover:text-[#986A4B] duration-300'
                     >
-                      {/* <FontAwesomeIcon
+                      <FontAwesomeIcon
                         icon={faChevronDown}
                         className='flex items-center'
-                      /> */}
+                      />
                     </div>
                   </div>
                   <Image
@@ -243,7 +243,7 @@ function Navbar() {
             className='flex justify-between items-center cursor-pointer md:hidden'
           >
             <div className='text-[2rem]'>
-              {/* <FontAwesomeIcon icon={faBars} /> */}
+              <FontAwesomeIcon icon={faBars} />
             </div>
           </div>
         </div>
@@ -264,14 +264,14 @@ function Navbar() {
             <div className='flex gap-2 text-[22px]' onClick={toggle2}>
               <div>Our Events</div>
               <div className='flex justify-center items-center'>
-                {/* <FontAwesomeIcon
+                <FontAwesomeIcon
                   style={{
                     transform: showMe2 ? 'rotate(180deg)' : 'rotate(0deg)',
                     transition: 'transform 0.2s ease',
                   }}
                   icon={faChevronDown}
                   className='flex items-center'
-                /> */}
+                />
               </div>
             </div>
           </div>
@@ -301,14 +301,14 @@ function Navbar() {
             <div className='flex gap-2 text-[22px]' onClick={toggle3}>
               <div>About Us</div>
               <div className='flex justify-center items-center'>
-                {/* <FontAwesomeIcon
+                <FontAwesomeIcon
                   style={{
                     transform: showMe3 ? 'rotate(180deg)' : 'rotate(0deg)',
                     transition: 'transform 0.2s ease',
                   }}
                   icon={faChevronDown}
                   className='flex items-center'
-                /> */}
+                />
               </div>
             </div>
           </div>

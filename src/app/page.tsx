@@ -3,20 +3,22 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
+import Card from '@/components/layouts/Card';
 import Footer from '@/components/layouts/Footer';
+import Navbar from '@/components/layouts/Navbar';
 import ButtonLink from '@/components/links/ButtonLink';
-// import Navbar from '@/components/layouts/Navbar';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/LoopKereta';
+import LoopTechnaVita from '@/containers/LoopTechnaVita';
 import clsxm from '@/lib/clsxm';
 
 export default function page() {
   return (
     <>
-      <section className='overflow-hidden relative w-full h-full text-start bg-gradient-to-b from-[#A0EDFF] to-white-50 lg:pt-20 xl:px-32 '>
-        {/* <Navbar /> */}
-        <div className='relative w-full h-screen bg-[url("/images/landpage/bege.svg")] bg-cover bg-center mt-[30rem]'>
+      <Navbar />
+      <section className='overflow-hidden relative w-full h-full text-start bg-gradient-to-b from-[#A0EDFF] to-white-50 lg:pt-20'>
+        <div className='relative w-full h-screen bg-[url("/images/landpage/bege.svg")] bg-cover bg-center mt-[32rem]'>
           <LoopKereta />
           <div className='relative w-full flex bg-black-400'>
             <NextImage
@@ -62,7 +64,7 @@ export default function page() {
               className='absolute bottom-20 right-40 z-20 hidden lg:inline-block'
             />
           </div>
-          <div className='w-full relative xl:-top-[70%] sm:-top-[70%] md:-top-[70%]  -top-[70%] flex justify-center flex-col items-center'>
+          <div className='w-full relative xl:-top-[67%] sm:-top-[70%] md:-top-[70%]  -top-[62%] flex justify-center flex-col items-center'>
             <NextImage
               src={'/images/landpage/ARA5.svg'}
               alt='background'
@@ -111,9 +113,21 @@ export default function page() {
                 </Typography>
               </ButtonLink>
             </div>
+            <div className='flex flex-col w-full h-full items-center relative px-10'>
+              <NextImage
+                src={'/images/landpage/tema.svg'}
+                width={200}
+                height={200}
+                alt='tema'
+                className='w-[85%]'
+              />
+              <div className='relative bottom-32'>
+                <Card />
+              </div>
+            </div>
           </div>
 
-          <div className='fleX justify-between'>
+          <div className='flex justify-between'>
             <NextImage
               src={'/images/landpage/panel.svg'}
               alt='background'
@@ -179,6 +193,7 @@ export default function page() {
             />
           </div>
         </div>
+        <LoopTechnaVita />
         <Footer />
       </section>
     </>
