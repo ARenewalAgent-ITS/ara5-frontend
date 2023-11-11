@@ -41,7 +41,7 @@ export default function SelectInput({
     <div className='w-full space-y-1.5'>
       {label && (
         <label htmlFor={id} className='flex space-x-1'>
-          <Typography font='romansd' variant='bt' color='label'>
+          <Typography font='poppins' variant='bt' color='label'>
             {label}
           </Typography>
           {validation?.required && (

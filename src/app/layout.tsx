@@ -1,9 +1,15 @@
-import '../styles/globals.css';
+import '@/styles/globals.css';
+import '@/styles/nprogress.css';
+import 'aos/dist/aos.css';
+
+import dynamic from 'next/dynamic';
+
+const Toast = dynamic(() => import('@/components/Toast'), { ssr: false });
 
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
 
-const montserrat = Montserrat({ subsets: ['latin'] });
+import { PoppinsRegular } from '@/lib/font';
+import { BalooMedium } from '@/lib/font';
 
 export const metadata: Metadata = {
   title: 'ARA 5.0 READY TO DEVELOPMENT',
@@ -17,7 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={montserrat.className}>{children}</body>
+      <body className={(PoppinsRegular.variable, BalooMedium.variable)}>
+        <Toast />
+        {children}
+      </body>
     </html>
   );
 }

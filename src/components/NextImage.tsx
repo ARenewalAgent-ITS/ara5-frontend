@@ -1,3 +1,5 @@
+'use client';
+
 import Image, { ImageProps } from 'next/legacy/image';
 import * as React from 'react';
 

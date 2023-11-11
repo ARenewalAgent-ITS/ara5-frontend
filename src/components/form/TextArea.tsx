@@ -44,7 +44,7 @@ export default function TextArea({
     <div className='w-full space-y-1.5'>
       {label && (
         <label htmlFor={id} className='flex space-x-1'>
-          <Typography variant='bt' font='romansd' color='primary'>
+          <Typography variant='bt' font='poppins' color='primary'>
             {label}
           </Typography>
           {validation?.required && (
@@ -81,7 +81,7 @@ export default function TextArea({
         <Typography
           variant='bt'
           color='secondary'
-          font='cavalier'
+          font='baloo'
           className='absolute right-6 bottom-2.5'
         >
           {value.length}/{maxLength}

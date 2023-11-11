@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { get, RegisterOptions, useFormContext } from 'react-hook-form';
 import { IconType } from 'react-icons';
-import { HiEye, HiEyeOff } from 'react-icons/hi';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 import ErrorMessage from '@/components/form/ErrorMessage';
 import HelperText from '@/components/form/HelperText';
@@ -15,8 +15,6 @@ export type InputProps = {
   helperTextClassName?: string;
   hideError?: boolean;
   validation?: RegisterOptions;
-  prefix?: string;
-  suffix?: string;
   leftIcon?: IconType;
   rightIcon?: IconType;
   leftIconClassName?: string;
@@ -29,8 +27,6 @@ export default function Input({
   helperText,
   hideError = false,
   validation,
-  prefix,
-  suffix,
   className,
   type = 'text',
   readOnly = false,
@@ -53,34 +49,23 @@ export default function Input({
     <div className='w-full space-y-2'>
       {label && (
         <label htmlFor={id} className='flex space-x-1'>
-          <Typography font='romansd' variant='bt' color='label'>
+          <Typography
+            font='poppins'
+            weight='bold'
+            variant='t'
+            color='label'
+            className='text-[16px] leading-[24px] text-whites-1100'
+          >
             {label}
           </Typography>
           {validation?.required && (
-            <Typography className='text-danger-500'>*</Typography>
+            <Typography className='text-danger-600'>*</Typography>
           )}
         </label>
       )}
 
       <div className='w-full flex relative'>
-        <div
-          className={clsxm(
-            'absolute w-full h-full ring-2 pointer-events-none',
-            'ring-typo-outline'
-          )}
-        />
-
-        {prefix && (
-          <Typography
-            variant='h6'
-            font='cavalier'
-            color='secondary'
-            weight='medium'
-            className='flex items-center px-3 bg-typo-outline'
-          >
-            {prefix}
-          </Typography>
-        )}
+        <div className={clsxm('absolute w-full h-full pointer-events-none')} />
 
         <div className={clsxm('relative w-full')}>
           {LeftIcon && (
@@ -106,16 +91,14 @@ export default function Input({
             readOnly={readOnly}
             disabled={readOnly}
             className={clsxm(
-              'w-full h-full px-3 py-3 border-none',
+              'w-full h-full pl-2 md:pl-3 pr-10 py-[6px] md:py-2 border-[1px] border-whites-1100 rounded-[5px]',
               [LeftIcon && 'pl-9', RightIcon && 'pr-9'],
-              'focus:ring-2',
-              'bg-typo-white hover:bg-typo-surface',
-              'font-secondary text-typo-primary text-[22px]',
-              'placeholder:font-secondary placeholder:text-typo-secondary',
-              readOnly && 'cursor-not-allowed',
-              error
-                ? 'border-none focus:ring-danger-500 bg-danger-50 ring-2 ring-danger-500 '
-                : 'focus:ring-primary-500',
+              'focus:ring-0 focus:border-success-600 bg-whites-100',
+              'font-primary font-medium text-whites-900 text-xs md:text-sm',
+              'placeholder:font-primary placeholder:text-whites-900 placeholder:text-xs md:placeholder:text-sm placeholder:font-medium',
+              readOnly &&
+                'cursor-not-allowed border-whites-800 placeholder:text-whites-800 text-whites-800',
+              error ? 'border-danger-600' : 'focus:border-success-600',
               className
             )}
             aria-describedby={id}
@@ -140,27 +123,19 @@ export default function Input({
               className={clsxm(
                 'absolute bottom-0 right-0 h-full',
                 'flex justify-center items-center pr-3',
-                'text-typo-secondary text-lg md:text-xl',
+                'text-whites-1100 font-medium',
                 rightIconClassName
               )}
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <HiEye /> : <HiEyeOff />}
+              {showPassword ? (
+                <BsEye className='w-[18px] h-[14px] md:w-[22px] md:h-[18px]' />
+              ) : (
+                <BsEyeSlash className='w-[18px] h-[14px] md:w-[22px] md:h-[18px]' />
+              )}
             </div>
           )}
         </div>
-
-        {suffix && (
-          <Typography
-            variant='h6'
-            font='cavalier'
-            color='secondary'
-            weight='medium'
-            className='flex items-center px-3 bg-typo-outline'
-          >
-            {suffix}
-          </Typography>
-        )}
       </div>
 
       {!hideError && error && <ErrorMessage>{error.message}</ErrorMessage>}
