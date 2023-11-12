@@ -3,6 +3,7 @@ import * as React from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/buttons/Button';
+import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
 import SearchableSelectInput from '@/components/form/SearchableSelectInput';
 import SelectInput from '@/components/form/SelectInput';
@@ -217,7 +218,6 @@ export default function FormSandbox() {
             validation={{ required: 'Field must be filled' }}
             readOnly={true}
           />
-
           <SelectInput
             id='select'
             label='Select Input'
@@ -251,6 +251,17 @@ export default function FormSandbox() {
               { value: 'Other', label: 'Other' },
             ]}
           ></SearchableSelectInput>
+          <Checkbox
+            label='contoh checkbox'
+            name='contoh'
+            value='contohVale'
+            helperText='helper text'
+            readOnly={false}
+            hideError={false}
+            validation={{
+              required: 'This checkbox must be checked',
+            }}
+          />
 
           <Button
             type='submit'
