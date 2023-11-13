@@ -5,14 +5,10 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Button from '@/components/buttons/Button';
+import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
 import Typography from '@/components/Typography';
-
-type TLoginRequest = {
-  username: string;
-  password: string;
-  remember: boolean;
-};
+import { TLoginRequest } from '@/types/entities/login';
 
 export default function Login() {
   const methods = useForm<TLoginRequest>();
@@ -72,17 +68,12 @@ export default function Login() {
                 }}
               />
             </div>
-            <div className='space-x-2 flex items-center'>
-              <input type='checkbox' className='appearance-none' />
-              <Typography
-                weight='medium'
-                variant='c12'
-                font='poppins'
-                className='text-[12px] leading-[24px]'
-              >
-                Remember Me
-              </Typography>
-            </div>
+            <Checkbox
+              label='Remember Me'
+              name='remember'
+              readOnly={false}
+              hideError={true}
+            />
           </div>
           <div className='space-y-3 flex flex-col w-full items-center lg:items-start'>
             <Button
