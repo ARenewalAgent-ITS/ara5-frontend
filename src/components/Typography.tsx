@@ -42,9 +42,6 @@ enum FontVariant {
 }
 
 enum FontWeight {
-  'thin',
-  'light',
-  'extralight',
   'regular',
   'medium',
   'semibold',
@@ -83,18 +80,13 @@ export default function Typography<T extends React.ElementType>({
           font === 'poppins' && [
             'font-primary',
             [
-              weight === 'thin' && 'font-thin',
-              weight === 'light' && 'font-light',
-              weight === 'extralight' && 'font-extralight',
-              weight === 'regular' && 'font-regular',
+              weight === 'regular' && 'font-normal',
               weight === 'medium' && 'font-medium',
               weight === 'semibold' && 'font-semibold',
               weight === 'bold' && 'font-bold',
               weight === 'extrabold' && 'font-extrabold',
-              weight === 'black' && 'font-black',
             ],
           ],
-          // font === 'baloo' && ['font-secondary leading-none'],
           font === 'baloo' && [
             'font-secondary',
             [

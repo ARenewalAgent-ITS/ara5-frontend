@@ -12,11 +12,11 @@ export default function page() {
       <div>
         <Navbar />
         <Typography
-          font='poppins'
-          weight='extrabold'
+          weight='regular'
           variant='h1'
           as='h1'
           color='warning'
+          className='font-poppins'
         >
           update app page ARA 5.0 @@
         </Typography>

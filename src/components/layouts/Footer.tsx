@@ -60,11 +60,10 @@ function SVG(props: LinkHeadline) {
       <Image src={KotakNama} alt='kotak nama' />
       <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full overflow-hidden'>
         <Typography
-          font='poppins'
           variant='t'
           weight='bold'
           className={clsxm(
-            'text-[#724F38] font-bold text-[18px] leading-[24px]'
+            'text-[#724F38] font-bold text-[18px] leading-[24px] font-poppins'
           )}
         >
           {props.text}
@@ -114,11 +113,10 @@ export default function Footer() {
               {section.links.map((link) => (
                 <Typography
                   key={link}
-                  font='poppins'
                   variant='bt'
                   weight='medium'
                   color='white'
-                  className='mt-3'
+                  className='mt-3 font-poppins'
                 >
                   {link}
                 </Typography>
@@ -148,11 +146,10 @@ export default function Footer() {
           ))}
         </div>
         <Typography
-          font='poppins'
           variant='bt'
           weight='medium'
           color='white'
-          className='text-center mt-5 pb-5'
+          className='text-center mt-5 pb-5 font-poppins'
         >
           &copy; A Renewal Agent 5.0
         </Typography>
