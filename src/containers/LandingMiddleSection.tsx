@@ -1,13 +1,18 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
+import { FaArrowRight } from 'react-icons/fa';
 
-import Kereta from '~/images/kereta.svg';
+import Button from '@/components/buttons/Button';
+import Typography from '@/components/Typography';
+import clsxm from '@/lib/clsxm';
+import Kereta from '~/img/landingpage/Kereta.png';
 
-export default function LoopKereta() {
+export default function LandingMiddleSection() {
   return (
     <div className='w-full h-fit flex flex-col'>
-      {/* <Link className='mx-auto' href={'/'}>
+      <Link className='mx-auto' href={'/'}>
         <Button
           variant='primary'
           size='lg'
@@ -23,14 +28,18 @@ export default function LoopKereta() {
             About Us
           </Typography>
         </Button>
-      </Link> */}
-      <div className='relative bottom-[405px] h-[25px] w-full flex gap-80 justify-end items-end'>
-        <Marquee loop={0} speed={200} delay={4} direction='left' className=''>
-          {/* <Image src={Kereta} alt='kereta' className='h-[25px] w-[624px] ' /> */}
+      </Link>
+      <div className='relative h-[20px] w-full flex gap-x-10 justify-end items-end'>
+        <Marquee loop={0} speed={50} delay={4} direction='left' className=''>
           <Image
             src={Kereta}
             alt='kereta'
-            className='h-[35px] w-[824px] mx-[72rem]'
+            className='h-[20px] w-[524px] mx-64 lg:mx-0 lg:ml-96'
+          />
+          <Image
+            src={Kereta}
+            alt='kereta'
+            className='h-[20px] w-[524px] mx-64 lg:mx-80 xl:mx-96 lg:hidden'
           />
         </Marquee>
       </div>
