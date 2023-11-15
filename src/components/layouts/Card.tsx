@@ -19,7 +19,7 @@ function Card() {
             <div className='block'>
               <div className='text-center text-5xl font-bold'>Techna Vita</div>
               <br />
-              <div className='text-justify'>
+              <div className='text-justify md:text-[16px]'>
                 Techna Vita terdiri dari dua kata yaitu “Techna” yang berasal
                 dari Bahasa Yunani dan “Vita” yang berasal dari Bahasa Latin.
                 Techna dapat diartikan sebagai seni, sedangkan Vita bermakna
@@ -48,7 +48,7 @@ function Card() {
               ></Image>
             </div>
             <br />
-            <div className='text-sm leading-6'>
+            <div className='text-sm leading-6 md:text-[16px]'>
               Techna Vita terdiri dari dua kata yaitu “Techna” yang berasal dari
               Bahasa Yunani dan “Vita” yang berasal dari Bahasa Latin. Techna
               dapat diartikan sebagai seni, sedangkan Vita bermakna kehidupan.
