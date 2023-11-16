@@ -160,7 +160,7 @@ function Navbar() {
               <div
                 style={{ display: showMe1 ? 'block' : 'none' }}
                 ref={dropdown}
-                className='text-[18px] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold'
+                className='text-[18px] text-[#FFFFFF] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold'
               >
                 <Link
                   href='#'
