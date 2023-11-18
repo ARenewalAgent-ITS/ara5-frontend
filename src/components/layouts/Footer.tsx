@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import LogoItBnw from '~/img/footer/logo_it_bnw.png';
@@ -13,6 +14,7 @@ interface TSocialMedias {
 
 interface TFooterData {
   title: string;
+  link_name: string[];
   links: string[];
 }
 
@@ -38,15 +40,18 @@ const socialMedias: TSocialMedias[] = [
 const footerData: TFooterData[] = [
   {
     title: 'Our Events',
-    links: ['OlimpIT', 'Capture The Flag', 'ExploIT'],
+    link_name: ['OlimpIT', 'Register', 'ARA 5.0'],
+    links: ['OlimpIT', 'Register', 'ARA-5'],
   },
   {
     title: 'Quick Links',
-    links: ['Register', 'Login'],
+    link_name: ['Capture The Flag', 'Login', 'HMIT ITS'],
+    links: ['Capture-The-Flag', 'Login', 'HMIT-ITS'],
   },
   {
     title: 'About Us',
-    links: ['ARA 5.0', 'HMIT ITS'],
+    link_name: ['ExploIT'],
+    links: ['ExploIT'],
   },
 ];
 
@@ -104,25 +109,51 @@ export default function Footer() {
           </div>
         </div>
         <div className='footer-links flex flex-col lg:flex-row md:items-start md:gap-x-4 lg:gap-x-8 xl:gap-x-12 justify-center items-center'>
-          {footerData.map((section, idx) => (
-            <div
-              key={idx}
-              className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'
-            >
-              <SVG text={section.title} />
-              {section.links.map((link) => (
+          <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
+            <SVG text='Our Events' />
+            {footerData.map((link, idx) => (
+              <UnstyledLink href={`/${link.links[0]}`} key={idx}>
                 <Typography
-                  key={link}
                   variant='bt'
                   weight='medium'
                   color='white'
                   className='mt-3 font-poppins'
                 >
-                  {link}
+                  {link.link_name[0]}
                 </Typography>
-              ))}
-            </div>
-          ))}
+              </UnstyledLink>
+            ))}
+          </div>
+          <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
+            <SVG text='Quick Links' />
+            {footerData.map((link, idx) => (
+              <UnstyledLink href={`/${link.links[1]}`} key={idx}>
+                <Typography
+                  variant='bt'
+                  weight='medium'
+                  color='white'
+                  className='mt-3 font-poppins'
+                >
+                  {link.link_name[1]}
+                </Typography>
+              </UnstyledLink>
+            ))}
+          </div>
+          <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
+            <SVG text='About Us' />
+            {footerData.map((link, idx) => (
+              <UnstyledLink href={`/${link.links[2]}`} key={idx}>
+                <Typography
+                  variant='bt'
+                  weight='medium'
+                  color='white'
+                  className='mt-3 font-poppins'
+                >
+                  {link.link_name[2]}
+                </Typography>
+              </UnstyledLink>
+            ))}
+          </div>
         </div>
       </div>
       <hr className='bg-white-50 h-[1px] w-[90%] lg:w-[92%] xl:w[94%] mx-auto' />
@@ -130,9 +161,9 @@ export default function Footer() {
         <div className='social-links mb-2.5 text-center pt-7'>
           {socialMedias.map((social) => (
             <div className='link inline-block mx-2.5' key={social.link}>
-              <a
+              <UnstyledLink
                 href={social.link}
-                className='flex items-center justify-center w-7 h-7 bg-white-50 rounded-full'
+                className='flex items-center justify-center w-7 h-7 bg-white rounded-full'
               >
                 <Image
                   src={social.img}
@@ -141,7 +172,7 @@ export default function Footer() {
                   height={0}
                   style={{ width: '60%', height: '60%' }}
                 />
-              </a>
+              </UnstyledLink>
             </div>
           ))}
         </div>

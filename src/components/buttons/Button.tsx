@@ -61,7 +61,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type='button'
         disabled={disabled}
         className={clsxm(
-          'button inline-flex items-center justify-center rounded-md',
+          'button inline-flex items-center justify-center rounded-[4px]',
           'focus:warning-none focus-visible:ring focus-visible:ring-primary-500',
           'transition-colors duration-75',
           //#region  //*=========== Size ===========
@@ -80,10 +80,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           //#region  //*=========== Variants ===========
           [
             variant === 'primary' && [
-              'text-white-500',
-              'bg-primary-600',
-              'hover:bg-primary-700',
-              'active:bg-primary-700 active:shadow-inner',
+              'text-[#FDFDFD]',
+              'bg-[#00B8FF]',
+              'hover:bg-primary-500',
+              'active:bg-primary-600 active:shadow-inner',
               'shadow-primary-100 hover:shadow-primary-200 hover:shadow-40 disabled:hover:shadow-primary-100',
               'disabled:bg-primary-700 disabled:brightness-90 disabled:hover:bg-primary-700',
             ],
@@ -218,7 +218,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           >
             <RightIcon
               className={clsxm(
-                'text-sm md:text-2xl font-semibold',
+                'text-sm md:text-2xl hover:text-5xl',
                 rightIconClassName
               )}
             />
