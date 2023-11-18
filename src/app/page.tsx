@@ -2,10 +2,10 @@
 
 import React from 'react';
 
+import SponsorSection from '@/components/containers/SponsorSection';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Typography from '@/components/Typography';
-import SponsorSection from '@/components/containers/SponsorSection';
 
 export default function page() {
   return (
