@@ -22,7 +22,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar className='bg-[#A3EDFF]' />
       <section className='overflow-hidden relative w-full h-full text-start bg-gradient-to-b from-[#A0EDFF] to-white-50 lg:pt-16'>
         <div className='relative w-full flex'>
           <NextImage

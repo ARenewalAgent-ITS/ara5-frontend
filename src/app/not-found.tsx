@@ -9,7 +9,7 @@ export default function NotFound() {
     <>
       <div>
         <div className='fixed w-full z-10'>
-          <Navbar />
+          <Navbar className='bg-transparant' />
         </div>
         <section className='overflow-hidden text-start relative h-screen w-screen bg-gradient-to-b from-[#A0EDFF] to-white-50'>
           <div className='relative w-screen h-screen md:bg-[length:1500px_400px] sm-bg-[length:808.5px_315px] bg-[length:808.5px_315px] bg-[url("/images/404/bush.svg")] bg-top bg-no-repeat md:mt-[600px] mt-[560px]'>
