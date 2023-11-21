@@ -47,7 +47,7 @@ export default function OurEventLineUp() {
       <section className='overflow-hidden w-full h-full bg-white-400 min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
         <div className='flex justify-center'>
           <NextImage
-            src={'/images/landpage_ourevent/our_event.png'}
+            src={'/images/landpage_ourevent/our_event.svg'}
             alt='background'
             width={483}
             height={70}
@@ -104,6 +104,7 @@ export default function OurEventLineUp() {
                   className='flex flex-col md:flex-row-reverse md:items-center md:gap-10 xl:gap-16 mt-10 xl:mt-16'
                   data-aos='fade-right'
                   data-aos-delay='400'
+                  key={index}
                 >
                   <NextImage
                     src={items?.img}
@@ -149,7 +150,7 @@ export default function OurEventLineUp() {
           >
             <div className='w-full h-full flex items-center flex-col'>
               <NextImage
-                src={'/images/landpage_ourevent/present.png'}
+                src={'/images/landpage_ourevent/present.svg'}
                 alt='background'
                 width={483}
                 height={70}
