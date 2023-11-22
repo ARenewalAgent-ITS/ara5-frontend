@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import MediaSponsorSection from '@/components/containers/MediaSponsorSection';
+import MediaSponsorSection from '@/containers/MediaSponsorSection';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Typography from '@/components/Typography';
