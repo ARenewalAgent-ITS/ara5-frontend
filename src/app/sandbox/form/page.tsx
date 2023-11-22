@@ -4,6 +4,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
+import DropzoneInput from '@/components/form/DropzoneInput';
+import FileInput from '@/components/form/FileInput';
 import Input from '@/components/form/Input';
 import SearchableSelectInput from '@/components/form/SearchableSelectInput';
 import SelectInput from '@/components/form/SelectInput';
@@ -82,19 +84,21 @@ export default function FormSandbox() {
             readOnly={true}
           />
 
-          {/* <Input
-            id='textWithPrefix'
-            label='Text With Prefix'
-            placeholder='Placeholder'
-            prefix='Prefix'
-          /> */}
+          <DropzoneInput
+            id='photo'
+            label='Upload File'
+            validation={{ required: 'Photo must be filled' }}
+            accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+            helperText='You can upload file with .png, .jpg, atau .jpeg extension.'
+          />
 
-          {/* <Input
-            id='textWithSuffix'
-            label='Text With Suffix'
-            placeholder='Placeholder'
-            suffix='suffix'
-          /> */}
+          <FileInput
+            id='photo'
+            label='Upload File'
+            validation={{ required: 'Photo must be filled' }}
+            accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+            helperText='You can upload file with .png, .jpg, atau .jpeg extension.'
+          />
 
           <Input
             id='textWithHelper'
