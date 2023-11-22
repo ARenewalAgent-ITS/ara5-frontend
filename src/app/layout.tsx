@@ -13,7 +13,7 @@ import { poppins } from '@/lib/font';
 import { BalooMedium } from '@/lib/font';
 
 export const metadata: Metadata = {
-  title: 'ARA 5.0 READY TO DEVELOPMENT',
+  title: 'Home | A Renewal Agent 5.0',
   description: 'A RENEWAL AGENT 5.0',
 };
 
