@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import SponsorSection from '@/components/containers/SponsorSection';
+import MediaSponsorSection from '@/components/containers/MediaSponsorSection';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Typography from '@/components/Typography';
@@ -27,7 +27,7 @@ export default function page() {
         <Typography font='baloo' weight='bold' variant='h1'>
           update app page ARA 5.0 @@ bold
         </Typography>
-        <SponsorSection />
+        <MediaSponsorSection />
         <Footer />
       </div>
     </>
