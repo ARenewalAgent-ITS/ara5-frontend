@@ -75,7 +75,7 @@ export default function OurEventLineUp() {
             alt='birds'
             width={578}
             height={383}
-            className='hidden md:block absolute w-[40%] top-[50rem] right-0 opacity-40'
+            className='hidden md:block absolute w-[40%] top-[50rem] right-0 opacity-70'
           />
         </div>
         <div className='relative'>
