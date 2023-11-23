@@ -1,6 +1,8 @@
 'use client';
 
+import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -8,14 +10,45 @@ import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
 import Typography from '@/components/Typography';
+import useMutationToast from '@/hooks/useMutationToast';
+import api from '@/lib/api';
+import { setToken } from '@/lib/cookies';
+import useAuthStore from '@/store/useAuthStore';
+import { ApiReturn } from '@/types/api';
 import { TLoginRequest } from '@/types/entities/login';
+import { User } from '@/types/entities/user';
 
 export default function Login() {
   const methods = useForm<TLoginRequest>();
+  const { handleSubmit } = methods;
+  const router = useRouter();
+  const login = useAuthStore.useLogin();
+
+  const { mutate: loginMutate, isLoading } = useMutationToast<
+    void,
+    TLoginRequest
+  >(
+    useMutation(async (data) => {
+      const res = await api.post('/routee', data);
+      const { accessToken } = res.data.data;
+      setToken(accessToken);
+
+      const user = await api.get<ApiReturn<User>>('/routeee');
+
+      if (!user.data.data) {
+        throw new Error('Sesi login tidak valid');
+      }
+      login({ ...user.data.data, accessToken: accessToken });
+      router.push('/admin/dashboard');
+    })
+  );
 
   const onSubmit = (data: TLoginRequest) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    loginMutate({
+      username: data?.username,
+      password: data?.password,
+      remember: data?.remember,
+    });
   };
 
   return (
@@ -47,7 +80,7 @@ export default function Login() {
         </Typography>
       </div>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-12'>
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-12'>
           <div className='space-y-3'>
             <div className='space-y-4'>
               <Input
@@ -88,7 +121,7 @@ export default function Login() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                Login
+                {!isLoading ? 'Login' : 'Loading...'}
               </Typography>
             </Button>
             <Typography
