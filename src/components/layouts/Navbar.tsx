@@ -84,8 +84,9 @@ function Navbar(props: NavbarProps) {
 
       <div className='font-poppins z-40 w-full sticky top-0'>
         <div
-          style={{ backgroundColor: colorChange ? '#ffffff' : '' }}
-          className={`${props.className} duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]`}
+          className={`${colorChange ? 'bg-[#FFFFFF]' : ''} ${
+            props.className
+          } duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]`}
         >
           <div className='flex justify-between items-center'>
             <Link href='/'>
@@ -114,11 +115,11 @@ function Navbar(props: NavbarProps) {
                       Our Events
                     </div>
                     <div
-                      style={{
-                        transform: showMe1 ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                      }}
-                      className='flex items-center group-hover:text-[#986A4B] duration-300'
+                      className={`${
+                        showMe1
+                          ? 'rotate-180 duration-300 ease-in-out'
+                          : 'rotate-0 duration-300 ease-in-out'
+                      } flex items-center group-hover:text-[#986A4B] duration-300`}
                     >
                       <FontAwesomeIcon
                         icon={faChevronDown}
@@ -135,9 +136,10 @@ function Navbar(props: NavbarProps) {
               </div>
 
               <div
-                style={{ display: showMe1 ? 'block' : 'none' }}
                 ref={dropdown}
-                className='text-[18px] text-[#FFFFFF] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold'
+                className={`${
+                  showMe1 ? 'block' : 'hidden'
+                } text-[18px] text-[#FFFFFF] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold`}
               >
                 <Link
                   href='#'
@@ -221,8 +223,9 @@ function Navbar(props: NavbarProps) {
       {/* Mobile View */}
 
       <div
-        style={{ transform: showMe4 ? 'translateX(0)' : '' }}
-        className='z-50 top-0 fixed lg:hidden duration-200 transform -translate-x-full h-[100vh] bg-[#393737] w-[100%] px-[1.5rem]'
+        className={`${
+          showMe4 ? 'translate-x-0' : ''
+        } z-50 top-0 fixed lg:hidden duration-200 transform -translate-x-full h-[100vh] bg-[#393737] w-[100%] px-[1.5rem]`}
       >
         <div>
           <Link href='/' className='mt-[3rem] flex justify-center items-center'>
@@ -234,20 +237,21 @@ function Navbar(props: NavbarProps) {
               <div>Our Events</div>
               <div className='flex justify-center items-center'>
                 <FontAwesomeIcon
-                  style={{
-                    transform: showMe2 ? 'rotate(180deg)' : 'rotate(0deg)',
-                    transition: 'transform 0.2s ease',
-                  }}
                   icon={faChevronDown}
-                  className='flex items-center'
+                  className={`${
+                    showMe2
+                      ? 'rotate-180 duration-300 ease-in-out'
+                      : 'rotate-0 duration-300 ease-in-out'
+                  } flex items-center`}
                 />
               </div>
             </div>
           </div>
 
           <div
-            style={{ display: showMe2 ? 'block' : 'none' }}
-            className='mt-2 text-[18px] font-bold text-[#ffffff]'
+            className={`${
+              showMe2 ? 'block' : 'hidden'
+            } mt-2 text-[18px] font-bold text-[#ffffff]`}
           >
             <Link href='#' className='flex justify-center items-center gap-2'>
               <Image src={Olimpiade} alt='olimpiade' className='w-5'></Image>
@@ -276,15 +280,20 @@ function Navbar(props: NavbarProps) {
                     transition: 'transform 0.2s ease',
                   }}
                   icon={faChevronDown}
-                  className='flex items-center'
+                  className={`${
+                    showMe3
+                      ? 'rotate-180 duration-300 ease-in-out'
+                      : 'rotate-0 duration-300 ease-in-out'
+                  } flex items-center`}
                 />
               </div>
             </div>
           </div>
 
           <div
-            style={{ display: showMe3 ? 'block' : 'none' }}
-            className='mt-2 text-[18px] font-bold text-[#ffffff]'
+            className={`${
+              showMe3 ? 'block' : 'hidden'
+            } mt-2 text-[18px] font-bold text-[#ffffff]`}
           >
             <div>
               <Link href='#' className='flex justify-center items-center'>
