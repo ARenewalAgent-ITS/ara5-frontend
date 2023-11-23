@@ -51,18 +51,23 @@ export default function Checkbox({
           className={clsxm(
             'mt-[0.25em]',
             'shrink-0',
-            'border-primary-300 rounded-sm border-2 focus:ring-0',
-            'checked:bg-lightBlue-400 checked:hover:bg-lightBlue-600 checked:focus:bg-lightBlue-400 checked:active:bg-lightBlue-700',
+            'rounded-sm border-1 border-whites-1100 focus:ring-0 focus:ring-whites-100',
+            'checked:bg-success-600 checked:hover:bg-success-700 checked:focus:bg-success-500 checked:active:bg-success-700',
             readOnly &&
-              'cursor-not-allowed bg-gray-100 disabled:checked:bg-lightBlue-300',
-            error && 'border-danger-400 bg-danger-100'
+              'cursor-not-allowed bg-gray-100 disabled:checked:bg-success-300',
+            error && ''
           )}
           placeholder={placeholder}
           aria-describedby={name}
         />
         <Typography
-          className={clsx(readOnly && 'cursor-not-allowed')}
-          as='label'
+          className={clsx(
+            readOnly && 'cursor-not-allowed',
+            'text-[12px] leading-[24px]'
+          )}
+          weight='medium'
+          variant='c12'
+          font='poppins'
           htmlFor={`${name}_${value}`}
         >
           {label}
