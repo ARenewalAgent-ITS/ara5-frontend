@@ -16,6 +16,8 @@ import SEO from '@/seo.config';
 
 const Toast = dynamic(() => import('@/components/Toast'), { ssr: false });
 
+import Footer from '@/components/layouts/Footer';
+import Navbar from '@/components/layouts/Navbar';
 import clsxm from '@/lib/clsxm';
 import { poppins } from '@/lib/font';
 import { BalooMedium } from '@/lib/font';
@@ -40,7 +42,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <Toast />
           <DefaultSeo {...SEO} />
           <div className={clsxm(poppins.className, BalooMedium.variable)}>
+            <Navbar />
             {children}
+            <Footer />
           </div>
         </QueryClientProvider>
       </body>
