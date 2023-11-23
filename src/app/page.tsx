@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import React from 'react';
 
+import Footer from '@/components/layouts/Footer';
+import Navbar from '@/components/layouts/Navbar';
 import LandingPage from '@/containers/landingPage/LandingPage';
 
 export const metadata: Metadata = {
@@ -11,7 +13,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
+      <Navbar />
       <LandingPage />
+      <Footer />
     </>
   );
 }
