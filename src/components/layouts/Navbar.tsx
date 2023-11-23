@@ -14,14 +14,15 @@ import LogoAra from './nav-img/LogoARA(4).png';
 import Register from './nav-img/Register.png';
 import CTF from './nav-img/Vector.png';
 
-function Navbar() {
+interface NavbarProps {
+  className: string;
+}
+
+function Navbar(props: NavbarProps) {
   const [showMe1, setShowMe1] = useState(false);
   const [showMe2, setShowMe2] = useState(false);
   const [showMe3, setShowMe3] = useState(false);
   const [showMe4, setShowMe4] = useState(false);
-  const [showClick1, setShowClick1] = useState(false);
-  const [showClick2, setShowClick2] = useState(false);
-  const [showClick3, setShowClick3] = useState(false);
 
   function toggle1() {
     setShowMe1(!showMe1);
@@ -39,24 +40,6 @@ function Navbar() {
 
   function toggle4() {
     setShowMe4(!showMe4);
-  }
-
-  function click1() {
-    setShowClick1(!showClick1);
-    setShowClick2(false);
-    setShowClick3(false);
-  }
-
-  function click2() {
-    setShowClick2(!showClick2);
-    setShowClick1(false);
-    setShowClick3(false);
-  }
-
-  function click3() {
-    setShowClick3(!showClick3);
-    setShowClick1(false);
-    setShowClick2(false);
   }
 
   /*event: MouseEvent*/
@@ -102,7 +85,7 @@ function Navbar() {
       <div className='font-poppins z-40 w-full sticky top-0'>
         <div
           style={{ backgroundColor: colorChange ? '#ffffff' : '' }}
-          className='bg-[#A3EDFF] duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]'
+          className={`${props.className} duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]`}
         >
           <div className='flex justify-between items-center'>
             <Link href='/'>
@@ -112,17 +95,11 @@ function Navbar() {
 
           <div className='hidden lg:flex justify-center gap-[2rem] absolute left-1/2 transform -translate-x-1/2'>
             <div className='text-center group'>
-              <Link href='#' onClick={click1}>
-                <div
-                  style={{ color: showClick1 ? '#986A4B' : '' }}
-                  className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
-                >
+              <Link href='#'>
+                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   Home
                 </div>
                 <Image
-                  style={{
-                    opacity: showClick1 ? '1' : '',
-                  }}
                   src={Ellipse}
                   alt='ellipse'
                   className='w-[56px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
@@ -186,15 +163,11 @@ function Navbar() {
               </div>
             </div>
             <div className='text-center group'>
-              <Link href='#' onClick={click2}>
-                <div
-                  style={{ color: showClick2 ? '#986A4B' : '' }}
-                  className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
-                >
+              <Link href='#'>
+                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   HMIT
                 </div>
                 <Image
-                  style={{ opacity: showClick2 ? '1' : '' }}
                   src={Ellipse}
                   alt='ellipse'
                   className='w-[56px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
@@ -202,15 +175,11 @@ function Navbar() {
               </Link>
             </div>
             <div className='text-center group'>
-              <Link href='#' onClick={click3}>
-                <div
-                  style={{ color: showClick3 ? '#986A4B' : '' }}
-                  className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
-                >
+              <Link href='#'>
+                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   About
                 </div>
                 <Image
-                  style={{ opacity: showClick3 ? '1' : '' }}
                   src={Ellipse}
                   alt='ellipse'
                   className='w-[56px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
