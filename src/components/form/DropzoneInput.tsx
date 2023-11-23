@@ -10,6 +10,7 @@ import { FaRegFileLines } from 'react-icons/fa6';
 import { GoUpload } from 'react-icons/go';
 
 import Button from '@/components/buttons/Button';
+import FilePreview from '@/components/form/FilePreview';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { FileWithPreview } from '@/types/form/dropzone';
@@ -31,7 +32,7 @@ export default function DropzoneInput({
   label,
   validation,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
-  maxFiles = 1,
+  maxFiles = 10,
   className,
 }: DropzoneInputProps) {
   const {
@@ -103,6 +104,22 @@ export default function DropzoneInput({
     };
   }, [files]);
 
+  const deleteFile = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    file: FileWithPreview
+  ) => {
+    e.preventDefault();
+    const newFiles = [...files];
+    newFiles.splice(newFiles.indexOf(file), 1);
+
+    setFiles(newFiles.length > 0 ? newFiles : []);
+    setValue(id, newFiles.length > 0 ? newFiles : null, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept,
@@ -134,34 +151,43 @@ export default function DropzoneInput({
             {...getRootProps()}
           >
             <input {...getInputProps()} />
-            <div
-              className={clsxm(
-                'w-full cursor-pointer bg-white rounded-md',
-                'flex flex-col items-center space-y-2 px-3 py-8',
-                'border-dashed border-2 border-typo-inline',
-                error
-                  ? 'border-red-500 group-focus:border-red-500'
-                  : 'group-focus:border-typo-primary group-hover:border-typo-primary',
-                className
-              )}
-            >
-              <div className='flex flex-col items-center gap-1'>
-                <FaRegFileLines className='w-16 h-16' />
-                <Typography
-                  className='text-center md:text-[18px] font-poppins'
-                  weight='bold'
-                >
-                  Upload File
-                </Typography>
-                <Typography
-                  className='text-center md:text-[12px] font-poppins'
-                  weight='medium'
-                >
-                  Klik atau Drag & Drop <br />
-                  File yang disupport : .png, .jpg, .jpeg
-                </Typography>
+            {files.length > 0 &&
+              files.map((file, index) => (
+                <div key={index} className='mt-1'>
+                  <FilePreview file={file} deleteFile={deleteFile} />
+                </div>
+              ))}
+            {files.length === 0 && (
+              <div
+                className={clsxm(
+                  'w-full cursor-pointer bg-white rounded-md',
+                  'flex flex-col items-center space-y-2 px-3 py-8',
+                  'border-dashed border-2 border-typo-inline',
+                  error
+                    ? 'border-red-500 group-focus:border-red-500'
+                    : 'group-focus:border-typo-primary group-hover:border-typo-primary',
+                  className
+                )}
+              >
+                <div className='flex flex-col items-center gap-1'>
+                  <FaRegFileLines className='w-16 h-16' />
+                  <Typography
+                    className='text-center md:text-[18px] font-poppins'
+                    variant='btn'
+                    weight='bold'
+                  >
+                    Upload File
+                  </Typography>
+                  <Typography
+                    className='text-center md:text-[12px] font-poppins'
+                    weight='medium'
+                  >
+                    Klik atau Drag & Drop <br />
+                    File yang disupport : .png, .jpg, .jpeg
+                  </Typography>
+                </div>
               </div>
-            </div>
+            )}
             <Button className='mt-3'>
               <Typography
                 variant='btn'
