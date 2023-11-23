@@ -8,11 +8,12 @@ const Toast = dynamic(() => import('@/components/Toast'), { ssr: false });
 
 import type { Metadata } from 'next';
 
-import { PoppinsRegular } from '@/lib/font';
+import clsxm from '@/lib/clsxm';
+import { poppins } from '@/lib/font';
 import { BalooMedium } from '@/lib/font';
 
 export const metadata: Metadata = {
-  title: 'ARA 5.0 READY TO DEVELOPMENT',
+  title: 'Home | A Renewal Agent 5.0',
   description: 'A RENEWAL AGENT 5.0',
 };
 
@@ -23,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={(PoppinsRegular.variable, BalooMedium.variable)}>
+      <body className={clsxm(poppins.className, BalooMedium.variable)}>
         <Toast />
         {children}
       </body>

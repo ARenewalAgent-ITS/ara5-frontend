@@ -6,14 +6,13 @@ import { dataBaloo, dataPoppins } from '@/contents/sandbox/typography';
 export default function TypographyPage() {
   return (
     <>
-      {/* ROMAN PICISAN STYLE */}
+      {/* POPPINS STYLE */}
       <div>
         <div>
           <Typography
-            font='poppins'
             variant='h5'
             color='white'
-            className='flex items-center justify-center bg-sub-lightGrey-300 text-typo-primary py-12'
+            className='font-poppins flex items-center justify-center bg-sub-lightGrey-300 text-typo-primary py-12'
             weight='bold'
           >
             Poppins
@@ -27,7 +26,7 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white'>
+                  <Typography variant='h5' className='text-white font-poppins'>
                     Style Name
                   </Typography>
                 </th>
@@ -35,7 +34,7 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white'>
+                  <Typography variant='h5' className='text-white font-poppins'>
                     Font Size
                   </Typography>
                 </th>
@@ -43,7 +42,7 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white'>
+                  <Typography variant='h5' className='text-white font-poppins'>
                     Line Height
                   </Typography>
                 </th>
@@ -51,7 +50,7 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white'>
+                  <Typography variant='h5' className='text-white font-poppins'>
                     Sample
                   </Typography>
                 </th>
@@ -61,22 +60,38 @@ export default function TypographyPage() {
               {dataPoppins.map((items) => (
                 <tr className='bg-black-400' key={items?.style}>
                   <td className='p-4 text-base font-medium text-gray-900 whitespace-nowrap bg-text-white'>
-                    <Typography color='white' variant={`${items?.style}`}>
+                    <Typography
+                      color='white'
+                      className='font-poppins'
+                      variant={`${items?.style}`}
+                    >
                       {items?.style}
                     </Typography>
                   </td>
                   <td className='max-w-sm p-4 overflow-hidden text-base font-normal text-white truncate xl:max-w-xs'>
-                    <Typography color='white' variant={`${items?.style}`}>
+                    <Typography
+                      color='white'
+                      className='font-poppins'
+                      variant={`${items?.style}`}
+                    >
                       {items?.size}
                     </Typography>
                   </td>
                   <td className='p-4 text-base font-medium text-gray-900 whitespace-nowrap bg-text-white'>
-                    <Typography color='white' variant={`${items?.style}`}>
+                    <Typography
+                      color='white'
+                      className='font-poppins'
+                      variant={`${items?.style}`}
+                    >
                       {items?.height}
                     </Typography>
                   </td>
                   <td className='p-4 text-base font-medium text-gray-900 whitespace-nowrap bg-text-white'>
-                    <Typography color='white' variant={`${items?.style}`}>
+                    <Typography
+                      color='white'
+                      className='font-poppins'
+                      variant={`${items?.style}`}
+                    >
                       {items?.sample}
                     </Typography>
                   </td>
@@ -87,7 +102,7 @@ export default function TypographyPage() {
         </div>
       </div>
 
-      {/* baloo STYLE */}
+      {/* BALOO STYLE */}
       <div>
         <div>
           <Typography

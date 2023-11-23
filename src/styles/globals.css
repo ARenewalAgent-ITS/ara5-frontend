@@ -11,3 +11,29 @@
   max-width: 88.75rem;
   @apply mx-auto w-[96%];
 }
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes floats {
+  0%,
+  100% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-floats {
+  animation: floats 3s ease-in-out infinite;
+}
