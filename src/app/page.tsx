@@ -108,7 +108,8 @@ export default function LandingPage() {
                 variant='h5'
                 weight='bold'
                 color='label'
-                className='font-poppins text-[25px]'
+                font='poppins'
+                className='text-[25px]'
               >
                 A Renewal Agent 5.0
               </Typography>
@@ -116,7 +117,8 @@ export default function LandingPage() {
                 variant='p'
                 weight='semibold'
                 color='label'
-                className='font-poppins mt-5 text-center lg:max-w-2xl sm:text-[16px] md:text-[16px] md:max-w-lg max-[500px]:text-[14px] px-10 sm:max-w-lg lg:text-[18px] xl:text-[20px] xl:max-w-4xl'
+                font='poppins'
+                className='mt-5 text-center lg:max-w-2xl sm:text-[16px] md:text-[16px] md:max-w-lg max-[500px]:text-[14px] px-10 sm:max-w-lg lg:text-[18px] xl:text-[20px] xl:max-w-4xl'
               >
                 ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan
                 oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode
@@ -136,9 +138,8 @@ export default function LandingPage() {
                 )}
               >
                 <Typography
-                  className={clsxm(
-                    'font-poppins text-white font-semibold text-base'
-                  )}
+                  font='poppins'
+                  className={clsxm('text-white font-semibold text-base')}
                 >
                   About Us
                 </Typography>
