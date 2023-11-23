@@ -13,6 +13,7 @@ import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/LoopKereta';
 import LoopTechnaVita from '@/containers/LoopTechnaVita';
+import OurEventLineUp from '@/containers/ourEvent/ourEventLineUp';
 import clsxm from '@/lib/clsxm';
 
 export default function LandingPage() {
@@ -245,6 +246,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <OurEventLineUp />
       <Footer />
     </>
   );

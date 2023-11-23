@@ -8,7 +8,6 @@ import { FaArrowRight } from 'react-icons/fa6';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
-
 interface datas {
   title: string;
   decs: string;
@@ -44,8 +43,15 @@ export default function OurEventLineUp() {
 
   return (
     <>
-      <section className='overflow-hidden w-full h-full bg-white-400 min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
-        <div className='flex justify-center'>
+      <NextImage
+        src={'/images/landpage_ourevent/goa.svg'}
+        alt='background'
+        width={1524}
+        height={1001.37}
+        className='absolute w-full'
+      ></NextImage>
+      <section className='bg-gradient-to-t from-[#A7E6FF] to-[#00B7FF] overflow-hidden w-full h-full bg-white-400 min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
+        <div className='flex justify-center py-[10rem]'>
           <NextImage
             src={'/images/landpage_ourevent/our_event.svg'}
             alt='background'
