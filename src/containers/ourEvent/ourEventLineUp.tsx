@@ -49,7 +49,7 @@ export default function OurEventLineUp() {
           alt='background'
           width={1524}
           height={1001.37}
-          className='absolute w-full'
+          className='hidden md:block absolute w-full'
         ></NextImage>
         <div className='relative'>
           <NextImage
@@ -60,22 +60,24 @@ export default function OurEventLineUp() {
             className='hidden md:block absolute w-full top-[55rem]'
           />
         </div>
-        {/* <div className='relative'>
-        <NextImage
-          src={'/images/landpage_ourevent/leaf.svg'}
-          alt='birds'
-          width={100}
-          height={100}
-          className='hidden md:block absolute w-full top-[50rem]'
-        />
-      </div> */}
+        {/* 
+          <div className='relative'>
+            <NextImage
+              src={'/images/landpage_ourevent/leaf.svg'}
+              alt='birds'
+              width={100}
+              height={100}
+              className='hidden md:block absolute w-full top-[50rem]'
+            />
+          </div> 
+        */}
         <div className='relative'>
           <NextImage
             src={'/images/landpage_ourevent/cloud_1.png'}
             alt='birds'
             width={578}
             height={383}
-            className='hidden md:block absolute w-[40%] top-[50rem] right-0 opacity-70'
+            className='block absolute md:w-[40%] w-[60%] top-[50rem] right-0 opacity-70'
           />
         </div>
         <div className='relative'>
@@ -84,9 +86,19 @@ export default function OurEventLineUp() {
             alt='birds'
             width={539}
             height={419}
-            className='hidden md:block absolute w-[30%] top-[90rem] left-0 opacity-70'
+            className='block absolute md:w-[30%] w-[60%] top-[90rem] left-0 opacity-70'
           />
         </div>
+        <div className='relative'>
+          <NextImage
+            src={'/images/landpage_ourevent/cave_responsive.svg'}
+            alt='birds'
+            width={10}
+            height={10}
+            className='md:hidden block absolute w-full top-0'
+          />
+        </div>
+        <div className='bg-[#07233C] h-[2vh]'></div>
         <section className='overflow-hidden w-full h-full bg-white-400 min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
           <div className='flex justify-center py-[10rem]'>
             <NextImage
@@ -248,7 +260,6 @@ export default function OurEventLineUp() {
             height={199}
             className='w-full absolute bottom-0'
           ></NextImage>
-          <div className='bg-[#001E2A] w-full h-[2vh]'></div>
         </div>
       </div>
     </>
