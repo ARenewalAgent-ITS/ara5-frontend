@@ -41,7 +41,13 @@ export default function SelectInput({
     <div className='w-full space-y-1.5'>
       {label && (
         <label htmlFor={id} className='flex space-x-1'>
-          <Typography font='poppins' variant='bt' color='label'>
+          <Typography
+            font='poppins'
+            weight='bold'
+            variant='t'
+            color='label'
+            className='text-[16px] leading-[24px] text-whites-1100'
+          >
             {label}
           </Typography>
           {validation?.required && (
@@ -57,13 +63,13 @@ export default function SelectInput({
         defaultValue={defaultValue}
         disabled={readOnly}
         className={clsxm(
-          'w-full px-4 py-4 truncate border-none',
-          'ring-2 ring-typo-outline',
-          'bg-typo-white font-secondary text-typo-primary text-[22px]',
-          readOnly && 'cursor-not-allowed',
-          error
-            ? 'focus:ring-danger-500 bg-danger-50 focus:ring-2 ring-danger-500'
-            : 'focus:ring-primary-500 focus:ring-2',
+          'w-full h-full md:pl-3 pr-10 py-[6px] md:py-2 border-[1px] border-whites-1100 rounded-[5px]',
+          'focus:ring-0 focus:border-success-600 bg-whites-100',
+          'font-primary font-medium text-whites-900 text-xs md:text-sm',
+          'placeholder:font-primary placeholder:text-whites-900 placeholder:text-xs md:placeholder:text-sm placeholder:font-medium',
+          readOnly &&
+            'cursor-not-allowed border-whites-800 placeholder:text-whites-800 text-whites-800',
+          error ? 'border-danger-600' : 'focus:border-success-600',
           !value && !readOnly && 'text-typo-secondary',
           className
         )}
