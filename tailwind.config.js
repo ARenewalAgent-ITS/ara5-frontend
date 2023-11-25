@@ -17,7 +17,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['var(--font-poppins)'],
+        primary: ['var(--font-poppins)', ...fontFamily.sans],
         secondary: ['var(--font-baloo)', ...fontFamily.sans],
       },
       colors: {
