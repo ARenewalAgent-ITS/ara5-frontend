@@ -12,6 +12,7 @@ import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/landingPage/LoopKereta';
 import LoopTechnaVita from '@/containers/landingPage/LoopTechnaVita';
+import MediaSponsorSection from '@/containers/landingPage/MediaSponsorSection';
 import clsxm from '@/lib/clsxm';
 
 export default function LandingPage() {
@@ -244,6 +245,7 @@ export default function LandingPage() {
             <LoopTechnaVita />
           </div>
         </div>
+        <MediaSponsorSection />
       </section>
     </>
   );
