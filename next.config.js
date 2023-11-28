@@ -5,22 +5,6 @@ const nextConfig = {
   },
   reactStrictMode: true,
   swcMinify: true,
-
-  // rewrites login to /auth/login & /register  to /auth/register
-  async redirects() {
-    return [
-      {
-        source: '/login',
-        destination: '/auth/login',
-        permanent: false,
-      },
-      {
-        source: '/register',
-        destination: '/auth/register',
-        permanent: false,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;

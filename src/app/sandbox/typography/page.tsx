@@ -12,7 +12,8 @@ export default function TypographyPage() {
           <Typography
             variant='h5'
             color='white'
-            className='font-poppins flex items-center justify-center bg-sub-lightGrey-300 text-typo-primary py-12'
+            font='poppins'
+            className='flex items-center justify-center bg-sub-lightGrey-300 text-typo-primary py-12'
             weight='bold'
           >
             Poppins
@@ -26,7 +27,11 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white font-poppins'>
+                  <Typography
+                    variant='h5'
+                    className='text-white'
+                    font='poppins'
+                  >
                     Style Name
                   </Typography>
                 </th>
@@ -34,7 +39,11 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white font-poppins'>
+                  <Typography
+                    variant='h5'
+                    className='text-white'
+                    font='poppins'
+                  >
                     Font Size
                   </Typography>
                 </th>
@@ -42,7 +51,11 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white font-poppins'>
+                  <Typography
+                    variant='h5'
+                    font='poppins'
+                    className='text-white'
+                  >
                     Line Height
                   </Typography>
                 </th>
@@ -50,7 +63,11 @@ export default function TypographyPage() {
                   scope='col'
                   className='p-4 text-xs font-medium text-left text-white uppercase'
                 >
-                  <Typography variant='h5' className='text-white font-poppins'>
+                  <Typography
+                    variant='h5'
+                    className='text-white'
+                    font='poppins'
+                  >
                     Sample
                   </Typography>
                 </th>
@@ -62,7 +79,7 @@ export default function TypographyPage() {
                   <td className='p-4 text-base font-medium text-gray-900 whitespace-nowrap bg-text-white'>
                     <Typography
                       color='white'
-                      className='font-poppins'
+                      font='poppins'
                       variant={`${items?.style}`}
                     >
                       {items?.style}
@@ -71,7 +88,7 @@ export default function TypographyPage() {
                   <td className='max-w-sm p-4 overflow-hidden text-base font-normal text-white truncate xl:max-w-xs'>
                     <Typography
                       color='white'
-                      className='font-poppins'
+                      font='poppins'
                       variant={`${items?.style}`}
                     >
                       {items?.size}
@@ -80,7 +97,7 @@ export default function TypographyPage() {
                   <td className='p-4 text-base font-medium text-gray-900 whitespace-nowrap bg-text-white'>
                     <Typography
                       color='white'
-                      className='font-poppins'
+                      font='poppins'
                       variant={`${items?.style}`}
                     >
                       {items?.height}
@@ -89,7 +106,7 @@ export default function TypographyPage() {
                   <td className='p-4 text-base font-medium text-gray-900 whitespace-nowrap bg-text-white'>
                     <Typography
                       color='white'
-                      className='font-poppins'
+                      font='poppins'
                       variant={`${items?.style}`}
                     >
                       {items?.sample}

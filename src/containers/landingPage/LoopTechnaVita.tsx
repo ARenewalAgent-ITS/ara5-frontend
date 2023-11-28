@@ -5,7 +5,7 @@ import Marquee from 'react-fast-marquee';
 
 import Typography from '@/components/Typography';
 
-import LogoAra from '../components/layouts/nav-img/Group 934.svg';
+import LogoAra from '../../components/layouts/nav-img/Group 934.svg';
 
 function LoopTechnaVita() {
   return (
