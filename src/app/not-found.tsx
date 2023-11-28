@@ -15,7 +15,6 @@ export default function NotFound() {
         <div className='fixed w-full z-[101]'>
           <Navbar className='bg-transparent' />
         </div>
-        {/* review akooh */}
         <section className='overflow-hidden text-start relative h-full w-full bg-gradient-to-b from-[#A0EDFF] to-white-50 pb-[65px]'>
           <div className='relative w-full flex lg:mt-12 md:mt-8 sm:mt-6 mt-4'>
             <NextImage
@@ -92,7 +91,6 @@ export default function NotFound() {
                 className='lg:w-[490px] md:w-[380px] sm:w-[350px] w-[280px]'
               />
             </div>
-
             <div className='flex flex-col items-center text-center z-20'>
               <Typography
                 weight='bold'
@@ -118,7 +116,6 @@ export default function NotFound() {
               >
                 PAGE NOT FOUND
               </Typography>
-
               <ButtonLink
                 href='/'
                 variant='primary'
@@ -136,12 +133,8 @@ export default function NotFound() {
               </ButtonLink>
             </div>
           </div>
-          {/* <div className='relative w-full h-full xl:mt-4 xl:py-28 lg:mt-6 lg:py-24 md:mt-8 md:py-28 sm:mt-14 py-24 mt-24 bg-cover bg-[url("/svg/404/background.svg")] bg-top bg-no-repeat'> */}
           <div className='relative w-full h-full xl:mt-4 xl:py-28 lg:mt-6 lg:py-24 md:mt-8 md:py-28 sm:mt-14 py-24 mt-24'>
-            {' '}
-            {/* reviewnya */}
             <div className='relative w-full flex h-full'>
-              {/* tambahan dari aku */}
               <NextImage
                 src={'/svg/404/bege.svg'}
                 alt='background'
@@ -161,7 +154,6 @@ export default function NotFound() {
                 alt='background'
                 width={306.35}
                 height={98.83}
-                // review akooh
                 className='absolute lg:w-[360px] lg:-bottom-40 lg:-left-12 md:w-[300px] md:-bottom-20 w-[230px] -bottom-16 -left-5'
               />
               <NextImage
@@ -176,7 +168,6 @@ export default function NotFound() {
                 alt='background'
                 width={284.85}
                 height={492}
-                // review akooh
                 className='absolute xl:-bottom-44 lg:w-[250px] md:w-[160px] md:-bottom-44 w-[120px] -bottom-40 -right-3'
               />
               <NextImage
@@ -191,7 +182,6 @@ export default function NotFound() {
                 alt='background'
                 width={47.5}
                 height={15}
-                // review akooh
                 className='absolute lg:hidden inline_block md:w-[65px] md:left-48 md:-bottom-28 w-[50px] -bottom-20 left-36'
               />
               <NextImage
@@ -199,7 +189,6 @@ export default function NotFound() {
                 alt='background'
                 width={29}
                 height={36}
-                // review akooh
                 className='absolute lg:hidden inline_block md:w-[45px] md:-bottom-36 w-[35px] -bottom-36 left-0'
               />
             </div>
