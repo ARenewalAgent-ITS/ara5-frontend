@@ -1,54 +1,35 @@
 'use client';
 
-import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
+import { useLoginMutation } from '@/app/(auth)/login/hooks/mutation';
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
+import withAuth from '@/components/hoc/withAuth';
 import Typography from '@/components/Typography';
-import useMutationToast from '@/hooks/useMutationToast';
-import api from '@/lib/api';
-import { setToken } from '@/lib/cookies';
-import useAuthStore from '@/store/useAuthStore';
-import { ApiReturn } from '@/types/api';
 import { TLoginRequest } from '@/types/entities/login';
-import { User } from '@/types/entities/user';
 
-export default function Login() {
-  const methods = useForm<TLoginRequest>();
+export default withAuth(Login, ['all'])
+
+function Login() {
+  const methods = useForm<TLoginRequest>({
+    mode: 'onTouched',
+  });
+
   const { handleSubmit } = methods;
-  const router = useRouter();
-  const login = useAuthStore.useLogin();
 
-  const { mutate: loginMutate, isLoading } = useMutationToast<
-    void,
-    TLoginRequest
-  >(
-    useMutation(async (data) => {
-      const res = await api.post('/routee', data);
-      const { accessToken } = res.data.data;
-      setToken(accessToken);
+  const { mutateAsync: loginMutation, isLoading } = useLoginMutation();
 
-      const user = await api.get<ApiReturn<User>>('/routeee');
-
-      if (!user.data.data) {
-        throw new Error('Sesi login tidak valid');
-      }
-      login({ ...user.data.data, accessToken: accessToken });
-      router.push('/admin/dashboard');
-    })
-  );
-
-  const onSubmit = (data: TLoginRequest) => {
-    loginMutate({
-      username: data?.username,
-      password: data?.password,
-      remember: data?.remember,
+  const onSubmit: SubmitHandler<TLoginRequest> = (data) => {
+    loginMutation({
+      email: data.email,
+      password: data.password,
+      remember: data.remember
     });
+    console.log(data);
   };
 
   return (
@@ -84,9 +65,9 @@ export default function Login() {
           <div className='space-y-3'>
             <div className='space-y-4'>
               <Input
-                id='username'
-                label='Username'
-                placeholder='Enter your username'
+                id='email'
+                label='Email'
+                placeholder='Enter your email'
                 validation={{
                   required: 'Username cannot be empty',
                 }}

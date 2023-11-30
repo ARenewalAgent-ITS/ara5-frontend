@@ -1,13 +1,27 @@
+import 'axios';
+
+declare module 'axios' {
+  export interface AxiosRequestConfig {
+    toastify?: boolean;
+    loadingMessage?: string;
+  }
+}
+
+export type ApiResponse<TData> = {
+  status: boolean;
+  message: string;
+  data: TData;
+};
+
+export type ApiError = {
+  status: boolean;
+  message: string;
+  error: string;
+};
+
 export interface ApiReturn<T> {
   data: T;
   message: string;
-  status: number;
-}
-
-export interface ApiError {
-  code?: number;
-  message: string;
-  status: number;
 }
 
 export type UninterceptedApiError = {
@@ -16,10 +30,6 @@ export type UninterceptedApiError = {
 
 type PaginateData<Data> = {
   content: Data;
-  metadata: {
-    page: number;
-    maxPage: number;
-  };
 };
 
 export interface PaginatedApiResponse<DataType> {

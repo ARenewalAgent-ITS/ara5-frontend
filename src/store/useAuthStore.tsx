@@ -1,50 +1,47 @@
-import { createSelectorHooks } from 'auto-zustand-selectors-hook';
-import produce from 'immer';
+import { produce } from 'immer';
 import { create } from 'zustand';
 
 import { removeToken, setToken } from '@/lib/cookies';
-import { User, withToken } from '@/types/entities/user';
+import { User } from '@/types/entities/user';
 
-type AuthStoreType = {
+export type useAuthStoreType = {
   user: User | null;
-  isAuthenticated: boolean;
+  isAuthed: boolean;
   isLoading: boolean;
-  login: (user: User & withToken) => void;
+  login: (user: User) => void;
   logout: () => void;
   stopLoading: () => void;
 };
 
-const useAuthStoreBase = create<AuthStoreType>((set) => ({
+const useAuthStore = create<useAuthStoreType>(set => ({
   user: null,
-  isAuthenticated: false,
+  isAuthed: false,
   isLoading: true,
-  login: (user) => {
-    setToken(user.accessToken);
+  login: user => {
+    if (user.token) setToken(user.token);
     set(
-      produce<AuthStoreType>((state) => {
-        state.isAuthenticated = true;
+      produce<useAuthStoreType>(state => {
         state.user = user;
-      })
+        state.isAuthed = true;
+      }),
     );
   },
   logout: () => {
     removeToken();
     set(
-      produce<AuthStoreType>((state) => {
-        state.isAuthenticated = false;
+      produce<useAuthStoreType>(state => {
         state.user = null;
-      })
+        state.isAuthed = false;
+      }),
     );
   },
   stopLoading: () => {
     set(
-      produce<AuthStoreType>((state) => {
+      produce<useAuthStoreType>(state => {
         state.isLoading = false;
-      })
+      }),
     );
   },
 }));
-
-const useAuthStore = createSelectorHooks(useAuthStoreBase);
 
 export default useAuthStore;
