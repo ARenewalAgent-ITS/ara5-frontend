@@ -39,7 +39,7 @@ const faqs: TOlimpFaqData[] = [
 
 export default function OlimFaqSection() {
   return (
-    <section className='olimp-faq-section mt-36 bg-[#09182C]'>
+    <section className='olimp-faq-section mt-36'>
       <div className='upper-faq flex justify-center items-center mb-20'>
         <NextImage
           src={'/svg/olimppage/faq.svg'}
