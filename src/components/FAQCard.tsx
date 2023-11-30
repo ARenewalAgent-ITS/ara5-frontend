@@ -32,36 +32,40 @@ export default function FAQCard(props: TFaqData) {
       <Typography variant='h2' id='accordion-heading' className='text-left'>
         <button
           type='button'
-          className={`flex items-center text-left bg-secondary-300 text-whites-1100 font-bold justify-between w-full p-5 gap-3 transition-all ease-in-out ${
+          className={`flex items-center text-left bg-secondary-300 text-whites-1100 font-bold justify-between w-full p-5 gap-3 ${
             isOpen ? 'rounded-t-xl' : 'rounded-xl'
           }`}
           onClick={toggleAccordion}
         >
-          <NextImage
-            src={props.svg}
-            alt='faq icon'
-            width={props.q.length > 40 ? 35 : 30}
-            height={props.q.length > 40 ? 35 : 30}
-            className='me-2'
-          />
+          <div className='w-8 h-8'>
+            <NextImage
+              src={props.svg}
+              alt='faq icon'
+              width={30}
+              height={30}
+              className='me-2'
+            />
+          </div>
           <div className='flex text-left items-start text-xs md:text-base lg:text-lg'>
             {props.q}
           </div>
-          {isOpen ? (
-            <NextImage
-              src={'/svg/olimppage/min.svg'}
-              width={20}
-              height={20}
-              alt='close accordion'
-            />
-          ) : (
-            <NextImage
-              src={'/svg/olimppage/plus.svg'}
-              width={20}
-              height={20}
-              alt='open accordion'
-            />
-          )}
+          <div className='w-5 h-5'>
+            {isOpen ? (
+              <NextImage
+                src={'/svg/olimppage/min.svg'}
+                width={20}
+                height={20}
+                alt='close accordion'
+              />
+            ) : (
+              <NextImage
+                src={'/svg/olimppage/plus.svg'}
+                width={20}
+                height={20}
+                alt='open accordion'
+              />
+            )}
+          </div>
         </button>
       </Typography>
       <div
