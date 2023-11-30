@@ -24,21 +24,21 @@ export default function Countdowncom() {
           weight='bold'
           font='poppins'
           className='mt-10 text-center justify-center text-[20px] text-whites-1100'>
-          Olimpiade IT
+          Capture The Flag
         </Typography>
         <div className='mt-4 gap-4 flex'>
           <div className='flex flex-col bg-whites-100 rounded-xl'>
             <Typography
               font='poppins'
               weight='bold'
-              className='text-whites-100 md:px-14 md:py-2 sm:px-10 sm:py-1 px-5 py-0.5 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
+              className='text-whites-100 md:px-14 md:py-2 sm:px-8 sm:py-1 px-5 py-0 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
               Hari
             </Typography>
             <Typography 
               font='poppins'
               weight='bold'
               variant='h2'
-              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[20px]'>
+              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[25px]'>
               {days}
             </Typography>
           </div>
@@ -46,14 +46,14 @@ export default function Countdowncom() {
             <Typography
               font='poppins'
               weight='bold'
-              className='text-whites-100 md:px-14 md:py-2 sm:px-10 sm:py-1 px-5 py-0.5 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
+              className='text-whites-100 md:px-14 md:py-2 sm:px-8 sm:py-1 px-5 py-0 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
               Jam
             </Typography>
             <Typography 
               font='poppins'
               weight='bold'
               variant='h2'
-              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[20px]'>
+              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[25px]'>
               {hours}
             </Typography>
           </div>
@@ -61,14 +61,14 @@ export default function Countdowncom() {
             <Typography
               font='poppins'
               weight='bold'
-              className='text-whites-100 md:px-14 md:py-2 sm:px-10 sm:py-1 px-5 py-0.5 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
+              className='text-whites-100 md:px-14 md:py-2 sm:px-8 sm:py-1 px-5 py-0 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
               Menit
             </Typography>
             <Typography 
               font='poppins'
               weight='bold'
               variant='h2'
-              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[20px]'>
+              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[25px]'>
               {minutes}
             </Typography>
           </div>
@@ -76,14 +76,14 @@ export default function Countdowncom() {
             <Typography
               font='poppins'
               weight='bold'
-              className='text-whites-100 md:px-14 md:py-2 sm:px-10 sm:py-1 px-5 py-0.5 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
+              className='text-whites-100 md:px-14 md:py-2 sm:px-8 sm:py-1 px-5 py-0 md:text-[15px] sm:text-[13px] text-[10px] bg-danger-700 rounded-t-xl'>
               Detik
             </Typography>
             <Typography 
               font='poppins'
               weight='bold'
               variant='h2'
-              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[20px]'>
+              className='text-whites-1100 my-4 text-center md:text-h2 sm:text-[36px] text-[25px]'>
               {seconds}
             </Typography>
           </div>
