@@ -131,7 +131,13 @@ export default function DropzoneInput({
     <div className='w-full space-y-1.5 rounded-md'>
       {label && (
         <label htmlFor={id} className='flex space-x-1 mb-6'>
-          <Typography weight='semibold' className='text-sm text-typo-primary'>
+          <Typography
+            font='poppins'
+            weight='bold'
+            variant='t'
+            color='label'
+            className='text-[16px] leading-[24px] text-whites-1100'
+          >
             {label}
           </Typography>
           {validation?.required && (
@@ -194,7 +200,7 @@ export default function DropzoneInput({
                 weight='bold'
                 className='md:text-[14px] font-poppins text-white flex items-center gap-2'
               >
-                Upload FIle
+                Upload File
                 <GoUpload className='text-[20px] font-medium' />
               </Typography>
             </Button>
