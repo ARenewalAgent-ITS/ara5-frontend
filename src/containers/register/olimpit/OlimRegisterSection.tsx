@@ -1,0 +1,257 @@
+'use client';
+
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
+import Button from '@/components/buttons/Button';
+import CounterInput from '@/components/form/CounterInput';
+import DropzoneInput from '@/components/form/DropzoneInput';
+import Input from '@/components/form/Input';
+import SelectInput from '@/components/form/SelectInput';
+import Typography from '@/components/Typography';
+import clsxm from '@/lib/clsxm';
+import { useRegisterStore } from '@/store/useRegisterStore';
+import { TRegisterOlim } from '@/types/entities/register';
+
+interface OlimRegisterSectionProps {
+  onNextStep: () => void;
+}
+
+export default function OlimRegisterSection({
+  onNextStep,
+}: OlimRegisterSectionProps) {
+  const [peopleCount, setPeopleCount] = React.useState(0);
+  const { setFormData } = useRegisterStore();
+
+  const methods = useForm<TRegisterOlim>({
+    defaultValues: {
+      event: 'Olim',
+    },
+  });
+  const match_password = methods.watch('team_password');
+
+  const handleIncrement = () => {
+    setPeopleCount((prevCount) => (prevCount < 2 ? prevCount + 1 : prevCount));
+  };
+
+  const handleDecrement = () => {
+    setPeopleCount((prevCount) => (prevCount > 0 ? prevCount - 1 : prevCount));
+  };
+
+  const onSubmit = (data: TRegisterOlim) => {
+    setFormData(data);
+    onNextStep();
+  };
+  return (
+    <div className='lg:px-4 xl:px-12 2xl:px-14'>
+      <div className='flex flex-col justify-center gap-8 lg:gap-14 px-12 py-7 lg:px-0'>
+        <div className='flex flex-col sm:flex-row sm:gap-3 sm:mx-auto lg:flex-col lg:mx-0'>
+          <Typography
+            variant='h3'
+            font='baloo'
+            weight='extrabold'
+            className='text-[48px] leading-[64px] block'
+          >
+            Registrasi
+          </Typography>
+          <Typography
+            variant='h3'
+            font='baloo'
+            weight='extrabold'
+            className='text-[48px] leading-[64px] block'
+          >
+            OlimpIT
+          </Typography>
+        </div>
+        <FormProvider {...methods}>
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            className='space-y-12'
+          >
+            <div className='space-y-6'>
+              <Input
+                id='team_name'
+                label='Nama Tim'
+                placeholder='Masukkan nama tim'
+                validation={{
+                  required: 'Nama Tim cannot be empty',
+                }}
+              />
+              <Input
+                id='team_username'
+                label='Username Tim'
+                placeholder='Masukkan username'
+                helperText='Minimal 5 karakter tanpa spasi'
+                helperTextClassName=''
+                validation={{
+                  required: 'Username Tim cannot be empty',
+                  minLength: {
+                    value: 5,
+                    message: 'Password must be at least 5 characters',
+                  },
+                  pattern: {
+                    value: /^[^\s]{5,}$/,
+                    message: 'Password cannot contain spaces',
+                  },
+                }}
+              />
+              <Input
+                id='team_password'
+                label='Password'
+                placeholder='Masukkan Password'
+                type='password'
+                helperText='Minimal 8 karakter alfanumerik dengan satu huruf kapital (uppercase)'
+                validation={{
+                  required: 'Password cannot be empty',
+                  minLength: {
+                    value: 8,
+                    message: 'Password must be at least 8 characters',
+                  },
+                  pattern: {
+                    value: /(?=.*[A-Z])/,
+                    message:
+                      'Password must contain at least one uppercase letter',
+                  },
+                }}
+              />
+              <Input
+                id='team_password_confirmation'
+                label='Konfirmasi Password'
+                placeholder='Konfirmasi password'
+                type='password'
+                validation={{
+                  required: 'Konfirmasi Password cannot be empty',
+                  validate: (value) =>
+                    value === match_password || 'Password tidak cocok',
+                }}
+              />
+              <Input
+                id='asal_institusi'
+                label='Institusi / Sekolah'
+                placeholder='Masukkan sekolah / institusi asal'
+                validation={{
+                  required: 'Institusi / Sekolah cannot be empty',
+                }}
+              />
+              <SelectInput
+                id='team_provinsi_id'
+                label='Provinsi'
+                validation={{
+                  required: 'Provinsi cannot be empty',
+                }}
+                placeholder='Masukkan provinsi sekolah / institusi asal'
+              >
+                <option>halo</option>
+                <option>halo</option>
+                <option>halo</option>
+                <option>halo</option>
+                <option>halo</option>
+                <option>halo</option>
+              </SelectInput>
+              {/* <SelectInput
+                id='team_kabupaten_id'
+                label='Kota / Kabupaten'
+                validation={{
+                  required: 'Kota / Kabupaten cannot be empty',
+                }}
+                placeholder='Masukkan kota / kabupaten sekolah / institusi asal'
+              ></SelectInput> */}
+              <Input
+                id='nama_ketua'
+                label='Nama Ketua'
+                placeholder='Masukkan nama ketua tim'
+                validation={{
+                  required: 'Nama Ketua cannot be empty',
+                }}
+              />
+              <DropzoneInput
+                id='ktp_ketua'
+                label='Kartu Tanda Pelajar Ketua'
+                validation={{
+                  required: 'Kartu Tanda Pelajar Ketua cannot be empty',
+                }}
+                accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                className={clsxm('bg-whites-100')}
+              />
+              <Input
+                id='no_wa_ketua'
+                label='Nomor Whatsapp Ketua'
+                placeholder='Masukkan nomor whatsapp ketua tim'
+                validation={{
+                  required: 'Nomor Whatsapp Ketua tidak boleh kosong',
+                  pattern: {
+                    value: /^\d{10,15}$/,
+                    message:
+                      'Masukkan nomor handphone yang valid (10-15 digit angka)',
+                  },
+                }}
+              />
+              <Input
+                id='email_ketua'
+                label='Email Ketua'
+                placeholder='Masukkan email ketua tim'
+                validation={{
+                  required: 'Email Ketua tidak boleh kosong',
+                  pattern: {
+                    value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                    message: 'Masukkan alamat email yang valid',
+                  },
+                }}
+              />
+              <CounterInput
+                count={peopleCount}
+                onIncrement={handleIncrement}
+                onDecrement={handleDecrement}
+              />
+              {peopleCount >= 1 && (
+                <>
+                  <Input
+                    id='nama_anggota_1'
+                    label='Nama Anggota 1'
+                    placeholder='Masukkan nama anggota 1'
+                  />
+                  <DropzoneInput
+                    id='ktp_anggota_1'
+                    label='Kartu Tanda Pelajar Anggota 1'
+                    accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                    className={clsxm('bg-whites-100')}
+                  />
+                </>
+              )}
+              {peopleCount >= 2 && (
+                <>
+                  <Input
+                    id='nama_anggota_2'
+                    label='Nama Anggota 2'
+                    placeholder='Masukkan nama anggota 2'
+                  />
+                  <DropzoneInput
+                    id='ktp_anggota_2'
+                    label='Kartu Tanda Pelajar Anggota 2'
+                    accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                    className={clsxm('bg-whites-100')}
+                  />
+                </>
+              )}
+            </div>
+            <Button
+              type='submit'
+              size='lg'
+              variant='success'
+              className='w-full drop-shadow-md py-[6px] md:py-3'
+            >
+              <Typography
+                font='poppins'
+                variant='bt'
+                className='text-[11.86px] leading-[20.32px] text-whites-100'
+                weight='bold'
+              >
+                Next
+              </Typography>
+            </Button>
+          </form>
+        </FormProvider>
+      </div>
+    </div>
+  );
+}
