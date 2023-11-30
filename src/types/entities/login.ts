@@ -5,7 +5,6 @@ export type LoginResponse = ApiResponse<{
   password: string;
   remember: boolean;
   token: string;
-  role: string;
 }>;
 
 export type TLoginRequest = {

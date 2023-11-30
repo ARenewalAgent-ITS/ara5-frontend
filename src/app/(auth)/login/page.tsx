@@ -29,7 +29,6 @@ function Login() {
       password: data.password,
       remember: data.remember
     });
-    console.log(data);
   };
 
   return (
