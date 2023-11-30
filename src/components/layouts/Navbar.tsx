@@ -14,7 +14,11 @@ import LogoAra from './nav-img/LogoARA(4).png';
 import Register from './nav-img/Register.png';
 import CTF from './nav-img/Vector.png';
 
-function Navbar() {
+interface NavbarProps {
+  className: string;
+}
+
+function Navbar(props: NavbarProps) {
   const [showMe1, setShowMe1] = useState(false);
   const [showMe2, setShowMe2] = useState(false);
   const [showMe3, setShowMe3] = useState(false);
@@ -102,7 +106,7 @@ function Navbar() {
       <div className='font-poppins z-40 w-full sticky top-0'>
         <div
           style={{ backgroundColor: colorChange ? '#ffffff' : '' }}
-          className='bg-[#A3EDFF] duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]'
+          className={`${props.className} duration-300 flex justify-between items-center min-h-[10vh] py-3 md:py-[1rem] md:px-[2rem] px-[1.5rem]`}
         >
           <div className='flex justify-between items-center'>
             <Link href='/'>
