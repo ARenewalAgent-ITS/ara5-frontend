@@ -49,7 +49,7 @@ export default function OurEventLineUp() {
           alt='background'
           width={1440}
           height={832}
-          className='hidden md:block absolute w-full'
+          className='hidden md:block absolute'
         ></NextImage>
         <div className='relative'>
           <NextImage
@@ -97,7 +97,6 @@ export default function OurEventLineUp() {
             className='md:hidden block absolute w-full top-0'
           />
         </div>
-        <div className='bg-[#07233C] h-[2vh]'></div>
         <section className='overflow-hidden w-full h-full bg-white-400 min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
           <div className='flex justify-center pt-[10rem] pb-[3rem]'>
             <NextImage
