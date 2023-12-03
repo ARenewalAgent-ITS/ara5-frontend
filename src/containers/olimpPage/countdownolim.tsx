@@ -10,7 +10,7 @@ export default function Countdowncom() {
 
   return (
     <>
-    <div className='bg-primary-800'>
+    <div className='bg-transparent'>
       <div className='w-full h-fit flex flex-col justify-center items-center'>
         <NextImage
           src={'/img/countdown/Countdown.svg'}
