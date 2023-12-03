@@ -49,7 +49,7 @@ export default function OurEventLineUp() {
           alt='background'
           width={1440}
           height={832}
-          className='hidden md:block absolute'
+          className='hidden md:block absolute w-full'
         ></NextImage>
         <div className='relative'>
           <NextImage
