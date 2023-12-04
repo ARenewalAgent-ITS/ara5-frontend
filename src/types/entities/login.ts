@@ -1,14 +1,4 @@
-import { ApiResponse } from '@/types/api';
-
-export type LoginResponse = ApiResponse<{
-  username: string;
-  password: string;
-  remember: boolean;
-  token: string;
-}>;
-
-export type TLoginRequest = {
+export interface loginForm {
   email: string;
   password: string;
-  remember: boolean;
-};
+}

@@ -1,16 +1,12 @@
-import { PermissionList } from './permission-list';
-
-export type User = {
-  id: string;
-  name: string;
+export interface User {
+  nama: string;
   email: string;
   password: string;
-  remember: boolean;
-  token?: string;
-  permission: PermissionList;
-};
-
+  permission: 'ADMIN' | 'SUPERADMIN';
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export interface withToken {
-  accessToken: string;
+  token: string;
 }

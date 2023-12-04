@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { GetServerSidePropsContext } from 'next';
+import Cookies from 'universal-cookie';
 
-// import Cookies from 'universal-cookie';
 import { getToken } from '@/lib/cookies';
 import { UninterceptedApiError } from '@/types/api';
 
@@ -30,11 +30,11 @@ api.interceptors.request.use(function (config) {
       if (!context)
         throw 'Api Context not found. You must call `setApiContext(context)` before calling api on server-side';
 
-      // const cookies = new Cookies(context.req?.headers.cookie);
+      const cookies = new Cookies(context.req?.headers.cookie);
       // if in production
 
       /** Get cookies from context if server side */
-      // token = cookies.get('@ara/accessToken');
+      token = cookies.get('@mabacup/accessToken');
     } else {
       /** Get cookies from context if server side */
       token = getToken();

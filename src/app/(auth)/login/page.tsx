@@ -1,34 +1,56 @@
 'use client';
 
-import Link from 'next/link';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
-import { useLoginMutation } from '@/app/(auth)/login/hooks/mutation';
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
-import withAuth from '@/components/hoc/withAuth';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
-import { TLoginRequest } from '@/types/entities/login';
+import { REG_EMAIL } from '@/constants/regex';
+import useMutationToast from '@/hooks/useMutationToast';
+import api from '@/lib/api';
+import { setToken } from '@/lib/cookies';
+import { loginForm } from '@/types/entities/login';
 
-export default withAuth(Login, ['all'])
-
-function Login() {
-  const methods = useForm<TLoginRequest>({
+export default function LoginPage() {
+  const methods = useForm<loginForm>({
     mode: 'onTouched',
   });
-
   const { handleSubmit } = methods;
+  const router = useRouter();
+  const loginUser = async ({ email, password }: loginForm) => {
+    try {
+      const res = await api.post('/auth/login', {
+        email,
+        password,
+      });
+      // const datas = res.data;
+      const token = res.data.data.token;
+      // console.log(datas);
+      // console.log(token);
 
-  const { mutateAsync: loginMutation, isLoading } = useLoginMutation();
+      setToken(token);
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam login');
+    }
+  };
 
-  const onSubmit: SubmitHandler<TLoginRequest> = (data) => {
-    loginMutation({
-      email: data.email,
-      password: data.password,
-      remember: data.remember
-    });
+  const { mutate: loginMutation, isLoading } = useMutationToast<
+    void,
+    loginForm
+  >(
+    useMutation(loginUser, {
+      onSuccess: () => {
+        router.push('/login');
+      },
+    })
+  );
+  const onSubmit = (data: loginForm) => {
+    loginMutation(data);
   };
 
   return (
@@ -68,7 +90,11 @@ function Login() {
                 label='Email'
                 placeholder='Enter your email'
                 validation={{
-                  required: 'Username cannot be empty',
+                  required: 'Field must be filled',
+                  pattern: {
+                    value: REG_EMAIL,
+                    message: 'Email tidak valid',
+                  },
                 }}
               />
               <Input
@@ -77,7 +103,7 @@ function Login() {
                 placeholder='Enter your password'
                 type='password'
                 validation={{
-                  required: 'Password cannot be empty',
+                  required: 'Field must be filled',
                 }}
               />
             </div>
@@ -111,9 +137,9 @@ function Login() {
               weight='medium'
             >
               Don’t have an account?{' '}
-              <Link href={'/register'} className='text-primary-700'>
+              <UnstyledLink href={'/register'} className='text-primary-700'>
                 Register
-              </Link>
+              </UnstyledLink>
             </Typography>
           </div>
         </form>
