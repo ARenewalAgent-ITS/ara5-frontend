@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Navbar className='bg-transparent' />
+      <Navbar />
       <LandingPage />
       <Footer />
     </>
