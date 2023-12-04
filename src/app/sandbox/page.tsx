@@ -11,18 +11,18 @@ export default function SandboxPage() {
     <div className='flex flex-col gap-5 justify-center items-center min-h-screen'>
       <SEO title='Sandbox' />
       <div className='text-center flex flex-col justify-center items-center'>
-        <Typography variant='h4' as='h4' className='font-poppins' weight='bold'>
+        <Typography variant='h4' as='h4' font='poppins' weight='bold'>
           Design System
         </Typography>
-        <Typography variant='h4' as='h4' className='font-poppins' weight='bold'>
+        <Typography variant='h4' as='h4' font='poppins' weight='bold'>
           ARA 2023
         </Typography>
-        <Typography className='max-w-4xl font-poppins'>
+        <Typography className='max-w-4xl' font='poppins'>
           Key Performance Indicator Web Development ARA 2023
         </Typography>
       </div>
       <div className='text-center'>
-        <Typography variant='h5' weight='semibold' className='font-poppins'>
+        <Typography variant='h5' weight='semibold'>
           Pages
         </Typography>
         <div className='flex flex-grow gap-2'>
@@ -40,7 +40,7 @@ export default function SandboxPage() {
       </div>
 
       <div className='text-center'>
-        <Typography variant='h5' weight='semibold' className='font-poppins'>
+        <Typography variant='h5' weight='semibold' font='poppins'>
           Components
         </Typography>
         <div className='flex flex-grow gap-2'>
