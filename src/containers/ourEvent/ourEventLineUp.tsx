@@ -50,10 +50,10 @@ export default function OurEventLineUp() {
     <>
       <div className='bg-gradient-to-t from-[#A7E6FF] to-[#00B7FF]'>
         <NextImage
-          src={'/images/landpage_ourevent/goa.svg'}
+          src={'/images/landpage_ourevent/cave.svg'}
           alt='background'
-          width={1524}
-          height={1001.37}
+          width={1440}
+          height={832}
           className='hidden md:block absolute w-full'
         />
         <div className='relative'>
@@ -132,8 +132,9 @@ export default function OurEventLineUp() {
                       width={563.05}
                       height={334.62}
                       className='w-full'
+                      data-aos='fade-right'
                     />
-                    <div className='flex flex-col md:w-full'>
+                    <div className='flex flex-col md:w-full' data-aos='fade-up'>
                       <Typography
                         variant='h4'
                         weight='bold'
@@ -175,8 +176,9 @@ export default function OurEventLineUp() {
                       width={563.05}
                       height={334.62}
                       className='w-full'
+                      data-aos='fade-left'
                     />
-                    <div className='flex flex-col md:w-full'>
+                    <div className='flex flex-col md:w-full' data-aos='fade-up'>
                       <Typography
                         variant='h4'
                         weight='bold'
@@ -241,7 +243,7 @@ export default function OurEventLineUp() {
                 <Typography
                   variant='p'
                   weight='regular'
-                  className='text-[12px] min-[500px]:text-[14px] font-medium font-poppins text-[#393737] mt-2 md:text-justify xl:text-[18px] md:text-[16px]'
+                  className='text-[12px] min-[500px]:text-[14px] font-medium font-poppins text-[#393737] my-2 md:text-justify xl:text-[18px] md:text-[16px]'
                 >
                   HMIT atau Himpunan Mahasiswa Teknologi Informasi merupakan
                   himpunan yang mengayomi mahasiswa Departemen Teknologi
