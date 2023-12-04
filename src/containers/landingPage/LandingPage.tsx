@@ -8,7 +8,6 @@ import { FaArrowRight } from 'react-icons/fa';
 import Card from '@/components/layouts/Card';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
-import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/landingPage/LoopKereta';
 import LoopTechnaVita from '@/containers/landingPage/LoopTechnaVita';
@@ -22,8 +21,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <SEO title='haloo' description='Deskripsi halaman Anda' />
-      <section className='overflow-hidden relative w-full h-full text-start bg-gradient-to-b from-[#A0EDFF] to-white-50 lg:pt-16'>
+      <section className='overflow-hidden relative w-full h-full text-start bg-gradient-to-b from-[#A0EDFF] to-white pt-24 lg:pt-36'>
         <div className='relative w-full flex'>
           <NextImage
             src={'/svg/landpage/big_cloud_left.svg'}
@@ -88,14 +86,14 @@ export default function LandingPage() {
             data-aos-delay='400'
           />
         </div>
-        <div className='w-full absolute mt-12 lg:mt-10 flex justify-center flex-col items-center'>
+        <div className='w-full absolute mt-12 lg:mt-8 flex justify-center flex-col items-center'>
           <div className='flex flex-col items-center'>
             <NextImage
               src={'/images/landpage/ARA5.svg'}
               alt='background'
               width={259.97}
               height={103.14}
-              className='max-[500px]:w-[60%] w-[259.97px] lg:w-[300px]'
+              className='max-[500px]:w-[60%] w-[259.97px] lg:w-[350px]'
               data-aos='fade-up'
               data-aos-delay='200'
             />
