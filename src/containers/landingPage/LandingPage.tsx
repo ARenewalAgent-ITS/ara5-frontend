@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 import Card from '@/components/layouts/Card';
+import ThrowBack from '@/components/layouts/Throwback';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
@@ -243,6 +244,7 @@ export default function LandingPage() {
             <LoopTechnaVita />
           </div>
         </div>
+        <ThrowBack />
         <MediaSponsorSection />
       </section>
     </>
