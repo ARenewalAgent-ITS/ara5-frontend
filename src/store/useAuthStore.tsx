@@ -19,10 +19,10 @@ const useAuthStoreBase = create<AuthStoreType>((set) => ({
   isAuthenticated: false,
   isLoading: true,
   login: (user) => {
-    setToken(user.accessToken);
+    setToken(user.token);
     set(
       produce<AuthStoreType>((state) => {
-        state.isAuthenticated = true;
+        state.isAuthenticated = false;
         state.user = user;
       })
     );

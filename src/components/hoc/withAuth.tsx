@@ -80,7 +80,7 @@ export default function withAuth<T>(
           }
 
           login({
-            accessToken: token,
+            token: token,
             ...res.data.data,
           });
         } catch (err) {

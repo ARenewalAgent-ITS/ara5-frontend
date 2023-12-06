@@ -1,21 +1,56 @@
 'use client';
 
-import Link from 'next/link';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
-import { TLoginRequest } from '@/types/entities/login';
+import { REG_EMAIL } from '@/constants/regex';
+import useMutationToast from '@/hooks/useMutationToast';
+import api from '@/lib/api';
+import { setToken } from '@/lib/cookies';
+import { loginForm } from '@/types/entities/login';
 
-export default function Login() {
-  const methods = useForm<TLoginRequest>();
+export default function LoginPage() {
+  const methods = useForm<loginForm>({
+    mode: 'onTouched',
+  });
+  const { handleSubmit } = methods;
+  const router = useRouter();
+  const loginUser = async ({ email, password }: loginForm) => {
+    try {
+      const res = await api.post('/auth/login', {
+        email,
+        password,
+      });
+      // const datas = res.data;
+      const token = res.data.data.token;
+      // console.log(datas);
+      // console.log(token);
 
-  const onSubmit = (data: TLoginRequest) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+      setToken(token);
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam login');
+    }
+  };
+
+  const { mutate: loginMutation, isLoading } = useMutationToast<
+    void,
+    loginForm
+  >(
+    useMutation(loginUser, {
+      onSuccess: () => {
+        router.push('/login');
+      },
+    })
+  );
+  const onSubmit = (data: loginForm) => {
+    loginMutation(data);
   };
 
   return (
@@ -47,15 +82,19 @@ export default function Login() {
         </Typography>
       </div>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-12'>
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-12'>
           <div className='space-y-3'>
             <div className='space-y-4'>
               <Input
-                id='username'
-                label='Username'
-                placeholder='Enter your username'
+                id='email'
+                label='Email'
+                placeholder='Enter your email'
                 validation={{
-                  required: 'Username cannot be empty',
+                  required: 'Field must be filled',
+                  pattern: {
+                    value: REG_EMAIL,
+                    message: 'Email tidak valid',
+                  },
                 }}
               />
               <Input
@@ -64,7 +103,7 @@ export default function Login() {
                 placeholder='Enter your password'
                 type='password'
                 validation={{
-                  required: 'Password cannot be empty',
+                  required: 'Field must be filled',
                 }}
               />
             </div>
@@ -88,7 +127,7 @@ export default function Login() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                Login
+                {!isLoading ? 'Login' : 'Loading...'}
               </Typography>
             </Button>
             <Typography
@@ -98,9 +137,9 @@ export default function Login() {
               weight='medium'
             >
               Don’t have an account?{' '}
-              <Link href={'/register'} className='text-primary-700'>
+              <UnstyledLink href={'/register'} className='text-primary-700'>
                 Register
-              </Link>
+              </UnstyledLink>
             </Typography>
           </div>
         </form>

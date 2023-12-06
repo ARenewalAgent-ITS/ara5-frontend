@@ -1,13 +1,12 @@
 export interface User {
-  id: string;
-  name: string;
+  nama: string;
   email: string;
+  password: string;
   permission: 'ADMIN' | 'SUPERADMIN';
-  divisiId: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
 export interface withToken {
-  accessToken: string;
+  token: string;
 }
