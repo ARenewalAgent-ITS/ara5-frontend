@@ -45,7 +45,7 @@ export default function LoginPage() {
   >(
     useMutation(loginUser, {
       onSuccess: () => {
-        router.push('/login');
+        router.push('/');
       },
     })
   );
