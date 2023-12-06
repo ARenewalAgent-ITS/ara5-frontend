@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
+import Cookies from 'universal-cookie';
+
+import { getToken } from '@/lib/cookies';
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -11,7 +14,7 @@ export const api = axios.create({
   withCredentials: false,
 });
 
-let context: GetServerSidePropsContext | undefined;
+let context = <GetServerSidePropsContext>{};
 const isServer = () => {
   return typeof window === 'undefined';
 };
@@ -20,10 +23,23 @@ api.defaults.withCredentials = false;
 
 api.interceptors.request.use(function (config) {
   if (config.headers) {
+    let token: string | undefined;
+
     if (isServer()) {
       if (!context)
         throw 'Api Context not found. You must call `setApiContext(context)` before calling api on server-side';
+
+      const cookies = new Cookies(context.req?.headers.cookie);
+      // if in production
+
+      /** Get cookies from context if server side */
+      token = cookies.get('@ara/accessToken');
+    } else {
+      /** Get cookies from context if server side */
+      token = getToken();
     }
+
+    config.headers.Authorization = token ? `Bearer ${token}` : '';
   }
 
   return config;
