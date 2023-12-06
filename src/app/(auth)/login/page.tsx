@@ -51,6 +51,7 @@ export default function LoginPage() {
   );
   const onSubmit = (data: loginForm) => {
     loginMutation(data);
+    // console.log(data);
   };
 
   return (
