@@ -13,6 +13,7 @@ import Typography from '@/components/Typography';
 import { REG_EMAIL } from '@/constants/regex';
 import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
+// import { getToken } from '@/lib/cookies';
 import { setToken } from '@/lib/cookies';
 import { loginForm } from '@/types/entities/login';
 
@@ -22,6 +23,8 @@ export default function LoginPage() {
   });
   const { handleSubmit } = methods;
   const router = useRouter();
+  // const token = getToken();
+  // console.log(token);
   const loginUser = async ({ email, password }: loginForm) => {
     try {
       const res = await api.post('/auth/login', {

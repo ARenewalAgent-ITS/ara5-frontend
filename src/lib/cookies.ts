@@ -13,7 +13,5 @@ export const setToken = (token: string) => {
 };
 
 export const removeToken = () => {
-  cookies.remove('@ara/token', {
-    path: '/',
-  });
+  return cookies.remove('@ara/token');
 };

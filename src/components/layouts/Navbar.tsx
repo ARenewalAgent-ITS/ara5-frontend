@@ -3,6 +3,7 @@ import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { BiSolidUserCircle } from 'react-icons/bi';
 import { FaRegTimesCircle } from 'react-icons/fa';
@@ -13,7 +14,7 @@ import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/userMutation';
 import clsxm from '@/lib/clsxm';
-import { getToken } from '@/lib/cookies';
+import { getToken, removeToken } from '@/lib/cookies';
 
 import Ellipse from './nav-img/Ellipse 102.png';
 import ExploIT from './nav-img/Group 899.png';
@@ -24,6 +25,7 @@ import Register from './nav-img/Register.png';
 import CTF from './nav-img/Vector.png';
 
 function Navbar() {
+  const router = useRouter();
   const token = getToken();
   const [isLogin, setIsLogin] = useState(false);
 
@@ -32,13 +34,20 @@ function Navbar() {
   useEffect(() => {
     // if (user !== undefined && token !== null) {
     // sementara
-    if (user == undefined && token !== null) {
+    if (user == undefined && token !== undefined) {
       setIsLogin(true);
       // console.log(user);
     } else {
       setIsLogin(false);
     }
   }, [user, token]);
+
+  const handleLogout = () => {
+    removeToken();
+    // console.log(token);
+
+    router.push('/login');
+  };
 
   const [showMe1, setShowMe1] = useState(false);
   const [showMe2, setShowMe2] = useState(false);
@@ -293,8 +302,8 @@ function Navbar() {
                             Dashboard
                           </Typography>
                         </UnstyledLink>
-                        <UnstyledLink
-                          href='/logout'
+                        <button
+                          onClick={handleLogout}
                           className='flex items-center justify-center w-full py-3 hover:bg-[#525252] rounded-b-[10px]'
                         >
                           <Typography
@@ -307,7 +316,7 @@ function Navbar() {
                             <MdLogout className='text-[18px]' />
                             <div className='mb-2 text-[20px]'></div>
                           </Typography>
-                        </UnstyledLink>
+                        </button>
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>
@@ -467,11 +476,11 @@ function Navbar() {
                   </div>
                 </UnstyledLink>
                 <div className='py-2'></div>
-                <UnstyledLink href='#' className='text-center'>
+                <button onClick={handleLogout} className='text-center'>
                   <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md'>
                     Logout
                   </div>
-                </UnstyledLink>
+                </button>
               </div>
 
               <div className='mt-10 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
