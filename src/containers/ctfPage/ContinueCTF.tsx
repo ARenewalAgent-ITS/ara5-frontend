@@ -6,7 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
-import CountDownCTF from '@/containers/ctfPage/CountDownCTF';
+import CountDownCTF from '@/containers/ctfPage/countdownctf';
 import CtfFaqSection from '@/containers/ctfPage/CtfFaqSection';
 import clsxm from '@/lib/clsxm';
 
