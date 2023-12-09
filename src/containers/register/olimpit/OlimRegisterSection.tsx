@@ -1,5 +1,6 @@
 'use client';
 
+import { useMutation, useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -9,9 +10,12 @@ import DropzoneInput from '@/components/form/DropzoneInput';
 import Input from '@/components/form/Input';
 import SelectInput from '@/components/form/SelectInput';
 import Typography from '@/components/Typography';
+import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { useRegisterStore } from '@/store/useRegisterStore';
+import { ApiReturn } from '@/types/api';
 import { TRegisterOlim } from '@/types/entities/register';
+import { TKabupaten, TProvinsi } from '@/types/entities/wilayah';
 
 interface OlimRegisterSectionProps {
   onNextStep: () => void;
@@ -21,7 +25,15 @@ export default function OlimRegisterSection({
   onNextStep,
 }: OlimRegisterSectionProps) {
   const [peopleCount, setPeopleCount] = React.useState(0);
+  const [selectedProvinsiId, setSelectedProvinsiId] = React.useState<
+    null | string
+  >(null);
+  const [kabupatenData, setKabupatenData] = React.useState<Array<TKabupaten>>(
+    []
+  );
   const { setFormData } = useRegisterStore();
+
+  //#region  //*=========== Register Form ===========
 
   const methods = useForm<TRegisterOlim>({
     defaultValues: {
@@ -29,6 +41,33 @@ export default function OlimRegisterSection({
     },
   });
   const match_password = methods.watch('team_password');
+
+  //#region  //*=========== Wilayah API ===========
+
+  const { data: provinsiData } = useQuery<ApiReturn<Array<TProvinsi>>>({
+    queryKey: ['/wilayah/provinsi'],
+  });
+
+  const getKabupatenQuery = async (provinsiId: string) => {
+    try {
+      const response = await api.get(`/wilayah/kabupaten/${provinsiId}`);
+      return response.data;
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam mengambil kabupaten');
+    }
+  };
+
+  const { mutate: getKabupaten } = useMutation(getKabupatenQuery, {
+    onSuccess: (data) => {
+      setKabupatenData(data.data);
+    },
+  });
+
+  React.useEffect(() => {
+    if (selectedProvinsiId) {
+      getKabupaten(selectedProvinsiId);
+    }
+  }, [selectedProvinsiId, getKabupaten]);
 
   const handleIncrement = () => {
     setPeopleCount((prevCount) => (prevCount < 2 ? prevCount + 1 : prevCount));
@@ -140,22 +179,28 @@ export default function OlimRegisterSection({
                   required: 'Provinsi cannot be empty',
                 }}
                 placeholder='Masukkan provinsi sekolah / institusi asal'
+                onChange={(e) => setSelectedProvinsiId(e.target.value)}
               >
-                <option>halo</option>
-                <option>halo</option>
-                <option>halo</option>
-                <option>halo</option>
-                <option>halo</option>
-                <option>halo</option>
+                {provinsiData?.data?.map(({ id, nama }) => (
+                  <option key={id} value={id}>
+                    {nama}
+                  </option>
+                ))}
               </SelectInput>
-              {/* <SelectInput
+              <SelectInput
                 id='team_kabupaten_id'
                 label='Kota / Kabupaten'
                 validation={{
                   required: 'Kota / Kabupaten cannot be empty',
                 }}
                 placeholder='Masukkan kota / kabupaten sekolah / institusi asal'
-              ></SelectInput> */}
+              >
+                {kabupatenData?.map(({ id, kabupaten }) => (
+                  <option key={id} value={id}>
+                    {kabupaten}
+                  </option>
+                ))}
+              </SelectInput>
               <Input
                 id='nama_ketua'
                 label='Nama Ketua'
