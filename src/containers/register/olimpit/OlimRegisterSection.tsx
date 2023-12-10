@@ -26,7 +26,7 @@ export default function OlimRegisterSection({
 }: OlimRegisterSectionProps) {
   const [peopleCount, setPeopleCount] = React.useState(0);
   const [selectedProvinsiId, setSelectedProvinsiId] = React.useState<
-    null | string
+    null | number
   >(null);
   const [kabupatenData, setKabupatenData] = React.useState<Array<TKabupaten>>(
     []
@@ -46,9 +46,10 @@ export default function OlimRegisterSection({
 
   const { data: provinsiData } = useQuery<ApiReturn<Array<TProvinsi>>>({
     queryKey: ['/wilayah/provinsi'],
+    staleTime: Infinity,
   });
 
-  const getKabupatenQuery = async (provinsiId: string) => {
+  const getKabupatenQuery = async (provinsiId: number) => {
     try {
       const response = await api.get(`/wilayah/kabupaten/${provinsiId}`);
       return response.data;
@@ -179,7 +180,7 @@ export default function OlimRegisterSection({
                   required: 'Provinsi cannot be empty',
                 }}
                 placeholder='Masukkan provinsi sekolah / institusi asal'
-                onChange={(e) => setSelectedProvinsiId(e.target.value)}
+                onChange={(e) => setSelectedProvinsiId(Number(e.target.value))}
               >
                 {provinsiData?.data?.map(({ id, nama }) => (
                   <option key={id} value={id}>
