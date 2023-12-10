@@ -10,13 +10,24 @@ import clsxm from '@/lib/clsxm';
 
 export default function RegisterOlimp() {
   const [isRegisterStep, setIsRegisterStep] = React.useState(true);
+  const [isRegistrationCompleted, setIsRegistrationCompleted] =
+    React.useState(false);
 
   const goToNextStep = () => {
+    if (isRegistrationCompleted) {
+      setIsRegisterStep(false);
+    }
+  };
+
+  const handleRegistrationComplete = () => {
+    setIsRegistrationCompleted(true);
     setIsRegisterStep(false);
   };
 
   const goToPreviousStep = () => {
-    setIsRegisterStep(true);
+    if (!isRegisterStep && isRegistrationCompleted) {
+      setIsRegisterStep(true);
+    }
   };
   return (
     <>
@@ -31,20 +42,28 @@ export default function RegisterOlimp() {
         <div className='flex gap-2'>
           <div
             onClick={goToPreviousStep}
-            className='hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer'
+            className={clsxm(
+              'hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer',
+              !isRegisterStep && isRegistrationCompleted
+                ? ''
+                : 'opacity-50 cursor-not-allowed'
+            )}
           >
             <FaArrowLeft className='text-whites-1100 w-[13.5px]' />
           </div>
           <div
             onClick={goToNextStep}
-            className='hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer'
+            className={clsxm(
+              'hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer',
+              isRegistrationCompleted ? '' : 'opacity-50 cursor-not-allowed'
+            )}
           >
             <FaArrowRight className='text-whites-1100 w-[13.5px]' />
           </div>
         </div>
       </div>
       <div className={clsxm(isRegisterStep ? 'block' : 'hidden')}>
-        <OlimRegisterSection onNextStep={goToNextStep} />
+        <OlimRegisterSection onNextStep={handleRegistrationComplete} />
       </div>
       <div className={clsxm(!isRegisterStep ? 'block' : 'hidden')}>
         <OlimPembayaranSection />
