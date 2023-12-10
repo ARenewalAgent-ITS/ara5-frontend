@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -7,9 +8,12 @@ import DropzoneInput from '@/components/form/DropzoneInput';
 import Input from '@/components/form/Input';
 import SelectInput from '@/components/form/SelectInput';
 import Typography from '@/components/Typography';
+import useMutationToast from '@/hooks/useMutationToast';
+import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { useRegisterStore } from '@/store/useRegisterStore';
 import { TPembayaran, TReferal } from '@/types/entities/pembayaran';
+import { TRegisterOlim } from '@/types/entities/register';
 
 type BankDetails = {
   name: string;
@@ -18,11 +22,131 @@ type BankDetails = {
 };
 
 export default function OlimPembayaranSection() {
+  const [kupon, setKupon] = React.useState<string>('');
   const { formData } = useRegisterStore();
+
+  //#region  //*=========== Pembayaran & Referal Form ===========
+
   const methods = useForm<TPembayaran>({ defaultValues: { list_bank_id: 0 } });
+  const metode_pembayaran = methods.watch('list_bank_id');
   const referalMethods = useForm<TReferal>();
 
-  const metode_pembayaran = methods.watch('list_bank_id');
+  //#region  //*=========== Register API ===========
+
+  const postRegister = async (data: TRegisterOlim | FormData) => {
+    try {
+      await api.post('/olim/daftar', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam register data');
+    }
+  };
+  const { mutate: register } = useMutationToast<void, TRegisterOlim | FormData>(
+    useMutation(postRegister)
+  );
+
+  const registData = new FormData();
+  registData.append('event', formData.event);
+  registData.append('team_name', formData.team_name);
+  registData.append('team_username', formData.team_username);
+  registData.append('team_password', formData.team_password);
+  registData.append('asal_institusi', formData.asal_institusi);
+  registData.append('team_provinsi_id', formData.team_provinsi_id.toString());
+  registData.append('team_kabupaten_id', formData.team_kabupaten_id.toString());
+  registData.append('nama_ketua', formData.nama_ketua);
+  registData.append('no_wa_ketua', formData.no_wa_ketua);
+  registData.append('email_ketua', formData.email_ketua);
+  registData.append('kupon', kupon);
+  if (formData.ktp_ketua && formData.ktp_ketua.length > 0) {
+    registData.append('ktp_ketua', formData.ktp_ketua[0]);
+  }
+  if (
+    formData.ktp_anggota_1 &&
+    formData.ktp_anggota_1.length > 0 &&
+    formData.nama_anggota_1
+  ) {
+    registData.append('ktp_anggota_1', formData.ktp_anggota_1[0]);
+    registData.append('nama_anggota_1', formData.nama_anggota_1);
+  }
+  if (
+    formData.ktp_anggota_2 &&
+    formData.ktp_anggota_2.length > 0 &&
+    formData.nama_anggota_2
+  ) {
+    registData.append('ktp_anggota_2', formData.ktp_anggota_2[0]);
+    registData.append('nama_anggota_2', formData.nama_anggota_2);
+  }
+
+  //#region  //*=========== Pembayaran ===========
+
+  const postPembayaran = async (data: TPembayaran | FormData) => {
+    try {
+      await api.post('/pembayaran', {
+        data,
+      });
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam register pembayaran');
+    }
+  };
+  const { mutate: pembayaran } = useMutationToast<void, TPembayaran | FormData>(
+    useMutation(postPembayaran)
+  );
+
+  //#region  //*=========== Kupon ===========
+
+  const getKuponQuery = async (kupon: string) => {
+    try {
+      const response = await api.get(`/kupon/${kupon}`);
+      return response;
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam mengambil kupon');
+    }
+  };
+
+  const { mutate: getKupon } = useMutationToast(
+    useMutation(getKuponQuery, {
+      onSuccess: (data) => {
+        setKupon(data.data.kuponStatus.kupon);
+      },
+    }),
+    {
+      success: 'Referral code successfully used!',
+      error: 'Referral code is not available',
+    }
+  );
+
+  const handleRegistPembayaran = async (
+    registerData: TRegisterOlim | FormData,
+    pembayaranData: TPembayaran | FormData
+  ) => {
+    try {
+      register(registerData);
+      try {
+        pembayaran(pembayaranData);
+      } catch (error) {
+        throw new Error('Terjadi kesalahan dipembayaran');
+      }
+    } catch (error) {
+      throw new Error('Registrasi gagal');
+    }
+  };
+
+  const RegisteronSubmit = (data: TPembayaran) => {
+    //#region  //*=========== Pembayaran ===========
+
+    const pembayaranData = new FormData();
+    pembayaranData.append('list_bank_id', data.list_bank_id.toString());
+    pembayaranData.append('bukti_pembayaran', data.bukti_pembayaran);
+
+    handleRegistPembayaran(registData, pembayaranData);
+  };
+
+  const referalOnSubmit = (data: TReferal) => {
+    getKupon(data.kupon);
+  };
 
   const bankDetailsMapping: { [key: string]: BankDetails } = {
     '0': {
@@ -41,19 +165,8 @@ export default function OlimPembayaranSection() {
       imageName: '/img/register/logo_bni.png',
     },
   };
-
   const bankDetails = bankDetailsMapping[metode_pembayaran.toString()];
 
-  const onSubmit = (data: TPembayaran) => {
-    // eslint-disable-next-line no-console
-    console.log('Bukti Pembayaran', data);
-    // eslint-disable-next-line no-console
-    console.log('Registrasi', formData);
-  };
-  const referalOnSubmit = (data: TReferal) => {
-    // eslint-disable-next-line no-console
-    console.log('kupon', data);
-  };
   return (
     <div className='lg:px-4 xl:px-12 2xl:px-14'>
       <div className='flex flex-col justify-center gap-6 px-12 py-7 lg:px-0'>
@@ -112,7 +225,10 @@ export default function OlimPembayaranSection() {
 
         {/* Pembayaran Form */}
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-6'>
+          <form
+            onSubmit={methods.handleSubmit(RegisteronSubmit)}
+            className='space-y-6'
+          >
             <SelectInput
               id='list_bank_id'
               label='Metode Pembayaran'
@@ -171,6 +287,9 @@ export default function OlimPembayaranSection() {
               label='Kode Referal'
               helperText='Gunakan kode referal dan dapatkan potongan!'
               placeholder='Masukan kode referal (opsional)'
+              validation={{
+                required: 'Referral Code needed to apply',
+              }}
             />
             <Button
               type='submit'
@@ -192,7 +311,10 @@ export default function OlimPembayaranSection() {
 
         {/* Submit Button */}
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-6'>
+          <form
+            onSubmit={methods.handleSubmit(RegisteronSubmit)}
+            className='space-y-6'
+          >
             <Button
               type='submit'
               size='lg'
