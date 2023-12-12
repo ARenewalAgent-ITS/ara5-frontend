@@ -8,6 +8,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
+import withAuth from '@/components/hoc/withAuth';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
 import { REG_EMAIL } from '@/constants/regex';
@@ -15,43 +16,70 @@ import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
 // import { getToken } from '@/lib/cookies';
 import { setToken } from '@/lib/cookies';
+import useAuthStore from '@/store/useAuthStore';
+import { ApiReturn } from '@/types/api';
+// import { loginForm } from '@/types/entities/login';
 import { loginForm } from '@/types/entities/login';
+import { User } from '@/types/entities/user';
 
-export default function LoginPage() {
+export default withAuth(LoginPage, 'public')
+
+function LoginPage() {
   const methods = useForm<loginForm>({
     mode: 'onTouched',
   });
   const { handleSubmit } = methods;
   const router = useRouter();
-  // const token = getToken();
-  // console.log(token);
-  const loginUser = async ({ email, password }: loginForm) => {
-    try {
-      const res = await api.post('/auth/login', {
-        email,
-        password,
-      });
-      // const datas = res.data;
-      const token = res.data.data.token;
-      // console.log(datas);
-      // console.log(token);
-
-      setToken(token);
-    } catch (error) {
-      throw new Error('Terjadi kesalahan dalam login');
-    }
-  };
+  const login = useAuthStore.useLogin();
 
   const { mutate: loginMutation, isLoading } = useMutationToast<
     void,
     loginForm
   >(
-    useMutation(loginUser, {
-      onSuccess: () => {
-        router.push('/');
-      },
+    useMutation(async (data) => {
+      const res = await api.post('/auth/login', data);
+      const { token } = res.data.data;
+      setToken(token);
+
+      const user = await api.get<ApiReturn<User>>('/auth/me');
+
+      if (!user.data.data) {
+        throw new Error('Sesi login tidak valid');
+      }
+      login({ ...user.data.data, token: token });
+      router.push('/');
     })
   );
+
+  // const token = getToken();
+  // console.log(token);
+  // const loginUser = async ({ email, password }: loginForm) => {
+  //   try {
+  //     const res = await api.post('/auth/login', {
+  //       email,
+  //       password,
+  //     });
+  //     // const datas = res.data;
+  //     const token = res.data.data.token;
+  //     // console.log(datas);
+  //     // console.log(token);
+
+  //     setToken(token);
+  //   } catch (error) {
+  //     throw new Error('Terjadi kesalahan dalam login');
+  //   }
+  // };
+
+  // const { mutate: loginMutation, isLoading } = useMutationToast<
+  //   void,
+  //   loginForm
+  // >(
+  //   useMutation(loginUser, {
+  //     onSuccess: () => {
+  //       router.push('/');
+  //     },
+  //   })
+  // );
   const onSubmit = (data: loginForm) => {
     loginMutation(data);
     // console.log(data);
