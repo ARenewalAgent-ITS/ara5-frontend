@@ -1,5 +1,5 @@
 /* eslint-disable unused-imports/no-unused-vars */
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { toast } from 'react-hot-toast';
 import { ImSpinner8 } from 'react-icons/im';
@@ -47,8 +47,8 @@ export default function withAuth<T>(
   options: {
     withCache?: boolean;
   } = {
-      withCache: true,
-    }
+    withCache: true,
+  }
 ) {
   const ComponentWithAuth = (props: Omit<T, keyof WithAuthProps>) => {
     const router = useRouter();
