@@ -80,21 +80,6 @@ export default function OlimPembayaranSection() {
     registData.append('nama_anggota_2', formData.nama_anggota_2);
   }
 
-  //#region  //*=========== Pembayaran ===========
-
-  const postPembayaran = async (data: TPembayaran | FormData) => {
-    try {
-      await api.post('/pembayaran', {
-        data,
-      });
-    } catch (error) {
-      throw new Error('Terjadi kesalahan dalam register pembayaran');
-    }
-  };
-  const { mutate: pembayaran } = useMutationToast<void, TPembayaran | FormData>(
-    useMutation(postPembayaran)
-  );
-
   //#region  //*=========== Kupon ===========
 
   const getKuponQuery = async (kupon: string) => {
@@ -118,30 +103,13 @@ export default function OlimPembayaranSection() {
     }
   );
 
-  const handleRegistPembayaran = async (
-    registerData: TRegisterOlim | FormData,
-    pembayaranData: TPembayaran | FormData
-  ) => {
-    try {
-      register(registerData);
-      try {
-        pembayaran(pembayaranData);
-      } catch (error) {
-        throw new Error('Terjadi kesalahan dipembayaran');
-      }
-    } catch (error) {
-      throw new Error('Registrasi gagal');
-    }
-  };
+  //#region  //*=========== Form Submit ===========
 
-  const RegisteronSubmit = (data: TPembayaran) => {
-    //#region  //*=========== Pembayaran ===========
+  const RegisterOnSubmit = (data: TPembayaran) => {
+    registData.append('list_bank_id', data.list_bank_id.toString());
+    registData.append('bukti_pembayaran', data.bukti_pembayaran[0]);
 
-    const pembayaranData = new FormData();
-    pembayaranData.append('list_bank_id', data.list_bank_id.toString());
-    pembayaranData.append('bukti_pembayaran', data.bukti_pembayaran);
-
-    handleRegistPembayaran(registData, pembayaranData);
+    register(registData);
   };
 
   const referalOnSubmit = (data: TReferal) => {
@@ -225,10 +193,7 @@ export default function OlimPembayaranSection() {
 
         {/* Pembayaran Form */}
         <FormProvider {...methods}>
-          <form
-            onSubmit={methods.handleSubmit(RegisteronSubmit)}
-            className='space-y-6'
-          >
+          <form className='space-y-6'>
             <SelectInput
               id='list_bank_id'
               label='Metode Pembayaran'
@@ -312,7 +277,7 @@ export default function OlimPembayaranSection() {
         {/* Submit Button */}
         <FormProvider {...methods}>
           <form
-            onSubmit={methods.handleSubmit(RegisteronSubmit)}
+            onSubmit={methods.handleSubmit(RegisterOnSubmit)}
             className='space-y-6'
           >
             <Button
