@@ -22,7 +22,7 @@ import { ApiReturn } from '@/types/api';
 import { loginForm } from '@/types/entities/login';
 import { User } from '@/types/entities/user';
 
-export default withAuth(LoginPage, 'public')
+export default withAuth(LoginPage, 'public');
 
 function LoginPage() {
   const methods = useForm<loginForm>({

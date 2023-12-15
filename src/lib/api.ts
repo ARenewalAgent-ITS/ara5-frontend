@@ -77,13 +77,6 @@ export const setApiContext = (_context: GetServerSidePropsContext) => {
 
 export default api;
 
-
-
-
-
-
-
-
 // import axios, { AxiosError } from 'axios';
 // import { GetServerSidePropsContext } from 'next';
 // import Cookies from 'universal-cookie';
