@@ -31,6 +31,8 @@ export type TRegisterCtf = {
   discord_ketua: string;
   nama_ketua: string;
   ktp_ketua: string;
+  list_bank_id?: string;
+  bukti_pembayaran?: string;
   nama_anggota_1?: string;
   ktp_anggota_1?: string;
   nama_anggota_2?: string;
