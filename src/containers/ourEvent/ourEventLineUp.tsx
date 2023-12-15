@@ -5,6 +5,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
+import ThrowBack from '@/components/layouts/Throwback';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
@@ -268,6 +269,7 @@ export default function OurEventLineUp() {
             </div>
           </div>
         </section>
+        <ThrowBack />
         <div className='relative pt-36'>
           <NextImage
             src={'/images/landpage_ourevent/landing.svg'}

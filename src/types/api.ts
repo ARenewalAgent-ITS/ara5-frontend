@@ -15,6 +15,7 @@ export type UninterceptedApiError = {
 };
 
 type PaginateData<Data> = {
+  totalPendaftar: number;
   content: Data;
   metadata: {
     page: number;

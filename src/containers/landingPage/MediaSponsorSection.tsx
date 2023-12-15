@@ -80,7 +80,7 @@ export default function SponsorSection() {
   }
 
   return (
-    <section className='sponsor-media-section bg-transparent'>
+    <section className='sponsor-media-section bg-primary-1100 relative -mt-[1rem]'>
       <section className='sponsor-section py-[85px] md:pt-[91px] md:pb-[183px]'>
         <div className='upper-sponsor flex justify-center items-center mb-[70px]'>
           <NextImage
