@@ -12,13 +12,14 @@ export default function RegisterOlimp() {
   const [isRegisterStep, setIsRegisterStep] = React.useState(true);
   const [isRegistrationCompleted, setIsRegistrationCompleted] =
     React.useState(false);
+  const [isAtLastStep, setIsAtLastStep] = React.useState(false);
 
   const goToNextStep = () => {
     if (isRegistrationCompleted) {
       setIsRegisterStep(false);
+      setIsAtLastStep(true);
     }
   };
-
   const handleRegistrationComplete = () => {
     setIsRegistrationCompleted(true);
     setIsRegisterStep(false);
@@ -27,8 +28,10 @@ export default function RegisterOlimp() {
   const goToPreviousStep = () => {
     if (!isRegisterStep && isRegistrationCompleted) {
       setIsRegisterStep(true);
+      setIsAtLastStep(false);
     }
   };
+
   return (
     <>
       <div className='px-6 py-6 w-full flex flex-row items-center justify-between'>
@@ -55,7 +58,7 @@ export default function RegisterOlimp() {
             onClick={goToNextStep}
             className={clsxm(
               'hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer',
-              isRegistrationCompleted ? '' : 'opacity-50 cursor-not-allowed'
+              isAtLastStep ? 'opacity-50 cursor-not-allowed' : ''
             )}
           >
             <FaArrowRight className='text-whites-1100 w-[13.5px]' />
