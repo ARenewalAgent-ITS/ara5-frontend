@@ -87,6 +87,10 @@ export default function CtfRegisterSection({
                 placeholder='Masukkan nama tim'
                 validation={{
                   required: 'Nama Tim cannot be empty',
+                  pattern: {
+                    value: /^[A-Za-z0-9]+$/,
+                    message: 'Only alphanumeric characters are allowed',
+                  },
                 }}
               />
               <Input
@@ -102,8 +106,9 @@ export default function CtfRegisterSection({
                     message: 'Password must be at least 5 characters',
                   },
                   pattern: {
-                    value: /^[^\s]{5,}$/,
-                    message: 'Password cannot contain spaces',
+                    value: /^[A-Za-z0-9]{5,}$/,
+                    message:
+                      'Username must be at least 5 characters, alphanumeric, and cannot contain spaces',
                   },
                 }}
               />
@@ -120,9 +125,9 @@ export default function CtfRegisterSection({
                     message: 'Password must be at least 8 characters',
                   },
                   pattern: {
-                    value: /(?=.*[A-Z])/,
+                    value: /^(?=.*[A-Z])[A-Za-z0-9]+$/,
                     message:
-                      'Password must contain at least one uppercase letter',
+                      'Password must contain at least one uppercase letter and be alphanumeric',
                   },
                 }}
               />
@@ -165,6 +170,10 @@ export default function CtfRegisterSection({
                 placeholder='Masukkan nama ketua tim'
                 validation={{
                   required: 'Nama Ketua cannot be empty',
+                  pattern: {
+                    value: /^[A-Za-z0-9]+$/,
+                    message: 'Only alphanumeric characters are allowed',
+                  },
                 }}
               />
               <DropzoneInput
@@ -220,6 +229,12 @@ export default function CtfRegisterSection({
                     id='nama_anggota_1'
                     label='Nama Anggota 1'
                     placeholder='Masukkan nama anggota 1'
+                    validation={{
+                      pattern: {
+                        value: /^[A-Za-z0-9]+$/,
+                        message: 'Only alphanumeric characters are allowed',
+                      },
+                    }}
                   />
                   <DropzoneInput
                     id='ktp_anggota_1'
@@ -235,6 +250,12 @@ export default function CtfRegisterSection({
                     id='nama_anggota_2'
                     label='Nama Anggota 2'
                     placeholder='Masukkan nama anggota 2'
+                    validation={{
+                      pattern: {
+                        value: /^[A-Za-z0-9]+$/,
+                        message: 'Only alphanumeric characters are allowed',
+                      },
+                    }}
                   />
                   <DropzoneInput
                     id='ktp_anggota_2'
