@@ -6,11 +6,11 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 
 import Cross from './nav-img/Cross.svg';
-import Ellipse from './nav-img/Ellipse 102.png';
-import ExploIT from './nav-img/Group 899.png';
+import Ellipse from './nav-img/Ellipse.png';
+import ExploIT from './nav-img/ExploIT.png';
 import Olimpiade from './nav-img/Group.png';
 import LogoSVG from './nav-img/Logo-ARA.svg';
-import LogoAra from './nav-img/LogoARA(4).png';
+import LogoAra from './nav-img/LogoARA.png';
 import Register from './nav-img/Register.png';
 import CTF from './nav-img/Vector.png';
 

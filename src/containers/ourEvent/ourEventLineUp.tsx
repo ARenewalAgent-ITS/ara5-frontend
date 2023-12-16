@@ -119,13 +119,12 @@ export default function OurEventLineUp() {
 
           <div className='xl:max-w-6xl w-full h-full'>
             {dataEvent.map((items, index) => (
-              <>
+              <div key={index}>
                 {index % 2 == 0 ? (
                   <div
                     className='flex flex-col md:flex-row md:items-center md:gap-10 xl:gap-16 xl:mt-20 mt-10'
                     data-aos='fade-left'
                     data-aos-delay='400'
-                    key={index}
                   >
                     <NextImage
                       src={items?.img}
@@ -169,7 +168,6 @@ export default function OurEventLineUp() {
                     className='flex flex-col md:flex-row-reverse md:items-center md:gap-10 xl:gap-16 xl:mt-20 mt-10'
                     data-aos='fade-right'
                     data-aos-delay='400'
-                    key={index}
                   >
                     <NextImage
                       src={items?.img}
@@ -209,7 +207,7 @@ export default function OurEventLineUp() {
                     </div>
                   </div>
                 )}
-              </>
+              </div>
             ))}
 
             <div
