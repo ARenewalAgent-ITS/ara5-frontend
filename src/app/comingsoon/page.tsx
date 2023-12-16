@@ -14,7 +14,7 @@ function HomeButton() {
       variant='primary'
       leftIcon={MdHome}
       leftIconClassName={clsxm('w-[20px] text-white')}
-      className={clsxm('py-2 px-4 rounded m-2')}
+      className={clsxm('py-2 px-4 rounded m-8')}
     >
       <Typography
         weight='bold'
