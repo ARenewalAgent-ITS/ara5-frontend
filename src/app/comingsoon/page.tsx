@@ -34,13 +34,15 @@ export default function ComingSoon() {
         <div className='fixed w-full z-[101]'>
           <Navbar />
         </div>
-        <div className='relative'>
+        <div className='relative w-full h-screen overflow-hidden'>
           <NextImage
             src={'/svg/comingsoon/bg_comingsoon.svg'}
             width={1440}
             height={1024}
+            layout='fill'
+            objectFit='cover'
             alt='coming soon background'
-            className='svg-background object-cover h-auto lg:h-auto filter blur-sm brightness-105'
+            className='absolute inset-0 svg-background filter blur-md brightness-105'
           />
         </div>
 
@@ -50,7 +52,7 @@ export default function ComingSoon() {
               variant='h3'
               weight='bold'
               color='blue'
-              className='tracking-wide text-primary-700 text-xl sm:text-3xl md:text-5xl lg:text-7xl [text-shadow:0px_4px_4px_#00000040] inline-block'
+              className='tracking-wide text-primary-700 text-3xl sm:text-4xl md:text-5xl lg:text-7xl [text-shadow:0px_4px_4px_#00000040] inline-block'
             >
               COMING SOON!!
             </Typography>
