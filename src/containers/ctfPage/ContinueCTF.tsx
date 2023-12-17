@@ -1,5 +1,7 @@
+'use client';
+import Aos from 'aos';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const CountDownCTF = dynamic(
   () => import('@/containers/ctfPage/countdownctf'),
@@ -12,6 +14,10 @@ import CtfFaqSection from '@/containers/ctfPage/CtfFaqSection';
 import PrizepoolSectionCtf from '@/containers/ctfPage/PrizepoolSectionCtf';
 
 function ContinueCTF() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <>
       <div className='relative'>
