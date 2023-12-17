@@ -42,7 +42,7 @@ function ThrowBack() {
 
   return (
     <>
-      <div className='h-[auto] py-[3rem]'>
+      <div className='h-[auto] pt-[3rem] pb-[2rem] xl:pb-[6rem]'>
         <div className='absolute right-[25%] hidden lg:block z-10'>
           <NextImage
             src={'/svg/throwback/leaf.svg'}

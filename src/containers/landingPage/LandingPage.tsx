@@ -6,13 +6,13 @@ import React, { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 import Card from '@/components/layouts/Card';
-import ThrowBack from '@/components/layouts/Throwback';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/landingPage/LoopKereta';
 import LoopTechnaVita from '@/containers/landingPage/LoopTechnaVita';
 import MediaSponsorSection from '@/containers/landingPage/MediaSponsorSection';
+import OurEventLineUp from '@/containers/ourEvent/ourEventLineUp';
 import clsxm from '@/lib/clsxm';
 
 export default function LandingPage() {
@@ -244,7 +244,7 @@ export default function LandingPage() {
             <LoopTechnaVita />
           </div>
         </div>
-        <ThrowBack />
+        <OurEventLineUp />
         <MediaSponsorSection />
       </section>
     </>
