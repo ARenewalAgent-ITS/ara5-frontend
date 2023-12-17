@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import React from 'react';
 
+import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import ContinueCTF from '@/containers/ctfPage/ContinueCTF';
 import LandingCTF from '@/containers/ctfPage/LandingCTF';
@@ -16,6 +17,7 @@ export default function Page() {
       <Navbar />
       <LandingCTF />
       <ContinueCTF />
+      <Footer />
     </>
   );
 }
