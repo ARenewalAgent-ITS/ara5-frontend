@@ -24,7 +24,7 @@ function ContinueOlimp() {
           height={2382}
           className='w-[30%] top-0 right-0 absolute'
         />
-        <div className='bg-gradient-to-b from-[#F0F4D8] to-[#225B58] to-55%'>
+        <div className='bg-gradient-to-b from-[#D8F4EB] to-[#225B58] to-55%'>
           <div className='relative w-full h-auto py-6 lg:h-[100vh] flex justify-center items-center'>
             <CountDownOlimp />
           </div>
