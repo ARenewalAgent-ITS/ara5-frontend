@@ -3,9 +3,9 @@ import { create } from 'zustand';
 import { TRegisterCtf, TRegisterOlim } from '@/types/entities/register';
 
 interface FormState {
-  formData: TRegisterOlim;
+  olimFormData: TRegisterOlim;
   ctfFormData: TRegisterCtf;
-  setFormData: (data: TRegisterOlim) => void;
+  setOlimFormData: (data: TRegisterOlim) => void;
   setCtfFormData: (data: TRegisterCtf) => void;
 }
 
@@ -21,6 +21,8 @@ const initialFormData: TRegisterOlim = {
   email_ketua: '',
   nama_ketua: '',
   ktp_ketua: '',
+  bukti_follow: '',
+  bukti_repost: '',
 };
 
 const initialCtfFormData: TRegisterCtf = {
@@ -35,11 +37,13 @@ const initialCtfFormData: TRegisterCtf = {
   discord_ketua: '',
   nama_ketua: '',
   ktp_ketua: '',
+  bukti_follow: '',
+  bukti_repost: '',
 };
 
 export const useRegisterStore = create<FormState>((set) => ({
-  formData: initialFormData,
+  olimFormData: initialFormData,
   ctfFormData: initialCtfFormData,
-  setFormData: (data) => set({ formData: data }),
+  setOlimFormData: (data) => set({ olimFormData: data }),
   setCtfFormData: (data) => set({ ctfFormData: data }),
 }));

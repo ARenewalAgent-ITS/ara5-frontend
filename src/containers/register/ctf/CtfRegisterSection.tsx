@@ -164,6 +164,24 @@ export default function CtfRegisterSection({
                   </option>
                 ))}
               </SelectInput>
+              <DropzoneInput
+                id='bukti_follow'
+                label='Bukti Follow IG ARA 5.0'
+                validation={{
+                  required: 'Bukti Follow IG cannot be empty',
+                }}
+                accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                className={clsxm('bg-whites-100')}
+              />
+              <DropzoneInput
+                id='bukti_repost'
+                label='Bukti Share Poster OlimpIT ARA 5.0'
+                validation={{
+                  required: 'Bukti Share Poster cannot be empty',
+                }}
+                accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                className={clsxm('bg-whites-100')}
+              />
               <Input
                 id='nama_ketua'
                 label='Nama Ketua'

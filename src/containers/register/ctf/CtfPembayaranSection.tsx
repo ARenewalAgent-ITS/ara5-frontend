@@ -62,6 +62,12 @@ export default function CtfPembayaranSection() {
   if (ctfFormData.ktp_ketua && ctfFormData.ktp_ketua.length > 0) {
     registData.append('ktp_ketua', ctfFormData.ktp_ketua[0]);
   }
+  if (ctfFormData.bukti_follow && ctfFormData.bukti_follow.length > 0) {
+    registData.append('bukti_follow', ctfFormData.bukti_follow[0]);
+  }
+  if (ctfFormData.bukti_repost && ctfFormData.bukti_repost.length > 0) {
+    registData.append('bukti_repost', ctfFormData.bukti_repost[0]);
+  }
   if (
     ctfFormData.ktp_anggota_1 &&
     ctfFormData.ktp_anggota_1.length > 0 &&
