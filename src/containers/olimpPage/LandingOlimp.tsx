@@ -10,7 +10,7 @@ import clsxm from '@/lib/clsxm';
 function LandingOlimp() {
   return (
     <>
-      <div className='h-[100vh] flex flex-col gap-6 justify-center items-center text-center bg-[#D8F4EB]'>
+      <div className='relative h-full py-[155px] flex flex-col gap-6 justify-center items-center text-center bg-[#D8F4EB]'>
         <NextImage
           src='/svg/olimp/olimp_title.svg'
           alt='title'

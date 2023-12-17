@@ -1,8 +1,13 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const CountDownOlimp = dynamic(
+  () => import('@/containers/olimpPage/countdownolim'),
+  { ssr: false }
+);
 
 import NextImage from '@/components/NextImage';
 import ContactPersonOlimp from '@/containers/olimpPage/ContactPersonOlimp';
-import CountDownOlimp from '@/containers/olimpPage/countdownolim';
 import OlimpFaqSection from '@/containers/olimpPage/OlimpFaqSection';
 import PrizepoolSectionOlimp from '@/containers/olimpPage/PrizepoolSectionOlimp';
 
