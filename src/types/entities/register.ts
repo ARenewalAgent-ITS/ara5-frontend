@@ -10,6 +10,8 @@ export type TRegisterOlim = {
   email_ketua: string;
   nama_ketua: string;
   ktp_ketua: string;
+  bukti_follow: string;
+  bukti_repost: string;
   list_bank_id?: string;
   bukti_pembayaran?: string;
   kupon?: string;
@@ -31,6 +33,8 @@ export type TRegisterCtf = {
   discord_ketua: string;
   nama_ketua: string;
   ktp_ketua: string;
+  bukti_follow: string;
+  bukti_repost: string;
   list_bank_id?: string;
   bukti_pembayaran?: string;
   nama_anggota_1?: string;

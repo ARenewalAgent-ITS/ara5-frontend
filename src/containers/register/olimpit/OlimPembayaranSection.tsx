@@ -23,7 +23,7 @@ type BankDetails = {
 
 export default function OlimPembayaranSection() {
   const [kupon, setKupon] = React.useState<string>('');
-  const { formData } = useRegisterStore();
+  const { olimFormData } = useRegisterStore();
 
   //#region  //*=========== Pembayaran & Referal Form ===========
 
@@ -49,35 +49,47 @@ export default function OlimPembayaranSection() {
   );
 
   const registData = new FormData();
-  registData.append('event', formData.event);
-  registData.append('team_name', formData.team_name);
-  registData.append('team_username', formData.team_username);
-  registData.append('team_password', formData.team_password);
-  registData.append('asal_institusi', formData.asal_institusi);
-  registData.append('team_provinsi_id', formData.team_provinsi_id.toString());
-  registData.append('team_kabupaten_id', formData.team_kabupaten_id.toString());
-  registData.append('nama_ketua', formData.nama_ketua);
-  registData.append('no_wa_ketua', formData.no_wa_ketua);
-  registData.append('email_ketua', formData.email_ketua);
+  registData.append('event', olimFormData.event);
+  registData.append('team_name', olimFormData.team_name);
+  registData.append('team_username', olimFormData.team_username);
+  registData.append('team_password', olimFormData.team_password);
+  registData.append('asal_institusi', olimFormData.asal_institusi);
+  registData.append(
+    'team_provinsi_id',
+    olimFormData.team_provinsi_id.toString()
+  );
+  registData.append(
+    'team_kabupaten_id',
+    olimFormData.team_kabupaten_id.toString()
+  );
+  registData.append('nama_ketua', olimFormData.nama_ketua);
+  registData.append('no_wa_ketua', olimFormData.no_wa_ketua);
+  registData.append('email_ketua', olimFormData.email_ketua);
   registData.append('kupon', kupon);
-  if (formData.ktp_ketua && formData.ktp_ketua.length > 0) {
-    registData.append('ktp_ketua', formData.ktp_ketua[0]);
+  if (olimFormData.ktp_ketua && olimFormData.ktp_ketua.length > 0) {
+    registData.append('ktp_ketua', olimFormData.ktp_ketua[0]);
+  }
+  if (olimFormData.bukti_follow && olimFormData.bukti_follow.length > 0) {
+    registData.append('bukti_follow', olimFormData.bukti_follow[0]);
+  }
+  if (olimFormData.bukti_repost && olimFormData.bukti_repost.length > 0) {
+    registData.append('bukti_repost', olimFormData.bukti_repost[0]);
   }
   if (
-    formData.ktp_anggota_1 &&
-    formData.ktp_anggota_1.length > 0 &&
-    formData.nama_anggota_1
+    olimFormData.ktp_anggota_1 &&
+    olimFormData.ktp_anggota_1.length > 0 &&
+    olimFormData.nama_anggota_1
   ) {
-    registData.append('ktp_anggota_1', formData.ktp_anggota_1[0]);
-    registData.append('nama_anggota_1', formData.nama_anggota_1);
+    registData.append('ktp_anggota_1', olimFormData.ktp_anggota_1[0]);
+    registData.append('nama_anggota_1', olimFormData.nama_anggota_1);
   }
   if (
-    formData.ktp_anggota_2 &&
-    formData.ktp_anggota_2.length > 0 &&
-    formData.nama_anggota_2
+    olimFormData.ktp_anggota_2 &&
+    olimFormData.ktp_anggota_2.length > 0 &&
+    olimFormData.nama_anggota_2
   ) {
-    registData.append('ktp_anggota_2', formData.ktp_anggota_2[0]);
-    registData.append('nama_anggota_2', formData.nama_anggota_2);
+    registData.append('ktp_anggota_2', olimFormData.ktp_anggota_2[0]);
+    registData.append('nama_anggota_2', olimFormData.nama_anggota_2);
   }
 
   //#region  //*=========== Kupon ===========
