@@ -137,14 +137,14 @@ function Navbar() {
                 } text-[18px] text-[#FFFFFF] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold`}
               >
                 <Link
-                  href='#'
+                  href='/olimpit'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-tl-xl rounded-tr-xl'
                 >
                   <Image src={Olimpiade} alt='olim' className='w-6 h-6 mr-4' />
                   <div>Olimpiade</div>
                 </Link>
                 <Link
-                  href='#'
+                  href='/ctf'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] '
                 >
                   <Image src={CTF} alt='ctf' className='w-6 h-6 mr-4' />
