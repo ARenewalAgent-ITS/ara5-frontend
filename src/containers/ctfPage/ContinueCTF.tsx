@@ -1,8 +1,13 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const CountDownCTF = dynamic(
+  () => import('@/containers/ctfPage/countdownctf'),
+  { ssr: false }
+);
 
 import NextImage from '@/components/NextImage';
 import ContactPersonCtf from '@/containers/ctfPage/ContactPersonCtf';
-import CountDownCTF from '@/containers/ctfPage/countdownctf';
 import CtfFaqSection from '@/containers/ctfPage/CtfFaqSection';
 import PrizepoolSectionCtf from '@/containers/ctfPage/PrizepoolSectionCtf';
 
