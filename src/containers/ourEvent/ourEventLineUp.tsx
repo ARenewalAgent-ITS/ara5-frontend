@@ -104,7 +104,6 @@ export default function OurEventLineUp() {
             className='md:hidden block absolute w-full top-0'
           />
         </div>
-        {/* <div className='bg-[#07233C] h-[2vh]'></div> */}
         <section className='overflow-hidden w-full flex-col flex items-center h-full min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
           <div className='flex justify-center pt-[6rem] min-[500px]:pt-[10rem] max-md:pb-[2rem] md:pb-[2rem]'>
             <NextImage
@@ -252,7 +251,7 @@ export default function OurEventLineUp() {
                   peserta.
                 </Typography>
                 <ButtonLink
-                  href='/HMIT-ITS'
+                  href='/hmit-its'
                   variant='success'
                   color='white'
                   className='w-[174px] group h-[42px] md:h-[48px] text-[14px] font-bold font-poppins text-white leading-relaxed mt-5 rounded-md xl:mt-5'

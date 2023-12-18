@@ -41,17 +41,17 @@ const footerData: TFooterData[] = [
   {
     title: 'Our Events',
     link_name: ['OlimpIT', 'Register', 'ARA 5.0'],
-    links: ['OlimpIT', 'Register', 'ARA-5'],
+    links: ['olimpit', 'register', 'about'],
   },
   {
     title: 'Quick Links',
     link_name: ['Capture The Flag', 'Login', 'HMIT ITS'],
-    links: ['Capture-The-Flag', 'Login', 'HMIT-ITS'],
+    links: ['ctf', 'login', 'hmit-its'],
   },
   {
     title: 'About Us',
     link_name: ['ExploIT'],
-    links: ['ExploIT'],
+    links: ['exploit'],
   },
 ];
 

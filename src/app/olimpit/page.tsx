@@ -7,7 +7,7 @@ import ContinueOlimp from '@/containers/olimpPage/ContinueOlimp';
 import LandingOlimp from '@/containers/olimpPage/LandingOlimp';
 
 export const metadata: Metadata = {
-  title: 'OLIMPIT | A Renewal Agent 5.0',
+  title: 'Olimpiade IT | A Renewal Agent 5.0',
   description: 'A RENEWAL AGENT 5.0',
 };
 
