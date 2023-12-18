@@ -21,13 +21,13 @@ const dataEvent: datas[] = [
   {
     title: 'OlimpIT',
     decs: 'OlimpIT merupakan kompetisi yang diadakan dalam rangkaian acara ARA 5.0. Olimpiade dalam rangkaian acara ARA 5.0 ditujukan bagi siswa SMA/SMK di seluruh Indonesia. Soal meliputi seputar Kurikulum Departemen Teknologi Informasi akan diberikan kepada peserta kompetisi Olimpiade.',
-    img: '/images/landpage_ourevent/board.png',
+    img: '/images/landpage_ourevent/olimpit.png',
     link: 'Olimp-IT',
   },
   {
     title: 'CTF',
     decs: 'CTF atau Capture the Flag merupakan kompetisi seputar bidang Cyber Security yang ditujukan bagi siswa/i SMA dan mahasiswa/i aktif PTN/PTS se-Indonesia. Para peserta kompetisi CTF dalam rangkaian ARA 5.0 diwajibkan untuk menemukan file tersembunyi dalam bentuk file ataupun string (teks) yang disebut dengan “Flag”.',
-    img: '/images/landpage_ourevent/board.png',
+    img: '/images/landpage_ourevent/ctf.png',
     link: 'ctf',
   },
   {
@@ -37,7 +37,7 @@ const dataEvent: datas[] = [
     talkshow dengan topik mengenai teknologi informasi. ExploIT dalam rangkaian ARA
     5.0 memiliki topik bahasan mendatang mengenai IoT (Internet of Thing). ExploIT ditujukan bagi mahasiswa/i, dosen, dan masyarakat di Indonesia serta Start Up di
     bidang IoT (Internet of Thing).`,
-    img: '/images/landpage_ourevent/board.png',
+    img: '/images/landpage_ourevent/exploit.png',
     link: 'Explo-IT',
   },
 ];
