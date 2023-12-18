@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import React, { useEffect } from 'react';
 
 const CountDownCTF = dynamic(
-  () => import('@/containers/ctfPage/countdownctf'),
+  () => import('@/containers/ctfPage/Countdownctf'),
   { ssr: false }
 );
 
