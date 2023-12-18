@@ -175,7 +175,7 @@ export default function CtfRegisterSection({
               />
               <DropzoneInput
                 id='bukti_repost'
-                label='Bukti Share Poster OlimpIT ARA 5.0'
+                label='Bukti Share Poster CTF ARA 5.0'
                 validation={{
                   required: 'Bukti Share Poster cannot be empty',
                 }}

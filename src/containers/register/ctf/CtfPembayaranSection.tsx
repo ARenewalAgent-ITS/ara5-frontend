@@ -1,11 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Button from '@/components/buttons/Button';
 import DropzoneInput from '@/components/form/DropzoneInput';
 import SelectInput from '@/components/form/SelectInput';
+import { showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
@@ -22,10 +24,11 @@ type BankDetails = {
 
 export default function CtfPembayaranSection() {
   const { ctfFormData } = useRegisterStore();
+  const router = useRouter();
 
   //#region  //*=========== Pembayaran ===========
 
-  const methods = useForm<TPembayaran>({ defaultValues: { list_bank_id: 0 } });
+  const methods = useForm<TPembayaran>({ defaultValues: { list_bank_id: 1 } });
   const metode_pembayaran = methods.watch('list_bank_id');
 
   //#region  //*=========== Register API ===========
@@ -42,7 +45,12 @@ export default function CtfPembayaranSection() {
     }
   };
   const { mutate: register } = useMutationToast<void, TRegisterOlim | FormData>(
-    useMutation(postRegister)
+    useMutation(postRegister, {
+      onSuccess: () => {
+        showToast('You have successfully registered!', SUCCESS_TOAST);
+        router.push('/ctf');
+      },
+    })
   );
 
   const registData = new FormData();
@@ -95,17 +103,17 @@ export default function CtfPembayaranSection() {
   };
 
   const bankDetailsMapping: { [key: string]: BankDetails } = {
-    '0': {
+    '1': {
       name: 'fathikaaf',
       accountNumber: 'NMID : ID1023269716057',
       imageName: '/img/register/qris.png',
     },
-    '1': {
+    '2': {
       name: '1710007770384',
       accountNumber: 'Mutiara Nurhaliza',
       imageName: '/svg/register/logo_mandiri.svg',
     },
-    '2': {
+    '3': {
       name: '1274684717',
       accountNumber: 'Fathika Afrine Azaruddin',
       imageName: '/img/register/logo_bni.png',
@@ -158,7 +166,6 @@ export default function CtfPembayaranSection() {
             >
               <Typography
                 variant='bt'
-                ya
                 font='poppins'
                 weight='bold'
                 className='text-primary-600'
@@ -183,9 +190,9 @@ export default function CtfPembayaranSection() {
                 required: 'Metode Pembayaran cannot be empty',
               }}
             >
-              <option value={0}>QRIS</option>
-              <option value={1}>Bank Mandiri</option>
-              <option value={2}>Bank BNI</option>
+              <option value={1}>QRIS</option>
+              <option value={2}>Bank Mandiri</option>
+              <option value={3}>Bank BNI</option>
             </SelectInput>
             <div className='flex flex-col md:items-start items-center text-whites-1100'>
               <Image
