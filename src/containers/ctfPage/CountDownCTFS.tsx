@@ -5,7 +5,7 @@ import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import useCountdown from '@/hooks/useCountdown';
 
-export default function CountDownCTF() {
+export default function CountDownCTFS() {
   const [days, hours, minutes, seconds] = useCountdown(new Date('2023-12-25'));
 
   return (
