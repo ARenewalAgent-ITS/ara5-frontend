@@ -1,10 +1,14 @@
 'use client';
 import { faBars, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Menu, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
+import { Fragment } from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
+import Typography from '@/components/Typography';
+import clsxm from '@/lib/clsxm';
 
 import Cross from './nav-img/Cross.svg';
 import Ellipse from './nav-img/Ellipse.png';
@@ -195,13 +199,90 @@ function Navbar() {
               </UnstyledLink>
             </div>
             <div className='flex justify-between items-center'>
-              <UnstyledLink href='/register'>
+              <Menu className='relative' as='div'>
+                <Menu.Button>
+                  <div className='flex flex-row gap-1.5 items-center'>
+                    <Image
+                      src={Register}
+                      alt='register'
+                      className='w-[7rem] hover:mt-[-5px]'
+                    />
+                  </div>
+                </Menu.Button>
+                <Transition
+                  as={Fragment}
+                  enter='transition ease-out duration-100'
+                  enterFrom='transform opacity-0 scale-95'
+                  enterTo='transform opacity-100 scale-100'
+                  leave='transition ease-in duration-75'
+                  leaveFrom='transform opacity-100 scale-100'
+                  leaveTo='transform opacity-0 scale-95'
+                >
+                  <Menu.Items
+                    className={clsxm(
+                      'absolute w-[200px] text-center shadow-80 group bg-[#525252] origin-top mt-2 right-0',
+                      'flex flex-col rounded-md',
+                      'focus:outline-none'
+                    )}
+                  >
+                    <Menu.Item
+                      as='button'
+                      className='flex hover:bg-[#393737] rounded-t-md'
+                    >
+                      <div className='flex justify-center'>
+                        <UnstyledLink
+                          href='/register/ctf'
+                          className={clsxm(
+                            'px-[22px] py-3 text-center text-sm rounded-xlfont-medium '
+                          )}
+                        >
+                          <Typography
+                            className='text-center flex center'
+                            color='white'
+                          >
+                            <Image
+                              src={CTF}
+                              alt='ctf'
+                              className='w-6 h-6 mr-4'
+                            />
+                            CTF
+                          </Typography>
+                        </UnstyledLink>
+                      </div>
+                    </Menu.Item>
+                    <Menu.Item
+                      as='button'
+                      className='flex hover:bg-[#393737] rounded-b-md'
+                    >
+                      <UnstyledLink
+                        href='/register/olimpit'
+                        className={clsxm(
+                          'px-[22px] py-3 text-center text-sm max-w-xs rounded-xl font-medium '
+                        )}
+                      >
+                        <Typography
+                          className='text-center flex justify-center'
+                          color='white'
+                        >
+                          <Image
+                            src={Olimpiade}
+                            alt='olim'
+                            className='w-6 h-6 mr-4'
+                          />
+                          Olimpiade
+                        </Typography>
+                      </UnstyledLink>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+              {/* <UnstyledLink href='/register'>
                 <Image
                   src={Register}
                   alt='register'
                   className='w-[7rem] hover:mt-[-5px]'
                 />
-              </UnstyledLink>
+              </UnstyledLink> */}
             </div>
           </div>
 
@@ -325,10 +406,14 @@ function Navbar() {
                 Login
               </div>
             </UnstyledLink>
-            <div className='py-2'></div>
-            <UnstyledLink href='/register' className='text-center'>
-              <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md'>
-                Register
+            <UnstyledLink href='/register/ctf' className='text-center'>
+              <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
+                Register CTF
+              </div>
+            </UnstyledLink>
+            <UnstyledLink href='/register/olimpit' className='text-center'>
+              <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
+                Register Olimpiade
               </div>
             </UnstyledLink>
           </div>
