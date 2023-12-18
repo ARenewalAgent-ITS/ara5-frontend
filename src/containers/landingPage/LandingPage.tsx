@@ -145,7 +145,7 @@ export default function LandingPage() {
               </ButtonLink>
             </div>
           </div>
-          <div className='flex z-10 flex-col w-full h-full items-center relative px-10 max-[425px]:px-5 max-[400px]:-top-12 mt-10 lg:mt-36 min-[1600px]:mt-36'>
+          <div className='flex z-10 flex-col w-full h-full items-center relative px-10 max-[425px]:px-5 max-[400px]:-top-12 mt-10 lg:mt-28 min-[1600px]:mt-32'>
             <NextImage
               src={'/images/landpage/tema.svg'}
               width={200}

@@ -11,6 +11,7 @@ import { GoUpload } from 'react-icons/go';
 
 import Button from '@/components/buttons/Button';
 import FilePreview from '@/components/form/FilePreview';
+import HelperText from '@/components/form/HelperText';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { FileWithPreview } from '@/types/form/dropzone';
@@ -31,6 +32,7 @@ export default function DropzoneInput({
   id,
   label,
   validation,
+  helperText,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
   maxFiles = 10,
   className,
@@ -207,6 +209,8 @@ export default function DropzoneInput({
           </div>
         )}
       />
+
+      {!error && helperText && <HelperText>{helperText}</HelperText>}
     </div>
   );
 }

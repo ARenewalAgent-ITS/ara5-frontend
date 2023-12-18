@@ -88,8 +88,9 @@ export default function CtfRegisterSection({
                 validation={{
                   required: 'Nama Tim cannot be empty',
                   pattern: {
-                    value: /^[A-Za-z0-9]+$/,
-                    message: 'Only alphanumeric characters are allowed',
+                    value: /^[A-Za-z0-9 ]+$/,
+                    message:
+                      'Only alphanumeric characters and spaces are allowed',
                   },
                 }}
               />
@@ -106,9 +107,9 @@ export default function CtfRegisterSection({
                     message: 'Password must be at least 5 characters',
                   },
                   pattern: {
-                    value: /^[A-Za-z0-9]{5,}$/,
+                    value: /^[A-Za-z0-9_]{5,}$/,
                     message:
-                      'Username must be at least 5 characters, alphanumeric, and cannot contain spaces',
+                      'Username must be alphanumeric, and cannot contain spaces (underscore allowed)',
                   },
                 }}
               />
@@ -172,6 +173,7 @@ export default function CtfRegisterSection({
                 }}
                 accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
                 className={clsxm('bg-whites-100')}
+                helperText='Please ensure the file size does not exceed 1 MB.'
               />
               <DropzoneInput
                 id='bukti_repost'
@@ -181,6 +183,7 @@ export default function CtfRegisterSection({
                 }}
                 accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
                 className={clsxm('bg-whites-100')}
+                helperText='Please ensure the file size does not exceed 1 MB.'
               />
               <Input
                 id='nama_ketua'
@@ -189,7 +192,7 @@ export default function CtfRegisterSection({
                 validation={{
                   required: 'Nama Ketua cannot be empty',
                   pattern: {
-                    value: /^[A-Za-z0-9]+$/,
+                    value: /^[A-Za-z0-9 ]+$/,
                     message: 'Only alphanumeric characters are allowed',
                   },
                 }}
@@ -202,6 +205,7 @@ export default function CtfRegisterSection({
                 }}
                 accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
                 className={clsxm('bg-whites-100')}
+                helperText='Please ensure the file size does not exceed 1 MB.'
               />
               <Input
                 id='no_wa_ketua'
@@ -221,10 +225,10 @@ export default function CtfRegisterSection({
                 label='Email Ketua'
                 placeholder='Masukkan email ketua tim'
                 validation={{
-                  required: 'Email Ketua tidak boleh kosong',
+                  required: 'Email Ketua cannot be empty',
                   pattern: {
                     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                    message: 'Masukkan alamat email yang valid',
+                    message: 'Enter a valid email address',
                   },
                 }}
               />
@@ -249,7 +253,7 @@ export default function CtfRegisterSection({
                     placeholder='Masukkan nama anggota 1'
                     validation={{
                       pattern: {
-                        value: /^[A-Za-z0-9]+$/,
+                        value: /^[A-Za-z0-9 ]+$/,
                         message: 'Only alphanumeric characters are allowed',
                       },
                     }}
@@ -259,6 +263,7 @@ export default function CtfRegisterSection({
                     label='Kartu Tanda Pelajar Anggota 1'
                     accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
                     className={clsxm('bg-whites-100')}
+                    helperText='Please ensure the file size does not exceed 1 MB.'
                   />
                 </>
               )}
@@ -270,7 +275,7 @@ export default function CtfRegisterSection({
                     placeholder='Masukkan nama anggota 2'
                     validation={{
                       pattern: {
-                        value: /^[A-Za-z0-9]+$/,
+                        value: /^[A-Za-z0-9 ]+$/,
                         message: 'Only alphanumeric characters are allowed',
                       },
                     }}
@@ -280,6 +285,7 @@ export default function CtfRegisterSection({
                     label='Kartu Tanda Pelajar Anggota 2'
                     accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
                     className={clsxm('bg-whites-100')}
+                    helperText='Please ensure the file size does not exceed 1 MB.'
                   />
                 </>
               )}
