@@ -225,17 +225,14 @@ function Navbar() {
                       'focus:outline-none'
                     )}
                   >
-                    <Menu.Item
-                      as='button'
-                      className='flex hover:bg-[#393737] rounded-t-md'
+                    <UnstyledLink
+                      href='/ctf/register'
+                      className={clsxm(
+                        'px-[22px] py-3 text-center text-sm rounded-t-md font-medium hover:bg-[#393737]'
+                      )}
                     >
-                      <div className='flex justify-center'>
-                        <UnstyledLink
-                          href='/register/ctf'
-                          className={clsxm(
-                            'px-[22px] py-3 text-center text-sm rounded-xlfont-medium '
-                          )}
-                        >
+                      <Menu.Item as='button' className='flex'>
+                        <div className='flex justify-center'>
                           <Typography
                             className='text-center flex center'
                             color='white'
@@ -247,19 +244,16 @@ function Navbar() {
                             />
                             CTF
                           </Typography>
-                        </UnstyledLink>
-                      </div>
-                    </Menu.Item>
-                    <Menu.Item
-                      as='button'
-                      className='flex hover:bg-[#393737] rounded-b-md'
+                        </div>
+                      </Menu.Item>
+                    </UnstyledLink>
+                    <UnstyledLink
+                      href='/olimpit/register'
+                      className={clsxm(
+                        'px-[22px] py-3 text-center text-sm max-w-xs rounded-b-md font-medium hover:bg-[#393737]'
+                      )}
                     >
-                      <UnstyledLink
-                        href='/register/olimpit'
-                        className={clsxm(
-                          'px-[22px] py-3 text-center text-sm max-w-xs rounded-xl font-medium '
-                        )}
-                      >
+                      <Menu.Item as='button' className='flex'>
                         <Typography
                           className='text-center flex justify-center'
                           color='white'
@@ -271,8 +265,8 @@ function Navbar() {
                           />
                           Olimpiade
                         </Typography>
-                      </UnstyledLink>
-                    </Menu.Item>
+                      </Menu.Item>
+                    </UnstyledLink>
                   </Menu.Items>
                 </Transition>
               </Menu>
@@ -406,12 +400,12 @@ function Navbar() {
                 Login
               </div>
             </UnstyledLink>
-            <UnstyledLink href='/register/ctf' className='text-center'>
+            <UnstyledLink href='/ctf/register' className='text-center'>
               <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
                 Register CTF
               </div>
             </UnstyledLink>
-            <UnstyledLink href='/register/olimpit' className='text-center'>
+            <UnstyledLink href='/olimpit/register' className='text-center'>
               <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
                 Register Olimpiade
               </div>
