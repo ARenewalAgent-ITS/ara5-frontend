@@ -205,7 +205,7 @@ function Navbar() {
                     <Image
                       src={Register}
                       alt='register'
-                      className='w-[7rem] hover:mt-[-5px]'
+                      className='w-[7rem] '
                     />
                   </div>
                 </Menu.Button>
