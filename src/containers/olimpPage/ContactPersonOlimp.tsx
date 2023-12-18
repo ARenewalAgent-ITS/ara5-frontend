@@ -190,6 +190,13 @@ export default function ContactPersonOlimp() {
           className='absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px]'
         />
       )}
+      <NextImage
+        src={'/img/ctfpage/contactperson/bonfire-light.png'}
+        alt='Bonfire Light'
+        width={200}
+        height={200}
+        className='absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px]'
+      />
       {/* background images */}
       <NextImage
         src={'/img/ctfpage/contactperson/right-bg.png'}
