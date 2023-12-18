@@ -1,11 +1,10 @@
+import Image from 'next/image';
 import { MdHome } from 'react-icons/md';
 
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import ButtonLink from '@/components/links/ButtonLink';
-import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
-import Image from 'next/image';
 import clsxm from '@/lib/clsxm';
 
 function HomeButton() {
