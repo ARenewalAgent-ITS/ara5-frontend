@@ -1,12 +1,16 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { Metadata } from 'next';
+import React from 'react';
+export const metadata: Metadata = {
+  title: 'Not Found | A Renewal Agent 5.0',
+  description: 'A RENEWAL AGENT 5.0',
+};
 
-export default function NotFound() {
-  const router = useRouter();
-  useEffect(() => {
-    router.push('/404');
-  }, [router]);
+import NotFound from '@/containers/404/page';
 
-  return <></>;
+export default function NotFoundPage() {
+  return (
+    <>
+      <NotFound />
+    </>
+  );
 }
