@@ -4,7 +4,7 @@ import React from 'react';
 // import TimelineOlimp from '@/containers/olimpPage/TimelineOlimp';
 
 const CountDownOlimp = dynamic(
-  () => import('@/containers/olimpPage/Countdownolim'),
+  () => import('@/containers/olimpPage/CountDownOlimp'),
   { ssr: false }
 );
 

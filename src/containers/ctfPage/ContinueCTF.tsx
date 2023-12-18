@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import React, { useEffect } from 'react';
 
 const CountDownCTF = dynamic(
-  () => import('@/containers/ctfPage/Countdownctf'),
+  () => import('@/containers/ctfPage/CountDownCTF'),
   { ssr: false }
 );
 
@@ -13,7 +13,7 @@ import ContactPersonCtf from '@/containers/ctfPage/ContactPersonCtf';
 import CtfFaqSection from '@/containers/ctfPage/CtfFaqSection';
 import PrizepoolSectionCtf from '@/containers/ctfPage/PrizepoolSectionCtf';
 
-function ContinueCTF() {
+function Continuectf() {
   useEffect(() => {
     Aos.init();
   }, []);
@@ -60,4 +60,4 @@ function ContinueCTF() {
   );
 }
 
-export default ContinueCTF;
+export default Continuectf;
