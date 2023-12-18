@@ -16,7 +16,7 @@ function LandingCTF() {
 
   return (
     <>
-      <div className='relative h-full py-[155px] flex flex-col gap-6 justify-center items-center text-center bg-[#F0F4D8]'>
+      <div className='relative h-full py-[155px] sm:pt-32 md:pt-48 lg:pt-64 flex flex-col gap-6 justify-center items-center text-center bg-[#F0F4D8]'>
         <NextImage
           src='/svg/ctf/ctf_title.svg'
           alt='landing-ctf'
@@ -98,7 +98,7 @@ function LandingCTF() {
             </Typography>
           </ButtonLink>
           <ButtonLink
-            href='#'
+            href='https://its.id/m/GuidebookCTF5'
             variant='primary'
             rightIcon={FaBook}
             rightIconClassName={clsxm('w-[14px] text-white')}

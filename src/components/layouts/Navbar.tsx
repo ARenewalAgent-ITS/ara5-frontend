@@ -328,7 +328,7 @@ function Navbar() {
             } mt-2 text-[18px] font-bold text-[#ffffff]`}
           >
             <UnstyledLink
-              href='olimpit'
+              href='/olimpit'
               className='flex justify-center items-center gap-2'
             >
               <Image src={Olimpiade} alt='olimpiade' className='w-5'></Image>
@@ -342,7 +342,7 @@ function Navbar() {
               <div>Capture The Flag</div>
             </UnstyledLink>
             <UnstyledLink
-              href='exploit'
+              href='/exploit'
               className='flex justify-center items-center gap-2'
             >
               <Image src={ExploIT} alt='exploIT' className='w-5'></Image>

@@ -43,7 +43,7 @@ function ContinueOlimp() {
         </div>
 
         <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138]'>
-          <div className='relative md:min-h-[80vh] h-auto py-6'>
+          <div className='relative md:min-h-[80vh] h-auto sm:pt-24 lg:pt-48 pb-16'>
             <OlimpFaqSection />
           </div>
         </div>

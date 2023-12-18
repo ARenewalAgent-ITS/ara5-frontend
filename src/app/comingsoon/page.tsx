@@ -5,6 +5,7 @@ import Navbar from '@/components/layouts/Navbar';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import Image from 'next/image';
 import clsxm from '@/lib/clsxm';
 
 function HomeButton() {
@@ -35,14 +36,12 @@ export default function ComingSoon() {
           <Navbar />
         </div>
         <div className='relative w-full h-screen overflow-hidden'>
-          <NextImage
+          <Image
             src={'/svg/comingsoon/bg_comingsoon.svg'}
-            width={1440}
-            height={1024}
             layout='fill'
             objectFit='cover'
             alt='coming soon background'
-            className='absolute inset-0 svg-background filter blur-md brightness-105'
+            className='absolute inset-0 svg-background filter scale-110 blur-md brightness-105'
           />
         </div>
 
