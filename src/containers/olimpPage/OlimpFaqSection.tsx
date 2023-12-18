@@ -48,7 +48,7 @@ export default function OlimFaqSection() {
           alt='faq panel'
         />
       </div>
-      <div className='faq-cards grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-7 px-8'>
+      <div className='faq-cards grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-7 px-8 md:px-16 lg:px-20 xl:px-28'>
         {faqs.map((faq, id) => (
           <FAQCard
             key={id}

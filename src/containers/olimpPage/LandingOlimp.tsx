@@ -80,7 +80,7 @@ function LandingOlimp() {
         </Typography>
         <div className='flex gap-2 lg:gap-4'>
           <ButtonLink
-            href='/register'
+            href='/olimpit/register'
             variant='success'
             rightIcon={FaArrowRight}
             rightIconClassName={clsxm('w-[14px] text-white')}
