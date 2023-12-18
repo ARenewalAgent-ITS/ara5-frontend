@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 
+// import TimelineOlimp from '@/containers/olimpPage/TimelineOlimp';
+
 const CountDownOlimp = dynamic(
   () => import('@/containers/olimpPage/countdownolim'),
   { ssr: false }
@@ -37,6 +39,7 @@ function ContinueOlimp() {
 
         <div className='bg-gradient-to-b from-[#225B58] to-[#0F283A]'>
           <PrizepoolSectionOlimp />
+          {/* <TimelineOlimp /> */}
         </div>
 
         <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138]'>

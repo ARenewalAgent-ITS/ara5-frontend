@@ -21,13 +21,13 @@ const dataEvent: datas[] = [
   {
     title: 'OlimpIT',
     decs: 'OlimpIT merupakan kompetisi yang diadakan dalam rangkaian acara ARA 5.0. Olimpiade dalam rangkaian acara ARA 5.0 ditujukan bagi siswa SMA/SMK di seluruh Indonesia. Soal meliputi seputar Kurikulum Departemen Teknologi Informasi akan diberikan kepada peserta kompetisi Olimpiade.',
-    img: '/images/landpage_ourevent/board.png',
-    link: 'Olimp-IT',
+    img: '/svg/landpage/olimpit.svg',
+    link: 'olimpit',
   },
   {
     title: 'CTF',
     decs: 'CTF atau Capture the Flag merupakan kompetisi seputar bidang Cyber Security yang ditujukan bagi siswa/i SMA dan mahasiswa/i aktif PTN/PTS se-Indonesia. Para peserta kompetisi CTF dalam rangkaian ARA 5.0 diwajibkan untuk menemukan file tersembunyi dalam bentuk file ataupun string (teks) yang disebut dengan “Flag”.',
-    img: '/images/landpage_ourevent/board.png',
+    img: '/svg/landpage/ctf.svg',
     link: 'ctf',
   },
   {
@@ -37,8 +37,8 @@ const dataEvent: datas[] = [
     talkshow dengan topik mengenai teknologi informasi. ExploIT dalam rangkaian ARA
     5.0 memiliki topik bahasan mendatang mengenai IoT (Internet of Thing). ExploIT ditujukan bagi mahasiswa/i, dosen, dan masyarakat di Indonesia serta Start Up di
     bidang IoT (Internet of Thing).`,
-    img: '/images/landpage_ourevent/board.png',
-    link: 'Explo-IT',
+    img: '/svg/landpage/exploit.svg',
+    link: 'exploit',
   },
 ];
 
@@ -104,7 +104,6 @@ export default function OurEventLineUp() {
             className='md:hidden block absolute w-full top-0'
           />
         </div>
-        {/* <div className='bg-[#07233C] h-[2vh]'></div> */}
         <section className='overflow-hidden w-full flex-col flex items-center h-full min-[350px]:px-12 px-5 py-10 min-[500px]:px-[10%] sm:px-[20%] md:px-10 lg:px-28 xl:px-[12%]'>
           <div className='flex justify-center pt-[6rem] min-[500px]:pt-[10rem] max-md:pb-[2rem] md:pb-[2rem]'>
             <NextImage
@@ -252,7 +251,7 @@ export default function OurEventLineUp() {
                   peserta.
                 </Typography>
                 <ButtonLink
-                  href='/HMIT-ITS'
+                  href='/hmit-its'
                   variant='success'
                   color='white'
                   className='w-[174px] group h-[42px] md:h-[48px] text-[14px] font-bold font-poppins text-white leading-relaxed mt-5 rounded-md xl:mt-5'

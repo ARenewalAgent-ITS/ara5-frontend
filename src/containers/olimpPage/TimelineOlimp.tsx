@@ -72,18 +72,18 @@ function TimelineOlimp() {
   return (
     <>
       {/* Timeline Title */}
-      <div className='!m-6'>
+      <div className=''>
         <NextImage
           src={'/svg/timeline/olimp/timeline_title.svg'}
           alt='timeline_title'
           height={62}
           width={376}
           className='w-[90%] md:w-[30%]'
-        ></NextImage>
+        />
       </div>
 
       {/* Desktop */}
-      <div className='lg:grid hidden grid-cols-5 text-center bg-[#2e2e2e] rounded-xl p-6 !m-6'>
+      <div className='lg:grid hidden grid-cols-5 text-center bg-[#2e2e2e] rounded-xl p-6 z-50'>
         {timelines.map((timeline, id) => (
           <div
             className='w-full h-full flex flex-col justify-center items-center'

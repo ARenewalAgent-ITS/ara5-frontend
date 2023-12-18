@@ -126,7 +126,7 @@ export default function LandingPage() {
                 SMA/SMK dan mahasiswa.
               </Typography>
               <ButtonLink
-                href='/'
+                href='/about'
                 variant='primary'
                 rightIcon={FaArrowRight}
                 rightIconClassName={clsxm(
