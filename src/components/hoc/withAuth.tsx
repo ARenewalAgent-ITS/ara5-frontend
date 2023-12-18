@@ -3,9 +3,13 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { toast } from 'react-hot-toast';
 import { ImSpinner8 } from 'react-icons/im';
+import { MdHome } from 'react-icons/md';
 
 import Forbidden from '@/components/Forbidden';
+import ButtonLink from '@/components/links/ButtonLink';
+import Typography from '@/components/Typography';
 import api from '@/lib/api';
+import clsxm from '@/lib/clsxm';
 import { getToken, removeToken } from '@/lib/cookies';
 import useAuthStore from '@/store/useAuthStore';
 import { ApiReturn } from '@/types/api';
@@ -153,9 +157,28 @@ export default function withAuth<T>(
       routeRole !== 'optional'
     ) {
       return (
-        <div className='flex min-h-screen flex-col items-center justify-center text-gray-800'>
+        <div className='flex min-h-screen flex-col text-center items-center justify-center text-gray-800'>
           <ImSpinner8 className='mb-4 animate-spin text-4xl' />
-          <p>Loading...</p>
+          <p>
+            Anda masih belum punya
+            <br />
+            hak akses untuk ini
+          </p>
+          <ButtonLink
+            href='/'
+            variant='primary'
+            leftIcon={MdHome}
+            leftIconClassName={clsxm('w-[20px] text-white')}
+            className={clsxm('py-2 px-4 rounded m-8')}
+          >
+            <Typography
+              weight='semibold'
+              font='poppins'
+              className={clsxm('text-whites-100')}
+            >
+              Home
+            </Typography>
+          </ButtonLink>
         </div>
       );
     }

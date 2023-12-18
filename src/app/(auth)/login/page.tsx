@@ -16,6 +16,8 @@ import api from '@/lib/api';
 import { setToken } from '@/lib/cookies';
 import { loginForm } from '@/types/entities/login';
 
+// export default withAuth(LoginPage, 'ADMIN')
+
 export default function LoginPage() {
   const methods = useForm<loginForm>({
     mode: 'onTouched',

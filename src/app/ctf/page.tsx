@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'A RENEWAL AGENT 5.0',
 };
 
-export default function Page() {
+export default function CTFPage() {
   return (
     <>
       <Navbar />
