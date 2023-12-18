@@ -10,7 +10,6 @@ import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 
 export default function ContactPersonOlimp() {
-  const [isHovered, setIsHovered] = React.useState(false);
   const [lineTooltips, setLineTooltips] = React.useState<
     Record<string, boolean>
   >({});
@@ -178,18 +177,14 @@ export default function ContactPersonOlimp() {
         width={56.397}
         height={82.292}
         className='absolute z-10 -bottom-1 md:-bottom-6 xl:-bottom-9 2xl:-bottom-12 w-[56px] md:w-[180px] xl:w-[240px] 2xl:w-[300px] right-36 md:right-72 lg:right-96 2xl:right-[34rem] xl:right-[29rem]'
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       />
-      {isHovered && (
-        <NextImage
-          src={'/img/ctfpage/contactperson/bonfire-light.png'}
-          alt='Bonfire Light'
-          width={200}
-          height={200}
-          className='absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px]'
-        />
-      )}
+      <NextImage
+        src={'/img/ctfpage/contactperson/bonfire-light.png'}
+        alt='Bonfire Light'
+        width={200}
+        height={200}
+        className='absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px]'
+      />
       {/* background images */}
       <NextImage
         src={'/img/ctfpage/contactperson/right-bg.png'}
