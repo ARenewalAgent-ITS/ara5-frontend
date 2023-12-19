@@ -31,6 +31,22 @@
   }
 }
 
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 0.5s infinite;
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }

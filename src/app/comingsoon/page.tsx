@@ -36,7 +36,7 @@ export default function ComingSoon() {
         </div>
         <div className='relative w-full h-screen overflow-hidden'>
           <Image
-            src={'/svg/comingsoon/bg_comingsoon.svg'}
+            src={'/svg/comingsoon/bg_comingsoon.png'}
             layout='fill'
             objectFit='cover'
             alt='coming soon background'

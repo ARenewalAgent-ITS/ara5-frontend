@@ -22,7 +22,7 @@ const dataEvent: datas[] = [
     title: 'OlimpIT',
     decs: 'OlimpIT merupakan kompetisi yang diadakan dalam rangkaian acara ARA 5.0. Olimpiade dalam rangkaian acara ARA 5.0 ditujukan bagi siswa SMA/SMK di seluruh Indonesia. Soal meliputi seputar Kurikulum Departemen Teknologi Informasi akan diberikan kepada peserta kompetisi Olimpiade.',
     img: '/images/landpage_ourevent/olimpit.png',
-    link: 'Olimp-IT',
+    link: 'olimpit',
   },
   {
     title: 'CTF',
@@ -38,7 +38,7 @@ const dataEvent: datas[] = [
     5.0 memiliki topik bahasan mendatang mengenai IoT (Internet of Thing). ExploIT ditujukan bagi mahasiswa/i, dosen, dan masyarakat di Indonesia serta Start Up di
     bidang IoT (Internet of Thing).`,
     img: '/images/landpage_ourevent/exploit.png',
-    link: 'Explo-IT',
+    link: 'exploit',
   },
 ];
 
@@ -149,7 +149,9 @@ export default function OurEventLineUp() {
                         {items?.decs}
                       </Typography>
                       <ButtonLink
-                        href={index == 1 ? `${items?.link}` : `${items?.link}`}
+                        href={
+                          index == 1 ? `/${items?.link}` : `/${items?.link}`
+                        }
                         variant='success'
                         color='white'
                         className='w-[174px] h-[42px] group md:h-[48px] text-[14px] font-bold font-poppins text-white leading-relaxed rounded-md mt-5 xl:mt-5'
@@ -192,7 +194,7 @@ export default function OurEventLineUp() {
                         {items?.decs}
                       </Typography>
                       <ButtonLink
-                        href={items?.link}
+                        href={`/${items?.link}`}
                         variant='success'
                         color='white'
                         className='w-[174px] h-[42px] group md:h-[48px] text-[14px] font-bold font-poppins text-white leading-relaxed mt-5 rounded-md xl:mt-5'

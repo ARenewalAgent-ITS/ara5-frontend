@@ -1,5 +1,10 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
+export const metadata: Metadata = {
+  title: 'Registrasi Olimpiade IT | A Renewal Agent 5.0',
+  description: 'A RENEWAL AGENT 5.0',
+};
 
 export default function RegisLayout({
   children,

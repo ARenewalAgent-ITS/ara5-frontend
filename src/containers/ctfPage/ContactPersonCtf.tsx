@@ -12,7 +12,18 @@ import Typography from '@/components/Typography';
 
 export default function ContactPersonCtf() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isBlink, setIsBlinked] = useState(false);
   const [lineTooltips, setLineTooltips] = useState<Record<string, boolean>>({});
+
+  const handleHover = () => {
+    setIsHovered(true);
+    setIsBlinked(true);
+  };
+
+  const handleUnhover = () => {
+    setIsHovered(false);
+    setIsBlinked(false);
+  };
 
   const toggleLineTooltip = (contactId: string) => {
     setLineTooltips((prev) => ({ ...prev, [contactId]: !prev[contactId] }));
@@ -171,24 +182,26 @@ export default function ContactPersonCtf() {
         className='absolute z-20 -bottom-2 w-[114px] md:w-[240px] lg:w-[310px] xl:w-[370px] 2xl:w-[420px] right-3 md:right-11 xl:right-16 2xl:right-20'
       />
       {/* bon fire and lights */}
-      <NextImage
-        src={'/img/ctfpage/contactperson/bonfire.png'}
-        alt='grass'
-        width={56.397}
-        height={82.292}
-        className='absolute z-10 -bottom-1 md:-bottom-6 xl:-bottom-9 2xl:-bottom-12 w-[56px] md:w-[180px] xl:w-[240px] 2xl:w-[300px] right-36 md:right-72 lg:right-96 2xl:right-[34rem] xl:right-[29rem]'
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      />
-      {isHovered && (
+      <div onMouseEnter={handleHover} onMouseLeave={handleUnhover}>
         <NextImage
-          src={'/img/ctfpage/contactperson/bonfire-light.png'}
-          alt='Bonfire Light'
-          width={200}
-          height={200}
-          className='absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px]'
+          src='/img/ctfpage/contactperson/bonfire.png'
+          alt='grass'
+          width={56.397}
+          height={82.292}
+          className='absolute z-10 -bottom-1 md:-bottom-6 xl:-bottom-9 2xl:-bottom-12 w-[56px] md:w-[180px] xl:w-[240px] 2xl:w-[300px] right-36 md:right-72 lg:right-96 2xl:right-[34rem] xl:right-[29rem]'
         />
-      )}
+        {isHovered && (
+          <NextImage
+            src='/img/ctfpage/contactperson/bonfire-light.png'
+            alt='Bonfire Light'
+            width={200}
+            height={200}
+            className={`absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px] ${
+              isBlink ? 'blink' : ''
+            }`}
+          />
+        )}
+      </div>
       {/* background images */}
       <NextImage
         src={'/img/ctfpage/contactperson/right-bg.png'}

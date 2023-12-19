@@ -15,7 +15,7 @@ function LandingOlimp() {
   }, []);
   return (
     <>
-      <div className='relative h-full py-[155px] sm:pt-32 md:pt-48 lg:pt-64 flex flex-col gap-6 justify-center items-center text-center bg-[#D8F4EB]'>
+      <div className='relative h-full py-[155px] sm:pt-32 md:pt-44 lg:pt-56 flex flex-col gap-6 justify-center items-center text-center bg-[#D8F4EB]'>
         <NextImage
           src='/svg/olimp/olimp_title.svg'
           alt='title'
