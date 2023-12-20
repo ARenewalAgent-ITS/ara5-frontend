@@ -1,4 +1,3 @@
-// TESTING APP PAGE && EXAMPLE PAGE FOR ROUTE APP
 'use client';
 
 import Aos from 'aos';
@@ -6,13 +5,13 @@ import React, { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 import Card from '@/components/layouts/Card';
-import ThrowBack from '@/components/layouts/Throwback';
 import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/landingPage/LoopKereta';
 import LoopTechnaVita from '@/containers/landingPage/LoopTechnaVita';
 import MediaSponsorSection from '@/containers/landingPage/MediaSponsorSection';
+import OurEventLineUp from '@/containers/ourEvent/ourEventLineUp';
 import clsxm from '@/lib/clsxm';
 
 export default function LandingPage() {
@@ -126,7 +125,7 @@ export default function LandingPage() {
                 SMA/SMK dan mahasiswa.
               </Typography>
               <ButtonLink
-                href='/'
+                href='/about'
                 variant='primary'
                 rightIcon={FaArrowRight}
                 rightIconClassName={clsxm(
@@ -145,7 +144,7 @@ export default function LandingPage() {
               </ButtonLink>
             </div>
           </div>
-          <div className='flex z-10 flex-col w-full h-full items-center relative px-10 max-[425px]:px-5 max-[400px]:-top-12 mt-10 lg:mt-36 min-[1600px]:mt-36'>
+          <div className='flex z-10 flex-col w-full h-full items-center relative px-10 max-[425px]:px-5 max-[400px]:-top-12 mt-10 lg:mt-28 min-[1600px]:mt-32'>
             <NextImage
               src={'/images/landpage/tema.svg'}
               width={200}
@@ -172,7 +171,7 @@ export default function LandingPage() {
               alt='background'
               width={359.97}
               height={115.14}
-              className='top-32 lg:-left-[4.5rem] absolute hidden md:inline-block md:-left-[8rem]'
+              className='top-32 lg:-left-[4.5rem] absolute hidden md:inline-block md:-left-[8rem] min-[1500px]:top-44'
               data-aos='fade-up'
               data-aos-delay='100'
             />
@@ -244,7 +243,7 @@ export default function LandingPage() {
             <LoopTechnaVita />
           </div>
         </div>
-        <ThrowBack />
+        <OurEventLineUp />
         <MediaSponsorSection />
       </section>
     </>

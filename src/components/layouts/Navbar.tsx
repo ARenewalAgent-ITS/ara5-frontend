@@ -4,23 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { BiSolidUserCircle } from 'react-icons/bi';
+import React, { useEffect, useRef, useState } from 'react';
+import { Fragment } from 'react';
+import { FaCaretDown } from 'react-icons/fa';
 import { FaRegTimesCircle } from 'react-icons/fa';
-import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
-import { MdLogout } from 'react-icons/md';
+import { FaCircleUser } from 'react-icons/fa6';
+import { LuLogOut } from 'react-icons/lu';
 
+import Button from '@/components/buttons/Button';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
-import { FetchUser } from '@/hooks/userMutation';
+import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
 import { getToken, removeToken } from '@/lib/cookies';
 
-import Ellipse from './nav-img/Ellipse 102.png';
-import ExploIT from './nav-img/Group 899.png';
+import Ellipse from './nav-img/Ellipse.png';
+import ExploIT from './nav-img/ExploIT.png';
 import Olimpiade from './nav-img/Group.png';
 import LogoSVG from './nav-img/Logo-ARA.svg';
-import LogoAra from './nav-img/LogoARA(4).png';
+import LogoAra from './nav-img/LogoARA.png';
 import Register from './nav-img/Register.png';
 import CTF from './nav-img/Vector.png';
 
@@ -28,23 +30,18 @@ function Navbar() {
   const router = useRouter();
   const token = getToken();
   const [isLogin, setIsLogin] = useState(false);
+  const users = FetchUser();
 
-  const user = FetchUser();
-  // console.log(token);
   useEffect(() => {
-    // if (user !== undefined && token !== null) {
-    // sementara
-    if (user == undefined && token !== undefined) {
+    if (users !== undefined && token !== undefined) {
       setIsLogin(true);
-      // console.log(user);
     } else {
       setIsLogin(false);
     }
-  }, [user, token]);
+  }, [users, token]);
 
   const handleLogout = () => {
     removeToken();
-    // console.log(token);
 
     router.push('/login');
   };
@@ -126,9 +123,9 @@ function Navbar() {
           <div className='hidden lg:flex justify-center gap-[2rem] absolute left-1/2 transform -translate-x-1/2'>
             <div className='text-center group'>
               <UnstyledLink href='/'>
-                <Typography className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
+                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   Home
-                </Typography>
+                </div>
                 <Image
                   src={Ellipse}
                   alt='ellipse'
@@ -140,9 +137,9 @@ function Navbar() {
               <div>
                 <div onClick={toggle1} className='cursor-pointer'>
                   <div className='flex gap-1'>
-                    <Typography className='group-hover:text-[#986A4B] duration-300 text-[18px] font-extrabold'>
+                    <div className='group-hover:text-[#986A4B] duration-300 text-[18px] font-extrabold'>
                       Our Events
-                    </Typography>
+                    </div>
                     <div
                       className={`${
                         showMe1
@@ -171,33 +168,33 @@ function Navbar() {
                 } text-[18px] text-[#FFFFFF] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold`}
               >
                 <UnstyledLink
-                  href='/Olimpiade'
+                  href='/olimpit'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-tl-xl rounded-tr-xl'
                 >
                   <Image src={Olimpiade} alt='olim' className='w-6 h-6 mr-4' />
-                  <Typography color='white'>Olimpiade</Typography>
+                  <div>Olimpiade</div>
                 </UnstyledLink>
                 <UnstyledLink
-                  href='/Capture-The-Flag'
+                  href='/ctf'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] '
                 >
                   <Image src={CTF} alt='ctf' className='w-6 h-6 mr-4' />
-                  <Typography color='white'>CTF</Typography>
+                  <div>CTF</div>
                 </UnstyledLink>
                 <UnstyledLink
-                  href='/Explo-IT'
+                  href='/exploit'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-bl-xl rounded-br-xl'
                 >
                   <Image src={ExploIT} alt='exploit' className='w-6 h-6 mr-4' />
-                  <Typography color='white'>ExploIT</Typography>
+                  <div>ExploIT</div>
                 </UnstyledLink>
               </div>
             </div>
             <div className='text-center group'>
-              <UnstyledLink href='#'>
-                <Typography className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
+              <UnstyledLink href='/hmit-its'>
+                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   HMIT
-                </Typography>
+                </div>
                 <Image
                   src={Ellipse}
                   alt='ellipse'
@@ -206,10 +203,10 @@ function Navbar() {
               </UnstyledLink>
             </div>
             <div className='text-center group'>
-              <UnstyledLink href='#'>
-                <Typography className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
+              <UnstyledLink href='/about'>
+                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   About
-                </Typography>
+                </div>
                 <Image
                   src={Ellipse}
                   alt='ellipse'
@@ -224,48 +221,121 @@ function Navbar() {
               <>
                 <div className='flex justify-between items-center'>
                   <UnstyledLink href='/login'>
-                    <Typography className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'>
+                    <div className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'>
                       Login
-                    </Typography>
+                    </div>
                   </UnstyledLink>
                 </div>
                 <div className='flex justify-between items-center'>
-                  <UnstyledLink href='#'>
-                    <Image
-                      src={Register}
-                      alt='register'
-                      className='w-[7rem] hover:mt-[-5px]'
-                    />
-                  </UnstyledLink>
+                  <Menu className='relative' as='div'>
+                    <Menu.Button>
+                      <div className='flex flex-row gap-1.5 items-center'>
+                        <Image
+                          src={Register}
+                          alt='register'
+                          className='w-[7rem] '
+                        />
+                      </div>
+                    </Menu.Button>
+                    <Transition
+                      as={Fragment}
+                      enter='transition ease-out duration-100'
+                      enterFrom='transform opacity-0 scale-95'
+                      enterTo='transform opacity-100 scale-100'
+                      leave='transition ease-in duration-75'
+                      leaveFrom='transform opacity-100 scale-100'
+                      leaveTo='transform opacity-0 scale-95'
+                    >
+                      <Menu.Items
+                        className={clsxm(
+                          'absolute w-[200px] text-center shadow-80 group bg-[#525252] origin-top mt-2 right-0',
+                          'flex flex-col rounded-md',
+                          'focus:outline-none'
+                        )}
+                      >
+                        <UnstyledLink
+                          href='/ctf/register'
+                          className={clsxm(
+                            'px-[22px] py-3 text-center text-sm rounded-t-md font-medium hover:bg-[#393737]'
+                          )}
+                        >
+                          <Menu.Item as='button' className='flex'>
+                            <div className='flex justify-center'>
+                              <Typography
+                                className='text-center flex center'
+                                color='white'
+                              >
+                                <Image
+                                  src={CTF}
+                                  alt='ctf'
+                                  className='w-6 h-6 mr-4'
+                                />
+                                CTF
+                              </Typography>
+                            </div>
+                          </Menu.Item>
+                        </UnstyledLink>
+                        <UnstyledLink
+                          href='/olimpit/register'
+                          className={clsxm(
+                            'px-[22px] py-3 text-center text-sm max-w-xs rounded-b-md font-medium hover:bg-[#393737]'
+                          )}
+                        >
+                          <Menu.Item as='button' className='flex'>
+                            <Typography
+                              className='text-center flex justify-center'
+                              color='white'
+                            >
+                              <Image
+                                src={Olimpiade}
+                                alt='olim'
+                                className='w-6 h-6 mr-4'
+                              />
+                              Olimpiade
+                            </Typography>
+                          </Menu.Item>
+                        </UnstyledLink>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                  {/* <UnstyledLink href='/register'>
+                <Image
+                  src={Register}
+                  alt='register'
+                  className='w-[7rem] hover:mt-[-5px]'
+                />
+              </UnstyledLink> */}
                 </div>
               </>
             ) : (
               <>
-                <div className='flex justify-between items-center'>
-                  <Typography className='font-extrabold text-[#986A4B] text-[18px]'>
-                    Hi, {user?.nama}
-                  </Typography>
-                </div>
-                <Menu className='relative flex items-center' as='div'>
-                  <div className='text-[50px]'>
-                    <BiSolidUserCircle />
+                <div className='flex flex-col items-center'>
+                  <div className='flex justify-between items-center'>
+                    {users && users.data.length > 0 ? (
+                      <Typography className='font-extrabold capitalize text-secondary-900 text-[18px]'>
+                        Hi, {users.data[0].team_name}
+                      </Typography>
+                    ) : (
+                      <Typography className='font-extrabold text-Secondary-900 text-[18px]'>
+                        Hi, Guest
+                      </Typography>
+                    )}
                   </div>
+                </div>
+                <Menu
+                  className='lg:relative flex flex-col items-end absolute right-[5%]'
+                  as='div'
+                >
                   <Menu.Button>
                     {({ open }) => (
-                      <div>
-                        {!open ? (
-                          <IoMdArrowDropdown
-                            className={clsxm(
-                              'text-[30px] transition ease-in-out duration-200'
-                            )}
-                          />
-                        ) : (
-                          <IoMdArrowDropup
-                            className={clsxm(
-                              'text-[30px] transition ease-in-out duration-200'
-                            )}
-                          />
-                        )}
+                      <div className='flex lg:gap-2 gap-1.5 items-center'>
+                        <FaCircleUser className='text-[50px] text-whites-1100' />
+                        <FaCaretDown
+                          className={clsxm(
+                            'text-[24px] text-whites-1100 transition ease-in-out duration-200',
+                            open && 'rotate-180'
+                          )}
+                        />
                       </div>
                     )}
                   </Menu.Button>
@@ -280,44 +350,46 @@ function Navbar() {
                   >
                     <Menu.Items
                       className={clsxm(
-                        'absolute w-[180px] shadow-80 bg-[#393737] mt-48 right-0',
-                        'flex flex-col rounded-[10px]',
+                        'absolute w-[200px] text-center shadow-80 group bg-[#525252] origin-top mt-16 right-0',
+                        'flex flex-col rounded-md',
                         'focus:outline-none'
                       )}
                     >
-                      <Menu.Item
-                        as='button'
-                        className='flex justify-center flex-col items-center'
+                      <UnstyledLink
+                        href={users?.role === 'TEAM' ? '/dashboard' : '/admin'}
+                        className={clsxm(
+                          'px-[22px] py-3 flex justify-center text-sm rounded-t-md font-medium hover:bg-[#393737]'
+                        )}
                       >
-                        <UnstyledLink
-                          href='/dashboard'
-                          className='flex items-center justify-center w-full py-3 hover:bg-[#525252] rounded-t-[10px]'
-                        >
-                          <Typography
-                            font='poppins'
-                            color='white'
-                            variant='btn'
-                            className='flex items-center text-center gap-3'
-                          >
-                            Dashboard
-                          </Typography>
-                        </UnstyledLink>
-                        <button
-                          onClick={handleLogout}
-                          className='flex items-center justify-center w-full py-3 hover:bg-[#525252] rounded-b-[10px]'
-                        >
-                          <Typography
-                            font='poppins'
-                            color='white'
-                            variant='btn'
-                            className='flex items-center gap-2'
-                          >
-                            Logout
-                            <MdLogout className='text-[18px]' />
-                            <div className='mb-2 text-[20px]'></div>
-                          </Typography>
-                        </button>
-                      </Menu.Item>
+                        <Menu.Item as='button' className='flex justify-center'>
+                          <div className='flex justify-center'>
+                            <Typography
+                              className='text-center flex justify-center'
+                              color='white'
+                            >
+                              Dashboard
+                            </Typography>
+                          </div>
+                        </Menu.Item>
+                      </UnstyledLink>
+                      <Button
+                        onClick={handleLogout}
+                        className={clsxm(
+                          'px-[22px] py-4 flex justify-center text-sm bg-[#525252] rounded-b-md font-medium hover:bg-[#393737]'
+                        )}
+                      >
+                        <Menu.Item as='button' className='flex justify-center'>
+                          <div className='flex justify-center'>
+                            <Typography
+                              className='text-center items-center flex gap-3'
+                              color='white'
+                            >
+                              Logout
+                              <LuLogOut className='text-white font-black' />
+                            </Typography>
+                          </div>
+                        </Menu.Item>
+                      </Button>
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -341,14 +413,14 @@ function Navbar() {
       <div
         className={`${
           showMe4 ? 'translate-x-0' : ''
-        } z-50 top-0 fixed lg:hidden duration-200 transform -translate-x-full h-full bg-[#393737] w-[100%] px-[1.5rem]`}
+        } z-50 fixed overflow-y-scroll lg:hidden duration-200 transform -translate-x-full h-full bg-[#393737] w-full pt-12 pb-40 px-[2rem]`}
       >
         <div>
           <UnstyledLink
             href='/'
-            className='mt-[2rem] mb-[1rem] flex justify-center items-center'
+            className='mt-[3rem] flex justify-center items-center'
           >
-            <Image src={LogoSVG} alt='svg' className='w-40' />
+            <Image src={LogoSVG} alt='svg' className='w-36' />
           </UnstyledLink>
 
           {isLogin === false ? (
@@ -375,7 +447,7 @@ function Navbar() {
                 } mt-2 text-[18px] font-bold text-[#ffffff]`}
               >
                 <UnstyledLink
-                  href='/Olimpiade'
+                  href='/olimpit'
                   className='flex justify-center items-center gap-2'
                 >
                   <Image
@@ -383,21 +455,21 @@ function Navbar() {
                     alt='olimpiade'
                     className='w-5'
                   ></Image>
-                  <Typography color='white'>Olimpiade</Typography>
+                  <div>Olimpiade</div>
                 </UnstyledLink>
                 <UnstyledLink
-                  href='Capture-The-Flag'
+                  href='/ctf'
                   className='flex justify-center items-center gap-2 my-2'
                 >
                   <Image src={CTF} alt='ctf' className='w-5'></Image>
-                  <Typography color='white'>Capture The Flag</Typography>
+                  <div>Capture The Flag</div>
                 </UnstyledLink>
                 <UnstyledLink
-                  href='Explo-IT'
+                  href='/exploit'
                   className='flex justify-center items-center gap-2'
                 >
                   <Image src={ExploIT} alt='exploIT' className='w-5'></Image>
-                  <Typography color='white'>ExploIT</Typography>
+                  <div>ExploIT</div>
                 </UnstyledLink>
               </div>
 
@@ -428,7 +500,7 @@ function Navbar() {
               >
                 <div>
                   <UnstyledLink
-                    href='#'
+                    href='/about'
                     className='flex justify-center items-center'
                   >
                     ARA 5.0
@@ -437,7 +509,7 @@ function Navbar() {
                 <div className='my-2'></div>
                 <div>
                   <UnstyledLink
-                    href='#'
+                    href='/hmit-its'
                     className='flex justify-center items-center'
                   >
                     HMIT ITS
@@ -446,15 +518,19 @@ function Navbar() {
               </div>
 
               <div className='mt-10 w-[100%] text-[#ffffff] font-bold text-[18px]'>
-                <UnstyledLink href='#' className='text-center'>
+                <UnstyledLink href='/login' className='text-center'>
                   <div className='p-2 bg-[#00B8FF] border-2 border-[#00B8FF] rounded-md'>
                     Login
                   </div>
                 </UnstyledLink>
-                <div className='py-2'></div>
-                <UnstyledLink href='#' className='text-center'>
-                  <div className='p-2 border-2 border-[#151717] text-[#00B8FF] rounded-md'>
-                    Register
+                <UnstyledLink href='/ctf/register' className='text-center'>
+                  <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
+                    Register CTF
+                  </div>
+                </UnstyledLink>
+                <UnstyledLink href='/olimpit/register' className='text-center'>
+                  <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
+                    Register Olimpiade
                   </div>
                 </UnstyledLink>
               </div>
@@ -462,28 +538,36 @@ function Navbar() {
           ) : (
             <>
               <div className='flex flex-col items-center'>
-                <BiSolidUserCircle className='text-[100px] text-white' />
+                <FaCircleUser className='text-[72px] text-white my-6' />
+                {/* <BiSolidUserCircle className='text-[100px] text-white' /> */}
                 <div className='flex justify-between items-center'>
-                  <Typography className='font-extrabold text-white text-[18px]'>
-                    Hi, {user?.nama}
-                  </Typography>
+                  {users && users.data.length > 0 ? (
+                    <Typography className='font-extrabold text-white text-[18px]'>
+                      Hi, {users.data[0].team_name}
+                    </Typography>
+                  ) : (
+                    <Typography className='font-extrabold text-white text-[18px]'>
+                      Hi, Guest
+                    </Typography>
+                  )}
                 </div>
               </div>
-              <div className='mt-10 w-[100%] text-[#ffffff] font-bold text-[18px]'>
-                <UnstyledLink href='#' className='text-center'>
-                  <div className='p-2 bg-[#00B8FF] border-2 border-[#00B8FF] rounded-md'>
-                    Dashboard
-                  </div>
+              <div className='mt-5 w-[100%] text-[#ffffff] font-bold text-[18px]'>
+                <UnstyledLink
+                  href={users?.role === 'TEAM' ? '/dashboard' : '/admin'}
+                  className='text-center'
+                >
+                  <div className='p-2 bg-[#00B8FF] rounded-md'>Dashboard</div>
                 </UnstyledLink>
-                <div className='py-2'></div>
-                <button onClick={handleLogout} className='text-center'>
-                  <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md'>
-                    Logout
-                  </div>
-                </button>
+                <Button
+                  onClick={handleLogout}
+                  className='text-center w-full border-2 border-[#00B8FF] bg-transparent p-2 mt-3'
+                >
+                  Logout
+                </Button>
               </div>
 
-              <div className='mt-10 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
+              <div className='mt-5 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
                 <div className='flex gap-2 text-[22px]' onClick={toggle2}>
                   <div>Our Events</div>
                   <div className='flex justify-center items-center'>
@@ -505,7 +589,7 @@ function Navbar() {
                 } mt-2 text-[18px] font-bold text-[#ffffff]`}
               >
                 <UnstyledLink
-                  href='/Olimpiade'
+                  href='/olimpit'
                   className='flex justify-center items-center gap-2'
                 >
                   <Image
@@ -513,24 +597,23 @@ function Navbar() {
                     alt='olimpiade'
                     className='w-5'
                   ></Image>
-                  <Typography color='white'>Olimpiade</Typography>
+                  <div>Olimpiade</div>
                 </UnstyledLink>
                 <UnstyledLink
-                  href='Capture-The-Flag'
+                  href='/ctf'
                   className='flex justify-center items-center gap-2 my-2'
                 >
                   <Image src={CTF} alt='ctf' className='w-5'></Image>
-                  <Typography color='white'>Capture The Flag</Typography>
+                  <div>Capture The Flag</div>
                 </UnstyledLink>
                 <UnstyledLink
-                  href='Explo-IT'
+                  href='/exploit'
                   className='flex justify-center items-center gap-2'
                 >
                   <Image src={ExploIT} alt='exploIT' className='w-5'></Image>
-                  <Typography color='white'>ExploIT</Typography>
+                  <div>ExploIT</div>
                 </UnstyledLink>
               </div>
-
               <div className='mt-3 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
                 <div className='flex gap-2 text-[22px]' onClick={toggle3}>
                   <div>About Us</div>
@@ -550,7 +633,6 @@ function Navbar() {
                   </div>
                 </div>
               </div>
-
               <div
                 className={`${
                   showMe3 ? 'block' : 'hidden'
@@ -558,7 +640,7 @@ function Navbar() {
               >
                 <div>
                   <UnstyledLink
-                    href='#'
+                    href='/about'
                     className='flex justify-center items-center'
                   >
                     ARA 5.0
@@ -567,7 +649,7 @@ function Navbar() {
                 <div className='my-2'></div>
                 <div>
                   <UnstyledLink
-                    href='#'
+                    href='/hmit-its'
                     className='flex justify-center items-center'
                   >
                     HMIT ITS
@@ -576,12 +658,13 @@ function Navbar() {
               </div>
             </>
           )}
-          <div
+        </div>
+
+        <div className='relative w-full flex justify-center'>
+          <FaRegTimesCircle
             onClick={toggle4}
-            className='flex justify-center mt-12 cursor-pointer'
-          >
-            <FaRegTimesCircle className='text-[40px] text-white' />
-          </div>
+            className='cursor-pointer text-[40px] text-white fixed sm:-bottom-80 sm:mb-2 bottom-16'
+          />
         </div>
       </div>
     </>

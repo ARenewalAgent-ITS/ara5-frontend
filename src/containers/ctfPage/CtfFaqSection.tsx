@@ -23,7 +23,7 @@ const faqs: TCTFFaqData[] = [
   {
     svg: '/svg/ctfpage/faq-icons/2.svg',
     q: 'Apakah ada babak final dalam CTF ARA 5.0? dan menggunakan style apa?',
-    a: 'Ada, babak final akan diadakan secara offline di ITS dengan menggunakan format?',
+    a: 'Ada, babak final akan diadakan secara offline di ITS dengan menggunakan format jeopardy',
   },
   {
     svg: '/svg/ctfpage/faq-icons/3.svg',
@@ -45,7 +45,7 @@ const faqs: TCTFFaqData[] = [
 
 export default function CtfFaqSection() {
   return (
-    <section className='ctf-faq-section mt-36'>
+    <section className='ctf-faq-section'>
       <div className='upper-faq flex justify-center items-center mb-20'>
         <NextImage
           src={'/svg/ctfpage/faq.svg'}
@@ -54,7 +54,7 @@ export default function CtfFaqSection() {
           alt='faq panel'
         />
       </div>
-      <div className='faq-cards grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-7 px-8'>
+      <div className='faq-cards grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-7 px-8 md:px-16 lg:px-20 xl:px-28'>
         {faqs.map((faq, id) => (
           <FAQCard
             key={id}

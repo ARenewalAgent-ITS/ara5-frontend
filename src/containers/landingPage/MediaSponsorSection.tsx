@@ -2,6 +2,7 @@
 import Marquee from 'react-fast-marquee';
 
 import NextImage from '@/components/NextImage';
+import Typography from '@/components/Typography';
 
 interface TSponsorData {
   alt: string;
@@ -55,13 +56,16 @@ function MediaSponsorMarquee(props: TMarqueeData) {
           className='w-[247px] h-[73px] sm:w-[414px] sm:h-[122px] md:w-[582px] md:h-[172px] mx-[15px] sm:mx-[25px] md:mx-[35px] max-w-full rounded-xl bg-white flex justify-center items-center'
           key={sID}
         >
-          <NextImage
+          {/* <NextImage
             src={sponsor.source}
             alt={sponsor.alt}
             width={190}
             height={48}
             className='md:scale-[2.35] sm:scale-150'
-          />
+          /> */}
+          <Typography variant='h3' weight='bold'>
+            Coming Soon!
+          </Typography>
         </div>
       ))}
     </Marquee>
@@ -80,7 +84,7 @@ export default function SponsorSection() {
   }
 
   return (
-    <section className='sponsor-media-section bg-transparent'>
+    <section className='sponsor-media-section bg-primary-1100 relative -mt-[1rem]'>
       <section className='sponsor-section py-[85px] md:pt-[91px] md:pb-[183px]'>
         <div className='upper-sponsor flex justify-center items-center mb-[70px]'>
           <NextImage

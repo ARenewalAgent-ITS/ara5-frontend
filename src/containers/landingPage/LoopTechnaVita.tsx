@@ -10,7 +10,7 @@ import LogoAra from '../../components/layouts/nav-img/Group 934.svg';
 function LoopTechnaVita() {
   return (
     <>
-      <div className='bg-[#393737] w-full bottom-0 absolute mt-20'>
+      <div className='bg-[#393737] w-full bottom-[-10px] z-10 absolute mt-20'>
         <Marquee loop={0} speed={50} delay={0} direction='right' className=''>
           <div className='flex py-5'>
             {Array(7)

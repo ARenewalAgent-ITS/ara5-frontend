@@ -33,17 +33,17 @@ function ThrowBack() {
   } as React.CSSProperties;
 
   const images = [
-    '/svg/throwback/one.svg',
-    '/svg/throwback/two.svg',
-    '/svg/throwback/three.svg',
-    '/svg/throwback/four.svg',
-    '/svg/throwback/five.svg',
+    '/images/throwback/one.png',
+    '/images/throwback/two.png',
+    '/images/throwback/three.png',
+    '/images/throwback/four.png',
+    '/images/throwback/five.png',
   ];
 
   return (
     <>
-      <div className='h-[auto] py-[3rem]'>
-        <div className='absolute right-[25%] hidden lg:block z-10'>
+      <div className='h-[auto] pt-[3rem] pb-[2rem] xl:pb-[6rem]'>
+        {/* <div className='absolute right-[25%] hidden lg:block z-10'>
           <NextImage
             src={'/svg/throwback/leaf.svg'}
             alt='leaf'
@@ -51,7 +51,7 @@ function ThrowBack() {
             height={57.41}
           ></NextImage>
         </div>
-        {/* <div className='absolute right-0 hidden md:block'>
+        <div className='absolute right-0 hidden md:block'>
           <NextImage
             src={'/svg/throwback/cloud.svg'}
             alt='cloud'
