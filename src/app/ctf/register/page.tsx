@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -13,6 +14,11 @@ export default function CtfOlimp() {
   const [isRegistrationCompleted, setIsRegistrationCompleted] =
     React.useState(false);
   const [isAtLastStep, setIsAtLastStep] = React.useState(false);
+
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+  };
 
   const goToNextStep = () => {
     if (isRegistrationCompleted) {
@@ -35,13 +41,15 @@ export default function CtfOlimp() {
   return (
     <>
       <div className='px-6 py-6 w-full flex flex-row items-center justify-between'>
-        <Image
-          src={'/svg/auth/logo.svg'}
-          alt='logo ARA'
-          width={71}
-          height={33}
-          className='sm:w-[80px] md:w-[90px] lg:w-[107px]'
-        />
+        <div onClick={handleBack} style={{ cursor: 'pointer' }}>
+          <Image
+            src={'/svg/auth/logo.svg'}
+            alt='logo ARA'
+            width={71}
+            height={33}
+            className='sm:w-[80px] md:w-[90px] lg:w-[107px]'
+          />
+        </div>
         <div className='flex gap-2'>
           <div
             onClick={goToPreviousStep}

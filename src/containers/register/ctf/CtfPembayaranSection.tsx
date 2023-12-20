@@ -158,7 +158,7 @@ export default function CtfPembayaranSection() {
               weight='bold'
               className='text-[48px] leading-[64px]'
             >
-              Rp 100.000
+              Rp 90.000
             </Typography>
             <Button
               variant='outline-primary'

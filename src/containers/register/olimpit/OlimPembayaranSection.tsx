@@ -26,8 +26,15 @@ type BankDetails = {
 
 export default function OlimPembayaranSection() {
   const [kupon, setKupon] = React.useState<string>('');
+  const [isReferralApplied, setIsReferralApplied] =
+    React.useState<boolean>(false);
   const { olimFormData } = useRegisterStore();
   const router = useRouter();
+  const initialBillAmount = 70000;
+  const discountAmount = 10000;
+  const totalBillAmount = isReferralApplied
+    ? initialBillAmount - discountAmount
+    : initialBillAmount;
 
   //#region  //*=========== Pembayaran & Referal Form ===========
 
@@ -134,7 +141,11 @@ export default function OlimPembayaranSection() {
   };
 
   const referalOnSubmit = (data: TReferal) => {
-    getKupon(data.kupon);
+    getKupon(data.kupon, {
+      onSuccess: () => {
+        setIsReferralApplied(true);
+      },
+    });
   };
 
   const bankDetailsMapping: { [key: string]: BankDetails } = {
@@ -193,7 +204,7 @@ export default function OlimPembayaranSection() {
               weight='bold'
               className='text-[48px] leading-[64px]'
             >
-              Rp 100.000
+              Rp {totalBillAmount.toLocaleString('id-ID')}
             </Typography>
             <Button
               variant='outline-primary'
