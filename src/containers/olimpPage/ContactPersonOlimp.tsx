@@ -143,7 +143,7 @@ export default function ContactPersonOlimp() {
                 leftIconClassName='text-whites-100'
                 size='lg'
                 className='relative'
-                onClick={() => toggleLineTooltip('dian')} // Pass a unique ID
+                onClick={() => toggleLineTooltip('dian')}
               >
                 <Typography
                   variant='btn'
@@ -179,7 +179,7 @@ export default function ContactPersonOlimp() {
         alt='grass'
         width={114.755}
         height={185.737}
-        className='absolute z-20 -bottom-2 w-[114px] md:w-[240px] lg:w-[310px] xl:w-[370px] 2xl:w-[420px] right-3 md:right-11 xl:right-16 2xl:right-20'
+        className='absolute z-10 -bottom-2 w-[114px] md:w-[240px] lg:w-[310px] xl:w-[370px] 2xl:w-[420px] right-3 md:right-11 xl:right-16 2xl:right-20'
       />
       {/* bon fire and lights */}
       <div onMouseEnter={handleHover} onMouseLeave={handleUnhover}>

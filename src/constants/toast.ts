@@ -11,7 +11,7 @@ type ToastMessage<T> = {
 export const DEFAULT_TOAST_MESSAGE: ToastMessage<unknown> = {
   loading: 'Loading...',
   success: (res) => {
-    return res.message || 'Berhasil';
+    return res.msg || 'Berhasil';
   },
   error: (err) => {
     return (

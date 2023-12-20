@@ -1,7 +1,7 @@
 export interface ApiReturn<T> {
   data: T;
-  message: string;
-  status: number;
+  msg: string;
+  role: string;
 }
 
 export interface ApiError {

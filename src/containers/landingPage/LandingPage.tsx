@@ -1,4 +1,3 @@
-// TESTING APP PAGE && EXAMPLE PAGE FOR ROUTE APP
 'use client';
 
 import Aos from 'aos';
@@ -172,7 +171,7 @@ export default function LandingPage() {
               alt='background'
               width={359.97}
               height={115.14}
-              className='top-32 lg:-left-[4.5rem] absolute hidden md:inline-block md:-left-[8rem]'
+              className='top-32 lg:-left-[4.5rem] absolute hidden md:inline-block md:-left-[8rem] min-[1500px]:top-44'
               data-aos='fade-up'
               data-aos-delay='100'
             />
