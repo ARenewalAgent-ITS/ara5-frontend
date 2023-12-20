@@ -23,7 +23,7 @@ const faqs: TCTFFaqData[] = [
   {
     svg: '/svg/ctfpage/faq-icons/2.svg',
     q: 'Apakah ada babak final dalam CTF ARA 5.0? dan menggunakan style apa?',
-    a: 'Ada, babak final akan diadakan secara offline di ITS dengan menggunakan format?',
+    a: 'Ada, babak final akan diadakan secara offline di ITS dengan menggunakan format jeopardy',
   },
   {
     svg: '/svg/ctfpage/faq-icons/3.svg',
