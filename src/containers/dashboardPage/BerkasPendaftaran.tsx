@@ -111,7 +111,7 @@ export default function BerkasPendaftaran() {
                     font='poppins'
                     className='text-whites-1100 md:text-[14px] text-[11px]'
                   >
-                    Status File
+                    Status
                   </Typography>
                 </div>
                 <FiUpload
@@ -145,13 +145,13 @@ export default function BerkasPendaftaran() {
                   font='poppins'
                   className='text-whites-1100 md:text-[16px] text-[13px]'
                 >
-                  Nama file
+                  Nama File
                 </Typography>
                 <Typography
                   font='poppins'
                   className='text-whites-1100 md:text-[14px] text-[11px]'
                 >
-                  Status file
+                  Status
                 </Typography>
               </div>
               <FiUpload
