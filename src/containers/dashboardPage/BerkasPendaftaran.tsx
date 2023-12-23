@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { FiUpload } from 'react-icons/fi';
 
 import Typography from '@/components/Typography';
-import { FiUpload } from 'react-icons/fi';
 
 export default function BerkasPendaftaran() {
   return (
