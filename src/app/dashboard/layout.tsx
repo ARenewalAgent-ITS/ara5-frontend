@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Testing Dashboard',
+  title: 'Dashboard ComingSoon',
   description: 'A RENEWAL AGENT 5.0',
 };
 

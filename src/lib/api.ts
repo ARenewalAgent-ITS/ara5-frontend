@@ -34,7 +34,7 @@ api.interceptors.request.use(function (config) {
       // if in production
 
       /** Get cookies from context if server side */
-      token = cookies.get('@ara/accessToken');
+      token = cookies.get('@ara/token');
     } else {
       /** Get cookies from context if server side */
       token = getToken();
