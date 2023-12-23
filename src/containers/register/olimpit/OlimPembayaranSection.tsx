@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-// import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -9,7 +8,7 @@ import Button from '@/components/buttons/Button';
 import DropzoneInput from '@/components/form/DropzoneInput';
 import Input from '@/components/form/Input';
 import SelectInput from '@/components/form/SelectInput';
-import { showToast, SUCCESS_TOAST } from '@/components/Toast';
+import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
@@ -119,17 +118,24 @@ export default function OlimPembayaranSection() {
     }
   };
 
-  const { mutate: getKupon } = useMutationToast(
-    useMutation(getKuponQuery, {
-      onSuccess: (data) => {
+  const { mutate: getKupon } = useMutation(getKuponQuery, {
+    onSuccess: (data) => {
+      if (data.data.kuponStatus.usage == 0) {
+        showToast('Referral code has expired!', DANGER_TOAST);
+        setIsReferralApplied(false);
+        setKupon('');
+      } else {
+        showToast('Referral code successfully used!', SUCCESS_TOAST);
+        setIsReferralApplied(true);
         setKupon(data.data.kuponStatus.kupon);
-      },
-    }),
-    {
-      success: 'Referral code successfully used!',
-      error: 'Referral code is not available',
-    }
-  );
+      }
+    },
+    onError: () => {
+      showToast('Referral code is not available', DANGER_TOAST);
+      setIsReferralApplied(false);
+      setKupon('');
+    },
+  });
 
   //#region  //*=========== Form Submit ===========
 
@@ -141,11 +147,7 @@ export default function OlimPembayaranSection() {
   };
 
   const referalOnSubmit = (data: TReferal) => {
-    getKupon(data.kupon, {
-      onSuccess: () => {
-        setIsReferralApplied(true);
-      },
-    });
+    getKupon(data.kupon);
   };
 
   const bankDetailsMapping: { [key: string]: BankDetails } = {
@@ -175,7 +177,7 @@ export default function OlimPembayaranSection() {
             variant='h3'
             font='baloo'
             weight='extrabold'
-            className='text-[48px] leading-[64px] block'
+            className='text-[48px] leading-[64px] block text-whites-1100'
           >
             Page
           </Typography>
@@ -183,7 +185,7 @@ export default function OlimPembayaranSection() {
             variant='h3'
             font='baloo'
             weight='extrabold'
-            className='text-[48px] leading-[64px] block'
+            className='text-[48px] leading-[64px] block text-whites-1100'
           >
             Pembayaran
           </Typography>
@@ -193,7 +195,7 @@ export default function OlimPembayaranSection() {
             variant='t'
             font='poppins'
             weight='medium'
-            className='text-[18px] leading-[24px]'
+            className='text-[18px] leading-[24px] text-whites-1100'
           >
             Total Tagihan
           </Typography>
@@ -202,7 +204,10 @@ export default function OlimPembayaranSection() {
               variant='h4'
               font='poppins'
               weight='bold'
-              className='text-[48px] leading-[64px]'
+              className={clsxm(
+                'text-[48px] leading-[64px]',
+                isReferralApplied ? 'text-success-700' : 'text-whites-1100'
+              )}
             >
               Rp {totalBillAmount.toLocaleString('id-ID')}
             </Typography>
@@ -248,7 +253,7 @@ export default function OlimPembayaranSection() {
                 font='poppins'
                 variant='t'
                 weight='medium'
-                className='text-[16px] leading-[24px]'
+                className='text-[16px] leading-[24px] text-whites-1100'
               >
                 {bankDetails?.accountNumber || 'NMID : ID1023269716057'}
               </Typography>
@@ -256,7 +261,7 @@ export default function OlimPembayaranSection() {
                 font='poppins'
                 variant='h6'
                 weight='bold'
-                className='text-[20px] leading-[24px]'
+                className='text-[20px] leading-[24px] text-whites-1100'
               >
                 {bankDetails?.name || 'fathikaaf'}
               </Typography>

@@ -90,7 +90,7 @@ export default function OlimRegisterSection({
             variant='h3'
             font='baloo'
             weight='extrabold'
-            className='text-[48px] leading-[64px] block'
+            className='text-[48px] leading-[64px] block text-whites-1100'
           >
             Registrasi
           </Typography>
@@ -98,7 +98,7 @@ export default function OlimRegisterSection({
             variant='h3'
             font='baloo'
             weight='extrabold'
-            className='text-[48px] leading-[64px] block'
+            className='text-[48px] leading-[64px] block text-whites-1100'
           >
             OlimpIT
           </Typography>

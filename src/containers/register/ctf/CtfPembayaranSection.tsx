@@ -129,7 +129,7 @@ export default function CtfPembayaranSection() {
             variant='h3'
             font='baloo'
             weight='extrabold'
-            className='text-[48px] leading-[64px] block'
+            className='text-[48px] leading-[64px] block text-whites-1100'
           >
             Page
           </Typography>
@@ -137,7 +137,7 @@ export default function CtfPembayaranSection() {
             variant='h3'
             font='baloo'
             weight='extrabold'
-            className='text-[48px] leading-[64px] block'
+            className='text-[48px] leading-[64px] block text-whites-1100'
           >
             Pembayaran
           </Typography>
@@ -147,7 +147,7 @@ export default function CtfPembayaranSection() {
             variant='t'
             font='poppins'
             weight='medium'
-            className='text-[18px] leading-[24px]'
+            className='text-[18px] leading-[24px] text-whites-1100'
           >
             Total Tagihan
           </Typography>
@@ -156,7 +156,7 @@ export default function CtfPembayaranSection() {
               variant='h4'
               font='poppins'
               weight='bold'
-              className='text-[48px] leading-[64px]'
+              className='text-[48px] leading-[64px] text-whites-1100'
             >
               Rp 90.000
             </Typography>
@@ -205,7 +205,7 @@ export default function CtfPembayaranSection() {
                 font='poppins'
                 variant='t'
                 weight='medium'
-                className='text-[16px] leading-[24px]'
+                className='text-[16px] leading-[24px] text-whites-1100'
               >
                 {bankDetails?.accountNumber || 'NMID : ID1023269716057'}
               </Typography>
@@ -213,7 +213,7 @@ export default function CtfPembayaranSection() {
                 font='poppins'
                 variant='h6'
                 weight='bold'
-                className='text-[20px] leading-[24px]'
+                className='text-[20px] leading-[24px] text-whites-1100'
               >
                 {bankDetails?.name || 'fathikaaf'}
               </Typography>
