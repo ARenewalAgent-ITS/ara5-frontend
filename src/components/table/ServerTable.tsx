@@ -32,7 +32,7 @@ type ServerTableProps<T extends object> = {
   data: T[];
   header?: React.ReactNode;
   isLoading?: boolean;
-  meta: PaginatedApiResponse<T>['data']['metadata'] | undefined;
+  meta: PaginatedApiResponse<T>['data']['meta'] | undefined;
   tableState: ServerTableState;
   setTableState: SetServerTableState;
   omitSort?: boolean;
@@ -59,7 +59,7 @@ export default function ServerTable<T extends object>({
     data,
     columns,
     columnResizeMode,
-    pageCount: meta?.maxPage,
+    pageCount: meta?.total,
     state: {
       ...tableState,
     },
@@ -93,9 +93,9 @@ export default function ServerTable<T extends object>({
         </div>
       </div>
       <div className='-my-2 -mx-4 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
+        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-[180vw]'>
           <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-xl'>
-            <table className='min-w-full divide-y divide-gray-300'>
+            <table className='min-w-full divide-y divide-primary-100'>
               <colgroup>
                 {table.getAllColumns().map((column) => (
                   <col
@@ -112,14 +112,13 @@ export default function ServerTable<T extends object>({
               <THead
                 table={table}
                 omitSort={omitSort}
-                className='bg-primary-500 text-white-50'
+                className='bg-primary-500 text-white'
               />
               <TBody table={table} isLoading={isLoading} />
             </table>
           </div>
         </div>
       </div>
-
       <PaginationControl table={table} data={data} className='mt-4' />
     </div>
   );

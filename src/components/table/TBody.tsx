@@ -32,7 +32,7 @@ export default function TBody<T extends RowData>({
             className='truncate whitespace-nowrap py-4 px-3 col-span-full text-typo-icon text-center'
             colSpan={table.getAllColumns().length}
           >
-            No Data
+            Infokan Data
           </td>
         </tr>
       ) : (
@@ -40,7 +40,7 @@ export default function TBody<T extends RowData>({
           <tr
             key={row.id}
             className={clsxm(
-              index % 2 === 0 ? 'bg-typo-white' : 'bg-typo-light'
+              index % 2 === 0 ? 'bg-typo-white' : 'bg-primary-100'
             )}
           >
             {row.getVisibleCells().map((cell) => {
@@ -49,7 +49,7 @@ export default function TBody<T extends RowData>({
                   key={cell.id}
                   as='td'
                   title={cell.getValue() as string}
-                  className='truncate whitespace-nowrap py-4 px-3'
+                  className='truncate whitespace-nowrap py-4 px-3 text-[12px]'
                   style={{ maxWidth: cell.column.getSize() }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -12,7 +12,7 @@ type FilterProps<T extends RowData> = {
 export default function Filter<T extends RowData>({
   className,
   table,
-  placeholder = 'Cari NRP/Nama',
+  placeholder = 'Cari Tim',
   ...rest
 }: FilterProps<T>) {
   const [filter, setFilter] = React.useState('');

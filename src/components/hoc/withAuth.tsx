@@ -1,196 +1,94 @@
-/* eslint-disable unused-imports/no-unused-vars */
-import { useRouter } from 'next/router';
-import * as React from 'react';
-import { toast } from 'react-hot-toast';
-import { ImSpinner8 } from 'react-icons/im';
-import { MdHome } from 'react-icons/md';
+'use client';
 
-import Forbidden from '@/components/Forbidden';
-import ButtonLink from '@/components/links/ButtonLink';
-import Typography from '@/components/Typography';
+import { useRouter } from 'next/navigation';
+import * as React from 'react';
+
+import { DANGER_TOAST, showToast } from '@/components/Toast';
 import api from '@/lib/api';
-import clsxm from '@/lib/clsxm';
-import { getToken, removeToken } from '@/lib/cookies';
+import { getToken } from '@/lib/cookies';
 import useAuthStore from '@/store/useAuthStore';
 import { ApiReturn } from '@/types/api';
+import { PermissionList } from '@/types/entities/permissionList';
 import { User } from '@/types/entities/user';
 
-export interface WithAuthProps {
+import Loading from '../Loading';
+
+async function getUser() {
+  const res = await api.get<ApiReturn<User>>('/auth/me');
+  return res.data.data;
+}
+
+type WithAuthProps = {
   user: User;
-}
+};
 
-const ADMIN_ROUTE = '/admin/dashboard';
-const LOGIN_ROUTE = '/auth/login';
-
-export enum RouteRole {
-  /**
-   Dapat diakses hanya ketika user belum login (Umum)
-   */
-  public,
-  /**
-   * Dapat diakses semuanya
-   */
-  optional,
-  /**
-   * For all authenticated user
-   * will push to login if user is not authenticated
-   */
-  ADMIN,
-  SUPERADMIN,
-}
-
-/**
- * Add role-based access control to a component
- *
- * @see https://react-typescript-cheatsheet.netlify.app/docs/hoc/full_example/
- * @see https://github.com/mxthevs/nextjs-auth/blob/main/src/components/withAuth.tsx
- */
 export default function withAuth<T>(
   Component: React.ComponentType<T>,
-  routeRole: keyof typeof RouteRole,
-  options: {
-    withCache?: boolean;
-  } = {
-    withCache: true,
-  }
+  permissions: PermissionList
 ) {
-  const ComponentWithAuth = (props: Omit<T, keyof WithAuthProps>) => {
+  function ComponentWithAuth(props: Omit<T, keyof WithAuthProps>) {
     const router = useRouter();
-    const { query } = router;
 
-    //#region  //*=========== STORE ===========
-    const isAuthenticated = useAuthStore.useIsAuthenticated();
-    const isLoading = useAuthStore.useIsLoading();
-    const login = useAuthStore.useLogin();
-    const logout = useAuthStore.useLogout();
-    const stopLoading = useAuthStore.useStopLoading();
-    const user = useAuthStore.useUser();
-    //#endregion  //*======== STORE ===========
+    const { user, isAuthed, isLoading, login, logout, stopLoading } =
+      useAuthStore();
 
-    const checkAuth = React.useCallback(() => {
+    const checkAuth = React.useCallback(async () => {
       const token = getToken();
       if (!token) {
-        isAuthenticated && logout();
+        isAuthed && logout();
         stopLoading();
         return;
       }
-      const loadUser = async () => {
-        try {
-          const res = await api.get<ApiReturn<User>>('/auth/me');
 
-          if (!res.data.data) {
-            toast.error('Sesi login tidak valid');
-            throw new Error('Sesi login tidak valid');
-          }
-
-          login({
-            token: token,
-            ...res.data.data,
-          });
-        } catch (err) {
-          logout();
-          removeToken();
-        } finally {
-          stopLoading();
-        }
-      };
-
-      if (!isAuthenticated || options.withCache) {
-        loadUser();
+      if (isAuthed) {
+        stopLoading();
+        return;
       }
-    }, [isAuthenticated, login, logout, stopLoading]);
+
+      try {
+        const newUser = await getUser();
+        login({ ...newUser, token });
+      } catch {
+        logout();
+      } finally {
+        stopLoading();
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuthed]);
+
+    React.useEffect(() => {
+      if (window.sessionStorage.getItem('redirected')) {
+        window.sessionStorage.removeItem('redirected');
+        return;
+      }
+
+      if (
+        isLoading ||
+        permissions.includes('all') ||
+        (permissions.includes('authed') && isAuthed)
+      ) {
+        return;
+      }
+
+      if (
+        !isAuthed ||
+        (user && !permissions.every((p) => user.permission.includes(p)))
+      ) {
+        router.replace('/login');
+        showToast('Anda tidak memiliki akses ke halaman ini', DANGER_TOAST);
+        window.sessionStorage.setItem('redirected', 'true');
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuthed, isLoading]);
 
     React.useEffect(() => {
       checkAuth();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-      window.addEventListener('focus', checkAuth);
-      return () => {
-        window.removeEventListener('focus', checkAuth);
-      };
-    }, [checkAuth]);
-
-    React.useEffect(() => {
-      const Redirect = async () => {
-        if (isAuthenticated) {
-          // Jika ada user yang login akses public maka akan dipindah ke admin, user, atau forda
-          if (routeRole === 'public') {
-            if (query?.redirect) {
-              router.replace(query.redirect as string);
-            } else {
-              if (
-                user?.permission === 'ADMIN' ||
-                user?.permission === 'SUPERADMIN'
-              ) {
-                router.replace(
-                  `${ADMIN_ROUTE}?redirect=${router.asPath}`,
-                  `${ADMIN_ROUTE}`
-                );
-              }
-              // Admin
-            }
-            if (user?.permission === 'ADMIN') {
-              router.replace(ADMIN_ROUTE);
-            }
-          } else {
-            if (
-              routeRole !== 'optional' &&
-              routeRole !== 'ADMIN' &&
-              routeRole !== 'SUPERADMIN'
-            ) {
-              router.replace(
-                `${LOGIN_ROUTE}?redirect=${router.asPath}`,
-                `${LOGIN_ROUTE}`
-              );
-            }
-          }
-        }
-
-        if (!isLoading) {
-          Redirect();
-        }
-      };
-    }, [isAuthenticated, isLoading, query, router, user]);
-
-    if (
-      (isLoading || !isAuthenticated) &&
-      routeRole !== 'public' &&
-      routeRole !== 'optional'
-    ) {
-      return (
-        <div className='flex min-h-screen flex-col text-center items-center justify-center text-gray-800'>
-          <ImSpinner8 className='mb-4 animate-spin text-4xl' />
-          <p>
-            Anda masih belum punya
-            <br />
-            hak akses untuk ini
-          </p>
-          <ButtonLink
-            href='/'
-            variant='primary'
-            leftIcon={MdHome}
-            leftIconClassName={clsxm('w-[20px] text-white')}
-            className={clsxm('py-2 px-4 rounded m-8')}
-          >
-            <Typography
-              weight='semibold'
-              font='poppins'
-              className={clsxm('text-whites-100')}
-            >
-              Home
-            </Typography>
-          </ButtonLink>
-        </div>
-      );
-    }
-
-    if (isAuthenticated) {
-      if (user?.permission !== 'ADMIN' && user?.permission !== 'SUPERADMIN') {
-        return <Forbidden />;
-      }
-    }
-
+    if (isLoading) return <Loading />;
     return <Component {...(props as T)} user={user} />;
-  };
+  }
 
   return ComponentWithAuth;
 }

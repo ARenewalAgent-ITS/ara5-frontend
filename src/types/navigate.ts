@@ -1,7 +1,8 @@
 import { IconType } from 'react-icons';
 
+import { PermissionList } from '@/types/entities/permissionList';
+
 export type Navigation = {
-  id?: number;
   name: string;
   href: string;
   icon: IconType;
@@ -13,5 +14,5 @@ export type Navigation = {
   children?: Navigation[];
   activeClassName?: string;
   className?: string;
-  permissions?: 'ADMIN' | 'SUPERADMIN';
+  permissions?: PermissionList;
 };
