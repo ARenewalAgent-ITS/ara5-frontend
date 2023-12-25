@@ -10,20 +10,20 @@ export const navigations: Navigation[] = [
     href: '/admin/olimpit',
     exactMatch: true,
     icon: HiTrophy,
-    permissions: ['ADMIN'],
+    permissions: ['authed'],
   },
   {
     name: 'Tim CTF',
     href: '/admin/ctf',
     exactMatch: true,
     icon: FaFlag,
-    permissions: ['ADMIN'],
+    permissions: ['authed'],
   },
   {
     name: 'Write Up',
     href: '/admin/writeup',
     exactMatch: true,
     icon: BiSolidNotepad,
-    permissions: ['ADMIN'],
+    permissions: ['authed'],
   },
 ];

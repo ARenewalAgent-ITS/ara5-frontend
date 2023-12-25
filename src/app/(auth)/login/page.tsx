@@ -153,7 +153,7 @@ function LoginPage() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                {!isLoading ? 'Login' : 'Loading...'}
+                {!isLoading ? 'Login' : 'Logging in...'}
               </Typography>
             </Button>
             <Typography

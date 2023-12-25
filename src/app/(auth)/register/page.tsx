@@ -83,7 +83,7 @@ export default function RegisterPage() {
         className='text-[14px] md:text-[14px] leading-[20px] text-whites-1100'
         weight='medium'
       >
-        Sudah punya akun?{' '}
+        Do you have an account?{' '}
         <UnstyledLink href={'/login'} className='text-primary-700'>
           Login
         </UnstyledLink>

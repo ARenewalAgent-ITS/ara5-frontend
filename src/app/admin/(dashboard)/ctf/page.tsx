@@ -11,8 +11,12 @@ import withAuth from '@/components/hoc/withAuth';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout';
 import SEO from '@/components/SEO';
 import ServerTable from '@/components/table/ServerTable';
-import Tag from '@/components/tag/Tag';
-import { showToast, WARNING_TOAST } from '@/components/Toast';
+import {
+  DANGER_TOAST,
+  showToast,
+  SUCCESS_TOAST,
+  WARNING_TOAST,
+} from '@/components/Toast';
 import Typography from '@/components/Typography';
 import ArloCard from '@/containers/dashboardPage/ArloCard';
 import useServerTable from '@/hooks/useServerTable';
@@ -25,6 +29,35 @@ import { AdminCTF } from '@/types/entities/events';
 
 export default withAuth(DashboardAdmin, ['authed']);
 function DashboardAdmin() {
+  const getStatusNumber = (status: string): number => {
+    switch (status) {
+      case 'SUCCESS':
+        return 1;
+      case 'FAILED':
+        return 2;
+      case 'AWAITING VERIFICATION':
+        return 3;
+      default:
+        return 3;
+    }
+  };
+
+  const handleStatusChange = async (id: string, newStatus: string) => {
+    try {
+      const statusNumber = getStatusNumber(newStatus);
+      await api.patch(`/pembayaran/status/${id}`, {
+        status: statusNumber,
+      });
+
+      showToast('Berhasil memperbarui', SUCCESS_TOAST);
+
+      queryData?.data.data;
+    } catch (error) {
+      showToast('Berhasil memperbarui', DANGER_TOAST);
+      throw new Error();
+    }
+  };
+
   const { user } = useAuthStore();
   const baseUrl = '/ctf';
   const { tableState, setTableState } = useServerTable({
@@ -63,6 +96,12 @@ function DashboardAdmin() {
       size: 18,
     },
     {
+      id: 'discord_ketua',
+      accessorKey: 'discord_ketua',
+      header: 'Discord',
+      size: 18,
+    },
+    {
       id: 'nama_ketua',
       accessorKey: 'nama_ketua',
       header: 'Ketua',
@@ -81,8 +120,8 @@ function DashboardAdmin() {
       size: 18,
     },
     {
-      id: 'pembayaran_id',
-      accessorKey: 'pembayaran_id',
+      id: 'bukti_pembayaran',
+      accessorKey: 'pembayaran.bukti_pembayaran',
       header: 'Pembayaran',
       size: 18,
     },
@@ -90,30 +129,40 @@ function DashboardAdmin() {
       id: 'status',
       header: 'Status',
       cell: (info) => (
-        <Tag
-          size='small'
-          color={
-            info.row.original.status === 5
-              ? 'warning'
-              : info.row.original.status === 4
-              ? 'warning'
-              : info.row.original.status === 3
-              ? 'danger'
-              : info.row.original.status === 2
-              ? 'warning'
-              : 'success'
-          }
-        >
-          {info.row.original.status === 5
-            ? 'Awaiting Payment'
-            : info.row.original.status === 4
-            ? 'Awaiting Verification'
-            : info.row.original.status === 3
-            ? 'Gagal'
-            : info.row.original.status === 2
-            ? 'Revisi'
-            : 'Success'}
-        </Tag>
+        <div className='flex justify-center flex-col items-center'>
+          <select
+            value={info.row.original.pembayaran.status.status}
+            className={`flex flex-col cursor-pointer rounded-lg w-[150px] text-white
+              ${
+                info.row.original.pembayaran.status.status ===
+                'AWAITING VERIFICATION'
+                  ? 'bg-yellow-500'
+                  : info.row.original.pembayaran.status.status === 'FAILED'
+                  ? 'bg-red-600'
+                  : 'bg-success-600'
+              }
+              `}
+            onChange={(e) =>
+              handleStatusChange(
+                info.row.original.pembayaran_id,
+                e.target.value
+              )
+            }
+          >
+            <option value='SUCCESS' className='bg-white text-black-500'>
+              Success
+            </option>
+            <option value='FAILED' className='bg-white text-black-500'>
+              Gagal
+            </option>
+            <option
+              value='AWAITING VERIFICATION'
+              className='bg-white text-black-500'
+            >
+              Awaiting Verification
+            </option>
+          </select>
+        </div>
       ),
       size: 18,
     },
@@ -139,14 +188,16 @@ function DashboardAdmin() {
   const downloadCsv = async () => {
     const response = await fetchPendaftar();
     const fileName =
-      user?.permission === 'all' ? 'Data Pendaftar CTF' : undefined;
+      user?.permission === 'authed' ? 'Data Pendaftar CTF' : undefined;
 
     const data =
-      user?.permission === 'all'
+      user?.permission === 'authed'
         ? response?.data.data.data.filter(
-            (item) => item.status === user?.team_name
+            (item) => item.pembayaran.status.status === user?.team_name
           ) ?? []
-        : response?.data.data.data.filter((item) => item.status) ?? [];
+        : response?.data.data.data.filter(
+            (item) => item.pembayaran.status.status
+          ) ?? [];
 
     if (data.length === 0)
       return showToast('Tidak ada Pendaftar', WARNING_TOAST);
@@ -156,7 +207,7 @@ function DashboardAdmin() {
         return {
           id: items.id,
           nama_team: items.team_name,
-          'Team Fixed': items.status ? items.event : 'CTF',
+          'Team Fixed': items.pembayaran.status.status ? items.event : 'CTF',
         };
       }),
       fileName
@@ -214,7 +265,7 @@ function DashboardAdmin() {
               variant='blue'
               title='Peserta Terdaftar'
               caption={`${queryData?.data?.meta?.total} tim`}
-              addInfo={{ percent: 75 }}
+              addInfo={{}}
             />
             <ArloCard
               as='team-info'
@@ -230,36 +281,18 @@ function DashboardAdmin() {
               caption='35 tim'
               addInfo={{ percent: 75 }}
             />
-            {user?.permission === 'all' && (
-              <>
-                <ArloCard
-                  as='team-info'
-                  variant='blue'
-                  title='Peserta Terdaftar'
-                  caption='35 tim'
-                  addInfo={{ percent: 75 }}
-                />
-                <ArloCard
-                  as='team-info'
-                  variant='green'
-                  title='Peserta Terverifikasi'
-                  caption='35 tim'
-                  addInfo={{ percent: 75 }}
-                />
-                <ArloCard
-                  as='team-info'
-                  variant='brown'
-                  title='Peserta Belum Terverifikasi  '
-                  caption='35 tim'
-                  addInfo={{ percent: 75 }}
-                />
-              </>
-            )}
           </div>
 
           <ServerTable
             columns={columns}
             data={queryData?.data.data ?? []}
+            // data={
+            //   user?.permission === 'authed'
+            //     ? queryData?.data.data ?? []
+            //     : queryData?.data.data.filter(
+            //       (item) => item.pembayaran.status.status
+            //     ) ?? []
+            // }
             meta={queryData?.data.meta}
             tableState={tableState}
             setTableState={setTableState}

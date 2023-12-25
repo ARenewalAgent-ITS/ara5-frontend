@@ -25,7 +25,7 @@ function TeamCorner(props: TAdditionalInfo) {
       <svg className='w-full h-full' viewBox='0 0 100 100'>
         <circle
           className='text-gray-800 stroke-current'
-          stroke-width='10'
+          strokeWidth='10'
           cx='50'
           cy='50'
           r='40'
@@ -33,21 +33,21 @@ function TeamCorner(props: TAdditionalInfo) {
         ></circle>
         <circle
           className='text-white stroke-current transform rotate-60 origin-center transition-all duration-300'
-          stroke-width='10'
-          stroke-linecap='round'
+          strokeWidth='10'
+          strokeLinecap='round'
           cx='50'
           cy='50'
           r='40'
           fill='transparent'
-          stroke-dasharray='400 400'
-          stroke-dashoffset='calc(400 - (400 * 45) / 100)'
+          strokeDasharray='400 400'
+          strokeDashoffset='calc(400 - (400 * 45) / 100)'
         ></circle>
         <text
           x='50'
           y='50'
-          font-size='22'
-          text-anchor='middle'
-          alignment-baseline='middle'
+          fontSize='22'
+          textAnchor='middle'
+          alignmentBaseline='middle'
           fill='white'
           className='text-white'
         >

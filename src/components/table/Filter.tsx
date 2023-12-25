@@ -41,7 +41,7 @@ export default function Filter<T extends RowData>({
           setFilter(String(e.target.value));
         }}
         className={clsxm(
-          'block rounded-lg pl-9 pr-20 text-base shadow-sm transition duration-100',
+          'block rounded-lg pl-9 text-black-500 pr-20 text-base shadow-sm transition duration-100',
           'border-typo-primary focus:border-typo-primary focus:ring-0',
           'placeholder:text-typo-primary',
           'caret-warmPaleTaupe-900'

@@ -25,7 +25,7 @@ export interface User {
   };
   team_name: string | undefined;
   team_provinsi: string | undefined;
-  permission: 'all';
+  permission: 'authed';
 }
 
 export interface withToken {
