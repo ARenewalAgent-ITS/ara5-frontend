@@ -102,7 +102,7 @@ function TimelineCTF() {
           alt='timeline_title'
           height={62}
           width={376}
-          className='w-[90%] md:w-[30%]'
+          className='w-[70%] sm:w-[45%] md:w-[50%] lg:w-[40%] xl:w-[32%]'
         />
       </div>
 
@@ -110,7 +110,7 @@ function TimelineCTF() {
       <div className='lg:grid hidden grid-cols-7 text-center rounded-xl'>
         {timelines.map((timeline, id) => (
           <div
-            className='w-full h-full flex flex-col justify-center items-center z-50'
+            className='w-full h-full flex flex-col justify-center items-center z-30'
             key={id}
           >
             <div className='grid grid-rows-5 grid-flow-col gap-4 w-full'>

@@ -47,7 +47,7 @@ function Continuectf() {
           <PrizepoolSectionCtf />
         </div>
 
-        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] md:py-0 py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
+        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] md:pb-24 md:pt-64 py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
           <TimelineCTF />
         </div>
 
