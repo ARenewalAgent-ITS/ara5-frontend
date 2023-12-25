@@ -171,13 +171,13 @@ export default function ArloCard(props: TStatusCard) {
             <Typography
               variant='t'
               weight='bold'
-              className='text-white relative z-50 pt-5 pl-5 whitespace-pre-line'
+              className='text-white relative z-20 pt-5 pl-5 whitespace-pre-line'
             >
               {addNewLine(props.title, 23)}
             </Typography>
             <Typography
               variant='c14'
-              className='text-slate-100 relative z-50 pl-5'
+              className='text-slate-100 relative z-20 pl-5'
             >
               {props.caption}
             </Typography>

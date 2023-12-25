@@ -9,6 +9,7 @@ import { BiSpreadsheet } from 'react-icons/bi';
 import Button from '@/components/buttons/Button';
 import withAuth from '@/components/hoc/withAuth';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import SEO from '@/components/SEO';
 import ServerTable from '@/components/table/ServerTable';
 import {
@@ -26,6 +27,14 @@ import { buildPaginatedTableURL } from '@/lib/table';
 import useAuthStore from '@/store/useAuthStore';
 import { PaginatedApiResponse } from '@/types/api';
 import { AdminCTF } from '@/types/entities/events';
+
+interface VerificationStats {
+  successCount: number;
+  pendingCount: number;
+  failedCount: number;
+  verifiedPercent: number;
+  pendingPercent: number;
+}
 
 export default withAuth(DashboardAdmin, ['authed']);
 function DashboardAdmin() {
@@ -53,7 +62,7 @@ function DashboardAdmin() {
 
       queryData?.data.data;
     } catch (error) {
-      showToast('Berhasil memperbarui', DANGER_TOAST);
+      showToast('Gagal memperbarui', DANGER_TOAST);
       throw new Error();
     }
   };
@@ -121,8 +130,17 @@ function DashboardAdmin() {
     },
     {
       id: 'bukti_pembayaran',
-      accessorKey: 'pembayaran.bukti_pembayaran',
+      // accessorKey: 'pembayaran.bukti_pembayaran',
       header: 'Pembayaran',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://api.ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
+          >
+            {info.row.original.pembayaran.bukti_pembayaran}
+          </UnstyledLink>
+        </div>
+      ),
       size: 18,
     },
     {
@@ -214,6 +232,36 @@ function DashboardAdmin() {
     );
   };
 
+  const getVerificationStats = (data: AdminCTF[]): VerificationStats => {
+    const total = data.length;
+    const successCount = data.filter(
+      (item) => item.pembayaran.status.status === 'SUCCESS'
+    ).length;
+    const pendingCount = data.filter(
+      (item) => item.pembayaran.status.status === 'AWAITING VERIFICATION'
+    ).length;
+    const failedCount = data.filter(
+      (item) => item.pembayaran.status.status === 'FAILED'
+    ).length;
+
+    const verifiedPercent = Math.floor((successCount / total) * 100 || 0);
+    const pendingPercent = Math.floor(
+      ((pendingCount + failedCount) / total) * 100 || 0
+    );
+
+    return {
+      successCount,
+      pendingCount,
+      failedCount,
+      verifiedPercent,
+      pendingPercent,
+    };
+  };
+
+  const stats: VerificationStats = getVerificationStats(
+    queryData?.data?.data ?? []
+  );
+
   return (
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
@@ -271,15 +319,15 @@ function DashboardAdmin() {
               as='team-info'
               variant='green'
               title='Peserta Terverifikasi'
-              caption='35 tim'
-              addInfo={{ percent: 75 }}
+              caption={`${stats.successCount} tim`}
+              addInfo={{ percent: stats.verifiedPercent }}
             />
             <ArloCard
               as='team-info'
               variant='brown'
-              title='Peserta Belum Terverifikasi  '
-              caption='35 tim'
-              addInfo={{ percent: 75 }}
+              title='Peserta Belum Terverifikasi'
+              caption={`${stats.pendingCount + stats.failedCount} tim`}
+              addInfo={{ percent: stats.pendingPercent }}
             />
           </div>
 

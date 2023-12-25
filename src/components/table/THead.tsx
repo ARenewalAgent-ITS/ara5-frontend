@@ -31,7 +31,7 @@ export default function THead<T extends RowData>({
               key={header.id}
               scope='col'
               className={clsxm(
-                'mx-auto items-center py-3 text-left text-[20px] font-semibold capitalize',
+                'mx-auto items-center py-3 text-left md:text-[20px] font-semibold capitalize',
                 // !omitSort && header.column.getCanSort() ? 'pl-4' : 'pl-[30px]',
                 'row-span-2'
               )}
