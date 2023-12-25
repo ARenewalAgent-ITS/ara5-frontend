@@ -12,6 +12,7 @@ import NextImage from '@/components/NextImage';
 import ContactPersonCtf from '@/containers/ctfPage/ContactPersonCtf';
 import CtfFaqSection from '@/containers/ctfPage/CtfFaqSection';
 import PrizepoolSectionCtf from '@/containers/ctfPage/PrizepoolSectionCtf';
+import TimelineCTF from '@/containers/ctfPage/TimelineCTF';
 
 function Continuectf() {
   useEffect(() => {
@@ -33,7 +34,7 @@ function Continuectf() {
           alt='right'
           width={538}
           height={2374}
-          className='w-[30%] top-0 right-0 absolute'
+          className='w-[30%] absolute right-0 top-0'
         />
 
         <div className='bg-gradient-to-b from-[#F0F4D8] to-[#225B58] to-55%'>
@@ -46,7 +47,11 @@ function Continuectf() {
           <PrizepoolSectionCtf />
         </div>
 
-        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138]'>
+        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] md:pb-24 md:pt-64 py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
+          <TimelineCTF />
+        </div>
+
+        <div className='bg-[#0F2138]'>
           <div className='relative md:min-h-[80vh] h-auto sm:pt-24 lg:pt-48 pb-16'>
             <CtfFaqSection />
           </div>

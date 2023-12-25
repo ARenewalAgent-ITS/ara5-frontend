@@ -7,64 +7,88 @@ const timelines = [
   {
     title: 'Pendaftaran',
     br: 'Batch 1',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '18 Desember - 31 Desember 2023',
     image: '/svg/timeline/ctf/one.svg',
   },
   {
     title: 'Pendaftaran',
     br: 'Batch 2',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '1 Januari - 8 Januari 2024',
     image: '/svg/timeline/ctf/two.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 3',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Technical',
+    br: 'Meeting',
+    date: '26 Januari 2024',
     image: '/svg/timeline/ctf/three.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 4',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Warm Up',
+    br: '',
+    date: '27 Januari 2024',
     image: '/svg/timeline/ctf/four.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 5',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Penyisihan',
+    br: '',
+    date: '28 Januari 2024',
     image: '/svg/timeline/ctf/five.svg',
+  },
+  {
+    title: 'Pengumuman Finalis',
+    br: 'Penyisihan',
+    date: '31 Januari - 1 Februari 2024',
+    image: '/svg/timeline/ctf/six.svg',
+  },
+  {
+    title: 'Final &',
+    br: 'Awarding Night',
+    date: '24 Februari 2024',
+    image: '/svg/timeline/ctf/seven.svg',
   },
 ];
 const timelines_mobile = [
   {
     title: 'Pendaftaran',
     br: 'Batch 1',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '18 Desember - 31 Desember 2023',
     image: '/svg/timeline/ctf/one_r.svg',
   },
   {
     title: 'Pendaftaran',
     br: 'Batch 2',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '1 Januari - 8 Januari 2024',
     image: '/svg/timeline/ctf/two_r.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 3',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Technical',
+    br: 'Meeting',
+    date: '26 Januari 2024',
     image: '/svg/timeline/ctf/three_r.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 4',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Warm Up',
+    br: '',
+    date: '27 Januari 2024',
     image: '/svg/timeline/ctf/four_r.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 5',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Penyisihan',
+    br: '',
+    date: '28 Januari 2024',
     image: '/svg/timeline/ctf/five_r.svg',
+  },
+  {
+    title: 'Pengumuman Finalis',
+    br: 'Penyisihan',
+    date: '31 Januari - 1 Februari 2024',
+    image: '/svg/timeline/ctf/six_r.svg',
+  },
+  {
+    title: 'Final &',
+    br: 'Awarding Night',
+    date: '24 Februari 2024',
+    image: '/svg/timeline/ctf/seven_r.svg',
   },
 ];
 
@@ -72,21 +96,21 @@ function TimelineCTF() {
   return (
     <>
       {/* Timeline Title */}
-      <div className='!m-6'>
+      <div className='sm:pb-8 pb-4'>
         <NextImage
-          src={'/svg/timeline/olimp/timeline_title.svg'}
+          src={'/svg/timeline/ctf/timeline_title.svg'}
           alt='timeline_title'
           height={62}
           width={376}
-          className='w-[90%] md:w-[30%]'
-        ></NextImage>
+          className='w-[70%] sm:w-[45%] md:w-[50%] lg:w-[40%] xl:w-[32%]'
+        />
       </div>
 
       {/* Desktop */}
-      <div className='lg:grid hidden grid-cols-5 text-center bg-[#2e2e2e] rounded-xl p-6 !m-6'>
+      <div className='lg:grid hidden grid-cols-7 text-center rounded-xl'>
         {timelines.map((timeline, id) => (
           <div
-            className='w-full h-full flex flex-col justify-center items-center'
+            className='w-full h-full flex flex-col justify-center items-center z-30'
             key={id}
           >
             <div className='grid grid-rows-5 grid-flow-col gap-4 w-full'>
@@ -112,9 +136,16 @@ function TimelineCTF() {
                     <div className='relative w-full h-full flex justify-center items-center'>
                       <div
                         className={
-                          'h-3 w-full bg-[#F5FFB6] ' +
-                          (id === 0 ? 'rounded-l-full ' : 'rounded-none ') +
-                          (id === 4 ? 'rounded-r-full ' : 'rounded-none')
+                          'h-3 w-full ' +
+                          (id === 0
+                            ? 'bg-gradient-to-r from-transparent from-50% to-[#F5FFB6] to-50% '
+                            : '') +
+                          (id === 6
+                            ? 'bg-gradient-to-r from-[#F5FFB6] from-50% to-transparent to-50% '
+                            : '') +
+                          (id === 1 || id === 2 || id === 4
+                            ? 'bg-[#F5FFB6]'
+                            : '')
                         }
                       ></div>
                       <div className='absolute'>
@@ -169,12 +200,25 @@ function TimelineCTF() {
       </div>
 
       {/* Mobile */}
-      <div className='lg:hidden bg-[#2e2e2e] rounded-xl p-4 !m-4'>
+      <div className='lg:hidden rounded-xl'>
         {timelines_mobile.map((timeline_mobile, id) => (
           <div className='grid grid-cols-5 !h-[30vh]' key={id}>
             <div className='col-span-1'>
               <div className='relative w-full h-full flex justify-center items-center'>
-                <div className='w-3 h-full bg-[#F5FFB6] rounded-none'></div>
+                <div
+                  className={
+                    'w-3 h-full ' +
+                    (id === 0
+                      ? 'bg-gradient-to-b from-transparent from-50% to-[#F5FFB6] to-50% '
+                      : '') +
+                    (id === 6
+                      ? 'bg-gradient-to-b from-[#F5FFB6] from-50% to-transparent to-50% '
+                      : '') +
+                    (id === 1 || id === 2 || id === 3 || id === 4 || id === 5
+                      ? 'bg-[#F5FFB6] '
+                      : '')
+                  }
+                ></div>
                 <div className='absolute'>
                   <NextImage
                     src={timeline_mobile.image}
