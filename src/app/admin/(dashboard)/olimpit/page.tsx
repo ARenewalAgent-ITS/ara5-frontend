@@ -93,18 +93,26 @@ function DashboardAdmin() {
         <Tag
           size='small'
           color={
-            info.row.original.status === 'rejected'
-              ? 'label'
-              : info.row.original.status === null
+            info.row.original.status === 5
+              ? 'warning'
+              : info.row.original.status === 4
+              ? 'warning'
+              : info.row.original.status === 3
               ? 'danger'
+              : info.row.original.status === 2
+              ? 'warning'
               : 'success'
           }
         >
-          {info.row.original.status === null
-            ? 'Rejected'
-            : info.row.original.status !== null
-            ? 'Success'
-            : null}
+          {info.row.original.status === 5
+            ? 'Awaiting Payment'
+            : info.row.original.status === 4
+            ? 'Awaiting Verification'
+            : info.row.original.status === 3
+            ? 'Gagal'
+            : info.row.original.status === 2
+            ? 'Revisi'
+            : 'Success'}
         </Tag>
       ),
       size: 18,
@@ -251,16 +259,7 @@ function DashboardAdmin() {
 
           <ServerTable
             columns={columns}
-            // data={queryData?.data?.data || []}
             data={queryData?.data.data ?? []}
-            //   user?.permission === 'all'
-            //     ? queryData?.data?.data?.filter(
-            //       (item) => item.status === user?.divisiId
-            //     ) ?? []
-            //     : queryData?.data?.data?.filter(
-            //       (item) => item.status
-            //     ) ?? []
-            // }
             meta={queryData?.data.meta}
             tableState={tableState}
             setTableState={setTableState}

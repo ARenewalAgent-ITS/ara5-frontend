@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 import ButtonLink from '@/components/links/ButtonLink';
 import Typography from '@/components/Typography';
@@ -11,11 +12,25 @@ import type { Navigation } from '@/types/navigate';
 type NavigationProps = React.ComponentPropsWithoutRef<'nav'>;
 
 export default function Navigation({ className, ...rest }: NavigationProps) {
+  const [activeNavigation, setActiveNavigation] = useState<string | null>(
+    localStorage.getItem('activeNavigation') || null
+  );
+
+  useEffect(() => {
+    localStorage.setItem('activeNavigation', activeNavigation || '');
+  }, [activeNavigation]);
+
   return (
     <nav className={clsxm('', className)} {...rest}>
       <div className='space-y-1.5 mx-4'>
         {navigations.map((nav) => (
-          <NestedNavigation navigation={nav} key={nav.name} gen={0} />
+          <NestedNavigation
+            navigation={nav}
+            key={nav.name}
+            gen={0}
+            isActive={activeNavigation === nav.name}
+            setActiveNavigation={setActiveNavigation}
+          />
         ))}
       </div>
     </nav>
@@ -24,10 +39,14 @@ export default function Navigation({ className, ...rest }: NavigationProps) {
 
 function NestedNavigation({
   navigation: navChildren,
+  isActive,
   gen,
+  setActiveNavigation,
 }: {
   navigation: Navigation;
+  isActive: boolean;
   gen: number;
+  setActiveNavigation: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   function getChildrenPermission(nav?: Navigation[]) {
     return nav
@@ -36,6 +55,10 @@ function NestedNavigation({
         })
       : '';
   }
+
+  const handleButtonClick = () => {
+    setActiveNavigation(isActive ? null : navChildren.name);
+  };
 
   const { user } = useAuthStore();
   const navChildrenWithPermission = getChildrenPermission(navChildren.children);
@@ -52,12 +75,13 @@ function NestedNavigation({
     <>
       <ButtonLink
         href={navChildren.href}
+        onClick={handleButtonClick}
         className={clsx(
-          'md:hover:bg-primary-700',
-          'flex items-center justify-center gap-3',
-          'group flex w-full items-center px-6 py-2.5',
-          'bg-primary-600',
-          'focus-visible:ring-offset-secondary-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500'
+          'md:hover:bg-primary-600 group',
+          'items-center justify-center gap-3',
+          'flex w-full px-6 py-2.5',
+          'border-none',
+          `${isActive ? 'bg-primary-600' : 'bg-transparent'}`
         )}
         style={{ paddingLeft: gen > 0 ? `${24 * (gen + 1)}px` : '' }}
       >
@@ -65,15 +89,19 @@ function NestedNavigation({
           <navChildren.icon
             className={clsx(
               'flex-shrink-0',
-              'text-typo-white text-lg',
+              'group-hover:text-white text-lg',
+              `${isActive ? 'text-white' : 'text-whites-900'}`,
               'mt-[1px] self-start'
             )}
             aria-hidden='true'
           />
         )}
         <Typography
-          className={clsx('text-left font-primary font-semibold text-[14px]')}
-          color='white'
+          className={clsx(
+            'text-[14px] group-hover:text-white',
+            `${isActive ? 'text-white' : 'text-whites-900'}`
+          )}
+          weight='bold'
           font='poppins'
         >
           {navChildren.name}
