@@ -66,7 +66,7 @@ function LoginPage() {
 
       {
         user?.data?.role === 'ADMIN'
-          ? router.push('/admin/dashboard')
+          ? router.push('/admin/olimpit')
           : router.push('/');
       }
     })
