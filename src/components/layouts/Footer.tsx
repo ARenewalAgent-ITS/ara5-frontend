@@ -1,8 +1,13 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
+import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
+import { getToken } from '@/lib/cookies';
 import LogoItBnw from '~/img/footer/logo_it_bnw.png';
 import KotakNama from '~/svg/footer/kotak nama.svg';
 import LogoHmitBnw from '~/svg/footer/logo_hmit_bnw.svg';
@@ -40,18 +45,18 @@ const socialMedias: TSocialMedias[] = [
 const footerData: TFooterData[] = [
   {
     title: 'Our Events',
-    link_name: ['OlimpIT', 'Register', 'ARA 5.0'],
-    links: ['olimpit', 'register', 'about'],
+    link_name: ['OlimpIT', 'Register CTF', 'ARA 5.0'],
+    links: ['olimpit', 'ctf/register', 'about'],
   },
   {
     title: 'Quick Links',
-    link_name: ['Capture The Flag', 'Login', 'HMIT ITS'],
-    links: ['ctf', 'login', 'hmit-its'],
+    link_name: ['Capture The Flag', 'Register OlimpIT', 'HMIT ITS'],
+    links: ['ctf', 'olimpit/register', 'hmit-its'],
   },
   {
     title: 'About Us',
-    link_name: ['ExploIT'],
-    links: ['exploit'],
+    link_name: ['ExploIT', 'Login'],
+    links: ['exploit', 'login'],
   },
 ];
 
@@ -79,6 +84,17 @@ function SVG(props: LinkHeadline) {
 }
 
 export default function Footer() {
+  const [isLogin, setIsLogin] = useState(false);
+  const users = FetchUser();
+  const token = getToken();
+
+  useEffect(() => {
+    if (users !== undefined && token !== undefined) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [users, token]);
   return (
     <footer className='bg-[#393737] py-12 pb-8 flex flex-col overflow-hidden'>
       <div className='flex flex-col md:flex-row md:mx-auto md:gap-x-28 lg:justify-between lg:mx-0 md:px-6 lg:px-12 xl:px-20'>
@@ -125,19 +141,25 @@ export default function Footer() {
             ))}
           </div>
           <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
-            <SVG text='Quick Links' />
-            {footerData.map((link, idx) => (
-              <UnstyledLink href={`/${link.links[1]}`} key={idx}>
-                <Typography
-                  variant='bt'
-                  weight='medium'
-                  color='white'
-                  className='mt-3 font-poppins'
-                >
-                  {link.link_name[1]}
-                </Typography>
-              </UnstyledLink>
-            ))}
+            {isLogin ? (
+              <></>
+            ) : (
+              <>
+                <SVG text='Quick Links' />
+                {footerData.map((link, idx) => (
+                  <UnstyledLink href={`/${link.links[1]}`} key={idx}>
+                    <Typography
+                      variant='bt'
+                      weight='medium'
+                      color='white'
+                      className='mt-3 font-poppins'
+                    >
+                      {link.link_name[1]}
+                    </Typography>
+                  </UnstyledLink>
+                ))}
+              </>
+            )}
           </div>
           <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
             <SVG text='About Us' />

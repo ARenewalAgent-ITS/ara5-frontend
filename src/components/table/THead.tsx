@@ -16,10 +16,7 @@ export default function THead<T extends RowData>({
   ...rest
 }: THeadProps<T>) {
   return (
-    <thead
-      className={clsxm('bg-success-900 text-typo-white', className)}
-      {...rest}
-    >
+    <thead className={clsxm('bg-primary-600 text-white', className)} {...rest}>
       {table.getHeaderGroups().map((headerGroup) => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header, index) => (
@@ -34,7 +31,7 @@ export default function THead<T extends RowData>({
               key={header.id}
               scope='col'
               className={clsxm(
-                'mx-auto items-center py-3 text-left text-sm font-semibold capitalize',
+                'mx-auto items-center py-3 text-left md:text-[20px] font-semibold capitalize',
                 // !omitSort && header.column.getCanSort() ? 'pl-4' : 'pl-[30px]',
                 'row-span-2'
               )}

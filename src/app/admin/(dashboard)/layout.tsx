@@ -1,8 +1,7 @@
-// TESTING LAYOUT PAGE && EXAMPLE LAYOUT FOR ROUTE APP
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dashboard ComingSoon',
+  title: 'Dashboard Admin | A Renewal Agent 5.0',
   description: 'A RENEWAL AGENT 5.0',
 };
 

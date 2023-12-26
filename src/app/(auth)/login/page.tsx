@@ -8,22 +8,38 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
+import withAuth from '@/components/hoc/withAuth';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
 import { REG_EMAIL } from '@/constants/regex';
 import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
 import { setToken } from '@/lib/cookies';
+import {
+  getRememberedEmail,
+  getRememberedPassword,
+  removeRememberedCredentials,
+  setRememberedCredentials,
+} from '@/lib/cookies';
+import useAuthStore from '@/store/useAuthStore';
 import { ApiReturn } from '@/types/api';
 import { loginForm } from '@/types/entities/login';
 import { User } from '@/types/entities/user';
 
-export default function LoginPage() {
+export default withAuth(LoginPage, ['all']);
+
+function LoginPage() {
   const methods = useForm<loginForm>({
     mode: 'onTouched',
+    defaultValues: {
+      email: getRememberedEmail() || '',
+      password: getRememberedPassword() || '',
+      remember: false,
+    },
   });
   const { handleSubmit } = methods;
   const router = useRouter();
+  const { login } = useAuthStore();
 
   const { mutate: loginMutation, isLoading } = useMutationToast<
     void,
@@ -35,14 +51,27 @@ export default function LoginPage() {
       setToken(token);
 
       const user = await api.get<ApiReturn<User>>('/auth/me');
+      // console.log(user?.data?.data);
 
-      if (!user.data.data) {
+      if (user?.data?.data === undefined) {
         throw new Error('Sesi login tidak valid');
       }
+      login({ ...user.data.data, token: token });
 
-      router.push('/');
+      if (data.remember) {
+        setRememberedCredentials(data.email, data.password);
+      } else {
+        removeRememberedCredentials();
+      }
+
+      {
+        user?.data?.role === 'ADMIN'
+          ? router.push('/admin/olimpit')
+          : router.push('/');
+      }
     })
   );
+
   const onSubmit = (data: loginForm) => {
     loginMutation({
       email: data.email,
@@ -124,7 +153,7 @@ export default function LoginPage() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                {!isLoading ? 'Login' : 'Loading...'}
+                {!isLoading ? 'Login' : 'Logging in...'}
               </Typography>
             </Button>
             <Typography

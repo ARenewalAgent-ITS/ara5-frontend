@@ -15,16 +15,19 @@ export type UninterceptedApiError = {
 };
 
 type PaginateData<Data> = {
-  totalPendaftar: number;
-  content: Data;
-  metadata: {
-    page: number;
-    maxPage: number;
+  status: string | undefined;
+  data: Data;
+  meta: {
+    currentPage: number;
+    lastPage: number;
+    perPage: number;
+    prev: null;
+    next: null;
+    total: number;
   };
 };
 
 export interface PaginatedApiResponse<DataType> {
-  code: number;
-  success: string;
+  status: string | undefined;
   data: PaginateData<DataType>;
 }

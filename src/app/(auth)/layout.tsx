@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
 
+import UnstyledLink from '@/components/links/UnstyledLink';
+
 export const metadata: Metadata = {
   title: 'Login | A Renewal Agent 5.0',
   description: 'A RENEWAL AGENT 5.0',
@@ -26,13 +28,15 @@ export default function AuthLayout({
         </div>
       </section>
       <main className='md:px-16 lg:px-14 xl:px-20 2xl:px-24 px-4 py-6 w-full lg:w-1/3 xl:w-[35%] min-h-screen flex flex-col justify-center'>
-        <Image
-          src={'/svg/auth/logo.svg'}
-          alt='logo ARA'
-          width={71}
-          height={33}
-          className='absolute top-5 left-5 lg:top-8 lg:left-8 lg:w-[96px]'
-        />
+        <UnstyledLink href='/'>
+          <Image
+            src={'/svg/auth/logo.svg'}
+            alt='logo ARA'
+            width={71}
+            height={33}
+            className='absolute top-5 left-5 lg:top-8 lg:left-8 lg:w-[96px]'
+          />
+        </UnstyledLink>
         {children}
       </main>
     </div>
