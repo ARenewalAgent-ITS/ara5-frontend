@@ -217,11 +217,30 @@ function DashboardAdmin() {
     getCsv(
       data.map((items) => {
         return {
-          id: items.id,
-          nama_team: items.team_name,
-          'Team Fixed': items.pembayaran.status.status
-            ? items.event
-            : 'Olimpiade IT',
+          id: items?.id,
+          Nama_Team: items?.team_name,
+          Account_Id: items?.account_id,
+          Provinsi: items?.team_provinsi_id,
+          Kabupaten: items?.team_kabupaten_id,
+          Events: items?.event,
+          Asal_Institusi: items?.asal_institusi,
+          No_wa_ketua: items?.no_wa_ketua,
+          Email_ketua: items?.email_ketua,
+          Discord: items?.discord_ketua,
+          Nama_ketua: items?.nama_ketua,
+          KTP_ketua: items?.ktp_ketua,
+          Anggota1: items?.nama_anggota1,
+          Ktp_anggota1: items?.ktp_anggota1,
+          Anggota2: items?.nama_anggota2,
+          Ktp_anggota2: items?.ktp_anggota2,
+          Pembayaran_ID: items?.pembayaran_id,
+          Kupon_ID: items?.kupon_id,
+          Bukti_Follow: items?.bukti_follow,
+          Bukti_Repost: items?.bukti_repost,
+          Write_UP_CTF: items?.Write_up_ctf,
+          Bukti_Pembayaran: items?.pembayaran?.bukti_pembayaran,
+          List_Bank: items?.pembayaran?.list_bank?.bank,
+          Status_Pembayaran: items?.pembayaran?.status?.status,
         };
       }),
       fileName
