@@ -7,31 +7,31 @@ const timelines = [
   {
     title: 'Pendaftaran',
     br: 'Batch 1',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '18 Desember 2023 - 31 Desember 2023',
     image: '/svg/timeline/olimp/one.svg',
   },
   {
     title: 'Pendaftaran',
     br: 'Batch 2',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '1 Januari 2024 - 18 Januari 2024',
     image: '/svg/timeline/olimp/two.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 3',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Technical',
+    br: 'Meeting',
+    date: '21 Januari 2024',
     image: '/svg/timeline/olimp/three.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 4',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Babak',
+    br: 'Penyisihan',
+    date: '27 Januari 2024',
     image: '/svg/timeline/olimp/four.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 5',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Babak',
+    br: 'Babak FInal',
+    date: '7 Februari 2024',
     image: '/svg/timeline/olimp/five.svg',
   },
 ];
@@ -39,31 +39,31 @@ const timelines_mobile = [
   {
     title: 'Pendaftaran',
     br: 'Batch 1',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '18 Desember 2023 - 31 Desember 2023',
     image: '/svg/timeline/olimp/one_r.svg',
   },
   {
     title: 'Pendaftaran',
     br: 'Batch 2',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    date: '1 Januari 2024 - 18 Januari 2024',
     image: '/svg/timeline/olimp/two_r.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 3',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Technical',
+    br: 'Meeting',
+    date: '21 Januari 2024',
     image: '/svg/timeline/olimp/three_r.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 4',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Babak',
+    br: 'Penyisihan',
+    date: '27 Januari 2024',
     image: '/svg/timeline/olimp/four_r.svg',
   },
   {
-    title: 'Pendaftaran',
-    br: 'Batch 5',
-    date: '12 Desember 2023 - 12 Januari 2023',
+    title: 'Babak',
+    br: 'Babak FInal',
+    date: '7 Februari 2024',
     image: '/svg/timeline/olimp/five_r.svg',
   },
 ];
@@ -72,21 +72,21 @@ function TimelineOlimp() {
   return (
     <>
       {/* Timeline Title */}
-      <div className=''>
+      <div className='sm:pb-8 pb-4'>
         <NextImage
           src={'/svg/timeline/olimp/timeline_title.svg'}
           alt='timeline_title'
           height={62}
           width={376}
-          className='w-[90%] md:w-[30%]'
+          className='w-[70%] sm:w-[45%] md:w-[50%] lg:w-[40%] xl:w-[32%]'
         />
       </div>
 
       {/* Desktop */}
-      <div className='lg:grid hidden grid-cols-5 text-center bg-[#2e2e2e] rounded-xl p-6 z-50'>
+      <div className='lg:grid hidden grid-cols-5 text-center rounded-xl'>
         {timelines.map((timeline, id) => (
           <div
-            className='w-full h-full flex flex-col justify-center items-center'
+            className='w-full h-full flex flex-col justify-center items-center z-30'
             key={id}
           >
             <div className='grid grid-rows-5 grid-flow-col gap-4 w-full'>
@@ -112,9 +112,14 @@ function TimelineOlimp() {
                     <div className='relative w-full h-full flex justify-center items-center'>
                       <div
                         className={
-                          'h-3 w-full bg-[#BAE3D5] ' +
-                          (id === 0 ? 'rounded-l-full ' : 'rounded-none ') +
-                          (id === 4 ? 'rounded-r-full ' : 'rounded-none')
+                          'h-3 w-full ' +
+                          (id === 0
+                            ? 'bg-gradient-to-r from-transparent from-50% to-[#BAE3D5] to-50% '
+                            : '') +
+                          (id === 4
+                            ? 'bg-gradient-to-r from-[#BAE3D5] from-50% to-transparent to-50% '
+                            : '') +
+                          (id === 2 ? 'bg-[#BAE3D5]' : '')
                         }
                       ></div>
                       <div className='absolute'>
@@ -169,12 +174,23 @@ function TimelineOlimp() {
       </div>
 
       {/* Mobile */}
-      <div className='lg:hidden bg-[#2e2e2e] rounded-xl p-4 !m-4'>
+      <div className='lg:hidden rounded-xl'>
         {timelines_mobile.map((timeline_mobile, id) => (
           <div className='grid grid-cols-5 !h-[30vh]' key={id}>
             <div className='col-span-1'>
               <div className='relative w-full h-full flex justify-center items-center'>
-                <div className='w-3 h-full bg-[#BAE3D5] rounded-none'></div>
+                <div
+                  className={
+                    'w-3 h-full ' +
+                    (id === 0
+                      ? 'bg-gradient-to-b from-transparent from-50% to-[#BAE3D5] to-50% '
+                      : '') +
+                    (id === 4
+                      ? 'bg-gradient-to-b from-[#BAE3D5] from-50% to-transparent to-50% '
+                      : '') +
+                    (id === 1 || id === 2 || id === 3 ? 'bg-[#BAE3D5] ' : '')
+                  }
+                ></div>
                 <div className='absolute'>
                   <NextImage
                     src={timeline_mobile.image}
