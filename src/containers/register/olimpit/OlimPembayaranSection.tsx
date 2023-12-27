@@ -273,6 +273,7 @@ export default function OlimPembayaranSection() {
               validation={{
                 required: 'Bukti Pembayaran cannot be empty',
               }}
+              helperText='Please ensure the file size does not exceed 1 MB.'
             />
           </form>
         </FormProvider>
