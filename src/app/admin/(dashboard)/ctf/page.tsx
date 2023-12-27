@@ -38,6 +38,15 @@ interface VerificationStats {
 
 export default withAuth(DashboardAdmin, ['authed']);
 function DashboardAdmin() {
+  const [selectedStatus, setSelectedStatus] = React.useState<string>('');
+
+  const handleStatusSelectChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const newStatus = e.target.value;
+    setSelectedStatus(newStatus);
+  };
+
   const getStatusNumber = (status: string): number => {
     switch (status) {
       case 'SUCCESS':
@@ -130,7 +139,6 @@ function DashboardAdmin() {
     },
     {
       id: 'bukti_pembayaran',
-      // accessorKey: 'pembayaran.bukti_pembayaran',
       header: 'Pembayaran',
       cell: (info) => (
         <div className='flex justify-center'>
@@ -354,19 +362,34 @@ function DashboardAdmin() {
 
           <ServerTable
             columns={columns}
-            data={queryData?.data.data ?? []}
-            // data={
-            //   user?.permission === 'authed'
-            //     ? queryData?.data.data ?? []
-            //     : queryData?.data.data.filter(
-            //       (item) => item.pembayaran.status.status
-            //     ) ?? []
-            // }
+            data={
+              queryData?.data.data
+                ? selectedStatus === 'SUCCESS'
+                  ? queryData?.data.data.filter(
+                      (item) => item?.pembayaran?.status?.status === 'SUCCESS'
+                    )
+                  : selectedStatus === 'FAILED'
+                  ? queryData?.data.data.filter(
+                      (item) => item?.pembayaran?.status?.status === 'FAILED'
+                    )
+                  : selectedStatus === 'AWAITING VERIFICATION'
+                  ? queryData?.data.data.filter(
+                      (item) =>
+                        item?.pembayaran?.status?.status ===
+                        'AWAITING VERIFICATION'
+                    )
+                  : selectedStatus === ''
+                  ? queryData?.data.data
+                  : []
+                : []
+            }
             meta={queryData?.data.meta}
             tableState={tableState}
             setTableState={setTableState}
             withFilter={true}
             className='text-center text-white font-poppins'
+            selectedStatus={selectedStatus}
+            handleStatusSelectChange={handleStatusSelectChange}
           />
         </div>
       </section>

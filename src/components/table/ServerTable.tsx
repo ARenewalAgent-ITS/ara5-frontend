@@ -37,6 +37,8 @@ type ServerTableProps<T extends object> = {
   setTableState: SetServerTableState;
   omitSort?: boolean;
   withFilter?: boolean;
+  selectedStatus: string;
+  handleStatusSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function ServerTable<T extends object>({
@@ -50,6 +52,8 @@ export default function ServerTable<T extends object>({
   setTableState,
   omitSort = false,
   withFilter = false,
+  selectedStatus,
+  handleStatusSelectChange,
   ...rest
 }: ServerTableProps<T>) {
   // const [globalFilter, setGlobalFilter] = React.useState('');
@@ -78,6 +82,20 @@ export default function ServerTable<T extends object>({
         {withFilter && <Filter table={table} />}
         <div className='flex items-center gap-3'>
           {Header}
+          <div>
+            <select
+              value={selectedStatus}
+              onChange={handleStatusSelectChange}
+              className='text-whites-900 rounded-md'
+            >
+              <option value=''>All</option>
+              <option value='SUCCESS'>Success</option>
+              <option value='FAILED'>Failed</option>
+              <option value='AWAITING VERIFICATION'>
+                Awaiting Verification
+              </option>
+            </select>
+          </div>
           <TOption
             value={table.getState().pagination.pageSize}
             onChange={(e) => {

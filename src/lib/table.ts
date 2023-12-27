@@ -1,5 +1,4 @@
-// import queryString, { StringifyOptions } from 'query-string';
-import { StringifyOptions } from 'query-string';
+import queryString, { StringifyOptions } from 'query-string';
 
 import { ServerTableState } from '@/hooks/useServerTable';
 type BuildPaginationTableParam = {
@@ -11,35 +10,38 @@ type BuildPaginationTableParam = {
    */
   option?: StringifyOptions;
   additionalParam?: Record<string, unknown>;
+  status?: string;
 };
 type BuildPaginationTableURL = (props: BuildPaginationTableParam) => string;
 
 export const buildPaginatedTableURL: BuildPaginationTableURL = ({
   baseUrl,
-  // tableState,
-  // option,
-  // additionalParam,
+  tableState,
+  option,
+  additionalParam,
+  status,
 }) => {
-  // const queryParams = queryString.stringify(
-  //   {
-  //     per_page: tableState.pagination.pageSize,
-  //     page: tableState.pagination.pageIndex + 1,
-  //     sortby: tableState.sorting.length > 0 ? tableState.sorting[0].id : '',
-  //     type:
-  //       tableState.sorting.length > 0
-  //         ? tableState.sorting[0].desc
-  //           ? 'desc'
-  //           : 'asc'
-  //         : '',
-  //     filter: tableState.globalFilter,
-  //     ...additionalParam,
-  //   },
-  //   {
-  //     arrayFormat: 'bracket',
-  //     skipEmptyString: true,
-  //     ...option,
-  //   }
-  // );
+  const queryParams = queryString.stringify(
+    {
+      per_page: tableState.pagination.pageSize,
+      page: tableState.pagination.pageIndex + 1,
+      sortby: tableState.sorting.length > 0 ? tableState.sorting[0].id : '',
+      type:
+        tableState.sorting.length > 0
+          ? tableState.sorting[0].desc
+            ? 'desc'
+            : 'asc'
+          : '',
+      filter: tableState.globalFilter,
+      status,
+      ...additionalParam,
+    },
+    {
+      arrayFormat: 'bracket',
+      skipEmptyString: true,
+      ...option,
+    }
+  );
 
-  return `${baseUrl}`;
+  return `${baseUrl}?${queryParams}`;
 };
