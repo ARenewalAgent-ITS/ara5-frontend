@@ -31,3 +31,11 @@ export interface PaginatedApiResponse<DataType> {
   status: string | undefined;
   data: PaginateData<DataType>;
 }
+
+export type CustomAxiosError = {
+  response?: {
+    data: {
+      message: string;
+    };
+  };
+} & Error;
