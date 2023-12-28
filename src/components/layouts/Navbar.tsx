@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Fragment } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaRegTimesCircle } from 'react-icons/fa';
+import { FaCircleUser } from 'react-icons/fa6';
 import { LuLogOut } from 'react-icons/lu';
 
 import Button from '@/components/buttons/Button';
@@ -298,26 +299,19 @@ function Navbar() {
                       </Menu.Items>
                     </Transition>
                   </Menu>
-                  {/* <UnstyledLink href='/register'>
-                <Image
-                  src={Register}
-                  alt='register'
-                  className='w-[7rem] hover:mt-[-5px]'
-                />
-              </UnstyledLink> */}
                 </div>
               </>
             ) : (
               <>
                 <div className='flex flex-col items-center'>
                   <div className='flex justify-between items-center'>
-                    {users && users.data.length > 0 ? (
+                    {users && users?.data !== null ? (
                       <Typography className='font-extrabold capitalize text-secondary-900 text-[18px]'>
                         Hi, {users.data[0].team_name}
                       </Typography>
                     ) : (
-                      <Typography className='font-extrabold text-Secondary-900 text-[18px]'>
-                        Hi, Guest
+                      <Typography className='font-extrabold capitalize text-secondary-900 text-[18px]'>
+                        Hi, guest
                       </Typography>
                     )}
                   </div>
@@ -329,20 +323,24 @@ function Navbar() {
                   <Menu.Button>
                     {({ open }) => (
                       <div className='flex lg:gap-2 gap-1.5 items-center'>
-                        {users?.data[0]?.event === 'CTF' ? (
+                        {users?.data !== null &&
+                        users?.data[0]?.event === 'CTF' ? (
                           <NextImage
                             src={'/svg/landpage/profile_ctf.svg'}
                             alt='image profile'
                             width={50}
                             height={50}
                           />
-                        ) : (
+                        ) : users?.data !== null &&
+                          users?.data[0]?.event === 'Olim' ? (
                           <NextImage
                             src={'/svg/landpage/profile_olimp.svg'}
                             alt='image profile'
                             width={50}
                             height={50}
                           />
+                        ) : (
+                          <FaCircleUser className='text-whites-900 w-[50px] h-[50px]' />
                         )}
                         <FaCaretDown
                           className={clsxm(
@@ -370,7 +368,11 @@ function Navbar() {
                       )}
                     >
                       <UnstyledLink
-                        href={users?.role === 'TEAM' ? '/dashboard' : '/admin'}
+                        href={
+                          users?.role === 'TEAM'
+                            ? '/dashboard'
+                            : '/admin/olimpit'
+                        }
                         className={clsxm(
                           'px-[22px] py-3 flex justify-center text-sm rounded-t-md font-medium hover:bg-[#393737]'
                         )}
@@ -386,10 +388,10 @@ function Navbar() {
                           </div>
                         </Menu.Item>
                       </UnstyledLink>
-                      <Button
+                      <div
                         onClick={handleLogout}
                         className={clsxm(
-                          'px-[22px] py-4 flex justify-center text-sm bg-[#525252] rounded-b-md font-medium hover:bg-[#393737]'
+                          'px-[22px] py-3 flex justify-center text-sm bg-[#525252] rounded-b-md font-medium hover:bg-[#393737]'
                         )}
                       >
                         <Menu.Item as='button' className='flex justify-center'>
@@ -403,7 +405,7 @@ function Navbar() {
                             </Typography>
                           </div>
                         </Menu.Item>
-                      </Button>
+                      </div>
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -552,25 +554,27 @@ function Navbar() {
           ) : (
             <>
               <div className='flex flex-col items-center'>
-                {users?.data[0]?.event === 'CTF' ? (
+                {users?.data !== null && users?.data[0]?.event === 'CTF' ? (
                   <NextImage
                     src={'/svg/landpage/profile_ctf_mobile.svg'}
                     alt='image profile'
                     width={100}
                     height={100}
-                    className='my-6'
+                    className='mt-6 mb-4'
                   />
-                ) : (
+                ) : users?.data !== null && users?.data[0]?.event === 'Olim' ? (
                   <NextImage
                     src={'/svg/landpage/profile_olimp_mobile.svg'}
                     alt='image profile'
                     width={100}
                     height={100}
-                    className='my-6'
+                    className='mt-6 mb-4'
                   />
+                ) : (
+                  <FaCircleUser className='text-whites-900 w-[100px] h-[100px] my-4' />
                 )}
                 <div className='flex justify-between items-center'>
-                  {users && users.data.length > 0 ? (
+                  {users && users?.data !== null ? (
                     <Typography className='font-extrabold text-white text-[18px]'>
                       Hi, {users.data[0].team_name}
                     </Typography>
@@ -583,7 +587,9 @@ function Navbar() {
               </div>
               <div className='mt-5 w-[100%] text-[#ffffff] font-bold text-[18px]'>
                 <UnstyledLink
-                  href={users?.role === 'TEAM' ? '/dashboard' : '/admin'}
+                  href={
+                    users?.role === 'TEAM' ? '/dashboard' : '/admin/olimpit'
+                  }
                   className='text-center'
                 >
                   <div className='p-2 bg-[#00B8FF] rounded-md'>Dashboard</div>
