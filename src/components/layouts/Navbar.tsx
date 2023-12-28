@@ -8,11 +8,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Fragment } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaRegTimesCircle } from 'react-icons/fa';
-import { FaCircleUser } from 'react-icons/fa6';
 import { LuLogOut } from 'react-icons/lu';
 
 import Button from '@/components/buttons/Button';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
@@ -329,7 +329,21 @@ function Navbar() {
                   <Menu.Button>
                     {({ open }) => (
                       <div className='flex lg:gap-2 gap-1.5 items-center'>
-                        <FaCircleUser className='text-[50px] text-whites-1100' />
+                        {users?.data[0]?.event === 'CTF' ? (
+                          <NextImage
+                            src={'/svg/landpage/profile_ctf.svg'}
+                            alt='image profile'
+                            width={50}
+                            height={50}
+                          />
+                        ) : (
+                          <NextImage
+                            src={'/svg/landpage/profile_olimp.svg'}
+                            alt='image profile'
+                            width={50}
+                            height={50}
+                          />
+                        )}
                         <FaCaretDown
                           className={clsxm(
                             'text-[24px] text-whites-1100 transition ease-in-out duration-200',
@@ -418,7 +432,7 @@ function Navbar() {
         <div>
           <UnstyledLink
             href='/'
-            className='mt-[3rem] flex justify-center items-center'
+            className='mt-[1.5rem] flex justify-center items-center'
           >
             <Image src={LogoSVG} alt='svg' className='w-36' />
           </UnstyledLink>
@@ -538,8 +552,23 @@ function Navbar() {
           ) : (
             <>
               <div className='flex flex-col items-center'>
-                <FaCircleUser className='text-[72px] text-white my-6' />
-                {/* <BiSolidUserCircle className='text-[100px] text-white' /> */}
+                {users?.data[0]?.event === 'CTF' ? (
+                  <NextImage
+                    src={'/svg/landpage/profile_ctf_mobile.svg'}
+                    alt='image profile'
+                    width={100}
+                    height={100}
+                    className='my-6'
+                  />
+                ) : (
+                  <NextImage
+                    src={'/svg/landpage/profile_olimp_mobile.svg'}
+                    alt='image profile'
+                    width={100}
+                    height={100}
+                    className='my-6'
+                  />
+                )}
                 <div className='flex justify-between items-center'>
                   {users && users.data.length > 0 ? (
                     <Typography className='font-extrabold text-white text-[18px]'>
@@ -663,7 +692,7 @@ function Navbar() {
         <div className='relative w-full flex justify-center'>
           <FaRegTimesCircle
             onClick={toggle4}
-            className='cursor-pointer text-[40px] text-white fixed sm:-bottom-80 sm:mb-2 bottom-16'
+            className='cursor-pointer text-[40px] text-white fixed sm:-bottom-80 sm:mb-5 bottom-16'
           />
         </div>
       </div>

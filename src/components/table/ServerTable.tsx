@@ -37,6 +37,8 @@ type ServerTableProps<T extends object> = {
   setTableState: SetServerTableState;
   omitSort?: boolean;
   withFilter?: boolean;
+  selectedStatus: string;
+  handleStatusSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function ServerTable<T extends object>({
@@ -50,6 +52,8 @@ export default function ServerTable<T extends object>({
   setTableState,
   omitSort = false,
   withFilter = false,
+  selectedStatus,
+  handleStatusSelectChange,
   ...rest
 }: ServerTableProps<T>) {
   // const [globalFilter, setGlobalFilter] = React.useState('');
@@ -78,6 +82,20 @@ export default function ServerTable<T extends object>({
         {withFilter && <Filter table={table} />}
         <div className='flex items-center gap-3'>
           {Header}
+          <div>
+            <select
+              value={selectedStatus}
+              onChange={handleStatusSelectChange}
+              className='text-whites-900 rounded-md'
+            >
+              <option value=''>All</option>
+              <option value='SUCCESS'>Success</option>
+              <option value='FAILED'>Failed</option>
+              <option value='AWAITING VERIFICATION'>
+                Awaiting Verification
+              </option>
+            </select>
+          </div>
           <TOption
             value={table.getState().pagination.pageSize}
             onChange={(e) => {
@@ -93,8 +111,8 @@ export default function ServerTable<T extends object>({
         </div>
       </div>
       <div className='-my-2 -mx-4 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-[180vw]'>
-          <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-xl'>
+        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-[280vw]'>
+          <div className='overflow-hidden shadow ring-1 ring-black-500 ring-opacity-5 rounded-xl'>
             <table className='min-w-full divide-y divide-primary-100'>
               <colgroup>
                 {table.getAllColumns().map((column) => (
