@@ -111,8 +111,8 @@ export default function ServerTable<T extends object>({
         </div>
       </div>
       <div className='-my-2 -mx-4 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-[180vw]'>
-          <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-xl'>
+        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-[280vw]'>
+          <div className='overflow-hidden shadow ring-1 ring-black-500 ring-opacity-5 rounded-xl'>
             <table className='min-w-full divide-y divide-primary-100'>
               <colgroup>
                 {table.getAllColumns().map((column) => (

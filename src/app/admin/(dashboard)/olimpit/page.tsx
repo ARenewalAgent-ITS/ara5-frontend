@@ -96,6 +96,12 @@ function DashboardAdmin() {
       size: 18,
     },
     {
+      id: 'event',
+      accessorKey: 'event',
+      header: 'Events',
+      size: 18,
+    },
+    {
       id: 'asal_institusi',
       accessorKey: 'asal_institusi',
       header: 'Institusi',
@@ -120,15 +126,57 @@ function DashboardAdmin() {
       size: 18,
     },
     {
+      id: 'ktp_ketua',
+      header: 'KTP Ketua',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://api.ara-its.id/uploads/olim/${info.row.original.ktp_ketua}`}
+          >
+            {info.row.original.ktp_ketua}
+          </UnstyledLink>
+        </div>
+      ),
+      size: 18,
+    },
+    {
       id: 'nama_anggota1',
       accessorKey: 'nama_anggota1',
       header: 'Anggota 1',
       size: 18,
     },
     {
+      id: 'ktp_anggota1',
+      header: 'KTP Anggota 1',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://api.ara-its.id/uploads/olim/${info.row.original.ktp_anggota1}`}
+          >
+            {info.row.original.ktp_anggota1}
+          </UnstyledLink>
+        </div>
+      ),
+      size: 18,
+    },
+    {
       id: 'nama_anggota2',
       accessorKey: 'nama_anggota2',
       header: 'Anggota 2',
+      size: 18,
+    },
+    {
+      id: 'ktp_anggota2',
+      header: 'KTP Anggota 2',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://api.ara-its.id/uploads/olim/${info.row.original.ktp_anggota2}`}
+          >
+            {info.row.original.ktp_anggota2}
+          </UnstyledLink>
+        </div>
+      ),
       size: 18,
     },
     {
@@ -140,6 +188,34 @@ function DashboardAdmin() {
             href={`https://api.ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
           >
             {info.row.original.pembayaran.bukti_pembayaran}
+          </UnstyledLink>
+        </div>
+      ),
+      size: 18,
+    },
+    {
+      id: 'bukti_follow',
+      header: 'Bukti Follow',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://api.ara-its.id/uploads/persyaratan/${info.row.original.bukti_follow}`}
+          >
+            {info.row.original.bukti_follow}
+          </UnstyledLink>
+        </div>
+      ),
+      size: 18,
+    },
+    {
+      id: 'bukti_repost',
+      header: 'Bukti Repost',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://api.ara-its.id/uploads/persyaratan/${info.row.original.bukti_repost}`}
+          >
+            {info.row.original.bukti_repost}
           </UnstyledLink>
         </div>
       ),
@@ -234,7 +310,6 @@ function DashboardAdmin() {
           Asal_Institusi: items?.asal_institusi,
           No_wa_ketua: items?.no_wa_ketua,
           Email_ketua: items?.email_ketua,
-          Discord: items?.discord_ketua,
           Nama_ketua: items?.nama_ketua,
           KTP_ketua: items?.ktp_ketua,
           Anggota1: items?.nama_anggota1,
