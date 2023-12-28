@@ -11,30 +11,19 @@ import clsxm from '@/lib/clsxm';
 
 export default function RegisterOlimp() {
   const [isRegisterStep, setIsRegisterStep] = React.useState(true);
-  const [isRegistrationCompleted, setIsRegistrationCompleted] =
-    React.useState(false);
-  const [isAtLastStep, setIsAtLastStep] = React.useState(false);
 
   const router = useRouter();
   const handleBack = () => {
     router.back();
   };
 
-  const goToNextStep = () => {
-    if (isRegistrationCompleted) {
-      setIsRegisterStep(false);
-      setIsAtLastStep(true);
-    }
-  };
   const handleRegistrationComplete = () => {
-    setIsRegistrationCompleted(true);
     setIsRegisterStep(false);
   };
 
   const goToPreviousStep = () => {
-    if (!isRegisterStep && isRegistrationCompleted) {
+    if (!isRegisterStep) {
       setIsRegisterStep(true);
-      setIsAtLastStep(false);
     }
   };
 
@@ -55,18 +44,15 @@ export default function RegisterOlimp() {
             onClick={goToPreviousStep}
             className={clsxm(
               'hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer',
-              !isRegisterStep && isRegistrationCompleted
-                ? ''
-                : 'opacity-50 cursor-not-allowed'
+              !isRegisterStep ? '' : 'opacity-50 cursor-not-allowed'
             )}
           >
             <FaArrowLeft className='text-whites-1100 w-[13.5px]' />
           </div>
           <div
-            onClick={goToNextStep}
             className={clsxm(
               'hidden items-center justify-center lg:flex w-10 h-10 rounded-full border-2 border-whites-1100 cursor-pointer',
-              isAtLastStep ? 'opacity-50 cursor-not-allowed' : ''
+              'opacity-50 cursor-not-allowed'
             )}
           >
             <FaArrowRight className='text-whites-1100 w-[13.5px]' />
