@@ -5,7 +5,6 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Button from '@/components/buttons/Button';
-import CounterInput from '@/components/form/CounterInput';
 import DropzoneInput from '@/components/form/DropzoneInput';
 import Input from '@/components/form/Input';
 import SelectInput from '@/components/form/SelectInput';
@@ -24,7 +23,6 @@ interface OlimRegisterSectionProps {
 export default function OlimRegisterSection({
   onNextStep,
 }: OlimRegisterSectionProps) {
-  const [peopleCount, setPeopleCount] = React.useState(0);
   const [selectedProvinsiId, setSelectedProvinsiId] = React.useState<
     null | number
   >(null);
@@ -69,14 +67,6 @@ export default function OlimRegisterSection({
       getKabupaten(selectedProvinsiId);
     }
   }, [selectedProvinsiId, getKabupaten]);
-
-  const handleIncrement = () => {
-    setPeopleCount((prevCount) => (prevCount < 2 ? prevCount + 1 : prevCount));
-  };
-
-  const handleDecrement = () => {
-    setPeopleCount((prevCount) => (prevCount > 0 ? prevCount - 1 : prevCount));
-  };
 
   const onSubmit = (data: TRegisterOlim) => {
     setOlimFormData(data);
@@ -273,55 +263,28 @@ export default function OlimRegisterSection({
                   },
                 }}
               />
-              <CounterInput
-                count={peopleCount}
-                onIncrement={handleIncrement}
-                onDecrement={handleDecrement}
+              <Input
+                id='nama_anggota_1'
+                label='Nama Anggota 1'
+                placeholder='Masukkan nama anggota 1'
+                validation={{
+                  required: 'Nama Anggota cannot be empty',
+                  pattern: {
+                    value: /^[A-Za-z0-9 ]+$/,
+                    message: 'Only alphanumeric characters are allowed',
+                  },
+                }}
               />
-              {peopleCount >= 1 && (
-                <>
-                  <Input
-                    id='nama_anggota_1'
-                    label='Nama Anggota 1'
-                    placeholder='Masukkan nama anggota 1'
-                    validation={{
-                      pattern: {
-                        value: /^[A-Za-z0-9 ]+$/,
-                        message: 'Only alphanumeric characters are allowed',
-                      },
-                    }}
-                  />
-                  <DropzoneInput
-                    id='ktp_anggota_1'
-                    label='Kartu Tanda Pelajar Anggota 1'
-                    accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
-                    className={clsxm('bg-whites-100')}
-                    helperText='Please ensure the file size does not exceed 1 MB.'
-                  />
-                </>
-              )}
-              {peopleCount >= 2 && (
-                <>
-                  <Input
-                    id='nama_anggota_2'
-                    label='Nama Anggota 2'
-                    placeholder='Masukkan nama anggota 2'
-                    validation={{
-                      pattern: {
-                        value: /^[A-Za-z0-9 ]+$/,
-                        message: 'Only alphanumeric characters are allowed',
-                      },
-                    }}
-                  />
-                  <DropzoneInput
-                    id='ktp_anggota_2'
-                    label='Kartu Tanda Pelajar Anggota 2'
-                    accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
-                    className={clsxm('bg-whites-100')}
-                    helperText='Please ensure the file size does not exceed 1 MB.'
-                  />
-                </>
-              )}
+              <DropzoneInput
+                id='ktp_anggota_1'
+                label='Kartu Tanda Pelajar Anggota 1'
+                accept={{ 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                className={clsxm('bg-whites-100')}
+                helperText='Please ensure the file size does not exceed 1 MB.'
+                validation={{
+                  required: 'Kartu Tanda Pelajar Ketua cannot be empty',
+                }}
+              />
             </div>
             <Button
               type='submit'

@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -10,10 +11,10 @@ import Input from '@/components/form/Input';
 import SelectInput from '@/components/form/SelectInput';
 import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
-import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { useRegisterStore } from '@/store/useRegisterStore';
+import { ApiError, CustomAxiosError } from '@/types/api';
 import { TPembayaran, TReferal } from '@/types/entities/pembayaran';
 import { TRegisterOlim } from '@/types/entities/register';
 
@@ -50,18 +51,30 @@ export default function OlimPembayaranSection() {
           'Content-Type': 'multipart/form-data',
         },
       });
-    } catch (error) {
-      throw new Error('Terjadi kesalahan dalam register data');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
     }
   };
-  const { mutate: register } = useMutationToast<void, TRegisterOlim | FormData>(
-    useMutation(postRegister, {
-      onSuccess: () => {
-        showToast('You have successfully registered!', SUCCESS_TOAST);
-        router.push('/olimpit');
-      },
-    })
-  );
+
+  const { mutate: register } = useMutation(postRegister, {
+    onSuccess: () => {
+      showToast('You have successfully registered!', SUCCESS_TOAST);
+      router.push('/olimpit');
+    },
+    onError: (error: CustomAxiosError) => {
+      if (error.response) {
+        showToast(error.response.data.message, DANGER_TOAST);
+      } else {
+        showToast('An unknown error occurred', DANGER_TOAST);
+      }
+    },
+  });
 
   const registData = new FormData();
   registData.append('event', olimFormData.event);
@@ -273,6 +286,7 @@ export default function OlimPembayaranSection() {
               validation={{
                 required: 'Bukti Pembayaran cannot be empty',
               }}
+              helperText='Please ensure the file size does not exceed 1 MB.'
             />
           </form>
         </FormProvider>

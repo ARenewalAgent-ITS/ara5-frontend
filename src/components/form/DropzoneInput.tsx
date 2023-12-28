@@ -10,6 +10,7 @@ import { FaRegFileLines } from 'react-icons/fa6';
 import { GoUpload } from 'react-icons/go';
 
 import Button from '@/components/buttons/Button';
+import ErrorMessage from '@/components/form/ErrorMessage';
 import FilePreview from '@/components/form/FilePreview';
 import HelperText from '@/components/form/HelperText';
 import Typography from '@/components/Typography';
@@ -210,6 +211,7 @@ export default function DropzoneInput({
         )}
       />
 
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
       {!error && helperText && <HelperText>{helperText}</HelperText>}
     </div>
   );

@@ -225,6 +225,7 @@ export default function CtfPembayaranSection() {
               validation={{
                 required: 'Bukti Pembayaran cannot be empty',
               }}
+              helperText='Please ensure the file size does not exceed 1 MB.'
             />
             <Button
               type='submit'
