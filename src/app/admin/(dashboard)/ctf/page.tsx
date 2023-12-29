@@ -9,7 +9,7 @@ import { BiSpreadsheet } from 'react-icons/bi';
 import Button from '@/components/buttons/Button';
 import withAuth from '@/components/hoc/withAuth';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout';
-import UnstyledLink from '@/components/links/UnstyledLink';
+import ButtonLink from '@/components/links/ButtonLink';
 import SEO from '@/components/SEO';
 import ServerTable from '@/components/table/ServerTable';
 import {
@@ -136,11 +136,12 @@ function DashboardAdmin() {
       header: 'KTP Ketua',
       cell: (info) => (
         <div className='flex justify-center'>
-          <UnstyledLink
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
             href={`https://api.ara-its.id/uploads/ctf/${info.row.original.ktp_ketua}`}
           >
-            {info.row.original.ktp_ketua}
-          </UnstyledLink>
+            KTP Ketua
+          </ButtonLink>
         </div>
       ),
       size: 18,
@@ -156,11 +157,12 @@ function DashboardAdmin() {
       header: 'KTP Anggota 1',
       cell: (info) => (
         <div className='flex justify-center'>
-          <UnstyledLink
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
             href={`https://api.ara-its.id/uploads/ctf/${info.row.original.ktp_anggota1}`}
           >
-            {info.row.original.ktp_anggota1}
-          </UnstyledLink>
+            KTP Anggota 1
+          </ButtonLink>
         </div>
       ),
       size: 18,
@@ -176,11 +178,12 @@ function DashboardAdmin() {
       header: 'KTP Anggota 2',
       cell: (info) => (
         <div className='flex justify-center'>
-          <UnstyledLink
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
             href={`https://api.ara-its.id/uploads/ctf/${info.row.original.ktp_anggota2}`}
           >
-            {info.row.original.ktp_anggota2}
-          </UnstyledLink>
+            KTP Anggota 2
+          </ButtonLink>
         </div>
       ),
       size: 18,
@@ -190,11 +193,12 @@ function DashboardAdmin() {
       header: 'Pembayaran',
       cell: (info) => (
         <div className='flex justify-center'>
-          <UnstyledLink
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
             href={`https://api.ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
           >
-            {info.row.original.pembayaran.bukti_pembayaran}
-          </UnstyledLink>
+            Bukti Pembayaran
+          </ButtonLink>
         </div>
       ),
       size: 18,
@@ -204,11 +208,12 @@ function DashboardAdmin() {
       header: 'Bukti Follow',
       cell: (info) => (
         <div className='flex justify-center'>
-          <UnstyledLink
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
             href={`https://api.ara-its.id/uploads/persyaratan//${info.row.original.bukti_follow}`}
           >
-            {info.row.original.bukti_follow}
-          </UnstyledLink>
+            Bukti Follow
+          </ButtonLink>
         </div>
       ),
       size: 18,
@@ -218,11 +223,12 @@ function DashboardAdmin() {
       header: 'Bukti Repost',
       cell: (info) => (
         <div className='flex justify-center'>
-          <UnstyledLink
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
             href={`https://api.ara-its.id/uploads/persyaratan//${info.row.original.bukti_repost}`}
           >
-            {info.row.original.bukti_repost}
-          </UnstyledLink>
+            Bukti Repost
+          </ButtonLink>
         </div>
       ),
       size: 18,

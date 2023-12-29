@@ -78,7 +78,7 @@ export default function ServerTable<T extends object>({
 
   return (
     <div className={clsxm('flex flex-col', className)} {...rest}>
-      <div className='flex flex-col items-stretch gap-3 sm:flex-row sm:justify-between'>
+      <div className='flex flex-col items-stretch gap-3 md:flex-row md:justify-between '>
         {withFilter && <Filter table={table} />}
         <div className='flex items-center gap-3'>
           {Header}
@@ -111,7 +111,7 @@ export default function ServerTable<T extends object>({
         </div>
       </div>
       <div className='-my-2 -mx-4 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-[280vw]'>
+        <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-auto'>
           <div className='overflow-hidden shadow ring-1 ring-black-500 ring-opacity-5 rounded-xl'>
             <table className='min-w-full divide-y divide-primary-100'>
               <colgroup>

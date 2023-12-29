@@ -49,8 +49,10 @@ export default function TBody<T extends RowData>({
                   key={cell.id}
                   as='td'
                   title={cell.getValue() as string}
-                  className='truncate whitespace-nowrap py-4 px-3 text-[12px]'
-                  style={{ maxWidth: cell.column.getSize() }}
+                  className={clsxm(
+                    'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]',
+                    'border-2 border-primary-500'
+                  )}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </Typography>

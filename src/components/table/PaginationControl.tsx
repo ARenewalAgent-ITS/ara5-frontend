@@ -42,8 +42,8 @@ export default function PaginationControl<T extends RowData>({
       <div className='flex gap-1'>
         <Button
           className={clsxm(
-            'flex min-w-[38px] justify-center rounded-md bg-typo-white text-black-900 drop-shadow-sm border-typo-outline border !p-2 !font-semibold ',
-            'disabled:bg-typo-white disabled:hover:bg-typo-white hover:bg-slate-100 active:bg-slate-200'
+            'flex min-w-[38px] justify-center rounded-md bg-primary-600 text-white drop-shadow-sm border-typo-outline border !p-2 !font-semibold ',
+            'disabled:bg-primary-300 disabled:hover:text-white hover:bg-primary-800 active:bg-primary-900'
           )}
           disabled={!table.getCanPreviousPage()}
           onClick={() => table.previousPage()}
@@ -54,9 +54,9 @@ export default function PaginationControl<T extends RowData>({
           <Button
             key={index}
             className={clsxm(
-              'flex min-w-[38px] justify-center rounded-md bg-white text-black-900 drop-shadow-sm border-typo-outline border !p-2 !font-semibold hover:bg-slate-100 active:bg-slate-700',
+              'flex min-w-[38px] justify-center rounded-md bg-white text-black-900 drop-shadow-sm border-typo-outline border !p-2 !font-semibold hover:bg-slate-100 active:bg-primary-900',
               currentPage === page &&
-                'text-typo-white bg-typo-secondary hover:bg-typo-primary hover:text-typo-surface'
+                'text-typo-white bg-primary-500 hover:bg-primary-700 hover:text-typo-surface'
             )}
             onClick={() => handlePageControlClick(page)}
           >
@@ -66,8 +66,8 @@ export default function PaginationControl<T extends RowData>({
         <Button
           color='basic'
           className={clsxm(
-            'flex min-w-[38px] justify-center rounded-md bg-typo-white text-black-900 drop-shadow-sm border-typo-outline border !p-2 !font-semibold',
-            'disabled:bg-typo-white disabled:hover:bg-typo-white hover:bg-slate-100 active:bg-slate-200'
+            'flex min-w-[38px] justify-center rounded-md bg-primary-600 text-white drop-shadow-sm border-typo-outline border !p-2 !font-semibold ',
+            'disabled:bg-primary-300 disabled:hover:text-white hover:bg-primary-800 active:bg-primary-900'
           )}
           disabled={
             !table.getCanNextPage() ||
