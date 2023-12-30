@@ -72,7 +72,9 @@ export default function withAuth<T>(
 
       if (
         !isAuthed ||
-        (user && !permissions.every((p) => user.permission.includes(p)))
+        (user &&
+          user.permission &&
+          !permissions.every((p) => user.permission.includes(p)))
       ) {
         router.replace('/login');
         showToast('Anda tidak memiliki akses ke halaman ini', DANGER_TOAST);

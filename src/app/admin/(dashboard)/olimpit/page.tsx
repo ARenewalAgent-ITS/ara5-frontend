@@ -36,7 +36,7 @@ interface VerificationStats {
   pendingPercent: number;
 }
 
-export default withAuth(DashboardAdmin, ['authed']);
+export default withAuth(DashboardAdmin, ['ADMIN']);
 function DashboardAdmin() {
   const [selectedStatus, setSelectedStatus] = React.useState<string>('');
 
