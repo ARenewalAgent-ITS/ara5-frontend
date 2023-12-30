@@ -11,7 +11,7 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
   // timeout: 30000,
-  timeoutErrorMessage: 'Periksa Kembali Koneksi Internet Anda.',
+  // timeoutErrorMessage: 'Periksa Kembali Koneksi Internet Anda.',
   withCredentials: false,
 });
 
