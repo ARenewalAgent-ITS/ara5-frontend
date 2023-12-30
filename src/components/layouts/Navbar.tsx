@@ -326,7 +326,7 @@ function Navbar() {
                         {users?.data !== null &&
                         users?.data[0]?.event === 'CTF' ? (
                           <NextImage
-                            src={'/svg/landpage/profile_ctf.svg'}
+                            src={'/images/landpage/profile_ctf.png'}
                             alt='image profile'
                             width={50}
                             height={50}
@@ -334,7 +334,7 @@ function Navbar() {
                         ) : users?.data !== null &&
                           users?.data[0]?.event === 'Olim' ? (
                           <NextImage
-                            src={'/svg/landpage/profile_olimp.svg'}
+                            src={'/images/landpage/profile_olimp.png'}
                             alt='image profile'
                             width={50}
                             height={50}
@@ -370,7 +370,7 @@ function Navbar() {
                       <UnstyledLink
                         href={
                           users?.role === 'TEAM'
-                            ? '/dashboard'
+                            ? '/dashboard/user'
                             : '/admin/olimpit'
                         }
                         className={clsxm(
@@ -556,7 +556,7 @@ function Navbar() {
               <div className='flex flex-col items-center'>
                 {users?.data !== null && users?.data[0]?.event === 'CTF' ? (
                   <NextImage
-                    src={'/svg/landpage/profile_ctf_mobile.svg'}
+                    src={'/images/landpage/profile_ctf_mobile.png'}
                     alt='image profile'
                     width={100}
                     height={100}
@@ -564,7 +564,7 @@ function Navbar() {
                   />
                 ) : users?.data !== null && users?.data[0]?.event === 'Olim' ? (
                   <NextImage
-                    src={'/svg/landpage/profile_olimp_mobile.svg'}
+                    src={'/images/landpage/profile_olimp_mobile.png'}
                     alt='image profile'
                     width={100}
                     height={100}
@@ -588,7 +588,9 @@ function Navbar() {
               <div className='mt-5 w-[100%] text-[#ffffff] font-bold text-[18px]'>
                 <UnstyledLink
                   href={
-                    users?.role === 'TEAM' ? '/dashboard' : '/admin/olimpit'
+                    users?.role === 'TEAM'
+                      ? '/dashboard/user'
+                      : '/admin/olimpit'
                   }
                   className='text-center'
                 >

@@ -43,6 +43,6 @@ export const userNavigations: Navigation[] = [
     href: '/',
     exactMatch: true,
     icon: FaGlobe,
-    permissions: ['authed'],
+    permissions: ['ADMIN'],
   },
 ];

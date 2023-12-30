@@ -296,12 +296,12 @@ function DashboardAdmin() {
   const downloadCsv = async () => {
     const response = await fetchPendaftar();
     const fileName =
-      user?.permission === 'authed' ? 'Data Pendaftar CTF' : undefined;
+      user?.permission === 'ADMIN' ? 'Data Pendaftar CTF' : undefined;
 
     const data =
-      user?.permission === 'authed'
+      user?.permission === 'ADMIN'
         ? response?.data.data.data.filter(
-            (item) => item.pembayaran.status.status === user?.team_name
+            (item) => item.pembayaran.status.status === user?.[0]?.team_name
           ) ?? []
         : response?.data.data.data.filter(
             (item) => item.pembayaran.status.status
