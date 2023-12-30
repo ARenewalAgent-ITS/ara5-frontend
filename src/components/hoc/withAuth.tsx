@@ -15,11 +15,11 @@ import Loading from '../Loading';
 
 async function getUser() {
   const res = await api.get<ApiReturn<User>>('/auth/me');
-  return res.data.data;
+  return res;
 }
 
 type WithAuthProps = {
-  user: User;
+  user: User[] | null;
 };
 
 export default function withAuth<T>(
@@ -47,7 +47,7 @@ export default function withAuth<T>(
 
       try {
         const newUser = await getUser();
-        login({ ...newUser, token });
+        login({ ...newUser.data.data, token });
       } catch {
         logout();
       } finally {
@@ -65,9 +65,25 @@ export default function withAuth<T>(
       if (
         isLoading ||
         permissions.includes('all') ||
-        (permissions.includes('authed') && isAuthed)
+        (permissions.includes('USER') && isAuthed)
       ) {
         return;
+      }
+      // console.log(user?.[0]?.team_name);
+      // console.log(permissions.includes('ADMIN'));
+
+      if (
+        isAuthed &&
+        user?.[0]?.team_name === undefined &&
+        permissions.includes('ADMIN')
+      ) {
+        return;
+      }
+
+      if (isAuthed && user?.[0]?.team_name !== undefined) {
+        router.replace('/dashboard/user');
+        showToast('Anda tidak memiliki akses ke halaman ini', DANGER_TOAST);
+        window.sessionStorage.setItem('redirected', 'true');
       }
 
       if (

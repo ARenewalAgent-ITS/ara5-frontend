@@ -1,8 +1,8 @@
 enum PermissionEnum {
   'all',
-  'authed',
+  'optional',
+  'USER',
   'ADMIN',
-  'SUPERADMIN',
 }
 
 export type PermissionList = Array<keyof typeof PermissionEnum>;
