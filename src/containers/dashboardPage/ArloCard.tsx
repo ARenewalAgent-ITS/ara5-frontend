@@ -2,6 +2,7 @@ import { FaDiscord, FaWhatsapp } from 'react-icons/fa';
 import { IoMdDownload } from 'react-icons/io';
 
 import IconButton from '@/components/buttons/Button';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 
@@ -60,38 +61,44 @@ function TeamCorner(props: TAdditionalInfo) {
 
 function LinkCorner(props: TAdditionalInfo) {
   const renderButton = () => {
-    if (props.buttonType == 'download')
+    if (props.buttonType == 'download' && props.link)
       return (
-        <IconButton
-          variant='outline-primary'
-          className='absolute bottom-5 left-5 font-bold text-white border-white'
-          rightIcon={IoMdDownload}
-          size='base'
-        >
-          Download
-        </IconButton>
+        <UnstyledLink href={props.link}>
+          <IconButton
+            variant='outline-primary'
+            className='absolute bottom-5 left-5 px-3 py-1 font-bold text-white border-white'
+            rightIcon={IoMdDownload}
+            size='base'
+          >
+            Download
+          </IconButton>
+        </UnstyledLink>
       );
-    if (props.buttonType == 'wa')
+    if (props.buttonType == 'wa' && props.link)
       return (
-        <IconButton
-          variant='outline-primary'
-          className='absolute bottom-5 left-5 font-bold text-white border-white'
-          rightIcon={FaWhatsapp}
-          size='base'
-        >
-          Whatsapp
-        </IconButton>
+        <UnstyledLink href={props.link}>
+          <IconButton
+            variant='outline-primary'
+            className='absolute bottom-5 left-5 px-3 py-1 font-bold text-white border-white'
+            rightIcon={FaWhatsapp}
+            size='base'
+          >
+            Whatsapp
+          </IconButton>
+        </UnstyledLink>
       );
-    if (props.buttonType == 'dc')
+    if (props.buttonType == 'dc' && props.link)
       return (
-        <IconButton
-          variant='outline-primary'
-          className='absolute bottom-5 left-5 font-bold text-white border-white'
-          rightIcon={FaDiscord}
-          size='base'
-        >
-          Discord
-        </IconButton>
+        <UnstyledLink href={props.link}>
+          <IconButton
+            variant='outline-primary'
+            className='absolute bottom-5 left-5 font-bold text-white border-white'
+            rightIcon={FaDiscord}
+            size='base'
+          >
+            Discord
+          </IconButton>
+        </UnstyledLink>
       );
   };
   return <>{renderButton()}</>;
@@ -171,13 +178,13 @@ export default function ArloCard(props: TStatusCard) {
             <Typography
               variant='t'
               weight='bold'
-              className='text-white relative z-20 pt-5 pl-5 whitespace-pre-line'
+              className='text-white text-[20px] leading-[24px] relative z-20 pt-5 pl-5 whitespace-pre-line'
             >
               {addNewLine(props.title, 23)}
             </Typography>
             <Typography
               variant='c14'
-              className='text-slate-100 relative z-20 pl-5'
+              className='text-slate-100 text-[14px] leading-[24px] relative z-20 pl-5'
             >
               {props.caption}
             </Typography>
