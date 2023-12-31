@@ -74,15 +74,15 @@
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "^10.4.16",
     "eslint-config-next": "^13.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.0",
-    "postcss": "^8.4.20",
+    "postcss": "^8.4.32",
     "prettier": "^2.8.1",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.4.0"
   }
 }
