@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { useState } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
-import { IoIosArrowDown } from 'react-icons/io';
 
 interface ProductData {
   id: number;
