@@ -23,7 +23,7 @@ export const buildPaginatedTableURL: BuildPaginationTableURL = ({
 }) => {
   const queryParams = queryString.stringify(
     {
-      per_page: tableState.pagination.pageSize,
+      perPage: tableState.pagination.pageSize,
       page: tableState.pagination.pageIndex + 1,
       sortby: tableState.sorting.length > 0 ? tableState.sorting[0].id : '',
       type:

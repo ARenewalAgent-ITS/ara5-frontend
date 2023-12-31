@@ -51,7 +51,7 @@ export default function TBody<T extends RowData>({
                   title={cell.getValue() as string}
                   className={clsxm(
                     'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]',
-                    'border-2 border-primary-500'
+                    'border-2 border-primary-700'
                   )}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

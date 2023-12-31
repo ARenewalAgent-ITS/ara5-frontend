@@ -33,7 +33,8 @@ export default function THead<T extends RowData>({
               className={clsxm(
                 'mx-auto items-center py-3 text-left md:text-[20px] font-semibold capitalize',
                 // !omitSort && header.column.getCanSort() ? 'pl-4' : 'pl-[30px]',
-                'row-span-2'
+                'row-span-2',
+                'border-2 border-primary-700'
               )}
             >
               {header.isPlaceholder ? null : (
