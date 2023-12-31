@@ -6,8 +6,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import * as React from 'react';
+import { FiSearch, FiXCircle } from 'react-icons/fi';
 
-import Filter from '@/components/table/Filter';
 import PaginationControl from '@/components/table/PaginationControl';
 import TBody from '@/components/table/TBody';
 import THead from '@/components/table/THead';
@@ -39,6 +39,8 @@ type ServerTableProps<T extends object> = {
   withFilter?: boolean;
   selectedStatus: string;
   handleStatusSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  searchValue: string;
+  onSearchChange: (value: string) => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function ServerTable<T extends object>({
@@ -54,10 +56,17 @@ export default function ServerTable<T extends object>({
   withFilter = false,
   selectedStatus,
   handleStatusSelectChange,
+  searchValue,
+  onSearchChange,
   ...rest
 }: ServerTableProps<T>) {
   // const [globalFilter, setGlobalFilter] = React.useState('');
   const columnResizeMode = 'onEnd';
+
+  const handleClearFilter = () => {
+    table.setGlobalFilter('');
+    onSearchChange('');
+  };
 
   const table = useReactTable({
     data,
@@ -78,9 +87,38 @@ export default function ServerTable<T extends object>({
 
   return (
     <div className={clsxm('flex flex-col', className)} {...rest}>
-      <div className='flex flex-col items-stretch gap-3 md:flex-row md:justify-between '>
-        {withFilter && <Filter table={table} />}
-        <div className='flex items-center gap-3'>
+      <div className='flex flex-col items-stretch gap-3 xl:flex-row xl:justify-between '>
+        {withFilter && (
+          <div className={clsxm('relative mt-1 self-start', className)}>
+            <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
+              <FiSearch className='text-[1.125rem] text-black-500' />
+            </div>
+            <input
+              type='text'
+              value={searchValue}
+              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder='Cari Tim'
+              className={clsxm(
+                'block rounded-lg pl-9 text-black-500 pr-20 text-base shadow-sm transition duration-100',
+                'border-typo-primary focus:border-typo-primary focus:ring-0',
+                'placeholder:text-typo-primary',
+                'caret-warmPaleTaupe-900'
+              )}
+            />
+            {searchValue !== '' && (
+              <div className='absolute inset-y-0 right-0 flex items-center pr-3'>
+                <button
+                  type='button'
+                  onClick={handleClearFilter}
+                  className='p-1'
+                >
+                  <FiXCircle className='text-xl text-black-400' />
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+        <div className='flex items-center gap-3 max-sm:flex-col max-sm:items-start'>
           {Header}
           <div>
             <select

@@ -36,8 +36,25 @@ interface VerificationStats {
   pendingPercent: number;
 }
 
+interface ServerTableState {
+  globalFilter: string;
+}
+
+interface SetServerTableState {
+  (state: React.SetStateAction<ServerTableState>): void;
+}
+
 export default withAuth(DashboardAdmin, ['ADMIN']);
 function DashboardAdmin() {
+  const [tableStates, setTableStates]: [ServerTableState, SetServerTableState] =
+    React.useState({
+      globalFilter: '',
+    });
+
+  const handleSearchInputChange = (value: string) => {
+    setTableStates((prev) => ({ ...prev, globalFilter: value }));
+  };
+
   const [selectedStatus, setSelectedStatus] = React.useState<string>('');
 
   const handleStatusSelectChange = (
@@ -132,7 +149,7 @@ function DashboardAdmin() {
         <div className='flex justify-center'>
           <ButtonLink
             className='bg-primary-500 text-white hover:bg-primary-700'
-            href={`https://api.ara-its.id/uploads/olim/${info.row.original.ktp_ketua}`}
+            href={`https://ara-its.id/uploads/olim/${info.row.original.ktp_ketua}`}
           >
             KTP Ketua
           </ButtonLink>
@@ -153,7 +170,7 @@ function DashboardAdmin() {
         <div className='flex justify-center'>
           <ButtonLink
             className='bg-primary-500 text-white hover:bg-primary-700'
-            href={`https://api.ara-its.id/uploads/olim/${info.row.original.ktp_anggota1}`}
+            href={`https://ara-its.id/uploads/olim/${info.row.original.ktp_anggota1}`}
           >
             KTP Anggota 1
           </ButtonLink>
@@ -174,7 +191,7 @@ function DashboardAdmin() {
         <div className='flex justify-center'>
           <ButtonLink
             className='bg-primary-500 text-white hover:bg-primary-700'
-            href={`https://api.ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
+            href={`https://ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
           >
             Bukti Pembayaran
           </ButtonLink>
@@ -189,7 +206,7 @@ function DashboardAdmin() {
         <div className='flex justify-center'>
           <ButtonLink
             className='bg-primary-500 text-white hover:bg-primary-700'
-            href={`https://api.ara-its.id/uploads/persyaratan/${info.row.original.bukti_follow}`}
+            href={`https://ara-its.id/uploads/persyaratan/${info.row.original.bukti_follow}`}
           >
             Bukti Follow
           </ButtonLink>
@@ -204,7 +221,7 @@ function DashboardAdmin() {
         <div className='flex justify-center'>
           <ButtonLink
             className='bg-primary-500 text-white hover:bg-primary-700'
-            href={`https://api.ara-its.id/uploads/persyaratan/${info.row.original.bukti_repost}`}
+            href={`https://ara-its.id/uploads/persyaratan/${info.row.original.bukti_repost}`}
           >
             Bukti Repost
           </ButtonLink>
@@ -269,7 +286,7 @@ function DashboardAdmin() {
 
   const { mutateAsync: fetchPendaftar, isLoading: fetchPendaftarIsLoading } =
     useMutation<AxiosResponse<PaginatedApiResponse<AdminOlimp[]>>, Error>(() =>
-      api.get(baseUrl)
+      api.get(baseUrl + '?page=1&perPage=100000')
     );
 
   const downloadCsv = async () => {
@@ -424,23 +441,16 @@ function DashboardAdmin() {
             columns={columns}
             data={
               queryData?.data.data
-                ? selectedStatus === 'SUCCESS'
-                  ? queryData?.data.data.filter(
-                      (item) => item?.pembayaran?.status?.status === 'SUCCESS'
-                    )
-                  : selectedStatus === 'FAILED'
-                  ? queryData?.data.data.filter(
-                      (item) => item?.pembayaran?.status?.status === 'FAILED'
-                    )
-                  : selectedStatus === 'AWAITING VERIFICATION'
-                  ? queryData?.data.data.filter(
-                      (item) =>
-                        item?.pembayaran?.status?.status ===
-                        'AWAITING VERIFICATION'
-                    )
-                  : selectedStatus === ''
-                  ? queryData?.data.data
-                  : []
+                ? queryData?.data.data.filter((item) => {
+                    if (
+                      selectedStatus &&
+                      item?.pembayaran?.status?.status !== selectedStatus
+                    ) {
+                      return false;
+                    }
+                    const searchValue = tableStates.globalFilter.toLowerCase();
+                    return item?.team_name.toLowerCase().includes(searchValue);
+                  })
                 : []
             }
             meta={queryData?.data.meta}
@@ -450,6 +460,8 @@ function DashboardAdmin() {
             className='text-center text-white font-poppins'
             selectedStatus={selectedStatus}
             handleStatusSelectChange={handleStatusSelectChange}
+            searchValue={tableStates.globalFilter}
+            onSearchChange={handleSearchInputChange}
           />
         </div>
       </section>
