@@ -111,7 +111,7 @@ export default function CountDownCTFS() {
           font='poppins'
           className='mt-4 pb-8 text-center justify-center text-[20px] text-whites-100'
         >
-          31 Desember 2023
+          18 Januari 2024
         </Typography>
       </div>
     </>
