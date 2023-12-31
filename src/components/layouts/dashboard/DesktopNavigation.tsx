@@ -8,6 +8,7 @@ import { FaCircleUser } from 'react-icons/fa6';
 
 import Navigation from '@/components/layouts/dashboard/Navigation';
 import Typography from '@/components/Typography';
+import { FetchUser } from '@/hooks/navbarMutation';
 import useAuthStore from '@/store/useAuthStore';
 
 export default function DesktopNavigation() {
@@ -17,6 +18,10 @@ export default function DesktopNavigation() {
     logout();
     router.replace('/');
   };
+
+  const users = FetchUser();
+  const role = users?.role;
+  const username = users?.data[0].team_name;
 
   return (
     <div className='hidden lg:fixed lg:inset-y-0 lg:flex lg:w-80 lg:flex-col bg-typo-white border-2 border-r-whites-800 lg:pt-10 lg:pb-4'>
@@ -37,7 +42,7 @@ export default function DesktopNavigation() {
             weight='bold'
             font='poppins'
           >
-            Admin ARA
+            {role === 'TEAM' ? username : 'Admin ARA'}
           </Typography>
         </div>
       </div>

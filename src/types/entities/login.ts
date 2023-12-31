@@ -19,6 +19,7 @@ export interface UserLogin {
   discord_ketua: string | undefined;
   email_ketua: string | undefined;
   event: string | undefined;
+  pembayaran_id: string | undefined;
   ketua: {
     ktp_ketua: string | undefined;
     nama_ketua: string | undefined;

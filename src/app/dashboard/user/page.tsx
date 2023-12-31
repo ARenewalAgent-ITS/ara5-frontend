@@ -14,16 +14,16 @@ import { UserLogin } from '@/types/entities/login';
 export default withAuth(DashboardUser, ['authed']);
 
 function DashboardUser() {
-  const res = useQuery<ApiReturn<UserLogin[]>>({
+  const { data: res, refetch: refetchData } = useQuery<ApiReturn<UserLogin[]>>({
     queryKey: ['/auth/me'],
     staleTime: Infinity,
   });
-  const userData = res.data?.data[0];
+  const userData = res?.data[0];
   const event = userData?.event;
 
   return (
     <DashboardLayout>
-      <section className='dashboard-layout bg-[#FDFDFD]'>
+      <section className='dashboard-layout bg-typo-surface'>
         <div className='min-h-screen flex flex-col gap-6 px-2 md:px-4 py-6 pb-20'>
           <div className='mb-1 md:mb-4 mx-auto md:mx-0'>
             <Typography
@@ -106,9 +106,12 @@ function DashboardUser() {
           </div>
           <div className='w-full h-full flex mt-5 justify-center md:justify-start gap-6 md:gap-9 mx-auto'>
             {userData ? (
-              <BerkasPendaftaran userData={userData} />
+              <BerkasPendaftaran
+                userData={userData}
+                refetchData={refetchData}
+              />
             ) : (
-              <BerkasPendaftaran />
+              <BerkasPendaftaran refetchData={refetchData} />
             )}
           </div>
         </div>
