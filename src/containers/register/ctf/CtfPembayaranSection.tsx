@@ -56,7 +56,7 @@ export default function CtfPembayaranSection() {
   const { mutate: register, isLoading } = useMutation(postRegister, {
     onSuccess: () => {
       showToast('You have successfully registered!', SUCCESS_TOAST);
-      router.push('/olimpit');
+      router.push('/ctf');
     },
     onError: (error: CustomAxiosError) => {
       if (error.response) {
