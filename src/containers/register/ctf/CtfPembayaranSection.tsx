@@ -1,18 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
 import DropzoneInput from '@/components/form/DropzoneInput';
 import SelectInput from '@/components/form/SelectInput';
-import { showToast, SUCCESS_TOAST } from '@/components/Toast';
+import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
-import useMutationToast from '@/hooks/useMutationToast';
 import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { useRegisterStore } from '@/store/useRegisterStore';
+import { ApiError, CustomAxiosError } from '@/types/api';
 import { TPembayaran } from '@/types/entities/pembayaran';
 import { TRegisterOlim } from '@/types/entities/register';
 
@@ -25,6 +27,7 @@ type BankDetails = {
 export default function CtfPembayaranSection() {
   const { ctfFormData } = useRegisterStore();
   const router = useRouter();
+  const toastId = React.useRef<string | null>(null);
 
   //#region  //*=========== Pembayaran ===========
 
@@ -40,18 +43,40 @@ export default function CtfPembayaranSection() {
           'Content-Type': 'multipart/form-data',
         },
       });
-    } catch (error) {
-      throw new Error('Terjadi kesalahan dalam register data');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
     }
   };
-  const { mutate: register } = useMutationToast<void, TRegisterOlim | FormData>(
-    useMutation(postRegister, {
-      onSuccess: () => {
-        showToast('You have successfully registered!', SUCCESS_TOAST);
-        router.push('/ctf');
-      },
-    })
-  );
+  const { mutate: register, isLoading } = useMutation(postRegister, {
+    onSuccess: () => {
+      showToast('You have successfully registered!', SUCCESS_TOAST);
+      router.push('/olimpit');
+    },
+    onError: (error: CustomAxiosError) => {
+      if (error.response) {
+        showToast(error.response.data.message, DANGER_TOAST);
+      } else {
+        showToast('An unknown error occurred', DANGER_TOAST);
+      }
+    },
+  });
+
+  React.useEffect(() => {
+    if (isLoading) {
+      toastId.current = toast.loading('Loading...');
+    } else {
+      if (toastId.current) {
+        toast.dismiss(toastId.current);
+        toastId.current = null;
+      }
+    }
+  }, [isLoading]);
 
   const registData = new FormData();
   registData.append('event', ctfFormData.event);
@@ -231,15 +256,20 @@ export default function CtfPembayaranSection() {
               type='submit'
               size='lg'
               variant='success'
-              className='w-full drop-shadow-md py-[6px] md:py-3'
+              className={clsxm(
+                isLoading ?? 'bg-success-800',
+                'w-full drop-shadow-md py-[6px] md:py-3'
+              )}
             >
               <Typography
                 font='poppins'
                 variant='bt'
-                className='text-[11.86px] leading-[20.32px] text-whites-100'
+                className={clsxm(
+                  'text-[11.86px] leading-[20.32px] text-whites-100'
+                )}
                 weight='bold'
               >
-                Register
+                {isLoading ? 'Registering...' : 'Register'}
               </Typography>
             </Button>
           </form>

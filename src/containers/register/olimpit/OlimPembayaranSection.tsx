@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
 import DropzoneInput from '@/components/form/DropzoneInput';
@@ -30,6 +31,7 @@ export default function OlimPembayaranSection() {
     React.useState<boolean>(false);
   const { olimFormData } = useRegisterStore();
   const router = useRouter();
+  const toastId = React.useRef<string | null>(null);
   const initialBillAmount = 70000;
   const discountAmount = 10000;
   const totalBillAmount = isReferralApplied
@@ -62,7 +64,7 @@ export default function OlimPembayaranSection() {
     }
   };
 
-  const { mutate: register } = useMutation(postRegister, {
+  const { mutate: register, isLoading } = useMutation(postRegister, {
     onSuccess: () => {
       showToast('You have successfully registered!', SUCCESS_TOAST);
       router.push('/olimpit');
@@ -75,6 +77,17 @@ export default function OlimPembayaranSection() {
       }
     },
   });
+
+  React.useEffect(() => {
+    if (isLoading) {
+      toastId.current = toast.loading('Loading...');
+    } else {
+      if (toastId.current) {
+        toast.dismiss(toastId.current);
+        toastId.current = null;
+      }
+    }
+  }, [isLoading]);
 
   const registData = new FormData();
   registData.append('event', olimFormData.event);
