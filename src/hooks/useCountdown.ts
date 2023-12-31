@@ -13,7 +13,9 @@ import * as React from 'react';
  * const [days, hours, minutes, seconds] = useCountdown(new Date('2021-10-10'))
  */
 export default function useCountdown(targetDate: Date) {
-  const targetDateSinceEpoch = targetDate.getTime();
+  const targetDateAdjusted = new Date(targetDate);
+  targetDateAdjusted.setHours(24, 0, 0, 0);
+  const targetDateSinceEpoch = targetDateAdjusted.getTime();
 
   const [countdown, setCountdown] = React.useState(
     targetDateSinceEpoch - new Date().getTime()
