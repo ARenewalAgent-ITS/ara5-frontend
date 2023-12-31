@@ -1,11 +1,11 @@
 'use client';
-import Typography from '@/components/Typography';
-import Input from '@/components/form/Input';
-import Button from '@/components/buttons/Button';
 import { FormProvider, useForm } from 'react-hook-form';
-import { getRememberedEmail } from '@/lib/cookies';
 
+import Button from '@/components/buttons/Button';
+import Input from '@/components/form/Input';
+import Typography from '@/components/Typography';
 import { REG_EMAIL } from '@/constants/regex';
+import { getRememberedEmail } from '@/lib/cookies';
 
 interface TOrderForm {
   email: string;

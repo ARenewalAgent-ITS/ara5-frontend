@@ -1,10 +1,11 @@
 'use client';
-import Typography from '@/components/Typography';
-import Input from '@/components/form/Input';
-import TextArea from '@/components/form/TextArea';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import Button from '@/components/buttons/Button';
 import Checkbox from '@/components/Checkbox';
-import { FormProvider, useForm } from 'react-hook-form';
+import Input from '@/components/form/Input';
+import TextArea from '@/components/form/TextArea';
+import Typography from '@/components/Typography';
 
 interface TForm {
   no_telepon: string;
