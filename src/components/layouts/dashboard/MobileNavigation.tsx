@@ -99,7 +99,7 @@ export default function MobileNavigation() {
               <div className='relative flex flex-col items-center justify-center mt-8'>
                 <div className='w-full h-full flex items-center justify-center mb-10'>
                   <NextImage
-                    src='/images/dashboard/LogoAra.png'
+                    src='/images/dashboard/LogoARA.png'
                     width={161}
                     height={75}
                     alt='profile'
