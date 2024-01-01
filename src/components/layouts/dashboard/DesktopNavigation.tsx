@@ -9,21 +9,20 @@ import { FaCircleUser } from 'react-icons/fa6';
 import Navigation from '@/components/layouts/dashboard/Navigation';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
-import useAuthStore from '@/store/useAuthStore';
+import { removeToken } from '@/lib/cookies';
 
 export default function DesktopNavigation() {
-  const { logout } = useAuthStore();
   const router = useRouter();
   const handleLogout = () => {
-    logout();
-    router.replace('/');
+    removeToken();
+    router.replace('/login');
   };
 
   const users = FetchUser();
   const role = users?.role;
   let username;
   if (role === 'TEAM') {
-    username = users?.data[0].team_name;
+    username = users?.data[0]?.team_name;
   }
 
   return (
@@ -31,15 +30,30 @@ export default function DesktopNavigation() {
       <div className='relative flex flex-col items-center justify-center'>
         <div className='w-full h-full flex items-center justify-center mb-10'>
           <NextImage
-            src='/images/dashboard/LogoAra.png'
+            src='/images/dashboard/LogoARA.png'
             width={161}
             height={75}
             alt='profile'
-            className=''
           />
         </div>
         <div className='flex flex-col items-center justify-center'>
-          <FaCircleUser className='text-whites-1100 text-[100px]' />
+          {role === 'TEAM' && users?.data[0]?.event === 'CTF' ? (
+            <NextImage
+              src={'/images/landpage/profile_ctf.png'}
+              alt='image profile'
+              width={100}
+              height={100}
+            />
+          ) : role === 'TEAM' && users?.data[0]?.event === 'Olim' ? (
+            <NextImage
+              src={'/images/landpage/profile_olimp.png'}
+              alt='image profile'
+              width={100}
+              height={100}
+            />
+          ) : (
+            <FaCircleUser className='text-whites-1100 text-[100px]' />
+          )}
           <Typography
             className='text-whites-1100 text-[20px] mt-[25px]'
             weight='bold'

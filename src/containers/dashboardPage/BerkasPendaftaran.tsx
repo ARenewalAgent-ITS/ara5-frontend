@@ -337,7 +337,7 @@ export default function BerkasPendaftaran({
 
   return (
     <>
-      <div className='bg-transparent'>
+      <div className='bg-transparent overflow-hidden'>
         <Typography
           as='h5'
           variant='h5'
@@ -348,7 +348,7 @@ export default function BerkasPendaftaran({
           Berkas Pendaftaran
         </Typography>
         <div className='w-full h-fit md:flex-col mt-1 mb-5 justify-center items-center md:justify-start md:items-start first-letter:mx-auto'>
-          <div className='flex flex-col md:flex-row'>
+          <div className='flex flex-col md:flex-row gap-5'>
             {/* Profil Tim */}
             <div className='mt-5 bg-primary-400 bg-opacity-10 md:space-y-6 h-fit md:w-[26rem] w-72 rounded-[10.5px] px-7 py-6 md:px-10 md:py-10'>
               <Typography
@@ -486,7 +486,7 @@ export default function BerkasPendaftaran({
             </div>
 
             {/* Bukti Screenshot */}
-            <div className='mt-5  md:mx-10 bg-primary-400 bg-opacity-10 md:space-y-6 h-fit md:w-[26rem] w-72 rounded-[10.5px] px-7 py-6 md:px-10 md:py-10'>
+            <div className='mt-5 bg-primary-400 bg-opacity-10 md:space-y-6 h-fit md:w-[26rem] w-72 rounded-[10.5px] px-7 py-6 md:px-10 md:py-10'>
               <Typography
                 as='h6'
                 variant='h6'

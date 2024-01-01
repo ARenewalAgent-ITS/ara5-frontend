@@ -29,6 +29,9 @@ import { User } from '@/types/entities/user';
 export default withAuth(LoginPage, ['all']);
 
 function LoginPage() {
+  // const getLogin = getToken();
+  // console.log(getLogin);
+
   const methods = useForm<loginForm>({
     mode: 'onTouched',
     defaultValues: {
@@ -67,7 +70,7 @@ function LoginPage() {
       {
         user?.data?.role === 'ADMIN'
           ? router.push('/admin/olimpit')
-          : router.push('/');
+          : router.push('/dashboard/user');
       }
     })
   );

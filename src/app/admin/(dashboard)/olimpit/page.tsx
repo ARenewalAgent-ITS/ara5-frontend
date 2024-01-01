@@ -308,10 +308,12 @@ function DashboardAdmin() {
 
     getCsv(
       data.map((items) => {
+        const tanggalDaftar = new Date(items?.createdAt);
+        const formatTanggalDaftar = tanggalDaftar.toString().split('T')[0];
         return {
-          id: items?.id,
+          // id: items?.id,
           Nama_Team: items?.team_name,
-          Account_Id: items?.account_id,
+          // Account_Id: items?.account_id,
           Provinsi: items?.team_provinsi_id,
           Kabupaten: items?.team_kabupaten_id,
           Events: items?.event,
@@ -324,13 +326,14 @@ function DashboardAdmin() {
           Ktp_anggota1: items?.ktp_anggota1,
           Anggota2: items?.nama_anggota2,
           Ktp_anggota2: items?.ktp_anggota2,
-          Pembayaran_ID: items?.pembayaran_id,
-          Kupon_ID: items?.kupon_id,
+          // Pembayaran_ID: items?.pembayaran_id,
+          // Kupon_ID: items?.kupon_id,
           Bukti_Follow: items?.bukti_follow,
           Bukti_Repost: items?.bukti_repost,
           Write_UP_CTF: items?.Write_up_ctf,
           Bukti_Pembayaran: items?.pembayaran?.bukti_pembayaran,
           List_Bank: items?.pembayaran?.list_bank?.bank,
+          Tanggal_Daftar: formatTanggalDaftar,
           Status_Pembayaran: items?.pembayaran?.status?.status,
         };
       }),

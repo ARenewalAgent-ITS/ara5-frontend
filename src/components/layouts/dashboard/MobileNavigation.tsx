@@ -11,22 +11,21 @@ import Navigation from '@/components/layouts/dashboard/Navigation';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
-import useAuthStore from '@/store/useAuthStore';
+import { removeToken } from '@/lib/cookies';
 
 export default function MobileNavigation() {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  const { logout } = useAuthStore();
   const router = useRouter();
   const handleLogout = () => {
-    logout();
-    router.replace('/');
+    removeToken();
+    router.replace('/login');
   };
 
   const users = FetchUser();
   const role = users?.role;
   let username;
   if (role === 'TEAM') {
-    username = users?.data[0].team_name;
+    username = users?.data[0]?.team_name;
   }
 
   return (
@@ -34,11 +33,10 @@ export default function MobileNavigation() {
       <div className='bg-gradient-to-b from-primary-600 to-primary-400 sticky top-0 z-40 flex h-20 flex-shrink-0 justify-between lg:hidden'>
         <div className='w-full h-full flex items-center justify-center mb-10'>
           <NextImage
-            src='/images/dashboard/LogoAra.png'
+            src='/images/dashboard/LogoARA.png'
             width={111}
             height={45}
             alt='profile'
-            className=''
           />
         </div>
         <button
@@ -109,7 +107,23 @@ export default function MobileNavigation() {
                   />
                 </div>
                 <div className='flex flex-col items-center justify-center'>
-                  <FaCircleUser className='text-whites-1100 text-[100px]' />
+                  {role === 'TEAM' && users?.data[0]?.event === 'CTF' ? (
+                    <NextImage
+                      src={'/images/landpage/profile_ctf.png'}
+                      alt='image profile'
+                      width={60}
+                      height={60}
+                    />
+                  ) : role === 'TEAM' && users?.data[0]?.event === 'Olim' ? (
+                    <NextImage
+                      src={'/images/landpage/profile_olimp.png'}
+                      alt='image profile'
+                      width={60}
+                      height={60}
+                    />
+                  ) : (
+                    <FaCircleUser className='text-whites-1100 text-[100px]' />
+                  )}
                   <Typography
                     className='text-whites-1100 text-[20px] mt-[25px]'
                     weight='bold'

@@ -307,7 +307,7 @@ function Navbar() {
                   <div className='flex justify-between items-center'>
                     {users && users?.data !== null ? (
                       <Typography className='font-extrabold capitalize text-secondary-900 text-[18px]'>
-                        Hi, {users.data[0].team_name}
+                        Hi, {users?.data[0]?.team_name}
                       </Typography>
                     ) : (
                       <Typography className='font-extrabold capitalize text-secondary-900 text-[18px]'>
@@ -576,7 +576,7 @@ function Navbar() {
                 <div className='flex justify-between items-center'>
                   {users && users?.data !== null ? (
                     <Typography className='font-extrabold text-white text-[18px]'>
-                      Hi, {users.data[0].team_name}
+                      Hi, {users.data[0]?.team_name}
                     </Typography>
                   ) : (
                     <Typography className='font-extrabold text-white text-[18px]'>
