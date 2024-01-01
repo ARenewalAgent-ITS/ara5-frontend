@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 
+import Forbidden from '@/components/Forbidden';
 import { DANGER_TOAST, showToast } from '@/components/Toast';
 import api from '@/lib/api';
 import { getToken } from '@/lib/cookies';
@@ -105,6 +106,23 @@ export default function withAuth<T>(
     }, []);
 
     if (isLoading) return <Loading />;
+    if (!isAuthed && permissions.includes('USER')) {
+      return <Forbidden />;
+    } else if (!isAuthed && permissions.includes('ADMIN')) {
+      return <Forbidden />;
+    } else if (
+      isAuthed &&
+      user?.[0]?.team_name !== undefined &&
+      permissions.includes('ADMIN')
+    ) {
+      return <Forbidden />;
+    } else if (
+      isAuthed &&
+      user?.[0]?.team_name === undefined &&
+      permissions.includes('USER')
+    ) {
+      return <Forbidden />;
+    }
     return <Component {...(props as T)} user={user} />;
   }
 

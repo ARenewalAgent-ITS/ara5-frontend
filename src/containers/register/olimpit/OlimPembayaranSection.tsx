@@ -32,7 +32,7 @@ export default function OlimPembayaranSection() {
   const { olimFormData } = useRegisterStore();
   const router = useRouter();
   const toastId = React.useRef<string | null>(null);
-  const initialBillAmount = 70000;
+  const initialBillAmount = 90000;
   const discountAmount = 10000;
   const totalBillAmount = isReferralApplied
     ? initialBillAmount - discountAmount

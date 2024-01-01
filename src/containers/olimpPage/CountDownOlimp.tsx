@@ -6,7 +6,7 @@ import Typography from '@/components/Typography';
 import useCountdown from '@/hooks/useCountdown';
 
 export default function CountDownOlimp() {
-  const [days, hours, minutes, seconds] = useCountdown(new Date('2023-12-31'));
+  const [days, hours, minutes, seconds] = useCountdown(new Date('2024-01-18'));
 
   return (
     <>
@@ -111,7 +111,7 @@ export default function CountDownOlimp() {
           font='poppins'
           className='mt-4 pb-8 text-center justify-center text-[20px] text-whites-100'
         >
-          31 Desember 2023
+          18 Januari 2024
         </Typography>
       </div>
     </>

@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
 import DropzoneInput from '@/components/form/DropzoneInput';
+import Input from '@/components/form/Input';
 import SelectInput from '@/components/form/SelectInput';
 import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
@@ -15,7 +16,7 @@ import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { useRegisterStore } from '@/store/useRegisterStore';
 import { ApiError, CustomAxiosError } from '@/types/api';
-import { TPembayaran } from '@/types/entities/pembayaran';
+import { TPembayaran, TReferal } from '@/types/entities/pembayaran';
 import { TRegisterOlim } from '@/types/entities/register';
 
 type BankDetails = {
@@ -26,13 +27,22 @@ type BankDetails = {
 
 export default function CtfPembayaranSection() {
   const { ctfFormData } = useRegisterStore();
+  const [kupon, setKupon] = React.useState<string>('');
   const router = useRouter();
   const toastId = React.useRef<string | null>(null);
+  const [isReferralApplied, setIsReferralApplied] =
+    React.useState<boolean>(false);
+  const initialBillAmount = 110000;
+  const discountAmount = 10000;
+  const totalBillAmount = isReferralApplied
+    ? initialBillAmount - discountAmount
+    : initialBillAmount;
 
   //#region  //*=========== Pembayaran ===========
 
   const methods = useForm<TPembayaran>({ defaultValues: { list_bank_id: 1 } });
   const metode_pembayaran = methods.watch('list_bank_id');
+  const referalMethods = useForm<TReferal>();
 
   //#region  //*=========== Register API ===========
 
@@ -92,6 +102,7 @@ export default function CtfPembayaranSection() {
   registData.append('no_wa_ketua', ctfFormData.no_wa_ketua);
   registData.append('email_ketua', ctfFormData.email_ketua);
   registData.append('discord_ketua', ctfFormData.discord_ketua);
+  registData.append('kupon', kupon);
   if (ctfFormData.ktp_ketua && ctfFormData.ktp_ketua.length > 0) {
     registData.append('ktp_ketua', ctfFormData.ktp_ketua[0]);
   }
@@ -118,6 +129,36 @@ export default function CtfPembayaranSection() {
     registData.append('nama_anggota_2', ctfFormData.nama_anggota_2);
   }
 
+  //#region  //*=========== Kupon ===========
+
+  const getKuponQuery = async (kupon: string) => {
+    try {
+      const response = await api.get(`/kupon/${kupon}`);
+      return response;
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam mengambil kupon');
+    }
+  };
+
+  const { mutate: getKupon } = useMutation(getKuponQuery, {
+    onSuccess: (data) => {
+      if (data.data.kuponStatus.usage == 0) {
+        showToast('Referral code has expired!', DANGER_TOAST);
+        setIsReferralApplied(false);
+        setKupon('');
+      } else {
+        showToast('Referral code successfully used!', SUCCESS_TOAST);
+        setIsReferralApplied(true);
+        setKupon(data.data.kuponStatus.kupon);
+      }
+    },
+    onError: () => {
+      showToast('Referral code is not available', DANGER_TOAST);
+      setIsReferralApplied(false);
+      setKupon('');
+    },
+  });
+
   //#region  //*=========== Form Submit ===========
 
   const RegisterOnSubmit = (data: TPembayaran) => {
@@ -125,6 +166,10 @@ export default function CtfPembayaranSection() {
     registData.append('bukti_pembayaran', data.bukti_pembayaran[0]);
 
     register(registData);
+  };
+
+  const referalOnSubmit = (data: TReferal) => {
+    getKupon(data.kupon);
   };
 
   const bankDetailsMapping: { [key: string]: BankDetails } = {
@@ -181,9 +226,12 @@ export default function CtfPembayaranSection() {
               variant='h4'
               font='poppins'
               weight='bold'
-              className='text-[48px] leading-[64px] text-whites-1100'
+              className={clsxm(
+                'text-[48px] leading-[64px]',
+                isReferralApplied ? 'text-success-700' : 'text-whites-1100'
+              )}
             >
-              Rp 90.000
+              Rp {totalBillAmount.toLocaleString('id-ID')}
             </Typography>
             <Button
               variant='outline-primary'
@@ -252,6 +300,48 @@ export default function CtfPembayaranSection() {
               }}
               helperText='Please ensure the file size does not exceed 1 MB.'
             />
+          </form>
+        </FormProvider>
+
+        {/* Form Kupon */}
+        <FormProvider {...referalMethods}>
+          <form
+            onSubmit={referalMethods.handleSubmit(referalOnSubmit)}
+            className='flex flex-col md:flex-row md:items-center md:gap-x-3'
+          >
+            <Input
+              id='kupon'
+              label='Kode Referal'
+              helperText='Gunakan kode referal dan dapatkan potongan!'
+              placeholder='Masukan kode referal (opsional)'
+              validation={{
+                required: 'Referral Code needed to apply',
+              }}
+            />
+            <Button
+              type='submit'
+              variant='primary'
+              className={clsxm(
+                'h-fit w-32 md:w-28 py-[6px] mt-[10.8px] lg:mt-[8.5px]'
+              )}
+            >
+              <Typography
+                variant='bt'
+                weight='bold'
+                className='w-24 text-whites-100'
+              >
+                Cek Kupon
+              </Typography>
+            </Button>
+          </form>
+        </FormProvider>
+
+        {/* Submit Button */}
+        <FormProvider {...methods}>
+          <form
+            onSubmit={methods.handleSubmit(RegisterOnSubmit)}
+            className='space-y-6'
+          >
             <Button
               type='submit'
               size='lg'
