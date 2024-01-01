@@ -217,10 +217,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ])}
           >
             <RightIcon
-              className={clsxm(
-                'text-sm md:text-2xl hover:text-5xl',
-                rightIconClassName
-              )}
+              className={clsxm('text-sm md:text-2xl', rightIconClassName)}
             />
           </div>
         )}

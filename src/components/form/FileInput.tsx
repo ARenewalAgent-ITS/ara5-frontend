@@ -6,9 +6,8 @@ import {
   RegisterOptions,
   useFormContext,
 } from 'react-hook-form';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { FiUpload } from 'react-icons/fi';
 
-import Button from '@/components/buttons/Button';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { FileWithPreview } from '@/types/form/dropzone';
@@ -22,7 +21,6 @@ export type FileInputProps = {
   accept?: Accept;
   acceptTypes?: string;
   maxFiles?: number;
-  className?: string;
 };
 
 export default function FileInput({
@@ -31,16 +29,29 @@ export default function FileInput({
   validation,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
   maxFiles = 1,
-  className,
 }: FileInputProps) {
   const {
     control,
+    watch,
     getValues,
     setValue,
     setError,
     clearErrors,
     formState: { errors },
   } = useFormContext();
+
+  const fieldValue = watch(id);
+
+  React.useEffect(() => {
+    if (fieldValue) {
+      const newFilesWithPreview = fieldValue.map((file: File) =>
+        Object.assign(file, { preview: URL.createObjectURL(file) })
+      );
+      setFiles(newFilesWithPreview);
+    } else {
+      setFiles([]);
+    }
+  }, [fieldValue]);
 
   const error = get(errors, id);
 
@@ -80,13 +91,7 @@ export default function FileInput({
             : acceptedFilesPreview
         );
 
-        setValue(
-          id,
-          files
-            ? [...files, ...acceptedFiles].slice(0, maxFiles)
-            : acceptedFiles,
-          { shouldValidate: true }
-        );
+        setValue(id, acceptedFiles, { shouldValidate: true });
 
         clearErrors(id);
       }
@@ -108,6 +113,12 @@ export default function FileInput({
     maxFiles,
     maxSize: 1000000,
   });
+
+  const backgroundClass =
+    files.length > 0
+      ? 'bg-success-600 hover:bg-opacity-30 active:bg-opacity-40'
+      : 'bg-primary-600 hover:bg-opacity-30 active:bg-opacity-40';
+  const iconColor = files.length > 0 ? '#86BA73' : '#00B8FF';
 
   return (
     <div className='w-full space-y-1.5 rounded-md'>
@@ -133,25 +144,13 @@ export default function FileInput({
             {...getRootProps()}
           >
             <input {...getInputProps()} />
-            <div
+            <FiUpload
+              color={iconColor}
               className={clsxm(
-                'w-full cursor-pointer bg-white rounded-md',
-                'grid grid-cols-1 items-center',
-                error
-                  ? 'border-red group-focus:border-red'
-                  : 'group-focus:border-typo-primary group-hover:border-typo-primary',
-                className
+                backgroundClass,
+                'bg-opacity-20 md:rounded-md md:p-1.5 md:h-10 md:w-10 h-6 w-6 cursor-pointer rounded p-1'
               )}
-            >
-              <Button leftIcon={AiOutlinePlus}>
-                <Typography
-                  variant='btn'
-                  className='py-1 font-poppins text-white'
-                >
-                  Tambahkan File
-                </Typography>
-              </Button>
-            </div>
+            />
           </div>
         )}
       />

@@ -10,17 +10,24 @@ import Button from '@/components/buttons/Button';
 import Navigation from '@/components/layouts/dashboard/Navigation';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import { FetchUser } from '@/hooks/navbarMutation';
 import useAuthStore from '@/store/useAuthStore';
 
 export default function MobileNavigation() {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  // const { user } = useAuthStore();
   const { logout } = useAuthStore();
   const router = useRouter();
   const handleLogout = () => {
     logout();
     router.replace('/');
   };
+
+  const users = FetchUser();
+  const role = users?.role;
+  let username;
+  if (role === 'TEAM') {
+    username = users?.data[0].team_name;
+  }
 
   return (
     <>
@@ -108,7 +115,7 @@ export default function MobileNavigation() {
                     weight='bold'
                     font='poppins'
                   >
-                    Admin ARA
+                    {role === 'TEAM' ? username : 'Admin ARA'}
                   </Typography>
                 </div>
               </div>

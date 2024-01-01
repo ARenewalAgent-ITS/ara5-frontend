@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 
 import ButtonLink from '@/components/links/ButtonLink';
 import Typography from '@/components/Typography';
-import { navigations } from '@/constants/navigations';
+import { adminNavigations, userNavigations } from '@/constants/navigations';
+import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
 import useAuthStore from '@/store/useAuthStore';
 import type { Navigation } from '@/types/navigate';
@@ -20,10 +21,20 @@ export default function Navigation({ className, ...rest }: NavigationProps) {
     localStorage.setItem('activeNavigation', activeNavigation || '');
   }, [activeNavigation]);
 
+  const users = FetchUser();
+  let navMenus;
+  if (users?.role === 'ADMIN') {
+    navMenus = adminNavigations;
+  } else if (users?.role === 'TEAM') {
+    navMenus = userNavigations;
+  } else {
+    navMenus = userNavigations;
+  }
+
   return (
     <nav className={clsxm('', className)} {...rest}>
       <div className='space-y-1.5 mx-4'>
-        {navigations.map((nav) => (
+        {navMenus.map((nav) => (
           <NestedNavigation
             navigation={nav}
             key={nav.name}
@@ -57,7 +68,11 @@ function NestedNavigation({
   }
 
   const handleButtonClick = () => {
-    setActiveNavigation(isActive ? null : navChildren.name);
+    if (navChildren.name === 'Website ARA') {
+      setActiveNavigation(isActive ? null : 'Dashboard');
+    } else {
+      setActiveNavigation(isActive ? null : navChildren.name);
+    }
   };
 
   const { user } = useAuthStore();
