@@ -13,7 +13,6 @@ export const adminNavigations: Navigation[] = [
     exactMatch: true,
     icon: HiTrophy,
     permissions: ['ADMIN'],
-    permissions: ['ADMIN'],
   },
   {
     name: 'Tim CTF',
@@ -37,13 +36,13 @@ export const userNavigations: Navigation[] = [
     href: '/dashboard/user',
     exactMatch: true,
     icon: Dashboard,
-    permissions: ['authed'],
+    permissions: ['USER'],
   },
   {
     name: 'Website ARA',
     href: '/',
     exactMatch: true,
     icon: FaGlobe,
-    permissions: ['authed'],
+    permissions: ['USER'],
   },
 ];

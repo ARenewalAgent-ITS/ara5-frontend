@@ -11,7 +11,7 @@ import BerkasPendaftaran from '@/containers/dashboardPage/BerkasPendaftaran';
 import { ApiReturn } from '@/types/api';
 import { UserLogin } from '@/types/entities/login';
 
-export default withAuth(DashboardUser, ['authed']);
+export default withAuth(DashboardUser, ['USER']);
 
 function DashboardUser() {
   const { data: res, refetch: refetchData } = useQuery<ApiReturn<UserLogin[]>>({
@@ -93,7 +93,7 @@ function DashboardUser() {
               </>
             )}
           </div>
-          <div className='w-full h-full flex mt-5 justify-center md:justify-start gap-6 md:gap-9 mx-auto'>
+          {/* <div className='w-full h-full flex-col mt-5 justify-center md:justify-start gap-6 md:gap-9 mx-auto'>
             <Typography
               as='h5'
               variant='h5'
@@ -103,7 +103,12 @@ function DashboardUser() {
             >
               {event === 'Olim' ? 'Timeline OlimpIT' : 'Timeline CTF'}
             </Typography>
-          </div>
+            {event === 'Olim' ? (
+              <DashboardTimelineCTF />
+            ) : (
+              <DashboardTimelineCTF />
+            )}
+          </div> */}
           <div className='w-full h-full flex mt-5 justify-center md:justify-start gap-6 md:gap-9 mx-auto'>
             {userData ? (
               <BerkasPendaftaran

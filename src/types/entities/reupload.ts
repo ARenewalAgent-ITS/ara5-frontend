@@ -8,3 +8,8 @@ export type TReuploadPembayaran = {
   list_bank_id: string;
   bukti_pembayaran: FileList;
 };
+
+export type TReuploadPersyaratan = {
+  bukti_follow: FileList;
+  bukti_repost: FileList;
+};

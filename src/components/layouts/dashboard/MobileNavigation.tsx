@@ -24,7 +24,10 @@ export default function MobileNavigation() {
 
   const users = FetchUser();
   const role = users?.role;
-  const username = users?.data[0].team_name;
+  let username;
+  if (role === 'TEAM') {
+    username = users?.data[0].team_name;
+  }
 
   return (
     <>

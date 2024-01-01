@@ -21,7 +21,6 @@ export type FileInputProps = {
   accept?: Accept;
   acceptTypes?: string;
   maxFiles?: number;
-  className?: string;
 };
 
 export default function FileInput({
@@ -30,16 +29,29 @@ export default function FileInput({
   validation,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
   maxFiles = 1,
-  className,
 }: FileInputProps) {
   const {
     control,
+    watch,
     getValues,
     setValue,
     setError,
     clearErrors,
     formState: { errors },
   } = useFormContext();
+
+  const fieldValue = watch(id);
+
+  React.useEffect(() => {
+    if (fieldValue) {
+      const newFilesWithPreview = fieldValue.map((file: File) =>
+        Object.assign(file, { preview: URL.createObjectURL(file) })
+      );
+      setFiles(newFilesWithPreview);
+    } else {
+      setFiles([]);
+    }
+  }, [fieldValue]);
 
   const error = get(errors, id);
 
@@ -79,13 +91,7 @@ export default function FileInput({
             : acceptedFilesPreview
         );
 
-        setValue(
-          id,
-          files
-            ? [...files, ...acceptedFiles].slice(0, maxFiles)
-            : acceptedFiles,
-          { shouldValidate: true }
-        );
+        setValue(id, acceptedFiles, { shouldValidate: true });
 
         clearErrors(id);
       }
@@ -109,7 +115,9 @@ export default function FileInput({
   });
 
   const backgroundClass =
-    files.length > 0 ? 'bg-success-600' : 'bg-primary-600';
+    files.length > 0
+      ? 'bg-success-600 hover:bg-opacity-30 active:bg-opacity-40'
+      : 'bg-primary-600 hover:bg-opacity-30 active:bg-opacity-40';
   const iconColor = files.length > 0 ? '#86BA73' : '#00B8FF';
 
   return (
