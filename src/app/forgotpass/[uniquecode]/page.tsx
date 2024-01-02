@@ -1,26 +1,79 @@
 'use client';
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
 import Input from '@/components/form/Input';
+import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
+import api from '@/lib/api';
 import { getRememberedPassword } from '@/lib/cookies';
-
-interface TForm {
-  new_password: string;
-}
+import { ApiError, CustomAxiosError } from '@/types/api';
+import { TResetPassword } from '@/types/entities/forgotPassword';
 
 export default function ForgotPasswordPage({
   params,
 }: {
   params: { uniquecode: string };
 }) {
-  const methods = useForm<TForm>({
+  const toastId = React.useRef<string | null>(null);
+  const route = useRouter();
+
+  const methods = useForm<TResetPassword>({
     defaultValues: {
-      new_password: getRememberedPassword() || '',
+      password: getRememberedPassword() || '',
     },
   });
-  const match_password = methods.watch('new_password');
+  const match_password = methods.watch('password');
+
+  const postResetPassword = async (data: TResetPassword) => {
+    try {
+      await api.post(`/auth/reset-password`, data, {
+        params: { token: params.uniquecode },
+      });
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
+    }
+  };
+
+  const { mutate: ResetPassword, isLoading } = useMutation(postResetPassword, {
+    onSuccess: () => {
+      showToast('Your password has been updated successfully.', SUCCESS_TOAST);
+      route.push('/login');
+    },
+    onError: (error: CustomAxiosError) => {
+      if (error.response) {
+        showToast(error.response.data.message, DANGER_TOAST);
+      } else {
+        showToast('An unknown error occurred', DANGER_TOAST);
+      }
+    },
+  });
+
+  React.useEffect(() => {
+    if (isLoading) {
+      toastId.current = toast.loading('Loading...');
+    } else {
+      if (toastId.current) {
+        toast.dismiss(toastId.current);
+        toastId.current = null;
+      }
+    }
+  }, [isLoading]);
+
+  const resetPasswordOnSubmit = (data: TResetPassword) => {
+    ResetPassword(data);
+  };
 
   return (
     <div className='lg:px-4 xl:px-12 2xl:px-14'>
@@ -36,11 +89,14 @@ export default function ForgotPasswordPage({
           </Typography>
         </div>
         <FormProvider {...methods}>
-          <form className='space-y-12'>
+          <form
+            onSubmit={methods.handleSubmit(resetPasswordOnSubmit)}
+            className='space-y-12'
+          >
             <div className='space-y-3'>
               <div className='space-y-4'>
                 <Input
-                  id='new_password'
+                  id='password'
                   label='Password Baru'
                   placeholder='Masukkan password baru'
                   type='password'
@@ -59,7 +115,7 @@ export default function ForgotPasswordPage({
                   }}
                 />
                 <Input
-                  id='password_confirmation'
+                  id='confirmPassword'
                   label='Konfirmasi Password Baru'
                   placeholder='Konfirmasi password baru'
                   type='password'

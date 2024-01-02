@@ -1,22 +1,76 @@
 'use client';
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
 import Input from '@/components/form/Input';
+import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import { REG_EMAIL } from '@/constants/regex';
+import api from '@/lib/api';
 import { getRememberedEmail } from '@/lib/cookies';
-
-interface TOrderForm {
-  email: string;
-}
+import { ApiError, CustomAxiosError } from '@/types/api';
+import { TForgotPassword } from '@/types/entities/forgotPassword';
 
 export default function ForgotPasswordPage() {
-  const methods = useForm<TOrderForm>({
+  const toastId = React.useRef<string | null>(null);
+
+  const methods = useForm<TForgotPassword>({
     defaultValues: {
       email: getRememberedEmail() || '',
     },
   });
+
+  const postForgotPassword = async (data: TForgotPassword) => {
+    try {
+      await api.post('/auth/forgot-password', data);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
+    }
+  };
+
+  const { mutate: forgotPassword, isLoading } = useMutation(
+    postForgotPassword,
+    {
+      onSuccess: () => {
+        showToast(
+          'Check your email for the next steps in resetting your password.',
+          SUCCESS_TOAST
+        );
+      },
+      onError: (error: CustomAxiosError) => {
+        if (error.response) {
+          showToast(error.response.data.message, DANGER_TOAST);
+        } else {
+          showToast('An unknown error occurred', DANGER_TOAST);
+        }
+      },
+    }
+  );
+
+  React.useEffect(() => {
+    if (isLoading) {
+      toastId.current = toast.loading('Loading...');
+    } else {
+      if (toastId.current) {
+        toast.dismiss(toastId.current);
+        toastId.current = null;
+      }
+    }
+  }, [isLoading]);
+
+  const emailOnSubmit = (data: TForgotPassword) => {
+    forgotPassword(data);
+  };
 
   return (
     <div className='lg:px-4 xl:px-12 2xl:px-14'>
@@ -41,7 +95,10 @@ export default function ForgotPasswordPage() {
           </Typography>
         </div>
         <FormProvider {...methods}>
-          <form className='space-y-12'>
+          <form
+            onSubmit={methods.handleSubmit(emailOnSubmit)}
+            className='space-y-12'
+          >
             <div className='space-y-3'>
               <div className='space-y-4'>
                 <Input
