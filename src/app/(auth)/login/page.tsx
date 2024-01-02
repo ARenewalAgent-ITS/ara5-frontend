@@ -136,12 +136,24 @@ function LoginPage() {
                 }}
               />
             </div>
-            <Checkbox
-              label='Remember Me'
-              name='remember'
-              readOnly={false}
-              hideError={true}
-            />
+            <div className='w-full flex justify-between items-start'>
+              <Checkbox
+                label='Remember Me'
+                name='remember'
+                readOnly={false}
+                hideError={true}
+              />
+              <UnstyledLink href='/submit-email'>
+                <Typography
+                  font='poppins'
+                  variant='c12'
+                  className='text-[12px] leading-[20.32px] text-primary-700'
+                  weight='medium'
+                >
+                  Forgot Password
+                </Typography>
+              </UnstyledLink>
+            </div>
           </div>
           <div className='space-y-3 flex flex-col w-full items-center lg:items-start'>
             <Button
