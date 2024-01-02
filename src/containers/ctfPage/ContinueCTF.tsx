@@ -13,6 +13,7 @@ import ContactPersonCtf from '@/containers/ctfPage/ContactPersonCtf';
 import CtfFaqSection from '@/containers/ctfPage/CtfFaqSection';
 import PrizepoolSectionCtf from '@/containers/ctfPage/PrizepoolSectionCtf';
 import TimelineCTF from '@/containers/ctfPage/TimelineCTF';
+import WhoCanJoin from '@/containers/ctfPage/WhoCanJoin';
 
 function Continuectf() {
   useEffect(() => {
@@ -43,21 +44,25 @@ function Continuectf() {
           </div>
         </div>
 
-        <div className='bg-gradient-to-b from-[#225B58] to-[#0F283A]'>
+        <div className='bg-gradient-to-b from-[#225B58] to-[#0F283A] -mt-1'>
           <PrizepoolSectionCtf />
         </div>
 
-        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] md:pb-24 md:pt-64 py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
+        <div className='bg-gradient-to-b from-[#0f293b] to-[#10293B] -mt-3 lg:py-10'>
+          <WhoCanJoin />
+        </div>
+
+        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] -mt-2 md:pt-12 py-20 sm:py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
           <TimelineCTF />
         </div>
 
-        <div className='bg-[#0F2138]'>
-          <div className='relative md:min-h-[80vh] h-auto sm:pt-24 lg:pt-48 pb-16'>
+        <div className='bg-[#0F2138] -mt-1'>
+          <div className='relative md:min-h-[80vh] h-auto sm:pt-24 lg:pt-28 pb-16'>
             <CtfFaqSection />
           </div>
         </div>
 
-        <div className='bg-[#0F2138]'>
+        <div className='bg-[#0F2138] -mt-1'>
           <ContactPersonCtf />
         </div>
       </div>

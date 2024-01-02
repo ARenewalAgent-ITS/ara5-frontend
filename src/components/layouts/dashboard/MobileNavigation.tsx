@@ -33,9 +33,9 @@ export default function MobileNavigation() {
       <div className='bg-gradient-to-b from-primary-600 to-primary-400 sticky top-0 z-40 flex h-20 flex-shrink-0 justify-between lg:hidden'>
         <div className='w-full h-full flex items-center justify-center mb-10'>
           <NextImage
-            src='/images/dashboard/LogoARA.png'
-            width={111}
-            height={45}
+            src='/svg/footer/LogoARA.svg'
+            width={110}
+            height={52}
             alt='profile'
           />
         </div>
@@ -111,15 +111,15 @@ export default function MobileNavigation() {
                     <NextImage
                       src={'/images/landpage/profile_ctf.png'}
                       alt='image profile'
-                      width={60}
-                      height={60}
+                      width={100}
+                      height={100}
                     />
                   ) : role === 'TEAM' && users?.data[0]?.event === 'Olim' ? (
                     <NextImage
                       src={'/images/landpage/profile_olimp.png'}
                       alt='image profile'
-                      width={60}
-                      height={60}
+                      width={100}
+                      height={100}
                     />
                   ) : (
                     <FaCircleUser className='text-whites-1100 text-[100px]' />
@@ -134,7 +134,7 @@ export default function MobileNavigation() {
                 </div>
               </div>
               <div className='mt-5 h-0 flex-1 overflow-y-auto mx-12'>
-                <Navigation className='text-white' />
+                <Navigation />
               </div>
               <div className='mb-16 w-full'>
                 <button

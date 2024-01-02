@@ -1,8 +1,9 @@
 'use client';
 
+import Aos from 'aos';
 import Link from 'next/link';
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TbBrandWhatsapp } from 'react-icons/tb';
 
 import Button from '@/components/buttons/Button';
@@ -11,6 +12,10 @@ import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 
 export default function ContactPersonOlimp() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   const [isHovered, setIsHovered] = useState(false);
   const [isBlink, setIsBlinked] = useState(false);
   const [lineTooltips, setLineTooltips] = useState<Record<string, boolean>>({});
@@ -31,7 +36,7 @@ export default function ContactPersonOlimp() {
   return (
     <section className=' overflow-hidden relative flex w-full h-full px-10 py-10 md:px-24 md:py-20 lg:px-28 lg:pt-24 lg:pb-40 xl:px-32 xl:pt-28 xl:pb-52 2xl:px-36 2xl:pb-72'>
       <div className='flex z-20 flex-col gap-y-5 md:gap-y-10 '>
-        <div className='relative'>
+        <div className='relative' data-aos='fade-up' data-aos-delay='400'>
           <NextImage
             src={'/img/ctfpage/prizepool/plank.png'}
             alt='plank'
@@ -49,7 +54,11 @@ export default function ContactPersonOlimp() {
           </Typography>
         </div>
         <div className='flex flex-col gap-y-4 w-full h-full'>
-          <div className='flex flex-col gap-y-3'>
+          <div
+            className='flex flex-col gap-y-3'
+            data-aos='fade-up'
+            data-aos-delay='300'
+          >
             <Typography
               variant='h4'
               font='poppins'
@@ -110,7 +119,11 @@ export default function ContactPersonOlimp() {
               </Button>
             </div>
           </div>
-          <div className='flex flex-col gap-y-3'>
+          <div
+            className='flex flex-col gap-y-3'
+            data-aos='fade-up'
+            data-aos-delay='400'
+          >
             <Typography
               variant='h4'
               font='poppins'
@@ -180,6 +193,8 @@ export default function ContactPersonOlimp() {
         width={114.755}
         height={185.737}
         className='absolute z-10 -bottom-2 w-[114px] md:w-[240px] lg:w-[310px] xl:w-[370px] 2xl:w-[420px] right-3 md:right-11 xl:right-16 2xl:right-20'
+        data-aos='fade-left'
+        data-aos-delay='400'
       />
       {/* bon fire and lights */}
       <div onMouseEnter={handleHover} onMouseLeave={handleUnhover}>
@@ -202,14 +217,6 @@ export default function ContactPersonOlimp() {
           />
         )}
       </div>
-      {/* <NextImage
-        src={'/img/ctfpage/contactperson/bonfire-light.png'}
-        alt='Bonfire Light'
-        width={200}
-        height={200}
-        className='absolute z-20 -bottom-7 right-[80px] md:right-52 lg:right-64 xl:right-[21.3rem] 2xl:right-[26.5rem] lg:-bottom-11 w-[180px] md:w-[330px] lg:w-[420px] xl:w-[480px] 2xl:w-[540px]'
-      /> */}
-      {/* background images */}
       <NextImage
         src={'/img/ctfpage/contactperson/right-bg.png'}
         alt='grass'

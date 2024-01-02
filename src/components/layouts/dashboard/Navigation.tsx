@@ -69,9 +69,9 @@ function NestedNavigation({
 
   const handleButtonClick = () => {
     if (navChildren.name === 'Website ARA') {
-      setActiveNavigation(isActive ? null : 'Dashboard');
+      setActiveNavigation(isActive ? 'Dashboard' : 'Dashboard');
     } else {
-      setActiveNavigation(isActive ? null : navChildren.name);
+      setActiveNavigation(isActive ? navChildren.name : navChildren.name);
     }
   };
 
@@ -92,11 +92,11 @@ function NestedNavigation({
         href={navChildren.href}
         onClick={handleButtonClick}
         className={clsx(
-          'md:hover:bg-primary-600 group',
+          'md:hover:bg-primary-700 group hover:bg-primary-700',
           'items-center justify-center gap-3',
           'flex w-full px-6 py-2.5',
           'border-none',
-          `${isActive ? 'bg-primary-600' : 'bg-transparent'}`
+          isActive ? 'bg-primary-600' : 'bg-transparent'
         )}
         style={{ paddingLeft: gen > 0 ? `${24 * (gen + 1)}px` : '' }}
       >
@@ -104,7 +104,7 @@ function NestedNavigation({
           <navChildren.icon
             className={clsx(
               'flex-shrink-0',
-              'group-hover:text-white text-lg',
+              'group-hover:text-whites-600 text-lg',
               `${isActive ? 'text-white' : 'text-whites-900'}`,
               'mt-[1px] self-start'
             )}
@@ -113,8 +113,8 @@ function NestedNavigation({
         )}
         <Typography
           className={clsx(
-            'text-[14px] group-hover:text-white',
-            `${isActive ? 'text-white' : 'text-whites-900'}`
+            'text-[14px] group-hover:text-whites-600',
+            isActive ? 'text-white' : 'text-whites-900'
           )}
           weight='bold'
           font='poppins'

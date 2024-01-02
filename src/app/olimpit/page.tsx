@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <>
+    <div className='overflow-hidden'>
       <Navbar />
       <LandingOlimp />
       <ContinueOlimp />
       <Footer />
-    </>
+    </div>
   );
 }

@@ -179,12 +179,6 @@ function DashboardAdmin() {
       size: 18,
     },
     {
-      id: 'nama_anggota2',
-      accessorKey: 'nama_anggota2',
-      header: 'Anggota 2',
-      size: 18,
-    },
-    {
       id: 'bukti_pembayaran',
       header: 'Pembayaran',
       cell: (info) => (
@@ -381,7 +375,7 @@ function DashboardAdmin() {
               <Typography
                 as='h6'
                 variant='h6'
-                className='text-[24px] text-whites-1100'
+                className='text-[24px] text-whites-1100 text-center sm:text-start'
                 font='poppins'
                 weight='bold'
               >
@@ -391,7 +385,15 @@ function DashboardAdmin() {
                 as='h4'
                 variant='h4'
                 weight='bold'
-                className='text-primary-600'
+                className='text-primary-600 max-lg:hidden'
+              >
+                List Tim Olimpiade IT
+              </Typography>
+              <Typography
+                as='h4'
+                variant='h4'
+                weight='bold'
+                className='text-primary-600 lg:hidden text-[32px] text-center my-4'
               >
                 List Tim Olimpiade IT
               </Typography>

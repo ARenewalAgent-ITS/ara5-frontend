@@ -12,6 +12,7 @@ import NextImage from '@/components/NextImage';
 import ContactPersonOlimp from '@/containers/olimpPage/ContactPersonOlimp';
 import OlimpFaqSection from '@/containers/olimpPage/OlimpFaqSection';
 import PrizepoolSectionOlimp from '@/containers/olimpPage/PrizepoolSectionOlimp';
+import WhoCanJoin from '@/containers/olimpPage/WhoCanJoin';
 
 function ContinueOlimp() {
   return (
@@ -37,21 +38,25 @@ function ContinueOlimp() {
           </div>
         </div>
 
-        <div className='bg-gradient-to-b from-[#225B58] to-[#0F283A]'>
+        <div className='bg-gradient-to-b from-[#225B58] to-[#0F283A] -mt-1'>
           <PrizepoolSectionOlimp />
         </div>
 
-        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] md:pb-24 md:pt-64 py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
+        <div className='bg-gradient-to-b from-[#0f293b] to-[#10293B] -mt-3 lg:py-10'>
+          <WhoCanJoin />
+        </div>
+
+        <div className='bg-gradient-to-b from-[#10293B] to-[#0F2138] -mt-2 md:pt-24 py-20 sm:py-10 px-6 md:px-16 lg:px-20 xl:px-28'>
           <TimelineOlimp />
         </div>
 
-        <div className='bg-[#0F2138]'>
+        <div className='bg-[#0F2138] -mt-1'>
           <div className='relative md:min-h-[80vh] h-auto sm:pt-24 lg:pt-36 pb-16'>
             <OlimpFaqSection />
           </div>
         </div>
 
-        <div className='bg-[#0F2138]'>
+        <div className='bg-[#0F2138] -mt-1'>
           <ContactPersonOlimp />
         </div>
       </div>

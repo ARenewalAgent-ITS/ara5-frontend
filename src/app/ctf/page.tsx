@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 
 export default function CTFPage() {
   return (
-    <>
+    <div className='overflow-hidden'>
       <Navbar />
       <LandingCTF />
       <ContinueCTF />
       <Footer />
-    </>
+    </div>
   );
 }

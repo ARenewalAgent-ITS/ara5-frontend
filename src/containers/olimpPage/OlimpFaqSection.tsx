@@ -46,9 +46,15 @@ export default function OlimFaqSection() {
           width={418}
           height={53}
           alt='faq panel'
+          data-aos='zoom-in'
+          data-aos-delay='400'
         />
       </div>
-      <div className='faq-cards grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-7 px-8 md:px-16 lg:px-20 xl:px-28'>
+      <div
+        className='faq-cards grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-7 px-8 md:px-16 lg:px-20 xl:px-28'
+        data-aos='fade-up'
+        data-aos-delay='400'
+      >
         {faqs.map((faq, id) => (
           <FAQCard
             key={id}

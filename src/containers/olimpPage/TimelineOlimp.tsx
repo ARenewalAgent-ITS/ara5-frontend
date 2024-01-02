@@ -72,18 +72,42 @@ function TimelineOlimp() {
   return (
     <>
       {/* Timeline Title */}
-      <div className='sm:pb-8 pb-4'>
+      <div className='sm:pb-8 pb-4 relative w-full h-full'>
+        <NextImage
+          src={'/svg/olimp/right_torch.svg'}
+          alt='timeline_title'
+          width={310}
+          height={450}
+          className='absolute max-[370px]:hidden w-[280px] h-[420px] xl:-top-56 xl:-right-36  -right-[40px] md:-right-[85px] lg:-right-28 -top-28 sm:w-[310px] sm:h-[450px] sm:-right-[48px] xl:w-[465px] xl:h-[540px]'
+          data-aos='fade-left'
+          data-aos-delay='200'
+        />
+        <NextImage
+          src={'/svg/olimp/left_torch.svg'}
+          alt='timeline_title'
+          width={310}
+          height={450}
+          className='hidden lg:inline-block lg:top-48 xl:-left-32 w-[280px] h-[420px] absolute -left-[40px] md:-left-[85px] lg:-left-24 xl:w-[465px] xl:h-[540px] -top-28 sm:w-[310px] sm:h-[450px] sm:-left-[48px]'
+          data-aos='fade-right'
+          data-aos-delay='600'
+        />
         <NextImage
           src={'/svg/timeline/olimp/timeline_title.svg'}
           alt='timeline_title'
           height={62}
           width={376}
           className='w-[70%] sm:w-[45%] md:w-[50%] lg:w-[40%] xl:w-[32%]'
+          data-aos='fade-up'
+          data-aos-delay='200'
         />
       </div>
 
       {/* Desktop */}
-      <div className='lg:grid hidden grid-cols-5 text-center rounded-xl'>
+      <div
+        className='lg:grid hidden grid-cols-5 text-center rounded-xl'
+        data-aos='fade-up'
+        data-aos-delay='300'
+      >
         {timelines.map((timeline, id) => (
           <div
             className='w-full h-full flex flex-col justify-center items-center z-30'
@@ -95,7 +119,7 @@ function TimelineOlimp() {
                   <div className='row-span-2'>
                     <Typography
                       font='baloo'
-                      variant='h5'
+                      variant='p'
                       className='font-extrabold text-[#F8F8F8]'
                     >
                       {timeline.title} <br /> {timeline.br}
@@ -174,7 +198,11 @@ function TimelineOlimp() {
       </div>
 
       {/* Mobile */}
-      <div className='lg:hidden rounded-xl'>
+      <div
+        className='lg:hidden rounded-xl'
+        data-aos='fade-up'
+        data-aos-delay='300'
+      >
         {timelines_mobile.map((timeline_mobile, id) => (
           <div className='grid grid-cols-5 !h-[30vh]' key={id}>
             <div className='col-span-1'>
