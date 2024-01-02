@@ -38,15 +38,15 @@ export default function WhoCanJoin() {
         </Typography>
       </div>
 
-      <div data-aos='fade-right' data-aos-delay='200'>
-        <NextImage
-          src={'/svg/olimp/left_bush2.svg'}
-          alt='plank'
-          width={250}
-          height={250}
-          className='w-[250px] h-[250px] sm:absolute sm:-left-16 hidden sm:inline-block lg:w-[238px] lg:h-[377px] lg:-left-[52px]'
-        />
-      </div>
+      <NextImage
+        src={'/svg/olimp/left_bush2.svg'}
+        alt='plank'
+        width={250}
+        height={250}
+        className='w-[250px] h-[250px] sm:absolute sm:-left-16 hidden sm:inline-block lg:w-[238px] lg:h-[377px] lg:-left-16'
+        data-aos='fade-right'
+        data-aos-delay='400'
+      />
     </section>
   );
 }
