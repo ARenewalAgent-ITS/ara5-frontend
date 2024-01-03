@@ -34,7 +34,7 @@ export default function ContactPersonCtf() {
     setLineTooltips((prev) => ({ ...prev, [contactId]: !prev[contactId] }));
   };
   return (
-    <section className='bg-[#0F223A] overflow-hidden relative flex w-full h-full px-10 py-10 md:px-24 md:py-20 lg:px-28 lg:pt-24 lg:pb-40 xl:px-32 xl:pt-28 xl:pb-52 2xl:px-36 2xl:pb-72'>
+    <section className='bg-[#0F223A] overflow-hidden relative flex w-full h-full px-10 py-10 md:px-16 md:py-20 lg:px-28 lg:pt-24 lg:pb-40 xl:px-32 xl:pt-28 xl:pb-52 2xl:px-36 2xl:pb-72'>
       <div className='flex z-20 flex-col gap-y-5 md:gap-y-10 '>
         <div className='relative' data-aos='fade-up' data-aos-delay='400'>
           <NextImage
@@ -63,7 +63,7 @@ export default function ContactPersonCtf() {
               variant='h4'
               font='poppins'
               weight='bold'
-              className='text-whites-100 text-[18px] leading-[24px]'
+              className='text-whites-100 text-[18px] md:text-[40px] md:leading-[60px] leading-6'
             >
               Siti Nur Ellyzah
             </Typography>
@@ -128,7 +128,7 @@ export default function ContactPersonCtf() {
               variant='h4'
               font='poppins'
               weight='bold'
-              className='text-whites-100 text-[18px] leading-[24px]'
+              className='text-whites-100 text-[18px] md:text-[40px] md:leading-[60px] leading-6'
             >
               Amoes Noland
             </Typography>

@@ -13,7 +13,7 @@ const timelines = [
   {
     title: 'Pendaftaran',
     br: 'Batch 2',
-    date: '1 Januari - 8 Januari 2024',
+    date: '1 Januari - 18 Januari 2024',
     image: '/svg/timeline/ctf/two.svg',
   },
   {
@@ -57,7 +57,7 @@ const timelines_mobile = [
   {
     title: 'Pendaftaran',
     br: 'Batch 2',
-    date: '1 Januari - 8 Januari 2024',
+    date: '1 Januari - 18 Januari 2024',
     image: '/svg/timeline/ctf/two_r.svg',
   },
   {
@@ -102,7 +102,7 @@ function TimelineCTF() {
           alt='timeline_title'
           width={310}
           height={450}
-          className='max-[370px]:hidden w-[280px] h-[420px] xl:-top-56 xl:-right-36 absolute -right-[40px] md:-right-[85px] lg:-right-28 -top-28 sm:w-[310px] sm:h-[450px] sm:-right-[48px] xl:w-[465px] xl:h-[540px]'
+          className='max-[370px]:hidden w-[280px] h-[420px] xl:-top-56 xl:-right-36 absolute -right-[40px] md:-right-12 lg:-right-28 -top-28 sm:w-[310px] sm:h-[450px] sm:-right-[48px] xl:w-[465px] xl:h-[540px]'
           data-aos='fade-left'
           data-aos-delay='200'
         />
@@ -111,7 +111,7 @@ function TimelineCTF() {
           alt='timeline_title'
           width={310}
           height={450}
-          className='hidden lg:inline-block lg:top-48 xl:-left-32 w-[280px] h-[420px] absolute -left-[40px] md:-left-[85px] lg:-left-24 xl:w-[465px] xl:h-[540px] -top-28 sm:w-[310px] sm:h-[450px] sm:-left-[48px]'
+          className='hidden lg:inline-block lg:top-48 xl:-left-32 w-[280px] h-[420px] absolute -left-[40px] md:-left-[85px] lg:-left-28 xl:w-[465px] xl:h-[540px] -top-28 sm:w-[310px] sm:h-[450px] sm:-left-[48px]'
           data-aos='fade-right'
           data-aos-delay='600'
         />

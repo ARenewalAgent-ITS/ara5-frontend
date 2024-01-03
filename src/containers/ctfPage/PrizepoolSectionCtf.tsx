@@ -49,7 +49,7 @@ export default function PrizepoolSectionCtf() {
               font='poppins'
               weight='bold'
               color='white'
-              className='text-[24px] leading-[24px] text-whites-100'
+              className='text-[24px] md:text-[56px] md:leading-[60px] leading-6 text-whites-100'
             >
               IDR 8.000.000
             </Typography>

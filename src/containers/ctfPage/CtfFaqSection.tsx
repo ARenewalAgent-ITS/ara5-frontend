@@ -46,7 +46,7 @@ const faqs: TCTFFaqData[] = [
 export default function CtfFaqSection() {
   return (
     <section className='ctf-faq-section'>
-      <div className='upper-faq flex justify-center items-center mb-20'>
+      <div className='upper-faq flex justify-center items-center mb-10 lg:mb-20 md:mb-16'>
         <NextImage
           src={'/svg/ctfpage/faq.svg'}
           width={418}
