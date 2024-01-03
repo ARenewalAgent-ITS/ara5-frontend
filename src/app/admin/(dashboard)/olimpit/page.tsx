@@ -224,6 +224,12 @@ function DashboardAdmin() {
       size: 18,
     },
     {
+      id: 'kupon_id',
+      accessorKey: 'kupon_id',
+      header: 'Kode Referal',
+      size: 18,
+    },
+    {
       id: 'status',
       header: 'Status',
       cell: (info) => (
@@ -321,7 +327,7 @@ function DashboardAdmin() {
           Anggota2: items?.nama_anggota2,
           Ktp_anggota2: items?.ktp_anggota2,
           // Pembayaran_ID: items?.pembayaran_id,
-          // Kupon_ID: items?.kupon_id,
+          Kupon_ID: items?.kupon_id,
           Bukti_Follow: items?.bukti_follow,
           Bukti_Repost: items?.bukti_repost,
           Write_UP_CTF: items?.Write_up_ctf,
