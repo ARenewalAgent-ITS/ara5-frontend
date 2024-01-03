@@ -49,7 +49,7 @@ export default function PrizepoolSectionOlimp() {
                 variant='h1'
                 font='poppins'
                 weight='bold'
-                className='text-[24px] md:text-[56px] md:leading-[60px] leading-6 text-whites-100'
+                className='text-[24px] leading-[24px] text-whites-100'
               >
                 Golden Ticket
               </Typography>
@@ -57,7 +57,7 @@ export default function PrizepoolSectionOlimp() {
                 variant='h4'
                 font='poppins'
                 weight='bold'
-                className='text-[24px] md:text-[56px] md:leading-[60px] leading-6 text-whites-100'
+                className='text-[16px] leading-[24px] text-whites-100'
               >
                 + IDR 5.000.000
               </Typography>

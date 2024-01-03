@@ -9,16 +9,26 @@ import { HiOutlineChevronDoubleLeft, HiOutlineMenu } from 'react-icons/hi';
 import Button from '@/components/buttons/Button';
 import Navigation from '@/components/layouts/dashboard/Navigation';
 import NextImage from '@/components/NextImage';
+import { showToast, SUCCESS_TOAST, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
-import { removeToken } from '@/lib/cookies';
+import { getToken, removeToken } from '@/lib/cookies';
 
 export default function MobileNavigation() {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
   const router = useRouter();
   const handleLogout = () => {
     removeToken();
-    router.replace('/login');
+    const token = getToken();
+    if (token === undefined) {
+      showToast('Berhasil Logout', SUCCESS_TOAST);
+      router.replace('/login');
+    } else if (token !== undefined) {
+      showToast(
+        'Tunggu beberapa saat dan cobalah untuk Logout lagi!',
+        WARNING_TOAST
+      );
+    }
   };
 
   const users = FetchUser();

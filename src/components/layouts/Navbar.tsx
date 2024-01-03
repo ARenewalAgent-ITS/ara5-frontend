@@ -14,6 +14,7 @@ import { LuLogOut } from 'react-icons/lu';
 import Button from '@/components/buttons/Button';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import NextImage from '@/components/NextImage';
+import { showToast, SUCCESS_TOAST, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
@@ -43,8 +44,16 @@ function Navbar() {
 
   const handleLogout = () => {
     removeToken();
-
-    router.push('/login');
+    const tokens = getToken();
+    if (tokens === undefined) {
+      showToast('Berhasil Logout', SUCCESS_TOAST);
+      router.push('/login');
+    } else if (tokens !== undefined) {
+      showToast(
+        'Tunggu beberapa saat dan cobalah untuk Logout lagi!',
+        WARNING_TOAST
+      );
+    }
   };
 
   const [showMe1, setShowMe1] = useState(false);

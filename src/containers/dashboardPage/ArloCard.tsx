@@ -112,10 +112,10 @@ export default function ArloCard(props: TStatusCard) {
       return folderPath + interPath;
     } else if (type == 'arlo') {
       let pose = '';
-      if (variant == 'blue') pose = 'cool_arlo_1';
-      if (variant == 'green') pose = 'neutral_arlo_1';
-      if (variant == 'brown') pose = 'curious_arlo_1';
-      const arloPath = folderPath + pose + '.svg';
+      if (variant == 'blue') pose = 'cool_arlo';
+      if (variant == 'green') pose = 'neutral_arlo';
+      if (variant == 'brown') pose = 'curious_arlo';
+      const arloPath = folderPath + pose + '.png';
       return arloPath;
     }
     return '';

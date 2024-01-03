@@ -7,15 +7,25 @@ import { BiLogOut } from 'react-icons/bi';
 import { FaCircleUser } from 'react-icons/fa6';
 
 import Navigation from '@/components/layouts/dashboard/Navigation';
+import { showToast, SUCCESS_TOAST, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
-import { removeToken } from '@/lib/cookies';
+import { getToken, removeToken } from '@/lib/cookies';
 
 export default function DesktopNavigation() {
   const router = useRouter();
   const handleLogout = () => {
     removeToken();
-    router.replace('/login');
+    const token = getToken();
+    if (token === undefined) {
+      showToast('Berhasil Logout', SUCCESS_TOAST);
+      router.replace('/login');
+    } else if (token !== undefined) {
+      showToast(
+        'Tunggu beberapa saat dan cobalah untuk Logout lagi!',
+        WARNING_TOAST
+      );
+    }
   };
 
   const users = FetchUser();

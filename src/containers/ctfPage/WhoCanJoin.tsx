@@ -18,7 +18,7 @@ export default function WhoCanJoin() {
           height={53}
         />
         <NextImage
-          src={'/svg/ctf/arlo.svg'}
+          src={'/svg/ctf/arlo.png'}
           alt='plank'
           width={250}
           height={250}
