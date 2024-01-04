@@ -41,6 +41,7 @@ type ServerTableProps<T extends object> = {
   handleStatusSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   searchValue: string;
   onSearchChange: (value: string) => void;
+  withStatus?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 export default function ServerTable<T extends object>({
@@ -58,6 +59,7 @@ export default function ServerTable<T extends object>({
   handleStatusSelectChange,
   searchValue,
   onSearchChange,
+  withStatus = true,
   ...rest
 }: ServerTableProps<T>) {
   // const [globalFilter, setGlobalFilter] = React.useState('');
@@ -120,20 +122,22 @@ export default function ServerTable<T extends object>({
         )}
         <div className='flex items-center gap-3 max-sm:flex-col max-sm:items-start'>
           {Header}
-          <div>
-            <select
-              value={selectedStatus}
-              onChange={handleStatusSelectChange}
-              className='text-whites-900 rounded-md'
-            >
-              <option value=''>All</option>
-              <option value='SUCCESS'>Success</option>
-              <option value='FAILED'>Failed</option>
-              <option value='AWAITING VERIFICATION'>
-                Awaiting Verification
-              </option>
-            </select>
-          </div>
+          {withStatus ? (
+            <div>
+              <select
+                value={selectedStatus}
+                onChange={handleStatusSelectChange}
+                className='text-whites-900 rounded-md'
+              >
+                <option value=''>All</option>
+                <option value='SUCCESS'>Success</option>
+                <option value='FAILED'>Failed</option>
+                <option value='AWAITING VERIFICATION'>
+                  Awaiting Verification
+                </option>
+              </select>
+            </div>
+          ) : null}
           <TOption
             value={table.getState().pagination.pageSize}
             onChange={(e) => {

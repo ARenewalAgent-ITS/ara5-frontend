@@ -22,6 +22,7 @@ import Typography from '@/components/Typography';
 import ArloCard from '@/containers/dashboardPage/ArloCard';
 import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
+import clsxm from '@/lib/clsxm';
 import { getCsv } from '@/lib/csv';
 import { buildPaginatedTableURL } from '@/lib/table';
 import useAuthStore from '@/store/useAuthStore';
@@ -185,7 +186,7 @@ function DashboardAdmin() {
         <div className='flex justify-center'>
           <ButtonLink
             className='bg-primary-500 text-white hover:bg-primary-700'
-            href={`https://ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
+            href={`https://ara-its.id/uploads/pembayaran/${info.row.original.pembayaran?.bukti_pembayaran}`}
           >
             Bukti Pembayaran
           </ButtonLink>
@@ -225,8 +226,17 @@ function DashboardAdmin() {
     },
     {
       id: 'kupon_id',
-      accessorKey: 'kupon_id',
       header: 'Kode Referal',
+      cell: (info) => (
+        <Typography
+          as='td'
+          className={clsxm(
+            'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
+          )}
+        >
+          {info.row.original.kupon?.kupon}
+        </Typography>
+      ),
       size: 18,
     },
     {
@@ -235,13 +245,13 @@ function DashboardAdmin() {
       cell: (info) => (
         <div className='flex justify-center flex-col items-center'>
           <select
-            value={info.row.original.pembayaran.status.status}
+            value={info.row.original.pembayaran?.status.status}
             className={`flex flex-col cursor-pointer rounded-lg w-[150px] text-white
               ${
-                info.row.original.pembayaran.status.status ===
+                info.row.original.pembayaran?.status.status ===
                 'AWAITING VERIFICATION'
                   ? 'bg-yellow-500'
-                  : info.row.original.pembayaran.status.status === 'FAILED'
+                  : info.row.original.pembayaran?.status.status === 'FAILED'
                   ? 'bg-red-600'
                   : 'bg-success-600'
               }
@@ -297,10 +307,10 @@ function DashboardAdmin() {
     const data =
       user?.permission === 'ADMIN'
         ? response?.data.data.data.filter(
-            (item) => item.pembayaran.status.status === user?.[0]?.team_name
+            (item) => item.pembayaran?.status.status === user?.[0]?.team_name
           ) ?? []
         : response?.data.data.data.filter(
-            (item) => item.pembayaran.status.status
+            (item) => item.pembayaran?.status.status
           ) ?? [];
 
     if (data.length === 0)
@@ -327,7 +337,7 @@ function DashboardAdmin() {
           Anggota2: items?.nama_anggota2,
           Ktp_anggota2: items?.ktp_anggota2,
           // Pembayaran_ID: items?.pembayaran_id,
-          Kupon_ID: items?.kupon_id,
+          Kupon: items?.kupon.kupon,
           Bukti_Follow: items?.bukti_follow,
           Bukti_Repost: items?.bukti_repost,
           Write_UP_CTF: items?.Write_up_ctf,
@@ -344,13 +354,13 @@ function DashboardAdmin() {
   const getVerificationStats = (data: AdminOlimp[]): VerificationStats => {
     const total = data.length;
     const successCount = data.filter(
-      (item) => item.pembayaran.status.status === 'SUCCESS'
+      (item) => item.pembayaran?.status.status === 'SUCCESS'
     ).length;
     const pendingCount = data.filter(
-      (item) => item.pembayaran.status.status === 'AWAITING VERIFICATION'
+      (item) => item.pembayaran?.status.status === 'AWAITING VERIFICATION'
     ).length;
     const failedCount = data.filter(
-      (item) => item.pembayaran.status.status === 'FAILED'
+      (item) => item.pembayaran?.status.status === 'FAILED'
     ).length;
 
     const verifiedPercent = Math.floor((successCount / total) * 100 || 0);

@@ -57,6 +57,9 @@ export type AdminOlimp = {
   createdAt: string;
   updatedAt: string;
   Write_up_ctf: string | null;
+  kupon: {
+    kupon: string;
+  };
   pembayaran: {
     list_bank: {
       bank: string;
@@ -66,4 +69,12 @@ export type AdminOlimp = {
       status: string;
     };
   };
+};
+
+export type AdminKupon = {
+  id: string;
+  kupon: string;
+  usage: number;
+  createdAt: string;
+  updatedAt: string;
 };

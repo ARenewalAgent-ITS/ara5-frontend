@@ -4,8 +4,8 @@ import Aos from 'aos';
 import React, { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
+import Button from '@/components/buttons/Button';
 import Card from '@/components/layouts/Card';
-import ButtonLink from '@/components/links/ButtonLink';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 import LoopKereta from '@/containers/landingPage/LoopKereta';
@@ -18,6 +18,7 @@ export default function LandingPage() {
   useEffect(() => {
     Aos.init();
   }, []);
+  const ProductRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -124,8 +125,13 @@ export default function LandingPage() {
                 menyalurkan minat di bidang IT (teknologi informasi) bagi siswa
                 SMA/SMK dan mahasiswa.
               </Typography>
-              <ButtonLink
-                href='/about'
+              <Button
+                onClick={() =>
+                  scrollBy({
+                    top: ProductRef.current?.getBoundingClientRect()?.top ?? 0,
+                    behavior: 'smooth',
+                  })
+                }
                 variant='primary'
                 rightIcon={FaArrowRight}
                 rightIconClassName={clsxm(
@@ -141,7 +147,7 @@ export default function LandingPage() {
                 >
                   About Us
                 </Typography>
-              </ButtonLink>
+              </Button>
             </div>
           </div>
           <div className='flex z-10 flex-col w-full h-full items-center relative px-10 max-[425px]:px-5 max-[400px]:-top-12 mt-10 lg:mt-28 min-[1600px]:mt-32'>
@@ -243,7 +249,7 @@ export default function LandingPage() {
             <LoopTechnaVita />
           </div>
         </div>
-        <OurEventLineUp />
+        <OurEventLineUp onScrollRef={ProductRef} />
         <MediaSponsorSection />
       </section>
     </>

@@ -42,14 +42,21 @@ const dataEvent: datas[] = [
   },
 ];
 
-export default function OurEventLineUp() {
+interface OurEventLineUpProps {
+  onScrollRef?: React.RefObject<HTMLDivElement>;
+}
+
+export default function OurEventLineUp({ onScrollRef }: OurEventLineUpProps) {
   useEffect(() => {
     Aos.init();
   }, []);
 
   return (
     <>
-      <div className='bg-gradient-to-t from-[#A7E6FF] to-[#00B7FF]'>
+      <div
+        ref={onScrollRef}
+        className='bg-gradient-to-t from-[#A7E6FF] to-[#00B7FF]'
+      >
         <NextImage
           src={'/images/landpage_ourevent/cave.svg'}
           alt='background'
@@ -253,7 +260,7 @@ export default function OurEventLineUp() {
                   peserta.
                 </Typography>
                 <ButtonLink
-                  href='/hmit-its'
+                  href='https://www.instagram.com/hmit_its/'
                   variant='success'
                   color='white'
                   className='w-[174px] group h-[42px] md:h-[48px] text-[14px] font-bold font-poppins text-white leading-relaxed mt-5 rounded-md xl:mt-5'

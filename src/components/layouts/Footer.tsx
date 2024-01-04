@@ -192,7 +192,7 @@ export default function Footer() {
                   alt='IG'
                   width={0}
                   height={0}
-                  style={{ width: '60%', height: '60%' }}
+                  style={{ width: ' 60%', height: '60%' }}
                 />
               </UnstyledLink>
             </div>

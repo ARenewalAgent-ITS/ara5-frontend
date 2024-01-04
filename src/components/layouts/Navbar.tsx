@@ -201,7 +201,7 @@ function Navbar() {
               </div>
             </div>
             <div className='text-center group'>
-              <UnstyledLink href='/hmit-its'>
+              <UnstyledLink href='https://www.instagram.com/hmit_its/'>
                 <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   HMIT
                 </div>
@@ -534,7 +534,7 @@ function Navbar() {
                 <div className='my-2'></div>
                 <div>
                   <UnstyledLink
-                    href='/hmit-its'
+                    href='https://www.instagram.com/hmit_its/'
                     className='flex justify-center items-center'
                   >
                     HMIT ITS
@@ -695,7 +695,7 @@ function Navbar() {
                 <div className='my-2'></div>
                 <div>
                   <UnstyledLink
-                    href='/hmit-its'
+                    href='https://www.instagram.com/hmit_its/'
                     className='flex justify-center items-center'
                   >
                     HMIT ITS
