@@ -12,6 +12,7 @@ import ServerTable from '@/components/table/ServerTable';
 import Typography from '@/components/Typography';
 import useServerTable from '@/hooks/useServerTable';
 import { buildPaginatedTableURL } from '@/lib/table';
+import config from '@/seo.config';
 import { ApiReturn } from '@/types/api';
 import { AdminKupon } from '@/types/entities/events';
 
@@ -108,7 +109,11 @@ function DashboardAdmin() {
   return (
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
-        <SEO title='Dashboard Admin Olimpiade IT' />
+        <SEO
+          metadata={config}
+          title='Dashboard Referral Admin'
+          description='Dashboard Referral Admin ARA 5.0'
+        />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
             <div>

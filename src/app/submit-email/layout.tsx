@@ -1,13 +1,14 @@
-import { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
+import SEO from '@/components/SEO';
+import config from '@/seo.config';
 
-export const metadata: Metadata = {
-  title: 'Submit Email | A Renewal Agent 5.0',
-  description: 'A RENEWAL AGENT 5.0',
-};
+// export const metadata: Metadata = {
+//   title: 'Submit Email | A Renewal Agent 5.0',
+//   description: 'A RENEWAL AGENT 5.0',
+// };
 
 export default function SubmitEmailLayout({
   children,
@@ -16,6 +17,11 @@ export default function SubmitEmailLayout({
 }) {
   return (
     <div className='w-full min-h-screen bg-whites-100'>
+      <SEO
+        metadata={config}
+        title='Submit Email'
+        description='Submit Email ARA 5.0'
+      />
       <section className='fixed hidden lg:block lg:w-[60%] xl:w-[56%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>
           <Image

@@ -4,8 +4,10 @@ import { MdHome } from 'react-icons/md';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import ButtonLink from '@/components/links/ButtonLink';
+import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
+import config from '@/seo.config';
 
 function HomeButton() {
   return (
@@ -30,6 +32,11 @@ function HomeButton() {
 export default function ComingSoon() {
   return (
     <>
+      <SEO
+        metadata={config}
+        title='Coming Soon'
+        description='Coming Soon Page'
+      />
       <div>
         <div className='fixed w-full z-[101]'>
           <Navbar />

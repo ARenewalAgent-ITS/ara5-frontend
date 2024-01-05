@@ -2,11 +2,18 @@ import React from 'react';
 
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
+import config from '@/seo.config';
 
 export default function RegisterPage() {
   return (
     <div className='flex flex-col justify-center gap-6 px-12 lg:px-0'>
+      <SEO
+        metadata={config}
+        title='Register'
+        description='Register Competition ARA 5.0'
+      />
       <Typography
         variant='h3'
         font='baloo'

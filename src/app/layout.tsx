@@ -10,11 +10,9 @@ import {
 } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { Baloo_Da_2, Poppins } from 'next/font/google';
-import { DefaultSeo } from 'next-seo';
 
 import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
-import SEO from '@/seo.config';
 
 const Toast = dynamic(() => import('@/components/Toast'), { ssr: false });
 
@@ -49,7 +47,6 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <body>
         <QueryClientProvider client={queryClient}>
           <Toast />
-          <DefaultSeo {...SEO} />
           <div className={clsxm(poppins.variable, baloo.variable)}>
             {children}
           </div>

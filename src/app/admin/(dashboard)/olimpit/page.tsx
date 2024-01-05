@@ -25,6 +25,7 @@ import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
 import { getCsv } from '@/lib/csv';
 import { buildPaginatedTableURL } from '@/lib/table';
+import config from '@/seo.config';
 import useAuthStore from '@/store/useAuthStore';
 import { PaginatedApiResponse } from '@/types/api';
 import { AdminOlimp } from '@/types/entities/events';
@@ -384,7 +385,11 @@ function DashboardAdmin() {
   return (
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
-        <SEO title='Dashboard Admin Olimpiade IT' />
+        <SEO
+          metadata={config}
+          title='Dashboard Olimpiade IT Admin'
+          description='Dashboard Olimpiade IT Admin ARA 5.0'
+        />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
             <div>

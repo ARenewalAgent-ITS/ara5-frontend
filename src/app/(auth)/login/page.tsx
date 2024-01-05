@@ -10,6 +10,7 @@ import Checkbox from '@/components/Checkbox';
 import Input from '@/components/form/Input';
 import withAuth from '@/components/hoc/withAuth';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
 import { REG_EMAIL } from '@/constants/regex';
 import useMutationToast from '@/hooks/useMutationToast';
@@ -21,6 +22,7 @@ import {
   removeRememberedCredentials,
   setRememberedCredentials,
 } from '@/lib/cookies';
+import config from '@/seo.config';
 import useAuthStore from '@/store/useAuthStore';
 import { ApiReturn } from '@/types/api';
 import { loginForm } from '@/types/entities/login';
@@ -84,6 +86,7 @@ function LoginPage() {
   };
   return (
     <div className='flex flex-col justify-center gap-8 px-12 lg:px-0'>
+      <SEO metadata={config} title='Login' description='login ARA 5.0' />
       <Typography
         variant='h3'
         font='baloo'

@@ -1,30 +1,48 @@
-// @SEE https://www.npmjs.com/package/next-seo#default-seo-configuration
+import type { Metadata } from 'next';
 
-import { DefaultSeoProps } from 'next-seo';
+interface Metadatas extends Metadata {
+  titleTemplate?: string;
+}
 
-const config: DefaultSeoProps = {
-  openGraph: {
-    type: 'website',
-    locale: 'en_IE',
-    url: 'https://www.ara-its.com/',
-    siteName: 'SiteName',
-    images: [
-      {
-        url: `https://ara-its.com/images/og/logo.png`,
-        width: 1200,
-        height: 630,
-        alt: 'A Renewal Agent ITS 2023',
-      },
-    ],
-  },
-  titleTemplate: '%s | ara ITS 2023',
+const baseTitle = 'A Renewal Agent ITS';
+
+const config: Metadatas = {
+  metadataBase: new URL('https://ara-its.id'),
+  title: baseTitle,
+  titleTemplate: '%s | A Renewal Agent ITS',
   description:
-    'A Renewal Agent merupakan event tahunan yang diselenggarakan oleh Departemen Teknologi Informasi ITS. More Description.',
-  defaultTitle: 'ara ITS 2023',
-  additionalLinkTags: [
+    'ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.',
+  openGraph: {
+    url: 'https://ara-its.id',
+    title: baseTitle,
+    description:
+      'ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.',
+    siteName: 'A Renewal Agent ITS',
+    images: [{ url: '/images/og/LogoAra.png' }],
+    type: 'website',
+    locale: 'in_ID',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@ara_its',
+    title: baseTitle,
+    description:
+      'ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.',
+    site: 'https://twitter.com/ara_its',
+    images: [{ url: '/images/og/LogoAra.png' }],
+  },
+  keywords: ['ara', 'ara its', 'A Renewal Agent ITS'],
+  robots: 'index, follow',
+  icons: [
     {
-      rel: 'png',
-      href: '/favicon.ico',
+      rel: 'icon',
+      url: '/favicon.ico',
+      type: 'image/x-icon',
+    },
+    {
+      rel: 'shortcut icon',
+      url: '/favicon.ico',
+      type: 'image/x-icon',
     },
   ],
 };
