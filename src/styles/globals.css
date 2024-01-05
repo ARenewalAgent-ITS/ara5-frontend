@@ -12,6 +12,10 @@
   @apply mx-auto w-[96%];
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @keyframes float {
   0%,
   100% {

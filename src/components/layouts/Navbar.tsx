@@ -213,7 +213,7 @@ function Navbar() {
               </UnstyledLink>
             </div>
             <div className='text-center group'>
-              <UnstyledLink href='/about'>
+              <UnstyledLink href='#ourevents'>
                 <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
                   About
                 </div>

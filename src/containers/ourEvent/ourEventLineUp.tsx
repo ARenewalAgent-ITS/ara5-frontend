@@ -42,21 +42,14 @@ const dataEvent: datas[] = [
   },
 ];
 
-interface OurEventLineUpProps {
-  onScrollRef?: React.RefObject<HTMLDivElement>;
-}
-
-export default function OurEventLineUp({ onScrollRef }: OurEventLineUpProps) {
+export default function OurEventLineUp() {
   useEffect(() => {
     Aos.init();
   }, []);
 
   return (
     <>
-      <div
-        ref={onScrollRef}
-        className='bg-gradient-to-t from-[#A7E6FF] to-[#00B7FF]'
-      >
+      <div className='bg-gradient-to-t from-[#A7E6FF] to-[#00B7FF]'>
         <NextImage
           src={'/images/landpage_ourevent/cave.svg'}
           alt='background'
@@ -74,7 +67,7 @@ export default function OurEventLineUp({ onScrollRef }: OurEventLineUpProps) {
           />
         </div>
 
-        <div className='relative'>
+        <a id='ourevents' className='relative'>
           <NextImage
             src={'/images/landpage_ourevent/leaf.svg'}
             alt='birds'
@@ -82,7 +75,7 @@ export default function OurEventLineUp({ onScrollRef }: OurEventLineUpProps) {
             height={100}
             className='hidden md:block absolute w-full top-[50rem]'
           />
-        </div>
+        </a>
 
         <div className='relative'>
           <NextImage
