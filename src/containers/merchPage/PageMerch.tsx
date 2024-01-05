@@ -9,7 +9,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
-
 import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
