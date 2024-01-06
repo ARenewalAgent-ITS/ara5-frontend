@@ -6,6 +6,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/swiper-bundle.min.css';
 
 import axios from 'axios';
+import Image from 'next/image';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -16,7 +17,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Navbar from '@/components/layouts/Navbar';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
-import Image from 'next/image';
 
 /*
 interface ProductData {
