@@ -2,11 +2,6 @@ import Image from 'next/image';
 import React from 'react';
 
 import SEO from '@/components/SEO';
-import config from '@/seo.config';
-// export const metadata: Metadata = {
-//   title: 'Registrasi CTF | A Renewal Agent 5.0',
-//   description: 'A RENEWAL AGENT 5.0',
-// };
 
 export default function RegisLayout({
   children,
@@ -16,9 +11,8 @@ export default function RegisLayout({
   return (
     <div className='w-full min-h-screen bg-whites-100'>
       <SEO
-        metadata={config}
         title='Registrasi CTF'
-        description='Registrasi CTF ARA 5.0'
+        description='CTF atau Capture the Flag merupakan kompetisi seputar bidang Cyber Security yang ditujukan bagi siswa/i SMA dan mahasiswa/i aktif PTN/PTS se-Indonesia. Para peserta kompetisi CTF dalam rangkaian ARA 5.0 diwajibkan untuk menemukan file tersembunyi dalam bentuk file ataupun string (teks) yang disebut dengan “Flag”.'
       />
       <section className='fixed hidden lg:block lg:w-[60%] xl:w-[56%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>

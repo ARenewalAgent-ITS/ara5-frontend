@@ -3,12 +3,6 @@ import React from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
 import SEO from '@/components/SEO';
-import config from '@/seo.config';
-
-// export const metadata: Metadata = {
-//   title: 'Order Merchandise | A Renewal Agent 5.0',
-//   description: 'A RENEWAL AGENT 5.0',
-// };
 
 export default function OrderMerchandiseLayout({
   children,
@@ -17,11 +11,7 @@ export default function OrderMerchandiseLayout({
 }) {
   return (
     <div className='w-full min-h-screen bg-whites-100'>
-      <SEO
-        metadata={config}
-        title='Order Merchandise'
-        description='Order Merchandise ARA 5.0'
-      />
+      <SEO title='Order Merchandise' description='Order Merchandise ARA 5.0' />
       <section className='fixed hidden lg:block w-2/3 xl:w-[65%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>
           <Image

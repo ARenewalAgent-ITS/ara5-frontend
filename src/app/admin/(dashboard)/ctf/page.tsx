@@ -24,7 +24,6 @@ import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
 import { getCsv } from '@/lib/csv';
 import { buildPaginatedTableURL } from '@/lib/table';
-import config from '@/seo.config';
 import useAuthStore from '@/store/useAuthStore';
 import { PaginatedApiResponse } from '@/types/api';
 import { AdminCTF } from '@/types/entities/events';
@@ -404,7 +403,6 @@ function DashboardAdmin() {
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
         <SEO
-          metadata={config}
           title='Dashboard CTF Admin'
           description='Dashboard CTF Admin ARA 5.0'
         />

@@ -22,7 +22,6 @@ import {
   removeRememberedCredentials,
   setRememberedCredentials,
 } from '@/lib/cookies';
-import config from '@/seo.config';
 import useAuthStore from '@/store/useAuthStore';
 import { ApiReturn } from '@/types/api';
 import { loginForm } from '@/types/entities/login';
@@ -86,7 +85,10 @@ function LoginPage() {
   };
   return (
     <div className='flex flex-col justify-center gap-8 px-12 lg:px-0'>
-      <SEO metadata={config} title='Login' description='login ARA 5.0' />
+      <SEO
+        title='Login'
+        description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
+      />
       <Typography
         variant='h3'
         font='baloo'

@@ -3,7 +3,6 @@ import React from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
 import SEO from '@/components/SEO';
-import config from '@/seo.config';
 
 export default function RegisLayout({
   children,
@@ -12,7 +11,7 @@ export default function RegisLayout({
 }) {
   return (
     <div className='w-full min-h-screen bg-whites-100'>
-      <SEO metadata={config} title='Submit Email' description='Submit Email' />
+      <SEO title='Submit Email' description='Submit Email' />
       <section className='fixed hidden lg:block lg:w-[60%] xl:w-[56%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>
           <Image

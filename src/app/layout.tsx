@@ -8,6 +8,7 @@ import {
   QueryClientProvider,
   QueryOptions,
 } from '@tanstack/react-query';
+import { Analytics } from '@vercel/analytics/react';
 import dynamic from 'next/dynamic';
 import { Baloo_Da_2, Poppins } from 'next/font/google';
 
@@ -50,6 +51,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <div className={clsxm(poppins.variable, baloo.variable)}>
             {children}
           </div>
+          <Analytics />
         </QueryClientProvider>
       </body>
     </html>

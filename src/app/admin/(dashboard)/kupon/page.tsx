@@ -12,7 +12,6 @@ import ServerTable from '@/components/table/ServerTable';
 import Typography from '@/components/Typography';
 import useServerTable from '@/hooks/useServerTable';
 import { buildPaginatedTableURL } from '@/lib/table';
-import config from '@/seo.config';
 import { ApiReturn } from '@/types/api';
 import { AdminKupon } from '@/types/entities/events';
 
@@ -110,7 +109,6 @@ function DashboardAdmin() {
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
         <SEO
-          metadata={config}
           title='Dashboard Referral Admin'
           description='Dashboard Referral Admin ARA 5.0'
         />

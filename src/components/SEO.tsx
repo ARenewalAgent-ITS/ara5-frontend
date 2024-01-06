@@ -1,43 +1,47 @@
-import { Metadata } from 'next';
+// SEO.tsx
 import React from 'react';
 
+import config from '@/seo.config';
+
 interface SEOProps {
-  metadata?: Metadata;
   title?: string;
   description?: string;
 }
 
-export default function SEO({ metadata, title, description }: SEOProps) {
-  const pageTitle = title ? `${title} | ${metadata?.title}` : metadata?.title;
+export default function SEO({ title, description }: SEOProps) {
+  const pageTitle = title ? `${title} | ${config.title}` : config.title;
 
   return (
     <>
       <title>{pageTitle as string}</title>
       <meta
         name='description'
-        content={description || metadata?.description || ''}
+        content={(description as string) || (config.description as string)}
       />
-      <link rel='canonical' href={metadata?.metadataBase?.toString() || ''} />
+      <link rel='canonical' href={config.metadataBase?.toString() || ''} />
       <meta
         property='og:url'
-        content={(metadata?.openGraph?.url as string) || ''}
+        content={(config.openGraph?.url as string) || ''}
       />
       <meta
         property='og:title'
-        content={(metadata?.openGraph?.title as string) || ''}
+        content={(config.openGraph?.title as string) || ''}
       />
       <meta
         property='og:description'
-        content={metadata?.openGraph?.description || ''}
+        content={(config.openGraph?.description as string) || ''}
       />
-      <meta name='twitter:creator' content={metadata?.twitter?.creator || ''} />
+      <meta
+        name='twitter:creator'
+        content={(config.twitter?.creator as string) || ''}
+      />
       <meta
         name='twitter:title'
-        content={(metadata?.twitter?.title as string) || ''}
+        content={(config.twitter?.title as string) || ''}
       />
       <meta
         name='twitter:description'
-        content={metadata?.twitter?.description || ''}
+        content={config.twitter?.description || ''}
       />
     </>
   );

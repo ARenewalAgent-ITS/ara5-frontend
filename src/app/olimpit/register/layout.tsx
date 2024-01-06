@@ -2,11 +2,6 @@ import Image from 'next/image';
 import React from 'react';
 
 import SEO from '@/components/SEO';
-import config from '@/seo.config';
-// export const metadata: Metadata = {
-//   title: 'Registrasi Olimpiade IT | A Renewal Agent 5.0',
-//   description: 'A RENEWAL AGENT 5.0',
-// };
 
 export default function RegisLayout({
   children,
@@ -16,9 +11,8 @@ export default function RegisLayout({
   return (
     <div className='w-full min-h-screen bg-whites-100'>
       <SEO
-        metadata={config}
         title='Registrasi Olimpiade IT'
-        description='Registrasi Olimpiade IT ARA 5.0'
+        description='Olimpiade merupakan kompetisi yang diadakan dalam rangkaian acara ARA 5.0. Olimpiade dalam rangkaian acara ARA 5.0 ditujukan bagi siswa SMA/SMK di seluruh Indonesia. Soal meliputi seputar Kurikulum Departemen Teknologi Informasi akan diberikan kepada peserta kompetisi Olimpiade.'
       />
       <section className='fixed hidden lg:block lg:w-[60%] xl:w-[56%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>

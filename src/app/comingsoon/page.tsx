@@ -7,7 +7,6 @@ import ButtonLink from '@/components/links/ButtonLink';
 import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
-import config from '@/seo.config';
 
 function HomeButton() {
   return (
@@ -33,9 +32,8 @@ export default function ComingSoon() {
   return (
     <>
       <SEO
-        metadata={config}
         title='Coming Soon'
-        description='Coming Soon Page'
+        description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
       />
       <div>
         <div className='fixed w-full z-[101]'>

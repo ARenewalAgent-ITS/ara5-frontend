@@ -1,10 +1,4 @@
 import SEO from '@/components/SEO';
-import config from '@/seo.config';
-
-// export const metadata: Metadata = {
-//   title: 'Dashboard User | A Renewal Agent 5.0',
-//   description: 'A RENEWAL AGENT 5.0',
-// };
 
 export default function RootLayout({
   children,
@@ -13,11 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <SEO
-        metadata={config}
-        title='Dashboard User'
-        description='Dashboard User ARA 5.0'
-      />
+      <SEO title='Dashboard User' description='Dashboard User ARA 5.0' />
       {children}
     </>
   );
