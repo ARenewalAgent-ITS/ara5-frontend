@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import React from 'react';
 
-import Footer from '@/components/layouts/Footer';
-import Navbar from '@/components/layouts/Navbar';
-import LandingPage from '@/containers/landingPage/LandingPage';
+// import Footer from '@/components/layouts/Footer';
+// import Navbar from '@/components/layouts/Navbar';
+// import LandingPage from '@/containers/landingPage/LandingPage';
+import PageMerch from '@/containers/merchPage/PageMerch';
 
 export const metadata: Metadata = {
   title: 'Home | A Renewal Agent 5.0',
@@ -13,9 +14,10 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <LandingPage />
-      <Footer />
+      <Footer /> */}
+      <PageMerch />
     </>
   );
 }

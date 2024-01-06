@@ -5,9 +5,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/swiper-bundle.min.css';
 
-import axios from 'axios';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
@@ -17,7 +16,6 @@ import Navbar from '@/components/layouts/Navbar';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
 
-/*
 interface ProductData {
   id: number;
   name: string;
@@ -84,7 +82,6 @@ const products: ProductData[] = [
     category: 'Lanyard',
   },
 ];
-*/
 
 const paginationStyle = {
   '--swiper-pagination-color': '#212121',
@@ -102,16 +99,6 @@ const images = [
 ];
 
 export default function PageMerch() {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get('https://ara-its.id/api/merch');
-      setProducts(response.data.data.data);
-    }
-
-    fetchData();
-  }, []);
-
   const [showCatDropdown, setShowCatDropdown] = useState(false);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
 
@@ -256,27 +243,29 @@ export default function PageMerch() {
               </div>
             </div>
           </div>
-
-          <div className='mt-4 mx-4 sm:mx-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-            {products.map((product: any) => (
-              <div key={product.id} className='my-3 mx-1 sm:mx-2'>
-                <div className='relative'>
-                  <NextImage
-                    src={`https://ara-its.id/uploads/merch/${product.image_path}`}
-                    width={0}
-                    height={0}
-                    alt='productimage'
-                    className='w-full object-cover'
-                    style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
-                  />
-                  <Typography
-                    weight='medium'
-                    font='poppins'
-                    className='text-whites-100 absolute top-4 right-4 px-5 py-1 rounded-md bg-primary-600 hidden lg:block lg:text-[13px]'
-                  >
-                    {product.kategori_produk}
-                  </Typography>
-                  <div className='bg-primary-600 shadow-80 rounded-b-lg p-3'>
+          <div className='mt-4 mx-4 sm:mx-6 flex flex-wrap justify-around'>
+            {products.map((products) => (
+              <div key={products.id} className='my-3 mx-1 sm:mx-2'>
+                <div className=''>
+                  <div className=''>
+                    <NextImage
+                      src={products.imageSrc}
+                      alt='productimage'
+                      width={100}
+                      height={100}
+                      className='w-[120px] sm:w-[150px] md:w-[170px] lg:w-[325px]'
+                    />
+                  </div>
+                  <div className=''>
+                    <Typography
+                      weight='medium'
+                      font='poppins'
+                      className='text-whites-100 absolute -mt-72 ml-[220px] px-5 py-1 rounded-md bg-primary-600 hidden lg:block lg:text-[13px]'
+                    >
+                      {products.category}
+                    </Typography>
+                  </div>
+                  <div className='bg-primary-600 shadow-80 rounded-b-lg p-3 -mt-3 lg:-mt-8 lg:p-5'>
                     <div className='lg:flex lg:justify-between lg:items-center'>
                       <div className='lg:flex-col'>
                         <Typography
@@ -284,14 +273,14 @@ export default function PageMerch() {
                           font='poppins'
                           className='text-whites-100 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[16px] xl:text-[18px]'
                         >
-                          {product.nama_produk}
+                          {products.name}
                         </Typography>
                         <Typography
                           weight='bold'
                           font='poppins'
                           className='text-whites-100 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[16px] xl:text-[18px]'
                         >
-                          {product.harga}
+                          {products.price}
                         </Typography>
                       </div>
                       <button className='border-[1px] border-whites-100 p-2 lg:w-20 w-full h-fit rounded-md mt-2 flex relative justify-center items-center'>
