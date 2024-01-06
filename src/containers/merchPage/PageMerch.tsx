@@ -16,6 +16,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Navbar from '@/components/layouts/Navbar';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import Image from 'next/image';
 
 /*
 interface ProductData {
@@ -261,12 +262,12 @@ export default function PageMerch() {
             {products.map((product: any) => (
               <div key={product.id} className='my-3 mx-1 sm:mx-2'>
                 <div className='relative'>
-                  <NextImage
+                  <Image
                     src={`https://ara-its.id/uploads/merch/${product.image_path}`}
-                    width={0}
-                    height={0}
+                    width={1000}
+                    height={1000}
                     alt='productimage'
-                    className='w-full object-cover'
+                    className='w-full object-cover h-[400px]'
                     style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
                   />
                   <Typography
