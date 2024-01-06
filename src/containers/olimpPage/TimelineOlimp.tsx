@@ -30,7 +30,7 @@ const timelines = [
   },
   {
     title: 'Babak',
-    br: 'Babak FInal',
+    br: 'Final',
     date: '7 Februari 2024',
     image: '/svg/timeline/olimp/five.svg',
   },
@@ -62,7 +62,7 @@ const timelines_mobile = [
   },
   {
     title: 'Babak',
-    br: 'Babak FInal',
+    br: 'Final',
     date: '7 Februari 2024',
     image: '/svg/timeline/olimp/five_r.svg',
   },
@@ -119,10 +119,10 @@ function TimelineOlimp() {
                   <div className='row-span-2'>
                     <Typography
                       font='baloo'
-                      variant='p'
+                      variant='h5'
                       className='font-extrabold text-[#F8F8F8]'
                     >
-                      {timeline.title} <br /> {timeline.br}
+                      {timeline.title} {timeline.br}
                     </Typography>
                     <Typography
                       font='baloo'
@@ -180,7 +180,7 @@ function TimelineOlimp() {
                       variant='h5'
                       className='font-bold text-[#F8F8F8]'
                     >
-                      {timeline.title} <br /> {timeline.br}
+                      {timeline.title} {timeline.br}
                     </Typography>
                     <Typography
                       font='baloo'
@@ -235,7 +235,9 @@ function TimelineOlimp() {
                 variant='h4'
                 className='font-bold text-[#F8F8F8] !text-3xl'
               >
-                {timeline_mobile.title} <br /> {timeline_mobile.br}
+                {timeline_mobile.title}
+                <br />
+                {timeline_mobile.br}
               </Typography>
               <Typography
                 font='baloo'
