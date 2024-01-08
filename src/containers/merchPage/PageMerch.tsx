@@ -262,14 +262,16 @@ export default function PageMerch() {
             {products.map((product: any) => (
               <div key={product.id} className='my-3 mx-1 sm:mx-2'>
                 <div className='relative'>
-                  <Image
-                    src={`https://ara-its.id/uploads/merch/${product.image_path}`}
-                    width={1000}
-                    height={1000}
-                    alt='productimage'
-                    className='w-full object-cover h-[400px]'
-                    style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
-                  />
+                  <div className='relative overflow-hidden'>
+                    <Image
+                      src={`https://ara-its.id/uploads/merch/${product.image_path}`}
+                      width={1000}
+                      height={1000}
+                      alt='productimage'
+                      className='w-full object-none duration-300 h-[400px]'
+                      style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
+                    />
+                  </div>
                   <Typography
                     weight='medium'
                     font='poppins'
