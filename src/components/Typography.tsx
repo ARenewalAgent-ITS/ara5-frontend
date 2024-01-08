@@ -118,7 +118,7 @@ export default function Typography<T extends React.ElementType>({
 
         // *=============== Font Colors ==================
         // PRIORITY
-        [color === 'primary' && ['text-typo-primary']],
+        [color === 'primary' && ['text-whites-1100']],
         [color === 'warning' && ['text-warning-600']],
         [color === 'danger' && ['text-danger-600']],
         [color === 'success' && ['text-success-600']],
@@ -128,7 +128,7 @@ export default function Typography<T extends React.ElementType>({
         [color === 'icon' && ['text-typo-icon']],
         [color === 'outline' && ['text-typo-outline']],
         [color === 'inline' && ['text-typo-inline']],
-        [color === 'white' && ['text-typo-white']],
+        [color === 'white' && ['text-whites-100']],
         [color === 'surface' && ['text-typo-surface']],
         [color === 'blue' && ['text-primary-500']],
         className
