@@ -98,7 +98,7 @@ function LandingCTF() {
             </Typography>
           </ButtonLink>
           <ButtonLink
-            href='https://its.id/m/GuidebookCTF5'
+            href='https://its.id/m/GbCTFARA5'
             variant='primary'
             rightIcon={FaBook}
             rightIconClassName={clsxm('w-[14px] text-white')}
