@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { Fragment } from 'react';
 import { GoPlusCircle } from 'react-icons/go';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
@@ -7,11 +8,13 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { RxMinusCircled } from 'react-icons/rx';
 
 import Button from '@/components/buttons/Button';
+import { DANGER_TOAST, showToast } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import useMerchStore from '@/store/useMerchStore';
 
 export default function CheckoutDialog() {
+  const router = useRouter();
   const {
     modalIsOpen,
     merchCatalogue,
@@ -22,7 +25,9 @@ export default function CheckoutDialog() {
   } = useMerchStore();
 
   const totalHarga = merchCatalogue.reduce((total, merch) => {
-    return total + merch.harga * merch.total;
+    const additionalCost =
+      merch.size === 'XXL' || merch.size === 'XXXL' ? 10000 : 0;
+    return total + (merch.harga + additionalCost) * merch.total;
   }, 0);
 
   const totalPembelanjaan = merchCatalogue.reduce((total, merch) => {
@@ -88,7 +93,7 @@ export default function CheckoutDialog() {
                       </div>
                       {merchCatalogue.map((merch, index) => (
                         <div
-                          key={merch.id}
+                          key={index}
                           className={clsxm(
                             'flex w-full justify-between px-11 py-10 bg-primary-100 border-primary-400',
                             index === merchCatalogue.length - 1
@@ -96,17 +101,69 @@ export default function CheckoutDialog() {
                               : 'border-t-2'
                           )}
                         >
-                          <div className='flex gap-7'>
+                          <div className='flex gap-7 items-center'>
                             <div className='w-40 h-40 bg-whites-100 flex justify-center items-center'>
-                              <Image
-                                src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
-                                alt={merch.nama_produk}
-                                layout='responsive'
-                                width={120}
-                                height={120}
-                                objectFit='contain'
-                                className='object-contain scale-[43%]'
-                              />
+                              {merch.kategori_produk === 'PAKET' ? (
+                                <Image
+                                  src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
+                                  alt={merch.nama_produk}
+                                  layout='responsive'
+                                  width={130}
+                                  height={130}
+                                  objectFit='contain'
+                                  className='object-contain scale-[63%]'
+                                />
+                              ) : merch.kategori_produk === 'PIN' ? (
+                                <Image
+                                  src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
+                                  alt={merch.nama_produk}
+                                  layout='responsive'
+                                  width={120}
+                                  height={120}
+                                  objectFit='contain'
+                                  className='object-contain scale-[58%]'
+                                />
+                              ) : merch.kategori_produk === 'LANYARD' ? (
+                                <Image
+                                  src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
+                                  alt={merch.nama_produk}
+                                  layout='responsive'
+                                  width={120}
+                                  height={120}
+                                  objectFit='contain'
+                                  className='object-contain scale-[75%]'
+                                />
+                              ) : merch.kategori_produk === 'TOPI' ? (
+                                <Image
+                                  src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
+                                  alt={merch.nama_produk}
+                                  layout='responsive'
+                                  width={120}
+                                  height={120}
+                                  objectFit='contain'
+                                  className='object-contain scale-[60%]'
+                                />
+                              ) : merch.kategori_produk === 'KAOS' ? (
+                                <Image
+                                  src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
+                                  alt={merch.nama_produk}
+                                  layout='responsive'
+                                  width={120}
+                                  height={120}
+                                  objectFit='contain'
+                                  className='object-contain scale-[80%]'
+                                />
+                              ) : (
+                                <Image
+                                  src={`https://ara-its.id/uploads/merch/${merch.image_path}`}
+                                  alt={merch.nama_produk}
+                                  layout='responsive'
+                                  width={120}
+                                  height={120}
+                                  objectFit='contain'
+                                  className='object-contain scale-[43%]'
+                                />
+                              )}
                             </div>
                             <div className='flex flex-col'>
                               <Typography
@@ -117,19 +174,36 @@ export default function CheckoutDialog() {
                               >
                                 {merch.nama_produk}
                               </Typography>
+                              {merch.size && (
+                                <Typography
+                                  variant='t'
+                                  font='poppins'
+                                  weight='bold'
+                                  className='text-[20px] leading-[24px]'
+                                >
+                                  ({merch.size})
+                                </Typography>
+                              )}
                               <Typography
                                 font='poppins'
                                 weight='bold'
                                 className='block sm:hidden text-primary-700 mt-1 text-[18px] leading-[24px]'
                               >
                                 Rp
-                                {(merch.harga * merch.total).toLocaleString(
-                                  'id-ID'
-                                )}
+                                {(
+                                  (merch.harga +
+                                    (merch.size === 'XXL' ||
+                                    merch.size === 'XXXL'
+                                      ? 10000
+                                      : 0)) *
+                                  merch.total
+                                ).toLocaleString('id-ID')}
                               </Typography>
                               <div className='flex items-center gap-5 mt-2 mb-5 md:mb-7'>
                                 <RxMinusCircled
-                                  onClick={() => minusOneMerch(merch.id)}
+                                  onClick={() =>
+                                    minusOneMerch(merch.id, merch.size)
+                                  }
                                   className='text-whites-1100 w-7 h-7 cursor-pointer'
                                 />
                                 <Typography
@@ -141,12 +215,16 @@ export default function CheckoutDialog() {
                                   {merch.total}
                                 </Typography>
                                 <GoPlusCircle
-                                  onClick={() => addOneMerch(merch.id)}
+                                  onClick={() =>
+                                    addOneMerch(merch.id, merch.size)
+                                  }
                                   className='text-whites-1100 w-7 h-7 cursor-pointer'
                                 />
                               </div>
                               <Button
-                                onClick={() => removeMerch(merch.id)}
+                                onClick={() =>
+                                  removeMerch(merch.id, merch.size)
+                                }
                                 variant='danger'
                                 className='w-fit px-3 py-2'
                               >
@@ -168,9 +246,13 @@ export default function CheckoutDialog() {
                             className='hidden sm:block text-primary-700 mt-2'
                           >
                             Rp
-                            {(merch.harga * merch.total).toLocaleString(
-                              'id-ID'
-                            )}
+                            {(
+                              (merch.harga +
+                                (merch.size === 'XXL' || merch.size === 'XXXL'
+                                  ? 10000
+                                  : 0)) *
+                              merch.total
+                            ).toLocaleString('id-ID')}
                           </Typography>
                         </div>
                       ))}
@@ -195,7 +277,21 @@ export default function CheckoutDialog() {
                         </Typography>
                       </div>
                       <div className='mt-10 px-10'>
-                        <Button className='w-full' size='lg' variant='success'>
+                        <Button
+                          onClick={() => {
+                            if (merchCatalogue.length !== 0) {
+                              router.push('/order-merchandise');
+                            } else {
+                              showToast(
+                                'Keranjang belanja tidak boleh kosong untuk checkout!',
+                                DANGER_TOAST
+                              );
+                            }
+                          }}
+                          className='w-full'
+                          size='lg'
+                          variant='success'
+                        >
                           <Typography
                             variant='btn'
                             font='poppins'

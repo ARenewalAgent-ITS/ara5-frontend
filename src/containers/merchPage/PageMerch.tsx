@@ -9,6 +9,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { IoIosArrowDown } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
@@ -20,6 +21,7 @@ import NextImage from '@/components/NextImage';
 import { showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
+import clsxm from '@/lib/clsxm';
 import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
@@ -29,7 +31,7 @@ interface ProductData {
   name: string;
   price: string;
   imageSrc: string;
-  category: string;
+  size: string;
 }
 
 const products: ProductData[] = [
@@ -38,56 +40,56 @@ const products: ProductData[] = [
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 2,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 3,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 4,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 5,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 6,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 7,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
   {
     id: 8,
     name: 'Lanyard Arlo',
     price: 'Rp10.000',
     imageSrc: '/img/merchpage/frames.svg',
-    category: 'Lanyard',
+    size: 'Lanyard',
   },
 ];
 */
@@ -107,33 +109,46 @@ const images = [
   '/img/merchpage/banner4.svg',
 ];
 
+const sizes: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+
 export default function PageMerch() {
   const [products, setProducts] = useState<TMerchCatalogue[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [isFiltered, setIsFiltered] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<TMerchCatalogue[]>(
     []
   );
+  const [isSorted, setIsSorted] = useState(false);
   const [sortType, setSortType] = useState<'Termurah' | 'Termahal' | null>(
     null
   );
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [isSorted, setIsSorted] = useState(false);
-  const { insertMerch } = useMerchStore();
+  const [activeDropdownId, setActiveDropdownId] = useState<string | null>(null);
+  const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
+  const [showCatDropdown, setShowCatDropdown] = useState(false);
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const { insertMerch, setModalOpen } = useMerchStore();
+
   const uniqueCategories = Array.from(
     new Set(products.map((product: TMerchCatalogue) => product.kategori_produk))
   );
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get('https://ara-its.id/api/merch');
-      setProducts(response.data.data.data);
+    async function fetchProducts(perPage: number, pageCount: number) {
+      const responses = await Promise.all(
+        Array.from({ length: pageCount }, (_, i) =>
+          axios.get(
+            `https://ara-its.id/api/merch?page=${i + 1}&perPage=${perPage}`
+          )
+        )
+      );
+      const allProducts = responses.flatMap(
+        (response) => response.data.data.data
+      );
+      setProducts(allProducts);
     }
 
-    fetchData();
+    fetchProducts(100, 1);
   }, []);
-
-  const [showCatDropdown, setShowCatDropdown] = useState(false);
-  const [showSortDropdown, setShowSortDropdown] = useState(false);
 
   const CatDropdownClick = () => {
     setShowCatDropdown(!showCatDropdown);
@@ -143,13 +158,13 @@ export default function PageMerch() {
     setShowSortDropdown(!showSortDropdown);
   };
 
-  const handleCategorySelection = (category: string) => {
+  const handlesizeSelection = (size: string) => {
     setSelectedCategories((prevCategories) => {
       setIsFiltered(true);
-      if (prevCategories.includes(category)) {
-        return prevCategories.filter((cat) => cat !== category);
+      if (prevCategories.includes(size)) {
+        return prevCategories.filter((cat) => cat !== size);
       } else {
-        return [...prevCategories, category];
+        return [...prevCategories, size];
       }
     });
   };
@@ -167,6 +182,14 @@ export default function PageMerch() {
   const resetSort = () => {
     setSortType(null);
     setIsSorted(false);
+  };
+
+  const handleDropdownClick = (id: string) => {
+    if (activeDropdownId === id) {
+      setActiveDropdownId(null);
+    } else {
+      setActiveDropdownId(id);
+    }
   };
 
   useEffect(() => {
@@ -230,14 +253,11 @@ export default function PageMerch() {
               >
                 Katalog Merchandise
               </Typography>
-              <NextImage
-                src='/img/merchpage/sorticon.svg'
-                alt='frame'
-                width={22}
-                height={12}
-                className='cursor-pointer block lg:hidden'
+              <HiOutlineShoppingCart
+                onClick={setModalOpen}
+                className='w-7 h-7 text-primary-600 cursor-pointer block lg:hidden'
               />
-              <div className='flex gap-5'>
+              <div className='lg:flex gap-5 hidden'>
                 <div
                   onClick={CatDropdownClick}
                   className='hidden z-10 cursor-pointer lg:block items-center flex-col bg-whites-100 w-full h-10 p-2 border-[1px] border-whites-1100 rounded-md'
@@ -272,7 +292,7 @@ export default function PageMerch() {
                     <div className='flex-col -ml-2 bg-whites-100 py-2 mt-3 flex justify-center px-3 w-full border-[1px] shadow-40 rounded-md'>
                       {uniqueCategories.map((category, index) => (
                         <div
-                          onClick={() => handleCategorySelection(category)}
+                          onClick={() => handlesizeSelection(category)}
                           key={index}
                         >
                           <Typography
@@ -353,65 +373,148 @@ export default function PageMerch() {
           <div className='mt-4 mx-4 sm:mx-6 lg:mx-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7'>
             {filteredProducts ? (
               filteredProducts.map((product: TMerchCatalogue) => (
-                <div key={product.id} className='my-3 mx-1 sm:mx-2'>
-                  <div className='relative'>
+                <div
+                  key={product.id}
+                  onMouseEnter={() => setHoveredProductId(product.id)}
+                  onMouseLeave={() => setHoveredProductId(null)}
+                  className='my-3 mx-1 sm:mx-2'
+                >
+                  <div className='relative overflow-hidden'>
                     <div className='relative overflow-hidden bg-primary-100 bg-opacity-25 rounded-t-[15px]'>
                       <Image
                         src={`https://ara-its.id/uploads/merch/${product.image_path}`}
                         width={1000}
                         height={1000}
                         alt='productimage'
-                        className='w-full object-none duration-300 h-[400px]'
+                        className={clsxm(
+                          'w-full object-none duration-300 h-[400px]',
+                          hoveredProductId === product.id ? 'scale-110' : ''
+                        )}
                         style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
                       />
+                      <div
+                        className={clsxm(
+                          'absolute inset-0 bg-whites-100/30 backdrop-blur flex items-center justify-center p-5 text-center opacity-0 transition-opacity cursor-pointer duration-300',
+                          hoveredProductId === product.id ? 'opacity-100' : ''
+                        )}
+                      >
+                        <div className='flex flex-col'>
+                          <Typography
+                            variant='t'
+                            weight='semibold'
+                            font='poppins'
+                            className='text-[14px] lg:text-[16px]'
+                          >
+                            {product.deskripsi}
+                          </Typography>
+                          {product.kategori_produk === 'KAOS' ? (
+                            <Typography
+                              variant='t'
+                              weight='bold'
+                              font='poppins'
+                              className='text-[14px] lg:text-[16px]'
+                            >
+                              <br />
+                              T-Shirt XXL & XXXL tambah 10.000
+                            </Typography>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
+                    <div className=''></div>
+                    {product.it_reborn ? (
+                      <Typography
+                        weight='bold'
+                        font='poppins'
+                        variant='p'
+                        color='white'
+                        className='absolute -rotate-45 top-8 -left-16 px-20 py-[10px] bg-primary-600 hidden lg:block'
+                      >
+                        IT REBORN
+                      </Typography>
+                    ) : (
+                      <></>
+                    )}
                     <Typography
-                      weight='medium'
+                      weight='bold'
                       font='poppins'
-                      className='text-whites-100 absolute top-4 right-4 px-5 py-1 rounded-md bg-primary-600 hidden lg:block lg:text-[13px]'
+                      variant='c14'
+                      className='text-whites-100 absolute top-4 right-4 px-5 py-[6px] rounded-md bg-primary-600 hidden lg:block lg:text-[14px]'
                     >
                       {product.kategori_produk}
                     </Typography>
                     <div className='bg-primary-600 rounded-b-3xl px-6 py-5'>
-                      <div className='lg:flex lg:justify-between lg:items-center'>
+                      <div className='lg:flex-row lg:justify-between lg:items-center flex flex-col justify-center relative'>
                         <div className='lg:flex-col'>
                           <Typography
                             weight='medium'
                             font='poppins'
-                            className='text-whites-100 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[16px] xl:text-[18px]'
+                            variant='t'
+                            className='text-whites-100 text-[16px] leading-[24px]'
                           >
                             {product.nama_produk}
                           </Typography>
                           <Typography
                             weight='bold'
                             font='poppins'
-                            className='text-whites-100 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[16px] xl:text-[18px]'
+                            variant='p'
+                            className='text-whites-100 text-[14px] leading-[24px]'
                           >
                             Rp{product.harga.toLocaleString('id-ID')}
                           </Typography>
                         </div>
                         <button
                           onClick={() => {
-                            insertMerch(product);
-                            showToast(
-                              `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                              SUCCESS_TOAST
-                            );
+                            if (product.kategori_produk === 'KAOS') {
+                              handleDropdownClick(product.id);
+                            } else {
+                              insertMerch(product);
+                              showToast(
+                                `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                                SUCCESS_TOAST
+                              );
+                            }
                           }}
-                          className='border-[1px] border-whites-100 py-2 px-5 w-fit h-fit gap-1 rounded-md mt-2 flex relative justify-center items-center'
+                          className='border-[1px] relative group hover:-translate-y-1 hover:scale-110 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-2 px-5 w-fit h-fit gap-1 rounded-md mt-2 flex justify-center items-center'
                         >
                           <Typography
                             weight='bold'
                             font='poppins'
-                            className='text-whites-100 text-[12px] sm:text-[14px] md:text-[16px] lg:text-[16px] xl:text-[18px]'
+                            variant='c14'
+                            className='text-whites-100 text-[14px] leading-[24px]'
                           >
                             Beli
                           </Typography>
                           <PiShoppingCartSimpleFill
                             color='#ffffff'
-                            className='mx-1 w-4'
+                            className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
                           />
                         </button>
+                        {activeDropdownId === product.id && (
+                          <div className='flex-col -ml-2 bg-whites-100 py-2 mt-3 absolute justify-center px-3 right-2 bottom-14 w-fit border-[1px] shadow-40 rounded-md'>
+                            {sizes.map((size, index) => (
+                              <div
+                                onClick={() => {
+                                  insertMerch(product, size);
+                                  showToast(
+                                    `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                                    SUCCESS_TOAST
+                                  );
+                                }}
+                                key={index}
+                                className='cursor-pointer'
+                              >
+                                <Typography
+                                  weight='medium'
+                                  font='poppins'
+                                  className='text-whites-900 text-[12px] lg:text-[14px] mx-1 my-1 hover:bg-primary-600 hover:text-whites-100 hover:rounded-lg px-2 py-1'
+                                >
+                                  {size}
+                                </Typography>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

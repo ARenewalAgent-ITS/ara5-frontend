@@ -4,7 +4,8 @@ export type TMerchOrder = {
   list_bank_id: number;
   dp: boolean;
   pembayaran: FileList;
-  merch_id: string[];
+  merch_id: string;
+  harga_total: number;
 };
 
 export type TMerchCatalogue = {
@@ -14,6 +15,7 @@ export type TMerchCatalogue = {
   nama_produk: string;
   deskripsi: string;
   harga: number;
-  image_path: FileList;
+  image_path: string;
   total: number;
+  size?: string;
 };

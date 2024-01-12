@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 
+import HelperText from '@/components/form/HelperText';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 
@@ -15,6 +16,7 @@ export type CheckboxProps = {
   helperText?: string;
   readOnly?: boolean;
   hideError?: boolean;
+  readOnlyText?: string;
   // validasii
   validation?: RegisterOptions;
 } & Omit<React.ComponentPropsWithoutRef<'input'>, 'size'>;
@@ -27,6 +29,7 @@ export default function Checkbox({
   helperText,
   readOnly = false,
   hideError = false,
+  readOnlyText,
   validation,
   ...rest
 }: CheckboxProps) {
@@ -74,7 +77,12 @@ export default function Checkbox({
         </Typography>
       </div>
       <div className='mt-1'>
-        {!(!hideError && error) && helperText && <p>{helperText}</p>}
+        {!(!hideError && error) && helperText && !readOnly && (
+          <HelperText>{helperText}</HelperText>
+        )}
+        {!(!hideError && error) && readOnly && !helperText && (
+          <HelperText>{readOnlyText}</HelperText>
+        )}
         {!hideError && error && (
           <Typography variant='bt'>{error?.message?.toString()}</Typography>
         )}

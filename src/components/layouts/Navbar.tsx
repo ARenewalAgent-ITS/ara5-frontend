@@ -223,9 +223,9 @@ function Navbar() {
               </UnstyledLink>
             </div>
             <div className='text-center group'>
-              <UnstyledLink href='#ourevents'>
+              <UnstyledLink href='/merch'>
                 <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
-                  About
+                  Merch
                 </div>
                 <Image
                   src={Ellipse}

@@ -16,7 +16,7 @@ export default function OrderMerchandiseLayout({
 }) {
   return (
     <div className='w-full min-h-screen bg-whites-100'>
-      <section className='fixed hidden lg:block w-2/3 xl:w-[65%] right-0 top-0 h-full'>
+      <section className='fixed hidden lg:block lg:w-[60%] xl:w-[56%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>
           <Image
             src={'/img/auth/background.png'}
@@ -27,16 +27,18 @@ export default function OrderMerchandiseLayout({
           />
         </div>
       </section>
-      <main className='md:px-16 lg:px-14 xl:px-20 2xl:px-24 px-4 py-6 w-full lg:w-1/3 xl:w-[35%] min-h-screen flex flex-col justify-center'>
-        <UnstyledLink href='/'>
-          <Image
-            src={'/svg/auth/logo.svg'}
-            alt='logo ARA'
-            width={71}
-            height={33}
-            className='absolute top-5 left-5 lg:top-8 lg:left-8 lg:w-[96px]'
-          />
-        </UnstyledLink>
+      <main className='md:px-16 lg:px-5 xl:px-8 2xl:px-10 px-4 py-6 lg:w-[40%] xl:w-[44%] min-h-screen flex flex-col justify-center'>
+        <div className='px-6 py-6 w-full flex flex-row items-center justify-between'>
+          <UnstyledLink href='/merch'>
+            <Image
+              src={'/svg/auth/logo.svg'}
+              alt='logo ARA'
+              width={71}
+              height={33}
+              className='sm:w-[80px] md:w-[90px] lg:w-[107px]'
+            />
+          </UnstyledLink>
+        </div>
         {children}
       </main>
     </div>
