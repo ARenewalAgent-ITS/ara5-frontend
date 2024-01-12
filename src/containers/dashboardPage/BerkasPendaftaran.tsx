@@ -237,7 +237,7 @@ export default function BerkasPendaftaran({
             >
               <Typography
                 font='poppins'
-                className='text-whites-1100 md:text-[14px] text-[11px] group-hover:underline'
+                className='text-whites-1100 xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis md:text-[14px] text-[11px] group-hover:underline'
               >
                 {userData?.pembayaran?.bukti_pembayaran
                   ? parseFilename(userData.pembayaran.bukti_pembayaran)
@@ -253,7 +253,7 @@ export default function BerkasPendaftaran({
       statusElement = (
         <UnstyledLink
           href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
-          className='flex items-center group'
+          className='flex items-center group justify-between w-full'
         >
           <div className='flex flex-col'>
             <Typography
@@ -265,7 +265,7 @@ export default function BerkasPendaftaran({
             </Typography>
             <Typography
               font='poppins'
-              className='text-whites-1100 md:text-[14px] text-[11px] group-hover:underline'
+              className='text-whites-1100 xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis md:text-[14px] text-[11px] group-hover:underline'
             >
               {userData?.pembayaran?.bukti_pembayaran
                 ? parseFilename(userData.pembayaran.bukti_pembayaran)
@@ -513,7 +513,7 @@ export default function BerkasPendaftaran({
                   <Typography
                     variant='c14'
                     font='poppins'
-                    className='text-whites-1100 text-[12px] leading-[24px] group-hover:underline'
+                    className='text-whites-1100 w-[170px] xl:w-[220px] line-clamp-1 overflow-ellipsis text-[12px] leading-[24px] group-hover:underline'
                   >
                     {userData?.bukti_follow
                       ? `${parseFilename(userData.bukti_follow)}`
@@ -547,7 +547,7 @@ export default function BerkasPendaftaran({
                   <Typography
                     variant='c14'
                     font='poppins'
-                    className='text-whites-1100 text-[12px] leading-[24px] group-hover:underline'
+                    className='text-whites-1100 xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis text-[12px] leading-[24px] group-hover:underline'
                   >
                     {userData?.bukti_repost
                       ? `${parseFilename(userData.bukti_repost)}`
