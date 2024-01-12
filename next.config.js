@@ -3,6 +3,9 @@ const nextConfig = {
   eslint: {
     dirs: ['src'],
   },
+  images: {
+    domains: ['ara-its.id'],
+  },
   reactStrictMode: true,
   swcMinify: true,
 };

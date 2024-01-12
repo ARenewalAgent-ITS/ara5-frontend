@@ -9,6 +9,7 @@ import { Fragment } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaRegTimesCircle } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6';
+import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { LuLogOut } from 'react-icons/lu';
 
 import Button from '@/components/buttons/Button';
@@ -19,6 +20,7 @@ import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
 import { getToken, removeToken } from '@/lib/cookies';
+import useMerchStore from '@/store/useMerchStore';
 
 import Ellipse from './nav-img/Ellipse.png';
 import ExploIT from './nav-img/ExploIT.png';
@@ -33,6 +35,8 @@ function Navbar() {
   const token = getToken();
   const [isLogin, setIsLogin] = useState(false);
   const users = FetchUser();
+  const [isOnMerchPage, setIsOnMerchPage] = useState(false);
+  const { setModalOpen } = useMerchStore();
 
   useEffect(() => {
     if (users !== undefined && token !== undefined) {
@@ -107,6 +111,12 @@ function Navbar() {
       setColorChange(false);
     }
   };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsOnMerchPage(!isLogin && window.location.pathname === '/merch');
+    }
+  }, [isLogin]);
 
   useEffect(() => {
     window.addEventListener('scroll', changeNavbarColor);
@@ -213,9 +223,9 @@ function Navbar() {
               </UnstyledLink>
             </div>
             <div className='text-center group'>
-              <UnstyledLink href='#ourevents'>
+              <UnstyledLink href='/merch'>
                 <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
-                  About
+                  Merch
                 </div>
                 <Image
                   src={Ellipse}
@@ -227,7 +237,12 @@ function Navbar() {
           </div>
 
           <div className='lg:flex hidden justify-between items-center gap-[1.5rem]'>
-            {isLogin === false ? (
+            {isOnMerchPage ? (
+              <HiOutlineShoppingCart
+                onClick={setModalOpen}
+                className='w-7 h-7 text-primary-600 cursor-pointer'
+              />
+            ) : (
               <>
                 <div className='flex justify-between items-center'>
                   <UnstyledLink href='/login'>
@@ -310,7 +325,8 @@ function Navbar() {
                   </Menu>
                 </div>
               </>
-            ) : (
+            )}
+            {isLogin ?? (
               <>
                 <div className='flex flex-col items-center'>
                   <div className='flex justify-between items-center'>
