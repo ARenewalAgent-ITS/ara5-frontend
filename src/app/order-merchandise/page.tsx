@@ -313,7 +313,7 @@ export default function OrderMerchandise() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                Register
+                Submit
               </Typography>
             </Button>
           </form>

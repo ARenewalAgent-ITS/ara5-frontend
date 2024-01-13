@@ -15,6 +15,7 @@ import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import Button from '@/components/buttons/Button';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Loading from '@/components/Loading';
@@ -393,7 +394,7 @@ export default function PageMerch() {
                             Rp{product.harga.toLocaleString('id-ID')}
                           </Typography>
                         </div>
-                        <button
+                        <Button
                           onClick={() => {
                             if (product.kategori_produk === 'KAOS') {
                               handleDropdownClick(product.id);
@@ -405,21 +406,21 @@ export default function PageMerch() {
                               );
                             }
                           }}
-                          className='w-full sm:w-fit border-[1px] relative group hover:-translate-y-1 hover:scale-110 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-2 px-5 h-fit gap-1 rounded-md mt-2 flex justify-center items-center'
+                          className='w-full sm:w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-2 px-5 h-fit gap-1 rounded-md mt-2'
                         >
                           <Typography
                             weight='bold'
                             font='poppins'
                             variant='c14'
-                            className='text-whites-100 text-[14px] leading-[24px]'
+                            className='text-whites-100 text-[14px] leading-[24px] flex items-center'
                           >
                             Beli
+                            <PiShoppingCartSimpleFill
+                              color='#ffffff'
+                              className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
+                            />
                           </Typography>
-                          <PiShoppingCartSimpleFill
-                            color='#ffffff'
-                            className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
-                          />
-                        </button>
+                        </Button>
                         {activeDropdownId === product.id && (
                           <div className='flex-col -ml-2 bg-whites-100 py-2 mt-3 absolute justify-center px-3 right-2 bottom-14 w-fit border-[1px] shadow-40 rounded-md'>
                             {sizes.map((size, index) => (
