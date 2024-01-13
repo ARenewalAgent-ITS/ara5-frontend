@@ -35,7 +35,6 @@ function Navbar() {
   const token = getToken();
   const [isLogin, setIsLogin] = useState(false);
   const users = FetchUser();
-  const [isOnMerchPage, setIsOnMerchPage] = useState(false);
   const { setModalOpen } = useMerchStore();
 
   useEffect(() => {
@@ -111,12 +110,6 @@ function Navbar() {
       setColorChange(false);
     }
   };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsOnMerchPage(!isLogin && window.location.pathname === '/merch');
-    }
-  }, [isLogin]);
 
   useEffect(() => {
     window.addEventListener('scroll', changeNavbarColor);
@@ -237,96 +230,15 @@ function Navbar() {
           </div>
 
           <div className='lg:flex hidden justify-between items-center gap-[1.5rem]'>
-            {isOnMerchPage ? (
+            {window.location.pathname === '/merch' && isLogin ? (
               <HiOutlineShoppingCart
                 onClick={setModalOpen}
                 className='w-7 h-7 text-primary-600 cursor-pointer'
               />
             ) : (
-              <>
-                <div className='flex justify-between items-center'>
-                  <UnstyledLink href='/login'>
-                    <div className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'>
-                      Login
-                    </div>
-                  </UnstyledLink>
-                </div>
-                <div className='flex justify-between items-center'>
-                  <Menu className='relative' as='div'>
-                    <Menu.Button>
-                      <div className='flex flex-row gap-1.5 items-center'>
-                        <Image
-                          src={Register}
-                          alt='register'
-                          className='w-[7rem] '
-                        />
-                      </div>
-                    </Menu.Button>
-                    <Transition
-                      as={Fragment}
-                      enter='transition ease-out duration-100'
-                      enterFrom='transform opacity-0 scale-95'
-                      enterTo='transform opacity-100 scale-100'
-                      leave='transition ease-in duration-75'
-                      leaveFrom='transform opacity-100 scale-100'
-                      leaveTo='transform opacity-0 scale-95'
-                    >
-                      <Menu.Items
-                        className={clsxm(
-                          'absolute w-[200px] text-center shadow-80 group bg-[#525252] origin-top mt-2 right-0',
-                          'flex flex-col rounded-md',
-                          'focus:outline-none'
-                        )}
-                      >
-                        <UnstyledLink
-                          href='/ctf/register'
-                          className={clsxm(
-                            'px-[22px] py-3 text-center text-sm rounded-t-md font-medium hover:bg-[#393737]'
-                          )}
-                        >
-                          <Menu.Item as='button' className='flex'>
-                            <div className='flex justify-center'>
-                              <Typography
-                                className='text-center flex center'
-                                color='white'
-                              >
-                                <Image
-                                  src={CTF}
-                                  alt='ctf'
-                                  className='w-6 h-6 mr-4'
-                                />
-                                CTF
-                              </Typography>
-                            </div>
-                          </Menu.Item>
-                        </UnstyledLink>
-                        <UnstyledLink
-                          href='/olimpit/register'
-                          className={clsxm(
-                            'px-[22px] py-3 text-center text-sm max-w-xs rounded-b-md font-medium hover:bg-[#393737]'
-                          )}
-                        >
-                          <Menu.Item as='button' className='flex'>
-                            <Typography
-                              className='text-center flex justify-center'
-                              color='white'
-                            >
-                              <Image
-                                src={Olimpiade}
-                                alt='olim'
-                                className='w-6 h-6 mr-4'
-                              />
-                              Olimpiade
-                            </Typography>
-                          </Menu.Item>
-                        </UnstyledLink>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
-                </div>
-              </>
+              <></>
             )}
-            {isLogin ?? (
+            {isLogin ? (
               <>
                 <div className='flex flex-col items-center'>
                   <div className='flex justify-between items-center'>
@@ -434,6 +346,89 @@ function Navbar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+              </>
+            ) : (
+              <>
+                <div className='flex justify-between items-center'>
+                  <UnstyledLink href='/login'>
+                    <div className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'>
+                      Login
+                    </div>
+                  </UnstyledLink>
+                </div>
+                <div className='flex justify-between items-center'>
+                  <Menu className='relative' as='div'>
+                    <Menu.Button>
+                      <div className='flex flex-row gap-1.5 items-center'>
+                        <Image
+                          src={Register}
+                          alt='register'
+                          className='w-[7rem] '
+                        />
+                      </div>
+                    </Menu.Button>
+                    <Transition
+                      as={Fragment}
+                      enter='transition ease-out duration-100'
+                      enterFrom='transform opacity-0 scale-95'
+                      enterTo='transform opacity-100 scale-100'
+                      leave='transition ease-in duration-75'
+                      leaveFrom='transform opacity-100 scale-100'
+                      leaveTo='transform opacity-0 scale-95'
+                    >
+                      <Menu.Items
+                        className={clsxm(
+                          'absolute w-[200px] text-center shadow-80 group bg-[#525252] origin-top mt-2 right-0',
+                          'flex flex-col rounded-md',
+                          'focus:outline-none'
+                        )}
+                      >
+                        <UnstyledLink
+                          href='/ctf/register'
+                          className={clsxm(
+                            'px-[22px] py-3 text-center text-sm rounded-t-md font-medium hover:bg-[#393737]'
+                          )}
+                        >
+                          <Menu.Item as='button' className='flex'>
+                            <div className='flex justify-center'>
+                              <Typography
+                                className='text-center flex center'
+                                color='white'
+                              >
+                                <Image
+                                  src={CTF}
+                                  alt='ctf'
+                                  className='w-6 h-6 mr-4'
+                                />
+                                CTF
+                              </Typography>
+                            </div>
+                          </Menu.Item>
+                        </UnstyledLink>
+                        <UnstyledLink
+                          href='/olimpit/register'
+                          className={clsxm(
+                            'px-[22px] py-3 text-center text-sm max-w-xs rounded-b-md font-medium hover:bg-[#393737]'
+                          )}
+                        >
+                          <Menu.Item as='button' className='flex'>
+                            <Typography
+                              className='text-center flex justify-center'
+                              color='white'
+                            >
+                              <Image
+                                src={Olimpiade}
+                                alt='olim'
+                                className='w-6 h-6 mr-4'
+                              />
+                              Olimpiade
+                            </Typography>
+                          </Menu.Item>
+                        </UnstyledLink>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                </div>
               </>
             )}
           </div>
