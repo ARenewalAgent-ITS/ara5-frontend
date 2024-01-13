@@ -18,7 +18,7 @@ const config: Metadatas = {
     description:
       'ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.',
     siteName: 'A Renewal Agent ITS',
-    images: [{ url: '/images/og/LogoAra.png' }],
+    images: [{ url: '/og/opengraph.jpg' }],
     type: 'website',
     locale: 'in_ID',
   },
@@ -29,7 +29,7 @@ const config: Metadatas = {
     description:
       'ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.',
     site: 'https://twitter.com/ara_its',
-    images: [{ url: '/images/og/LogoAra.png' }],
+    images: [{ url: '/og/opengraph.jpg' }],
   },
   keywords: ['ara', 'ara its', 'A Renewal Agent ITS'],
   robots: 'index, follow',

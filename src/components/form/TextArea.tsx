@@ -44,11 +44,17 @@ export default function TextArea({
     <div className='w-full space-y-1.5'>
       {label && (
         <label htmlFor={id} className='flex space-x-1'>
-          <Typography variant='bt' font='poppins' color='primary'>
+          <Typography
+            font='poppins'
+            weight='bold'
+            variant='t'
+            color='label'
+            className='text-[16px] leading-[24px] text-whites-1100'
+          >
             {label}
           </Typography>
           {validation?.required && (
-            <Typography className='text-danger-500'>*</Typography>
+            <Typography className='text-danger-600'>*</Typography>
           )}
         </label>
       )}
@@ -63,15 +69,12 @@ export default function TextArea({
           maxLength={maxLength}
           onChange={handleChange}
           className={clsxm(
-            'w-full h-full px-3 py-3 border-none',
-            'ring-2 ring-typo-outline',
-            'bg-typo-white hover:bg-typo-surface',
-            'font-secondary text-typo-primary text-[22px]',
-            'placeholder:font-secondary placeholder:text-typo-secondary',
+            'w-full h-full pl-2 md:pl-3 pr-10 py-[6px] md:py-2 border-[1px] border-whites-1100 rounded-[5px]',
+            'focus:ring-0 focus:border-success-600 bg-whites-100',
+            'font-primary font-medium text-whites-900 text-xs md:text-sm',
+            'placeholder:font-primary placeholder:text-whites-900 placeholder:text-xs md:placeholder:text-sm placeholder:font-medium',
             readOnly && 'cursor-not-allowed',
-            error
-              ? 'border-none focus:ring-danger-500 bg-danger-50 ring-2 ring-danger-500 '
-              : 'focus:ring-primary-500 focus:ring-2',
+            error ? 'border-danger-600' : 'focus:border-success-600',
             className
           )}
           aria-describedby={id}
@@ -79,10 +82,11 @@ export default function TextArea({
         />
 
         <Typography
-          variant='bt'
-          color='secondary'
-          font='baloo'
-          className='absolute right-6 bottom-2.5'
+          font='poppins'
+          weight='regular'
+          variant='c12'
+          color='label'
+          className='absolute right-6 bottom-2.5 hidden sm:block text-whites-1100'
         >
           {value.length}/{maxLength}
         </Typography>
