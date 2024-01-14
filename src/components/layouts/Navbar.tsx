@@ -236,19 +236,13 @@ function Navbar() {
             </div>
           </div>
 
-          <div className='lg:flex hidden justify-between items-center gap-[1.5rem]'>
-            {isOnMerchPage && (
-              <HiOutlineShoppingCart
-                onClick={setModalOpen}
-                className='w-7 h-7 text-primary-600 cursor-pointer'
-              />
-            )}
+          <div className='lg:flex hidden justify-between items-center gap-[.8rem]'>
             {isLogin ? (
-              <>
+              <div className='gap-[1.5rem] flex justify-between items-center'>
                 <div className='flex flex-col items-center'>
                   <div className='flex justify-between items-center'>
                     {users && users?.data !== null ? (
-                      <Typography className='font-extrabold capitalize text-secondary-900 text-[18px]'>
+                      <Typography className='font-extrabold text-end lg:w-[110px] xl:w-[150px] capitalize text-ellipsis overflow-hidden whitespace-nowrap text-secondary-900 text-[18px]'>
                         Hi, {users?.data[0]?.team_name}
                       </Typography>
                     ) : (
@@ -351,7 +345,7 @@ function Navbar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </>
+              </div>
             ) : (
               <>
                 {isOnMerchPage ? null : (
@@ -439,6 +433,12 @@ function Navbar() {
                   </>
                 )}
               </>
+            )}
+            {isOnMerchPage && (
+              <HiOutlineShoppingCart
+                onClick={setModalOpen}
+                className='w-7 h-7 text-primary-600 cursor-pointer'
+              />
             )}
           </div>
 
@@ -611,7 +611,7 @@ function Navbar() {
                 )}
                 <div className='flex justify-between items-center'>
                   {users && users?.data !== null ? (
-                    <Typography className='font-extrabold text-white text-[18px]'>
+                    <Typography className='font-extrabold text-white text-[18px] line-clamp-1 sm:w-[200px] md:w-[250px] w-[200px] text-center'>
                       Hi, {users.data[0]?.team_name}
                     </Typography>
                   ) : (
