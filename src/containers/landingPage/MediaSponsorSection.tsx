@@ -2,48 +2,22 @@
 import Marquee from 'react-fast-marquee';
 
 import NextImage from '@/components/NextImage';
-import Typography from '@/components/Typography';
+import { medpar, sponsors } from '@/constants/medpar';
 
-interface TSponsorData {
+interface TSponsorMedpar {
   alt: string;
   source: string;
 }
 
 interface TMarqueeData {
   idx: number;
-  line: TSponsorData[];
+  line: TSponsorMedpar[];
 }
 
-const sponsors: TSponsorData[] = [
-  {
-    source: '/svg/landpage/paragon_corp.svg',
-    alt: 'paragon corp',
-  },
-  {
-    source: '/svg/landpage/paragon_corp.svg',
-    alt: 'paragon corp',
-  },
-  {
-    source: '/svg/landpage/paragon_corp.svg',
-    alt: 'paragon corp',
-  },
-  {
-    source: '/svg/landpage/paragon_corp.svg',
-    alt: 'paragon corp',
-  },
-  {
-    source: '/svg/landpage/paragon_corp.svg',
-    alt: 'paragon corp',
-  },
-  {
-    source: '/svg/landpage/paragon_corp.svg',
-    alt: 'paragon corp',
-  },
-];
+const sponsor: TSponsorMedpar[] = sponsors;
+const medias: TSponsorMedpar[] = medpar;
 
-const medias: TSponsorData[] = sponsors;
-
-function MediaSponsorMarquee(props: TMarqueeData) {
+function MediaSponsorMedparMarquee(props: TMarqueeData) {
   return (
     <Marquee
       pauseOnHover={true}
@@ -53,19 +27,16 @@ function MediaSponsorMarquee(props: TMarqueeData) {
     >
       {props.line.map((sponsor, sID) => (
         <div
-          className='w-[247px] h-[73px] sm:w-[414px] sm:h-[122px] md:w-[582px] md:h-[172px] mx-[15px] sm:mx-[25px] md:mx-[35px] max-w-full rounded-xl bg-white flex justify-center items-center'
+          className='w-[247px] h-[73px] sm:w-[414px] sm:h-[122px] md:w-[500px] md:h-[172px] mx-[15px] sm:mx-[25px] md:mx-[35px] max-w-full rounded-xl bg-white flex justify-center items-center'
           key={sID}
         >
-          {/* <NextImage
+          <NextImage
             src={sponsor.source}
             alt={sponsor.alt}
             width={190}
             height={48}
             className='md:scale-[2.35] sm:scale-150'
-          /> */}
-          <Typography variant='h3' weight='bold'>
-            Coming Soon!
-          </Typography>
+          />
         </div>
       ))}
     </Marquee>
@@ -73,14 +44,13 @@ function MediaSponsorMarquee(props: TMarqueeData) {
 }
 
 export default function SponsorSection() {
-  // 3 sponsors & media partners each marquee
   const chunkedSponsors = [];
   const chunkedMedia = [];
   for (let i = 0; i < medias.length; i += 3) {
     chunkedMedia.push(medias.slice(i, i + 3));
   }
-  for (let i = 0; i < sponsors.length; i += 3) {
-    chunkedSponsors.push(sponsors.slice(i, i + 3));
+  for (let i = 0; i < sponsor.length; i += 3) {
+    chunkedSponsors.push(sponsor.slice(i, i + 3));
   }
 
   return (
@@ -96,7 +66,11 @@ export default function SponsorSection() {
         </div>
         <div className='sponsor-cards'>
           {chunkedSponsors.map((sponsorLine, line) => (
-            <MediaSponsorMarquee key={line} idx={line} line={sponsorLine} />
+            <MediaSponsorMedparMarquee
+              key={line}
+              idx={line}
+              line={sponsorLine}
+            />
           ))}
         </div>
       </section>
@@ -110,8 +84,12 @@ export default function SponsorSection() {
           />
         </div>
         <div className='media-cards'>
-          {chunkedMedia.map((mediaLine, line) => (
-            <MediaSponsorMarquee key={line} idx={line} line={mediaLine} />
+          {chunkedMedia.map((sponsorLine, line) => (
+            <MediaSponsorMedparMarquee
+              key={line}
+              idx={line}
+              line={sponsorLine}
+            />
           ))}
         </div>
       </section>
