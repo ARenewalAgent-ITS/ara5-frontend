@@ -7,6 +7,8 @@ import { medpar, sponsors } from '@/constants/medpar';
 interface TSponsorMedpar {
   alt: string;
   source: string;
+  width?: number;
+  height?: number;
 }
 
 interface TMarqueeData {
@@ -27,14 +29,14 @@ function MediaSponsorMedparMarquee(props: TMarqueeData) {
     >
       {props.line.map((sponsor, sID) => (
         <div
-          className='w-[247px] h-[73px] sm:w-[414px] sm:h-[122px] md:w-[500px] md:h-[172px] mx-[15px] sm:mx-[25px] md:mx-[35px] max-w-full rounded-xl bg-white flex justify-center items-center'
+          className='w-[247px] h-[89px] sm:w-[414px] sm:h-[122px] md:w-[600px] md:h-[206px] mx-[15px] sm:mx-[25px] md:mx-[35px] max-w-full rounded-xl bg-white flex justify-center items-center'
           key={sID}
         >
           <NextImage
             src={sponsor.source}
             alt={sponsor.alt}
-            width={190}
-            height={48}
+            width={sponsor.width || 183}
+            height={sponsor.height || 82}
             className='md:scale-[2.35] sm:scale-150'
           />
         </div>
