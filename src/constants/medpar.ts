@@ -11,6 +11,18 @@ export const sponsors = [
     width: 181,
     height: 71,
   },
+  {
+    source: '/images/sponsor/dewaweb.png',
+    alt: 'Dewaweb',
+    width: 183,
+    height: 75,
+  },
+  {
+    source: '/images/sponsor/equnix.png',
+    alt: 'Equnix',
+    width: 181,
+    height: 71,
+  },
 ];
 
 export const medpar = [
