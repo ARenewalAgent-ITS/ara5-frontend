@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Dashboard User | A Renewal Agent 5.0',
-  description: 'A RENEWAL AGENT 5.0',
-};
+import SEO from '@/components/SEO';
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <SEO title='Dashboard User' description='Dashboard User ARA 5.0' />
+      {children}
+    </>
+  );
 }

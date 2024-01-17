@@ -46,12 +46,12 @@ const footerData: TFooterData[] = [
   {
     title: 'Our Events',
     link_name: ['OlimpIT', 'Register CTF', 'ARA 5.0'],
-    links: ['olimpit', 'ctf/register', 'about'],
+    links: ['olimpit', 'ctf/register', 'https://www.instagram.com/ara_its'],
   },
   {
     title: 'Quick Links',
     link_name: ['Capture The Flag', 'Register OlimpIT', 'HMIT ITS'],
-    links: ['ctf', 'olimpit/register', 'hmit-its'],
+    links: ['ctf', 'olimpit/register', 'https://www.instagram.com/hmit_its'],
   },
   {
     title: 'About Us',
@@ -164,7 +164,7 @@ export default function Footer() {
           <div className='event flex flex-col lg:items-start items-center mb-5 text-white-50 text-center'>
             <SVG text='About Us' />
             {footerData.map((link, idx) => (
-              <UnstyledLink href={`/${link.links[2]}`} key={idx}>
+              <UnstyledLink href={`${link.links[2]}`} key={idx}>
                 <Typography
                   variant='bt'
                   weight='medium'

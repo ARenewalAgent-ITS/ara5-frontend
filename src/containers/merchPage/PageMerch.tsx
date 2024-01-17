@@ -15,6 +15,8 @@ import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import Button from '@/components/buttons/Button';
+import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Loading from '@/components/Loading';
 import NextImage from '@/components/NextImage';
@@ -24,75 +26,6 @@ import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
 import clsxm from '@/lib/clsxm';
 import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
-
-/*
-interface ProductData {
-  id: number;
-  name: string;
-  price: string;
-  imageSrc: string;
-  size: string;
-}
-
-const products: ProductData[] = [
-  {
-    id: 1,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 2,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 3,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 4,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 5,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 6,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 7,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-  {
-    id: 8,
-    name: 'Lanyard Arlo',
-    price: 'Rp10.000',
-    imageSrc: '/img/merchpage/frames.svg',
-    size: 'Lanyard',
-  },
-];
-*/
 
 const paginationStyle = {
   '--swiper-pagination-color': '#212121',
@@ -242,7 +175,7 @@ export default function PageMerch() {
         ))}
       </Swiper>
 
-      <section className='flex justify-center bg-transparent mt-8'>
+      <section className='flex justify-center bg-transparent mt-8 pb-20'>
         <div className='w-full h-full flex flex-col'>
           <div className='mx-6 md:mx-8 lg:mx-12 xl:mx-20'>
             <div className='flex justify-between items-center'>
@@ -370,24 +303,24 @@ export default function PageMerch() {
             </div>
           </div>
 
-          <div className='mt-4 mx-4 sm:mx-6 lg:mx-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7'>
+          <div className='mt-4 mx-2 sm:mx-6 lg:mx-10 xl:mx-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4'>
             {filteredProducts ? (
               filteredProducts.map((product: TMerchCatalogue) => (
                 <div
                   key={product.id}
                   onMouseEnter={() => setHoveredProductId(product.id)}
                   onMouseLeave={() => setHoveredProductId(null)}
-                  className='my-3 mx-1 sm:mx-2'
+                  className='my-3 mx-4 sm:mx-2'
                 >
                   <div className='relative overflow-hidden'>
-                    <div className='relative overflow-hidden bg-primary-100 bg-opacity-25 rounded-t-[15px]'>
+                    <div className='relative overflow-hidden bg-primary-200 bg-opacity-25 rounded-t-[15px]'>
                       <Image
                         src={`https://ara-its.id/uploads/merch/${product.image_path}`}
-                        width={1000}
-                        height={1000}
+                        width={200}
+                        height={200}
                         alt='productimage'
                         className={clsxm(
-                          'w-full object-none duration-300 h-[400px]',
+                          'w-full object-none duration-300 h-[450px]',
                           hoveredProductId === product.id ? 'scale-110' : ''
                         )}
                         style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
@@ -421,7 +354,6 @@ export default function PageMerch() {
                         </div>
                       </div>
                     </div>
-                    <div className=''></div>
                     {product.it_reborn ? (
                       <Typography
                         weight='bold'
@@ -449,7 +381,6 @@ export default function PageMerch() {
                           <Typography
                             weight='medium'
                             font='poppins'
-                            variant='t'
                             className='text-whites-100 text-[16px] leading-[24px]'
                           >
                             {product.nama_produk}
@@ -463,7 +394,7 @@ export default function PageMerch() {
                             Rp{product.harga.toLocaleString('id-ID')}
                           </Typography>
                         </div>
-                        <button
+                        <Button
                           onClick={() => {
                             if (product.kategori_produk === 'KAOS') {
                               handleDropdownClick(product.id);
@@ -475,21 +406,21 @@ export default function PageMerch() {
                               );
                             }
                           }}
-                          className='border-[1px] relative group hover:-translate-y-1 hover:scale-110 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-2 px-5 w-fit h-fit gap-1 rounded-md mt-2 flex justify-center items-center'
+                          className='w-full sm:w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-2 px-5 h-fit gap-1 rounded-md mt-2'
                         >
                           <Typography
                             weight='bold'
                             font='poppins'
                             variant='c14'
-                            className='text-whites-100 text-[14px] leading-[24px]'
+                            className='text-whites-100 text-[14px] leading-[24px] flex items-center'
                           >
                             Beli
+                            <PiShoppingCartSimpleFill
+                              color='#ffffff'
+                              className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
+                            />
                           </Typography>
-                          <PiShoppingCartSimpleFill
-                            color='#ffffff'
-                            className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
-                          />
-                        </button>
+                        </Button>
                         {activeDropdownId === product.id && (
                           <div className='flex-col -ml-2 bg-whites-100 py-2 mt-3 absolute justify-center px-3 right-2 bottom-14 w-fit border-[1px] shadow-40 rounded-md'>
                             {sizes.map((size, index) => (
@@ -530,6 +461,7 @@ export default function PageMerch() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

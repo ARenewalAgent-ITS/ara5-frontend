@@ -402,7 +402,10 @@ function DashboardAdmin() {
   return (
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
-        <SEO title='Dashboard Admin CTF' />
+        <SEO
+          title='Dashboard CTF Admin'
+          description='Dashboard CTF Admin ARA 5.0'
+        />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
             <div>

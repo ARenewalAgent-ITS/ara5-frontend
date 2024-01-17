@@ -1,0 +1,96 @@
+export const sponsors = [
+  {
+    source: '/images/sponsor/dewaweb.png',
+    alt: 'Dewaweb',
+    width: 461,
+    height: 150,
+    className: 'w-[230px] sm:w-[290px] md:w-[430px] h-auto',
+  },
+  {
+    source: '/images/sponsor/equnix.png',
+    alt: 'Equnix',
+    width: 440,
+    height: 150,
+    className: 'w-[260px] sm:w-[330px] md:w-[450px] h-auto',
+  },
+  {
+    source: '/images/sponsor/dewaweb.png',
+    alt: 'Dewaweb',
+    width: 461,
+    height: 150,
+    className: 'w-[230px] sm:w-[290px] md:w-[430px] h-auto',
+  },
+  {
+    source: '/images/sponsor/equnix.png',
+    alt: 'Equnix',
+    width: 440,
+    height: 150,
+    className: 'w-[260px] sm:w-[330px] md:w-[450px] h-auto',
+  },
+];
+
+export const medpar = [
+  {
+    source: '/images/medpar/event_mahasiswa.png',
+    alt: 'Event Mahasiswa',
+    width: 160,
+    height: 160,
+    className: 'w-[70px] sm:w-[100px] md:w-[150px] h-auto',
+  },
+  {
+    source: '/images/medpar/event_makassar.png',
+    alt: 'Event Makassar',
+    width: 465,
+    height: 250,
+    className: 'w-[130px] sm:w-[200px] md:w-[250px] h-auto',
+  },
+  {
+    source: '/images/medpar/himatekkom.png',
+    alt: 'Himatekkom ITS',
+    width: 218,
+    height: 200,
+    className: 'w-[85px] sm:w-[130px] md:w-[190px] h-auto',
+  },
+  {
+    source: '/images/medpar/hmtif_trisakti.png',
+    alt: 'HMTIF TRISAKTI',
+    width: 170,
+    height: 200,
+    className: 'w-[60px] sm:w-[100px] md:w-[140px] h-auto',
+  },
+  {
+    source: '/images/medpar/info__lomba.png',
+    alt: 'Info Lomba',
+    width: 246,
+    height: 150,
+    className: 'w-[125px] sm:w-[190px] md:w-[285px] h-auto',
+  },
+  {
+    source: '/images/medpar/info_event.png',
+    alt: 'Info Event',
+    width: 467,
+    height: 203,
+    className: 'w-[130px] sm:w-[200px] md:w-[280px] h-auto',
+  },
+  {
+    source: '/images/medpar/logo_event_mahasiswa.png',
+    alt: 'Event Mahasiswa',
+    width: 612,
+    height: 150,
+    className: 'w-[220px] sm:w-[390px] md:w-[460px] h-auto',
+  },
+  {
+    source: '/images/medpar/lukananakit.png',
+    alt: 'Lu Kan Anak IT',
+    width: 150,
+    height: 150,
+    className: 'w-[70px] sm:w-[120px] md:w-[170px] h-auto',
+  },
+  {
+    source: '/images/medpar/point_kampus.png',
+    alt: 'Point Kampus',
+    width: 150,
+    height: 150,
+    className: 'w-[70px] sm:w-[120px] md:w-[170px] h-auto',
+  },
+];

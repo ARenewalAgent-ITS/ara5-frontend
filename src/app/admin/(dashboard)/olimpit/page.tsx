@@ -384,7 +384,10 @@ function DashboardAdmin() {
   return (
     <DashboardLayout>
       <section className='dashboard-layout bg-typo-surface'>
-        <SEO title='Dashboard Admin Olimpiade IT' />
+        <SEO
+          title='Dashboard OlimpIT Admin'
+          description='Dashboard Olimpiade IT Admin ARA 5.0'
+        />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
             <div>

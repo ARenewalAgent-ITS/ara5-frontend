@@ -1,17 +1,15 @@
-import type { Metadata } from 'next';
 import React from 'react';
 
-// import Navbar from '@/components/layouts/Navbar';
+import SEO from '@/components/SEO';
 import PageMerch from '@/containers/merchPage/PageMerch';
-
-export const metadata: Metadata = {
-  title: 'Merchandise | A Renewal Agent 5.0',
-  description: 'A RENEWAL AGENT 5.0',
-};
 
 export default function page() {
   return (
     <>
+      <SEO
+        title='Merchandise'
+        description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
+      />
       <PageMerch />
     </>
   );

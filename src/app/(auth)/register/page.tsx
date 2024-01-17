@@ -2,11 +2,16 @@ import React from 'react';
 
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import SEO from '@/components/SEO';
 import Typography from '@/components/Typography';
 
 export default function RegisterPage() {
   return (
     <div className='flex flex-col justify-center gap-6 px-12 lg:px-0'>
+      <SEO
+        title='Register'
+        description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
+      />
       <Typography
         variant='h3'
         font='baloo'
