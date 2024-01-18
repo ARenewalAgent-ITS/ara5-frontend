@@ -122,7 +122,7 @@ export default function CountDownOlimp() {
             font='poppins'
             className='mt-4 pb-8 text-center justify-center text-[20px] text-whites-100'
           >
-            18 Januari 2024
+            20 Januari 2024
           </Typography>
         </div>
         <div
