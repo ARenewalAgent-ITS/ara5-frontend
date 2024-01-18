@@ -7,7 +7,10 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <SEO title='Dashboard User' description='Dashboard User ARA 5.0' />
+      <SEO
+        title='Dashboard User'
+        description='Dashboard User ARA 5.0 | ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2023-2024 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
+      />
       {children}
     </>
   );

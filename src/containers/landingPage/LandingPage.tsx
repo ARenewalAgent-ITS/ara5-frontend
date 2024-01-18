@@ -103,12 +103,12 @@ export default function LandingPage() {
               data-aos-delay='400'
             >
               <Typography
-                as={'h5'}
-                variant='h5'
+                as={'h1'}
+                variant='h1'
                 weight='bold'
                 color='label'
                 font='poppins'
-                className='text-[25px]'
+                className='text-[25px] md:text-[32px] md:leading-[48px] xl:text-[36px] xl:leading-[52px] z-10'
               >
                 A Renewal Agent 5.0
               </Typography>

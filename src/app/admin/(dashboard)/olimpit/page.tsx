@@ -386,7 +386,7 @@ function DashboardAdmin() {
       <section className='dashboard-layout bg-typo-surface'>
         <SEO
           title='Dashboard OlimpIT Admin'
-          description='Dashboard Olimpiade IT Admin ARA 5.0'
+          description='Dashboard Olimpiade IT Admin ARA 5.0 | ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2023-2024 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
         />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
