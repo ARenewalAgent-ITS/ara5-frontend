@@ -182,6 +182,7 @@ export default function OrderMerchandise() {
       <div className='flex flex-col justify-center gap-6 px-12 py-7 lg:px-0'>
         <div className='flex flex-col mb-5 sm:flex-row sm:gap-1 sm:mx-auto lg:flex-col lg:mx-0'>
           <Typography
+            as={'h3'}
             variant='h3'
             font='baloo'
             weight='extrabold'
@@ -190,6 +191,7 @@ export default function OrderMerchandise() {
             Order
           </Typography>
           <Typography
+            as={'h3'}
             variant='h3'
             font='baloo'
             weight='extrabold'
@@ -200,6 +202,7 @@ export default function OrderMerchandise() {
         </div>
         <div className='w-full flex flex-col justify-start'>
           <Typography
+            as={'p'}
             variant='t'
             font='poppins'
             weight='medium'
@@ -209,6 +212,7 @@ export default function OrderMerchandise() {
           </Typography>
           <div className='flex flex-col md:flex-row items-start justify-start md:items-center md:justify-between'>
             <Typography
+              as={'h4'}
               variant='h4'
               font='poppins'
               weight='bold'
@@ -268,6 +272,7 @@ export default function OrderMerchandise() {
                   height={265}
                 />
                 <Typography
+                  as={'p'}
                   font='poppins'
                   variant='t'
                   weight='medium'
@@ -276,6 +281,7 @@ export default function OrderMerchandise() {
                   {bankDetails?.accountNumber || 'NMID : ID1023269716057'}
                 </Typography>
                 <Typography
+                  as={'h6'}
                   font='poppins'
                   variant='h6'
                   weight='bold'
@@ -308,6 +314,7 @@ export default function OrderMerchandise() {
               className='w-full drop-shadow-md py-[6px] md:py-3'
             >
               <Typography
+                as={'p'}
                 font='poppins'
                 variant='bt'
                 className='text-[11.86px] leading-[20.32px] text-whites-100'

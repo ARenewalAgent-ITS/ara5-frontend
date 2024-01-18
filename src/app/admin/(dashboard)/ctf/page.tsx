@@ -408,7 +408,7 @@ function DashboardAdmin() {
         />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
-            <div>
+            <>
               <Typography
                 as='h6'
                 variant='h6'
@@ -434,7 +434,7 @@ function DashboardAdmin() {
               >
                 List Tim CTF
               </Typography>
-            </div>
+            </>
             <div className='flex gap-x-4'>
               <Button
                 variant='primary'

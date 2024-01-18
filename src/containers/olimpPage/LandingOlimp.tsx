@@ -54,6 +54,7 @@ function LandingOlimp() {
         />
         <div>
           <Typography
+            as={'h4'}
             font='poppins'
             variant='h4'
             className='font-bold text-3xl'
@@ -64,6 +65,7 @@ function LandingOlimp() {
           </Typography>
         </div>
         <Typography
+          as={'h6'}
           font='poppins'
           variant='h6'
           className={clsxm(
@@ -89,6 +91,7 @@ function LandingOlimp() {
             data-aos-delay='400'
           >
             <Typography
+              as={'p'}
               font='poppins'
               variant='t'
               className='font-bold text-[#FFFFFF]'
@@ -106,6 +109,7 @@ function LandingOlimp() {
             data-aos-delay='400'
           >
             <Typography
+              as={'p'}
               font='poppins'
               variant='t'
               className='font-bold text-[#FFFFFF] py-2'

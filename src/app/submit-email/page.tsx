@@ -77,6 +77,7 @@ export default function ForgotPasswordPage() {
       <div className='flex flex-col justify-center gap-8 lg:gap-14 px-12 py-7 lg:px-0'>
         <div className='flex flex-col sm:flex-row sm:gap-3 sm:mx-auto lg:flex-col lg:mx-0'>
           <Typography
+            as={'h3'}
             variant='h3'
             font='baloo'
             weight='extrabold'
@@ -85,6 +86,7 @@ export default function ForgotPasswordPage() {
             Lupa Password
           </Typography>
           <Typography
+            as={'p'}
             variant='p'
             font='poppins'
             weight='medium'
@@ -123,6 +125,7 @@ export default function ForgotPasswordPage() {
                 className='w-full drop-shadow-md py-[6px] md:py-3'
               >
                 <Typography
+                  as={'p'}
                   font='poppins'
                   variant='bt'
                   className='text-[11.86px] leading-[20.32px] text-whites-100'

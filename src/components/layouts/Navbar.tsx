@@ -143,9 +143,12 @@ function Navbar() {
           <div className='hidden lg:flex justify-center gap-[2rem] absolute left-1/2 transform -translate-x-1/2'>
             <div className='text-center group'>
               <UnstyledLink href='/'>
-                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
+                <Typography
+                  as={'p'}
+                  className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
+                >
                   Home
-                </div>
+                </Typography>
                 <Image
                   src={Ellipse}
                   alt='ellipse'
@@ -154,31 +157,32 @@ function Navbar() {
               </UnstyledLink>
             </div>
             <div className='text-center group'>
-              <div>
-                <div onClick={toggle1} className='cursor-pointer'>
-                  <div className='flex gap-1'>
-                    <div className='group-hover:text-[#986A4B] duration-300 text-[18px] font-extrabold'>
-                      Our Events
-                    </div>
-                    <div
-                      className={`${
-                        showMe1
-                          ? 'rotate-180 duration-300 ease-in-out'
-                          : 'rotate-0 duration-300 ease-in-out'
-                      } flex items-center group-hover:text-[#986A4B] duration-300`}
-                    >
-                      <FontAwesomeIcon
-                        icon={faChevronDown}
-                        className='flex items-center'
-                      />
-                    </div>
+              <div onClick={toggle1} className='cursor-pointer'>
+                <div className='flex gap-1'>
+                  <Typography
+                    as={'p'}
+                    className='group-hover:text-[#986A4B] duration-300 text-[18px] font-extrabold'
+                  >
+                    Our Events
+                  </Typography>
+                  <div
+                    className={`${
+                      showMe1
+                        ? 'rotate-180 duration-300 ease-in-out'
+                        : 'rotate-0 duration-300 ease-in-out'
+                    } flex items-center group-hover:text-[#986A4B] duration-300`}
+                  >
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className='flex items-center'
+                    />
                   </div>
-                  <Image
-                    src={Ellipse}
-                    alt='ellipse'
-                    className='w-[115px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
-                  />
                 </div>
+                <Image
+                  src={Ellipse}
+                  alt='ellipse'
+                  className='w-[115px] h-[3.7px] opacity-0 transition-opacity duration-300 group-hover:opacity-[1]'
+                />
               </div>
 
               <div
@@ -192,29 +196,33 @@ function Navbar() {
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-tl-xl rounded-tr-xl'
                 >
                   <Image src={Olimpiade} alt='olim' className='w-6 h-6 mr-4' />
-                  <div>Olimpiade</div>
+                  <Typography as={'p'}>Olimpiade</Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/ctf'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] '
                 >
                   <Image src={CTF} alt='ctf' className='w-6 h-6 mr-4' />
-                  <div>CTF</div>
+                  <Typography as={'p'}>CTF</Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/exploit'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-bl-xl rounded-br-xl'
                 >
                   <Image src={ExploIT} alt='exploit' className='w-6 h-6 mr-4' />
-                  <div>ExploIT</div>
+                  <Typography as={'p'}>ExploIT</Typography>
                 </UnstyledLink>
               </div>
             </div>
             <div className='text-center group'>
               <UnstyledLink href='https://www.instagram.com/hmit_its/'>
-                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
+                <Typography
+                  as={'p'}
+                  variant='p'
+                  className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
+                >
                   HMIT
-                </div>
+                </Typography>
                 <Image
                   src={Ellipse}
                   alt='ellipse'
@@ -224,9 +232,13 @@ function Navbar() {
             </div>
             <div className='text-center group'>
               <UnstyledLink href='/merch'>
-                <div className='group-hover:text-[#986A4B] text-[18px] font-extrabold'>
+                <Typography
+                  as={'p'}
+                  variant='p'
+                  className='group-hover:text-[#986A4B] text-[18px] font-extrabold'
+                >
                   Merchandise
-                </div>
+                </Typography>
                 <Image
                   src={Ellipse}
                   alt='ellipse'
@@ -352,9 +364,13 @@ function Navbar() {
                   <>
                     <div className='flex justify-between items-center'>
                       <UnstyledLink href='/login'>
-                        <div className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'>
+                        <Typography
+                          as={'p'}
+                          variant='p'
+                          className='font-extrabold text-[#986A4B] text-[18px] hover:mt-[-5px]'
+                        >
                           Login
-                        </div>
+                        </Typography>
                       </UnstyledLink>
                     </div>
                     <div className='flex justify-between items-center'>
@@ -414,6 +430,8 @@ function Navbar() {
                             >
                               <Menu.Item as='button' className='flex'>
                                 <Typography
+                                  as={'p'}
+                                  variant='p'
                                   className='text-center flex justify-center'
                                   color='white'
                                 >
@@ -460,7 +478,7 @@ function Navbar() {
           showMe4 ? 'translate-x-0' : ''
         } z-50 fixed overflow-y-scroll lg:hidden duration-200 transform -translate-x-full h-full bg-[#393737] w-full pt-12 pb-40 px-[2rem]`}
       >
-        <div>
+        <>
           <UnstyledLink
             href='/'
             className='mt-[1.5rem] flex justify-center items-center'
@@ -470,10 +488,18 @@ function Navbar() {
 
           {isLogin === false ? (
             <>
-              <div className='mt-10 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
-                <div className='flex gap-2 text-[22px]' onClick={toggle2}>
-                  <div>Our Events</div>
-                  <div className='flex justify-center items-center'>
+              <div className='mt-10 cursor-pointer w-full flex justify-center items-center'>
+                <div className='flex gap-2' onClick={toggle2}>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='bold'
+                    className='text-[20px]'
+                  >
+                    Our Events
+                  </Typography>
+                  <div className='flex justify-center items-center text-white text-[20px]'>
                     <FontAwesomeIcon
                       icon={faChevronDown}
                       className={`${
@@ -487,9 +513,7 @@ function Navbar() {
               </div>
 
               <div
-                className={`${
-                  showMe2 ? 'block' : 'hidden'
-                } mt-2 text-[18px] font-bold text-[#ffffff]`}
+                className={`${showMe2 ? 'block' : 'hidden'} mt-2 text-[18px]`}
               >
                 <UnstyledLink
                   href='/olimpit'
@@ -500,28 +524,57 @@ function Navbar() {
                     alt='olimpiade'
                     className='w-5'
                   ></Image>
-                  <div>Olimpiade</div>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
+                  >
+                    Olimpiade
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/ctf'
                   className='flex justify-center items-center gap-2 my-2'
                 >
                   <Image src={CTF} alt='ctf' className='w-5'></Image>
-                  <div>Capture The Flag</div>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
+                  >
+                    Capture The Flag
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/exploit'
                   className='flex justify-center items-center gap-2'
                 >
                   <Image src={ExploIT} alt='exploIT' className='w-5'></Image>
-                  <div>ExploIT</div>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
+                  >
+                    ExploIT
+                  </Typography>
                 </UnstyledLink>
               </div>
 
-              <div className='mt-3 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
-                <div className='flex gap-2 text-[22px]' onClick={toggle3}>
-                  <div>About Us</div>
-                  <div className='flex justify-center items-center'>
+              <div className='mt-3 cursor-pointer w-full flex justify-center items-center'>
+                <div className='flex gap-2' onClick={toggle3}>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='bold'
+                    className='text-[20px]'
+                  >
+                    About Us
+                  </Typography>
+                  <div className='flex text-[20px] justify-center items-center text-white'>
                     <FontAwesomeIcon
                       style={{
                         transform: showMe3 ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -543,47 +596,80 @@ function Navbar() {
                   showMe3 ? 'block' : 'hidden'
                 } mt-2 text-[18px] font-bold text-[#ffffff]`}
               >
-                <div>
-                  <UnstyledLink
-                    href='/'
-                    className='flex justify-center items-center'
+                <UnstyledLink
+                  href='/'
+                  className='flex justify-center items-center'
+                >
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
                   >
                     ARA 5.0
-                  </UnstyledLink>
-                </div>
+                  </Typography>
+                </UnstyledLink>
                 <div className='my-2'></div>
-                <div>
-                  <UnstyledLink
-                    href='https://www.instagram.com/hmit_its/'
-                    className='flex justify-center items-center'
+                <UnstyledLink
+                  href='https://www.instagram.com/hmit_its/'
+                  className='flex justify-center items-center'
+                >
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
                   >
                     HMIT ITS
-                  </UnstyledLink>
-                </div>
+                  </Typography>
+                </UnstyledLink>
               </div>
 
               <UnstyledLink
                 href='/merch'
-                className='mt-3 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'
+                className='mt-3 cursor-pointer w-[100%] flex justify-center items-center'
               >
-                <div className='flex gap-2 text-[22px]'>Merchandise</div>
+                <Typography
+                  as={'p'}
+                  color='white'
+                  weight='bold'
+                  className='flex gap-2 text-[20px]'
+                >
+                  Merchandise
+                </Typography>
               </UnstyledLink>
 
-              <div className='mt-10 w-[100%] text-[#ffffff] font-bold text-[18px]'>
+              <div className='mt-10 w-[100%] text-[18px]'>
                 <UnstyledLink href='/login' className='text-center'>
-                  <div className='p-2 bg-[#00B8FF] border-2 border-[#00B8FF] rounded-md'>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    weight='semibold'
+                    color='white'
+                    className='p-2 bg-[#00B8FF] border-2 border-[#00B8FF] rounded-md active:bg-primary-700'
+                  >
                     Login
-                  </div>
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink href='/ctf/register' className='text-center'>
-                  <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    weight='semibold'
+                    className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4 hover:bg-[#00B8FF] hover:text-white active:bg-primary-700'
+                  >
                     Register CTF
-                  </div>
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink href='/olimpit/register' className='text-center'>
-                  <div className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4'>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    weight='semibold'
+                    className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4 hover:bg-[#00B8FF] hover:text-white active:bg-primary-700'
+                  >
                     Register Olimpiade
-                  </div>
+                  </Typography>
                 </UnstyledLink>
               </div>
             </>
@@ -621,7 +707,7 @@ function Navbar() {
                   )}
                 </div>
               </div>
-              <div className='mt-5 w-[100%] text-[#ffffff] font-bold text-[18px]'>
+              <div className='mt-5 w-full'>
                 <UnstyledLink
                   href={
                     users?.role === 'TEAM'
@@ -630,20 +716,44 @@ function Navbar() {
                   }
                   className='text-center'
                 >
-                  <div className='p-2 bg-[#00B8FF] rounded-md'>Dashboard</div>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
+                    className='p-2 bg-[#00B8FF] active:bg-primary-700 rounded-md text-[16px]'
+                  >
+                    Dashboard
+                  </Typography>
                 </UnstyledLink>
                 <Button
                   onClick={handleLogout}
-                  className='text-center w-full border-2 border-[#00B8FF] bg-transparent p-2 mt-3'
+                  className='text-center w-full border-2 border-[#00B8FF] bg-transparent p-2 mt-3 active:bg-primary-700'
                 >
-                  Logout
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='semibold'
+                    className='text-center text-[16px]'
+                  >
+                    Logout
+                  </Typography>
                 </Button>
               </div>
 
-              <div className='mt-5 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
-                <div className='flex gap-2 text-[22px]' onClick={toggle2}>
-                  <div>Our Events</div>
-                  <div className='flex justify-center items-center'>
+              <div className='mt-5 cursor-pointer w-full flex justify-center items-center'>
+                <div className='flex gap-2' onClick={toggle2}>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='bold'
+                    className='text-[20px]'
+                  >
+                    Our Events
+                  </Typography>
+                  <div className='flex text-[20px] justify-center items-center text-white'>
                     <FontAwesomeIcon
                       icon={faChevronDown}
                       className={`${
@@ -657,9 +767,7 @@ function Navbar() {
               </div>
 
               <div
-                className={`${
-                  showMe2 ? 'block' : 'hidden'
-                } mt-2 text-[18px] font-bold text-[#ffffff]`}
+                className={`${showMe2 ? 'block' : 'hidden'} mt-2 text-[18px]`}
               >
                 <UnstyledLink
                   href='/olimpit'
@@ -670,27 +778,41 @@ function Navbar() {
                     alt='olimpiade'
                     className='w-5'
                   ></Image>
-                  <div>Olimpiade</div>
+                  <Typography as={'p'} variant='p' color='white' weight='bold'>
+                    Olimpiade
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/ctf'
                   className='flex justify-center items-center gap-2 my-2'
                 >
                   <Image src={CTF} alt='ctf' className='w-5'></Image>
-                  <div>Capture The Flag</div>
+                  <Typography as={'p'} variant='p' color='white' weight='bold'>
+                    Capture The Flag
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/exploit'
                   className='flex justify-center items-center gap-2'
                 >
                   <Image src={ExploIT} alt='exploIT' className='w-5'></Image>
-                  <div>ExploIT</div>
+                  <Typography as={'p'} variant='p' color='white' weight='bold'>
+                    ExploIT
+                  </Typography>
                 </UnstyledLink>
               </div>
-              <div className='mt-3 text-[#ffffff] font-bold cursor-pointer w-[100%] flex justify-center items-center'>
-                <div className='flex gap-2 text-[22px]' onClick={toggle3}>
-                  <div>About Us</div>
-                  <div className='flex justify-center items-center'>
+              <div className='mt-3 cursor-pointer w-[100%] flex justify-center items-center'>
+                <div className='flex gap-2' onClick={toggle3}>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='bold'
+                    className='text-[20px]'
+                  >
+                    About Us
+                  </Typography>
+                  <div className='flex justify-center items-center text-white text-[20px]'>
                     <FontAwesomeIcon
                       style={{
                         transform: showMe3 ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -707,31 +829,29 @@ function Navbar() {
                 </div>
               </div>
               <div
-                className={`${
-                  showMe3 ? 'block' : 'hidden'
-                } mt-2 text-[18px] font-bold text-[#ffffff]`}
+                className={`${showMe3 ? 'block' : 'hidden'} mt-2 text-[18px]`}
               >
-                <div>
-                  <UnstyledLink
-                    href='/about'
-                    className='flex justify-center items-center'
-                  >
+                <UnstyledLink
+                  href='/about'
+                  className='flex justify-center items-center'
+                >
+                  <Typography as={'p'} variant='p' color='white' weight='bold'>
                     ARA 5.0
-                  </UnstyledLink>
-                </div>
+                  </Typography>
+                </UnstyledLink>
                 <div className='my-2'></div>
-                <div>
-                  <UnstyledLink
-                    href='https://www.instagram.com/hmit_its/'
-                    className='flex justify-center items-center'
-                  >
+                <UnstyledLink
+                  href='https://www.instagram.com/hmit_its/'
+                  className='flex justify-center items-center'
+                >
+                  <Typography as={'p'} variant='p' color='white' weight='bold'>
                     HMIT ITS
-                  </UnstyledLink>
-                </div>
+                  </Typography>
+                </UnstyledLink>
               </div>
             </>
           )}
-        </div>
+        </>
 
         <div className='relative w-full flex justify-center'>
           <FaRegTimesCircle

@@ -13,6 +13,7 @@ export default function RegisterPage() {
         description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
       />
       <Typography
+        as={'h3'}
         variant='h3'
         font='baloo'
         weight='extrabold'
@@ -21,6 +22,7 @@ export default function RegisterPage() {
         Registrasi Lomba
       </Typography>
       <Typography
+        as={'p'}
         variant='p'
         font='poppins'
         weight='medium'
@@ -30,6 +32,7 @@ export default function RegisterPage() {
       </Typography>
       <div className='flex lg:hidden flex-col lg:mx-auto'>
         <Typography
+          as={'h4'}
           variant='h4'
           font='baloo'
           weight='extrabold'
@@ -38,6 +41,7 @@ export default function RegisterPage() {
           Registrasi,
         </Typography>
         <Typography
+          as={'h4'}
           variant='h4'
           font='baloo'
           weight='extrabold'
@@ -46,6 +50,7 @@ export default function RegisterPage() {
           Lomba
         </Typography>
         <Typography
+          as={'p'}
           font='poppins'
           weight='medium'
           className='flex lg:hidden w-full text-left'
@@ -61,6 +66,7 @@ export default function RegisterPage() {
         className='w-full hover:bg-primary-700 drop-shadow-md py-3'
       >
         <Typography
+          as={'p'}
           font='poppins'
           className='text-[14px] md:text-[16px] leading-[20px] text-whites-100'
           weight='bold'
@@ -76,6 +82,7 @@ export default function RegisterPage() {
         className='w-full hover:bg-primary-700 drop-shadow-md py-3'
       >
         <Typography
+          as={'p'}
           font='poppins'
           className='text-[14px] md:text-[16px] leading-[20px] text-whites-100'
           weight='bold'
@@ -84,6 +91,7 @@ export default function RegisterPage() {
         </Typography>
       </ButtonLink>
       <Typography
+        as={'p'}
         font='poppins'
         className='text-[14px] md:text-[14px] leading-[20px] text-whites-1100'
         weight='medium'

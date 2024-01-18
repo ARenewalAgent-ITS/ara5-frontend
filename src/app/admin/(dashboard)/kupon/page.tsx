@@ -114,33 +114,31 @@ function DashboardAdmin() {
         />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
-            <div>
-              <Typography
-                as='h6'
-                variant='h6'
-                className='text-[24px] text-whites-1100 text-center sm:text-start'
-                font='poppins'
-                weight='bold'
-              >
-                ARA 5.0 Dashboard
-              </Typography>
-              <Typography
-                as='h4'
-                variant='h4'
-                weight='bold'
-                className='text-primary-600 max-lg:hidden'
-              >
-                List Kupon
-              </Typography>
-              <Typography
-                as='h4'
-                variant='h4'
-                weight='bold'
-                className='text-primary-600 lg:hidden text-[32px] text-center my-4'
-              >
-                List Kupon
-              </Typography>
-            </div>
+            <Typography
+              as='h6'
+              variant='h6'
+              className='text-[24px] text-whites-1100 text-center sm:text-start'
+              font='poppins'
+              weight='bold'
+            >
+              ARA 5.0 Dashboard
+            </Typography>
+            <Typography
+              as='h4'
+              variant='h4'
+              weight='bold'
+              className='text-primary-600 max-lg:hidden'
+            >
+              List Kupon
+            </Typography>
+            <Typography
+              as='h4'
+              variant='h4'
+              weight='bold'
+              className='text-primary-600 lg:hidden text-[32px] text-center my-4'
+            >
+              List Kupon
+            </Typography>
           </div>
 
           {/* <div className='w-full h-full flex justify-start gap-6 max-md:justify-center max-xl:flex-wrap max-xl:gap-5 mx-auto container'>

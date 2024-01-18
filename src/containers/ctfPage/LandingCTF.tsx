@@ -55,6 +55,7 @@ function LandingCTF() {
         />
         <div>
           <Typography
+            as={'h4'}
             font='poppins'
             variant='h4'
             className='font-bold text-3xl'
@@ -65,6 +66,7 @@ function LandingCTF() {
           </Typography>
         </div>
         <Typography
+          as={'h6'}
           font='poppins'
           variant='h6'
           className={clsxm(
@@ -90,6 +92,7 @@ function LandingCTF() {
             data-aos-delay='400'
           >
             <Typography
+              as={'p'}
               font='poppins'
               variant='t'
               className='font-bold text-[#FFFFFF]'
@@ -107,6 +110,7 @@ function LandingCTF() {
             data-aos-delay='400'
           >
             <Typography
+              as={'p'}
               font='poppins'
               variant='t'
               className='font-bold text-[#FFFFFF] py-2'

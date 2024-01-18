@@ -103,6 +103,7 @@ export default function LandingPage() {
               data-aos-delay='400'
             >
               <Typography
+                as={'h5'}
                 variant='h5'
                 weight='bold'
                 color='label'
@@ -112,6 +113,7 @@ export default function LandingPage() {
                 A Renewal Agent 5.0
               </Typography>
               <Typography
+                as={'p'}
                 variant='p'
                 weight='semibold'
                 color='label'
@@ -136,6 +138,7 @@ export default function LandingPage() {
                 )}
               >
                 <Typography
+                  as={'p'}
                   font='poppins'
                   className={clsxm('text-white font-semibold text-base')}
                 >

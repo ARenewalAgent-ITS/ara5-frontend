@@ -90,6 +90,7 @@ function LoginPage() {
         description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
       />
       <Typography
+        as={'h3'}
         variant='h3'
         font='baloo'
         weight='extrabold'
@@ -99,6 +100,7 @@ function LoginPage() {
       </Typography>
       <div className='flex lg:hidden flex-col sm:mx-auto'>
         <Typography
+          as={'h4'}
           variant='h4'
           font='baloo'
           weight='extrabold'
@@ -107,6 +109,7 @@ function LoginPage() {
           Welcome,
         </Typography>
         <Typography
+          as={'h4'}
           variant='h4'
           font='baloo'
           weight='extrabold'
@@ -150,6 +153,7 @@ function LoginPage() {
               />
               <UnstyledLink href='/submit-email'>
                 <Typography
+                  as={'p'}
                   font='poppins'
                   variant='c12'
                   className='text-[12px] leading-[20.32px] text-primary-700'
@@ -168,6 +172,7 @@ function LoginPage() {
               className='w-full drop-shadow-md py-[6px] md:py-3'
             >
               <Typography
+                as={'p'}
                 font='poppins'
                 variant='bt'
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
@@ -177,6 +182,7 @@ function LoginPage() {
               </Typography>
             </Button>
             <Typography
+              as={'p'}
               font='poppins'
               variant='c14'
               className='text-[11.86px] leading-[20.32px] text-whites-1100'

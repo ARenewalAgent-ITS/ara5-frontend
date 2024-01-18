@@ -70,6 +70,7 @@ function SVG(props: LinkHeadline) {
       <Image src={KotakNama} alt='kotak nama' />
       <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full overflow-hidden'>
         <Typography
+          as={'p'}
           variant='t'
           weight='bold'
           className={clsxm(
@@ -130,6 +131,7 @@ export default function Footer() {
             {footerData.map((link, idx) => (
               <UnstyledLink href={`/${link.links[0]}`} key={idx}>
                 <Typography
+                  as={'p'}
                   variant='bt'
                   weight='medium'
                   color='white'
@@ -149,6 +151,7 @@ export default function Footer() {
                 {footerData.map((link, idx) => (
                   <UnstyledLink href={`/${link.links[1]}`} key={idx}>
                     <Typography
+                      as={'p'}
                       variant='bt'
                       weight='medium'
                       color='white'
@@ -166,6 +169,7 @@ export default function Footer() {
             {footerData.map((link, idx) => (
               <UnstyledLink href={`${link.links[2]}`} key={idx}>
                 <Typography
+                  as={'p'}
                   variant='bt'
                   weight='medium'
                   color='white'
@@ -199,6 +203,7 @@ export default function Footer() {
           ))}
         </div>
         <Typography
+          as={'p'}
           variant='bt'
           weight='medium'
           color='white'
