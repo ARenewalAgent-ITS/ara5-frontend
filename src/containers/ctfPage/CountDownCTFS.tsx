@@ -8,7 +8,7 @@ import Typography from '@/components/Typography';
 import useCountdown from '@/hooks/useCountdown';
 
 export default function CountDownCTFS() {
-  const [days, hours, minutes, seconds] = useCountdown(new Date('2024-01-18'));
+  const [days, hours, minutes, seconds] = useCountdown(new Date('2024-01-20'));
 
   useEffect(() => {
     Aos.init();
