@@ -65,7 +65,7 @@ export default function DesktopNavigation() {
             <FaCircleUser className='text-whites-1100 text-[100px]' />
           )}
           <Typography
-            className='text-whites-1100 text-[20px] mt-[25px]'
+            className='text-whites-1100 text-[20px] text-center mt-[25px] line-clamp-1 lg:max-w-[200px]'
             weight='bold'
             font='poppins'
           >

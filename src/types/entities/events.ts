@@ -22,6 +22,9 @@ export type AdminCTF = {
   createdAt: string;
   updatedAt: string;
   Write_up_ctf: string | null;
+  kupon: {
+    kupon: string | null;
+  };
   pembayaran: {
     list_bank: {
       bank: string;
