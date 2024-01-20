@@ -189,28 +189,34 @@ function Navbar() {
                 ref={dropdown}
                 className={`${
                   showMe1 ? 'block' : 'hidden'
-                } text-[18px] text-[#FFFFFF] bg-[#525252] mt-3 absolute flex flex-col text-white-50 rounded-xl shadow-md transition-opacity duration-300 font-bold`}
+                } text-[18px] bg-[#525252] mt-3 absolute flex flex-col rounded-xl shadow-md transition-opacity duration-300 font-bold`}
               >
                 <UnstyledLink
                   href='/olimpit'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-tl-xl rounded-tr-xl'
                 >
                   <Image src={Olimpiade} alt='olim' className='w-6 h-6 mr-4' />
-                  <Typography as={'p'}>Olimpiade</Typography>
+                  <Typography as={'p'} color='white'>
+                    Olimpiade
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/ctf'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] '
                 >
                   <Image src={CTF} alt='ctf' className='w-6 h-6 mr-4' />
-                  <Typography as={'p'}>CTF</Typography>
+                  <Typography as={'p'} color='white'>
+                    CTF
+                  </Typography>
                 </UnstyledLink>
                 <UnstyledLink
                   href='/exploit'
                   className='flex pl-5 pr-10 py-4 hover:bg-[#393737] rounded-bl-xl rounded-br-xl'
                 >
                   <Image src={ExploIT} alt='exploit' className='w-6 h-6 mr-4' />
-                  <Typography as={'p'}>ExploIT</Typography>
+                  <Typography as={'p'} color='white'>
+                    ExploIT
+                  </Typography>
                 </UnstyledLink>
               </div>
             </div>

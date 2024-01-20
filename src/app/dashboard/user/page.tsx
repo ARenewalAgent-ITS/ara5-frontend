@@ -29,7 +29,7 @@ function DashboardUser() {
             <Typography
               as='h6'
               variant='h6'
-              className='text-[20px] leading-[24px] text-whites-1100'
+              className='text-[20px] leading-[24px] text-center md:text-start text-whites-1100'
               font='poppins'
               weight='bold'
             >
@@ -39,7 +39,7 @@ function DashboardUser() {
               as='h4'
               variant='h4'
               weight='bold'
-              className='text-[32px] leading-[48px] text-primary-600'
+              className='md:max-w-md lg:max-w-lg sm:max-w-sm line-clamp-1 text-[32px] text-center md:text-start leading-[48px] text-primary-600'
             >
               {userData?.team_name ? `Hi, ${userData?.team_name}` : 'Hi, User!'}
             </Typography>
