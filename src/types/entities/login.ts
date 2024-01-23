@@ -32,4 +32,10 @@ export interface UserLogin {
   };
   team_name: string | undefined;
   team_provinsi: string | undefined;
+  write_up_ctf?: {
+    id: string;
+    write_up: string;
+    createdAt: Date;
+    updatedAt: Date;
+  } | null;
 }
