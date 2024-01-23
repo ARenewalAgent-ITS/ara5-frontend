@@ -1,9 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
 import Image from 'next/image';
-import Typography from '@/components/Typography';
+import { Fragment } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
+
+import Typography from '@/components/Typography';
 import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
