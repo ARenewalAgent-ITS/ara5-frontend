@@ -1,4 +1,5 @@
 import { BiSolidCoupon } from 'react-icons/bi';
+import { BiSolidNotepad } from 'react-icons/bi';
 import { FaFlag } from 'react-icons/fa';
 import { FaGlobe } from 'react-icons/fa';
 import { HiTrophy } from 'react-icons/hi2';
@@ -21,13 +22,13 @@ export const adminNavigations: Navigation[] = [
     icon: FaFlag,
     permissions: ['ADMIN'],
   },
-  // {
-  //   name: 'Write Up',
-  //   href: '/admin/writeup',
-  //   exactMatch: true,
-  //   icon: BiSolidNotepad,
-  //   permissions: ['ADMIN'],
-  // },
+  {
+    name: 'Write Up',
+    href: '/admin/writeup',
+    exactMatch: true,
+    icon: BiSolidNotepad,
+    permissions: ['ADMIN'],
+  },
   {
     name: 'Kupon',
     href: '/admin/kupon',
