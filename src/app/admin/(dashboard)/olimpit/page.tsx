@@ -225,7 +225,7 @@ function DashboardAdmin() {
       size: 18,
     },
     {
-      id: 'kupon_id',
+      id: 'kupon',
       header: 'Kode Referal',
       cell: (info) => (
         <Typography
@@ -390,11 +390,11 @@ function DashboardAdmin() {
         />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
-            <>
+            <div className='flex flex-col'>
               <Typography
                 as='h6'
                 variant='h6'
-                className='text-[24px] text-whites-1100 text-center sm:text-start'
+                className='text-[24px] text-center md:text-start text-whites-1100'
                 font='poppins'
                 weight='bold'
               >
@@ -406,17 +406,17 @@ function DashboardAdmin() {
                 weight='bold'
                 className='text-primary-600 max-lg:hidden'
               >
-                List Tim Olimpiade IT
+                Data Tim Olimpiade IT
               </Typography>
               <Typography
                 as='h4'
                 variant='h4'
                 weight='bold'
-                className='text-primary-600 lg:hidden text-[32px] text-center my-4'
+                className='text-primary-600 lg:hidden text-[32px] md:text-start text-center my-4'
               >
-                List Tim Olimpiade IT
+                Data Tim Olimpiade IT
               </Typography>
-            </>
+            </div>
             <div className='flex gap-x-4'>
               <Button
                 variant='primary'

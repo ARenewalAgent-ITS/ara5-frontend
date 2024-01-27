@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -13,11 +14,11 @@ export default function OrderMerchandiseLayout({
     <div className='w-full min-h-screen bg-whites-100'>
       <SEO
         title='Order Merchandise'
-        description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2023-2024 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
+        description='ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2022-2023 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
       />
       <section className='fixed hidden lg:block lg:w-[60%] xl:w-[56%] right-0 top-0 h-full'>
         <div className='relative w-full h-full bg-white'>
-          <NextImage
+          <Image
             src={'/img/auth/background.png'}
             alt='login background'
             width={1768}

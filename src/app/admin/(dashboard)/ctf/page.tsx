@@ -22,6 +22,7 @@ import Typography from '@/components/Typography';
 import ArloCard from '@/containers/dashboardPage/ArloCard';
 import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
+import clsxm from '@/lib/clsxm';
 import { getCsv } from '@/lib/csv';
 import { buildPaginatedTableURL } from '@/lib/table';
 import useAuthStore from '@/store/useAuthStore';
@@ -251,9 +252,18 @@ function DashboardAdmin() {
       size: 18,
     },
     {
-      id: 'kupon_id',
-      accessorKey: 'kupon_id',
+      id: 'kupon',
       header: 'Kode Referal',
+      cell: (info) => (
+        <Typography
+          as='td'
+          className={clsxm(
+            'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
+          )}
+        >
+          {info.row.original.kupon?.kupon}
+        </Typography>
+      ),
       size: 18,
     },
     {
@@ -355,7 +365,7 @@ function DashboardAdmin() {
           Anggota2: items?.nama_anggota2,
           Ktp_anggota2: items?.ktp_anggota2,
           // Pembayaran_ID: items?.pembayaran_id,
-          Kupon_ID: items?.kupon_id,
+          Kupon: items?.kupon.kupon,
           Bukti_Follow: items?.bukti_follow,
           Bukti_Repost: items?.bukti_repost,
           Write_UP_CTF: items?.Write_up_ctf,
@@ -408,11 +418,11 @@ function DashboardAdmin() {
         />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
           <div className='flex justify-between md:flex-row flex-col items-center'>
-            <>
+            <div className='flex flex-col'>
               <Typography
                 as='h6'
                 variant='h6'
-                className='text-[24px] text-whites-1100'
+                className='text-[24px] text-center md:text-start text-whites-1100'
                 font='poppins'
                 weight='bold'
               >
@@ -424,17 +434,17 @@ function DashboardAdmin() {
                 weight='bold'
                 className='text-primary-600 max-lg:hidden'
               >
-                List Tim CTF
+                Data Tim CTF
               </Typography>
               <Typography
                 as='h4'
                 variant='h4'
                 weight='bold'
-                className='text-primary-600 lg:hidden text-[32px] text-center my-4'
+                className='text-primary-600 lg:hidden text-[32px] md:text-start text-center my-4'
               >
-                List Tim CTF
+                Data Tim CTF
               </Typography>
-            </>
+            </div>
             <div className='flex gap-x-4'>
               <Button
                 variant='primary'

@@ -135,7 +135,7 @@ export default function MobileNavigation() {
                     <FaCircleUser className='text-whites-1100 text-[100px]' />
                   )}
                   <Typography
-                    className='text-whites-1100 text-[20px] mt-[25px]'
+                    className='text-whites-1100 text-[20px] text-center mt-[25px] line-clamp-1 max-w-sm sm:max-w-sm md:max-w-md lg:max-w-lg'
                     weight='bold'
                     font='poppins'
                   >

@@ -13,3 +13,7 @@ export type TReuploadPersyaratan = {
   bukti_follow: FileList;
   bukti_repost: FileList;
 };
+
+export type TWriteup = {
+  write_up: FileList;
+};

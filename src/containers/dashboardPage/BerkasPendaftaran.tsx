@@ -11,12 +11,14 @@ import UnstyledLink from '@/components/links/UnstyledLink';
 import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import api from '@/lib/api';
+import clsxm from '@/lib/clsxm';
 import { ApiError, CustomAxiosError } from '@/types/api';
 import { UserLogin } from '@/types/entities/login';
 import {
   TReuploadFoto,
   TReuploadPembayaran,
   TReuploadPersyaratan,
+  TWriteup,
 } from '@/types/entities/reupload';
 import WaitingVerifLogo from '~/svg/dashboardpage/user/WaitingVerifLogo';
 
@@ -40,6 +42,18 @@ export default function BerkasPendaftaran({
     listBank = '3';
   } else {
     listBank = '1';
+  }
+
+  function formatDates(dateString: Date) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
+
+    return formattedDate;
   }
 
   //#region  //*=========== Reupload Foto API & Form ===========
@@ -214,6 +228,100 @@ export default function BerkasPendaftaran({
   };
 
   //#region  //*=========== Reupload CTF API & Form ===========
+
+  const writeupMethods = useForm<TWriteup>();
+
+  const writeupRegister = async (data: TWriteup | FormData) => {
+    try {
+      await api.post(`/ctf/write-up`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
+    }
+  };
+
+  const { mutate: postWriteup } = useMutation(writeupRegister, {
+    onSuccess: () => {
+      showToast('Persyaratan updated successfully', SUCCESS_TOAST);
+      resetPersyaratanForm({
+        bukti_follow: undefined,
+        bukti_repost: undefined,
+      });
+      refetchData();
+    },
+    onError: (error: CustomAxiosError) => {
+      if (error.response) {
+        showToast(error.response.data.message, DANGER_TOAST);
+      } else {
+        showToast('An unknown error occurred', DANGER_TOAST);
+      }
+    },
+  });
+
+  const writeupPatch = async (data: TWriteup | FormData) => {
+    try {
+      await api.patch(
+        `/ctf/write-up/${userData?.write_up_ctf?.id}/update`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
+    }
+  };
+
+  const { mutate: patchWriteup } = useMutation(writeupPatch, {
+    onSuccess: () => {
+      showToast('Persyaratan updated successfully', SUCCESS_TOAST);
+      resetPersyaratanForm({
+        bukti_follow: undefined,
+        bukti_repost: undefined,
+      });
+      refetchData();
+    },
+    onError: (error: CustomAxiosError) => {
+      if (error.response) {
+        showToast(error.response.data.message, DANGER_TOAST);
+      } else {
+        showToast('An unknown error occurred', DANGER_TOAST);
+      }
+    },
+  });
+
+  const writeupOnSubmit = (data: TWriteup) => {
+    const isAnyFileUploaded = data.write_up?.[0];
+    if (!isAnyFileUploaded) {
+      showToast('Write up cannot be empty', DANGER_TOAST);
+      return;
+    }
+    const body = {
+      write_up: data.write_up?.[0] ?? undefined,
+    };
+    if (userData?.write_up_ctf === null) {
+      postWriteup(serialize(body));
+    } else {
+      patchWriteup(serialize(body));
+    }
+  };
 
   const paymentStatus = userData?.pembayaran?.status_pembayaran;
   let statusElement;
@@ -627,7 +735,7 @@ export default function BerkasPendaftaran({
             ) : null}
           </div>
         </div>
-        {/* {userData?.event === 'CTF' ? (
+        {userData?.event === 'CTF' ? (
           <>
             <Typography
               as='h5'
@@ -655,27 +763,65 @@ export default function BerkasPendaftaran({
                     variant='p'
                     weight='bold'
                     font='poppins'
-                    className='text-danger-600 text-[14px]'
+                    className={clsxm(
+                      'text-[14px] xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis',
+                      userData.write_up_ctf === null
+                        ? 'text-danger-600'
+                        : 'text-success-600'
+                    )}
                   >
-                    Belum Ada File Terupload
+                    {userData.write_up_ctf === null ? (
+                      'Belum Ada File Terupload'
+                    ) : (
+                      <UnstyledLink
+                        href={`https://ara-its.id/uploads/ctf/${userData?.write_up_ctf?.write_up}`}
+                      >
+                        {userData.write_up_ctf?.write_up}
+                      </UnstyledLink>
+                    )}
                   </Typography>
                   <Typography
                     variant='c14'
                     font='poppins'
-                    className='text-whites-1100 text-[12px] leading-[24px]'
+                    className='text-whites-1100 text-[12px] leading-[24px] w-[170px] xl:w-[230px] line-clamp-1 overflow-ellipsis'
                   >
-                    File harus memiliki format .pdf
+                    {userData.write_up_ctf === null
+                      ? 'File harus memiliki format .pdf'
+                      : `Diupload pada ${formatDates(
+                          userData.write_up_ctf?.updatedAt ?? new Date()
+                        )}`}
                   </Typography>
                 </div>
-                <FormProvider {...persyaratanMethods}>
+                <FormProvider {...writeupMethods}>
                   <form>
-                    <FileInput id='bukti_repost' />
+                    <FileInput
+                      id='write_up'
+                      accept={{ 'application/pdf': ['.pdf'] }}
+                    />
                   </form>
                 </FormProvider>
               </div>
+              <FormProvider {...writeupMethods}>
+                <form onSubmit={writeupMethods.handleSubmit(writeupOnSubmit)}>
+                  <Button
+                    type='submit'
+                    className='px-6 md:px-10 py-2 mt-5 md:mt-0 rounded-lg'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Typography
+                      variant='bt'
+                      weight='bold'
+                      font='poppins'
+                      className='text-whites-100 text-[14px]'
+                    >
+                      Upload
+                    </Typography>
+                  </Button>
+                </form>
+              </FormProvider>
             </div>
           </>
-        ) : null} */}
+        ) : null}
       </div>
     </>
   );
