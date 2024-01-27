@@ -9,36 +9,29 @@ import { BiSpreadsheet } from 'react-icons/bi';
 import Button from '@/components/buttons/Button';
 import withAuth from '@/components/hoc/withAuth';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout';
-// import ButtonLink from '@/components/links/ButtonLink';
+import ButtonLink from '@/components/links/ButtonLink';
 import SEO from '@/components/SEO';
 import ServerTable from '@/components/table/ServerTable';
-// import {
-//   DANGER_TOAST,
-//   showToast,
-//   SUCCESS_TOAST,
-//   WARNING_TOAST,
-// } from '@/components/Toast';
 import Typography from '@/components/Typography';
-// import ArloCard from '@/containers/dashboardPage/ArloCard';
+import ArloCard from '@/containers/dashboardPage/ArloCard';
 import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
-// import clsxm from '@/lib/clsxm';
+import clsxm from '@/lib/clsxm';
 import { getCsv } from '@/lib/csv';
 import { buildPaginatedTableURL } from '@/lib/table';
 import useAuthStore from '@/store/useAuthStore';
 import { PaginatedApiResponse } from '@/types/api';
 import { AdminCTF } from '@/types/entities/events';
 
-// interface VerificationStats {
-//   successCount: number;
-//   pendingCount: number;
-//   failedCount: number;
-//   verifiedPercent: number;
-//   pendingPercent: number;
-// }
-
 interface ServerTableState {
   globalFilter: string;
+}
+
+interface VerificationStats {
+  successCount: number;
+  failedCount: number;
+  verifiedPercent: number;
+  failedPercent: number;
 }
 
 interface SetServerTableState {
@@ -65,37 +58,8 @@ function DashboardAdmin() {
     setSelectedStatus(newStatus);
   };
 
-  // const getStatusNumber = (status: string): number => {
-  //   switch (status) {
-  //     case 'SUCCESS':
-  //       return 1;
-  //     case 'FAILED':
-  //       return 2;
-  //     case 'AWAITING VERIFICATION':
-  //       return 3;
-  //     default:
-  //       return 3;
-  //   }
-  // };
-
-  // const handleStatusChange = async (id: string, newStatus: string) => {
-  //   try {
-  //     const statusNumber = getStatusNumber(newStatus);
-  //     await api.patch(`/pembayaran/status/${id}`, {
-  //       status: statusNumber,
-  //     });
-
-  //     showToast('Berhasil memperbarui', SUCCESS_TOAST);
-
-  //     queryData?.data.data;
-  //   } catch (error) {
-  //     showToast('Gagal memperbarui', DANGER_TOAST);
-  //     throw new Error();
-  //   }
-  // };
-
   const { user } = useAuthStore();
-  const baseUrl = '/ctf/write-up';
+  const baseUrl = '/ctf';
   const { tableState, setTableState } = useServerTable({
     pageSize: 10,
   });
@@ -114,205 +78,57 @@ function DashboardAdmin() {
       size: 18,
     },
     {
-      id: 'write_up_ctf',
-      accessorKey: 'write_up_ctf',
-      header: 'Write Up CTF',
+      id: 'createdAt',
+      header: 'Created At',
+      cell: (info) => {
+        const writeUpCtf = info.row.original.write_up_ctf;
+        if (writeUpCtf && writeUpCtf.createdAt) {
+          const waktuLengkap = writeUpCtf.createdAt.toString();
+          const tanggal = waktuLengkap.split('T')[0];
+          const Jam = waktuLengkap.split('T')[1].split('.')[0];
+          const sliceDecimal = Jam.slice(0);
+          const waktuAkhir = `${tanggal} - ${sliceDecimal}`;
+
+          return (
+            <Typography
+              as='td'
+              className={clsxm(
+                'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
+              )}
+            >
+              {waktuAkhir}
+            </Typography>
+          );
+        } else {
+          return (
+            <Typography
+              as='td'
+              className={clsxm(
+                'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
+              )}
+            >
+              {' '}
+            </Typography>
+          );
+        }
+      },
       size: 18,
     },
-    // {
-    //   id: 'event',
-    //   accessorKey: 'event',
-    //   header: 'Events',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'asal_institusi',
-    //   accessorKey: 'asal_institusi',
-    //   header: 'Institusi',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'no_wa_ketua',
-    //   accessorKey: 'no_wa_ketua',
-    //   header: 'No WhatsApp',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'email_ketua',
-    //   accessorKey: 'email_ketua',
-    //   header: 'Email',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'discord_ketua',
-    //   accessorKey: 'discord_ketua',
-    //   header: 'Discord',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'nama_ketua',
-    //   accessorKey: 'nama_ketua',
-    //   header: 'Ketua',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'ktp_ketua',
-    //   header: 'KTP Ketua',
-    //   cell: (info) => (
-    //     <div className='flex justify-center'>
-    //       <ButtonLink
-    //         className='bg-primary-500 text-white hover:bg-primary-700'
-    //         href={`https://ara-its.id/uploads/ctf/${info.row.original.ktp_ketua}`}
-    //       >
-    //         KTP Ketua
-    //       </ButtonLink>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'nama_anggota1',
-    //   accessorKey: 'nama_anggota1',
-    //   header: 'Anggota 1',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'ktp_anggota1',
-    //   header: 'KTP Anggota 1',
-    //   cell: (info) => (
-    //     <div className='flex justify-center'>
-    //       <ButtonLink
-    //         className='bg-primary-500 text-white hover:bg-primary-700'
-    //         href={`https://ara-its.id/uploads/ctf/${info.row.original.ktp_anggota1}`}
-    //       >
-    //         KTP Anggota 1
-    //       </ButtonLink>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'nama_anggota2',
-    //   accessorKey: 'nama_anggota2',
-    //   header: 'Anggota 2',
-    //   size: 18,
-    // },
-    // {
-    //   id: 'ktp_anggota2',
-    //   header: 'KTP Anggota 2',
-    //   cell: (info) => (
-    //     <div className='flex justify-center'>
-    //       <ButtonLink
-    //         className='bg-primary-500 text-white hover:bg-primary-700'
-    //         href={`https://ara-its.id/uploads/ctf/${info.row.original.ktp_anggota2}`}
-    //       >
-    //         KTP Anggota 2
-    //       </ButtonLink>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'bukti_pembayaran',
-    //   header: 'Pembayaran',
-    //   cell: (info) => (
-    //     <div className='flex justify-center'>
-    //       <ButtonLink
-    //         className='bg-primary-500 text-white hover:bg-primary-700'
-    //         href={`https://ara-its.id/uploads/pembayaran/${info.row.original.pembayaran.bukti_pembayaran}`}
-    //       >
-    //         Bukti Pembayaran
-    //       </ButtonLink>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'bukti_follow',
-    //   header: 'Bukti Follow',
-    //   cell: (info) => (
-    //     <div className='flex justify-center'>
-    //       <ButtonLink
-    //         className='bg-primary-500 text-white hover:bg-primary-700'
-    //         href={`https://ara-its.id/uploads/persyaratan/${info.row.original.bukti_follow}`}
-    //       >
-    //         Bukti Follow
-    //       </ButtonLink>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'bukti_repost',
-    //   header: 'Bukti Repost',
-    //   cell: (info) => (
-    //     <div className='flex justify-center'>
-    //       <ButtonLink
-    //         className='bg-primary-500 text-white hover:bg-primary-700'
-    //         href={`https://ara-its.id/uploads/persyaratan/${info.row.original.bukti_repost}`}
-    //       >
-    //         Bukti Repost
-    //       </ButtonLink>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'kupon',
-    //   header: 'Kode Referal',
-    //   cell: (info) => (
-    //     <Typography
-    //       as='td'
-    //       className={clsxm(
-    //         'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
-    //       )}
-    //     >
-    //       {info.row.original.kupon?.kupon}
-    //     </Typography>
-    //   ),
-    //   size: 18,
-    // },
-    // {
-    //   id: 'status',
-    //   header: 'Status',
-    //   cell: (info) => (
-    //     <div className='flex justify-center flex-col items-center'>
-    //       <select
-    //         value={info.row.original.pembayaran.status.status}
-    //         className={`flex flex-col cursor-pointer rounded-lg w-[150px] text-white
-    //           ${
-    //             info.row.original.pembayaran.status.status ===
-    //             'AWAITING VERIFICATION'
-    //               ? 'bg-yellow-500'
-    //               : info.row.original.pembayaran.status.status === 'FAILED'
-    //               ? 'bg-red-600'
-    //               : 'bg-success-600'
-    //           }
-    //           `}
-    //         onChange={(e) =>
-    //           handleStatusChange(
-    //             info.row.original.pembayaran_id,
-    //             e.target.value
-    //           )
-    //         }
-    //       >
-    //         <option value='SUCCESS' className='bg-white text-black-500'>
-    //           Success
-    //         </option>
-    //         <option value='FAILED' className='bg-white text-black-500'>
-    //           Gagal
-    //         </option>
-    //         <option
-    //           value='AWAITING VERIFICATION'
-    //           className='bg-white text-black-500'
-    //         >
-    //           Awaiting Verification
-    //         </option>
-    //       </select>
-    //     </div>
-    //   ),
-    //   size: 18,
-    // },
+    {
+      id: 'write_up_ctf',
+      header: 'Write Up CTF',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <ButtonLink
+            className='bg-primary-500 text-white hover:bg-primary-700'
+            href={`https://ara-its.id/uploads/ctf/${info.row.original.write_up_ctf?.write_up}`}
+          >
+            Write Up CTF
+          </ButtonLink>
+        </div>
+      ),
+      size: 18,
+    },
   ];
 
   const url = buildPaginatedTableURL({
@@ -339,82 +155,42 @@ function DashboardAdmin() {
 
     const data =
       user?.permission === 'ADMIN'
-        ? response?.data.data.data.filter(
-            (item) => item.pembayaran.status.status === user?.[0]?.team_name
-          ) ?? []
-        : response?.data.data.data.filter(
-            (item) => item.pembayaran.status.status
-          ) ?? [];
-
-    // if (data.length === 0)
-    //   return showToast('Tidak ada Pendaftar', WARNING_TOAST);
+        ? response?.data.data.data.filter((item) => item.team_name) ?? []
+        : response?.data.data.data.filter((item) => item.team_name) ?? [];
 
     getCsv(
       data.map((items) => {
-        // const tanggalDaftar = new Date(items?.createdAt);
-        // const formatTanggalDaftar = tanggalDaftar.toString().split('T')[0];
         return {
-          // id: items?.id,
           Nama_Team: items?.team_name,
-          Write_Up: items?.Write_up_ctf,
-          // Account_Id: items?.account_id,
-          // Provinsi: items?.team_provinsi_id,
-          // Kabupaten: items?.team_kabupaten_id,
-          // Events: items?.event,
-          // Asal_Institusi: items?.asal_institusi,
-          // No_wa_ketua: items?.no_wa_ketua,
-          // Email_ketua: items?.email_ketua,
-          // Discord: items?.discord_ketua,
-          // Nama_ketua: items?.nama_ketua,
-          // KTP_ketua: items?.ktp_ketua,
-          // Anggota1: items?.nama_anggota1,
-          // Ktp_anggota1: items?.ktp_anggota1,
-          // Anggota2: items?.nama_anggota2,
-          // Ktp_anggota2: items?.ktp_anggota2,
-          // // Pembayaran_ID: items?.pembayaran_id,
-          // Kupon: items?.kupon.kupon,
-          // Bukti_Follow: items?.bukti_follow,
-          // Bukti_Repost: items?.bukti_repost,
-          // Write_UP_CTF: items?.Write_up_ctf,
-          // Bukti_Pembayaran: items?.pembayaran?.bukti_pembayaran,
-          // List_Bank: items?.pembayaran?.list_bank?.bank,
-          // Tanggal_Daftar: formatTanggalDaftar,
-          // Status_Pembayaran: items?.pembayaran?.status?.status,
+          Write_Up: items?.write_up_ctf?.write_up,
         };
       }),
       fileName
     );
   };
 
-  // const getVerificationStats = (data: AdminCTF[]): VerificationStats => {
-  //   const total = data.length;
-  //   const successCount = data.filter(
-  //     (item) => item.pembayaran.status.status === 'SUCCESS'
-  //   ).length;
-  //   const pendingCount = data.filter(
-  //     (item) => item.pembayaran.status.status === 'AWAITING VERIFICATION'
-  //   ).length;
-  //   const failedCount = data.filter(
-  //     (item) => item.pembayaran.status.status === 'FAILED'
-  //   ).length;
+  const getVerificationStats = (data: AdminCTF[]): VerificationStats => {
+    const total = data.length;
+    const successCount = data.filter(
+      (item) => item.write_up_ctf !== null
+    ).length;
+    const failedCount = data.filter(
+      (item) => item.write_up_ctf === null
+    ).length;
 
-  //   const verifiedPercent = Math.floor((successCount / total) * 100 || 0);
-  //   const pendingPercent = Math.floor(
-  //     ((pendingCount + failedCount) / total) * 100 || 0
-  //   );
+    const verifiedPercent = Math.floor((successCount / total) * 100 || 0);
+    const failedPercent = Math.floor((failedCount / total) * 100 || 0);
+    return {
+      successCount,
+      failedCount,
+      verifiedPercent,
+      failedPercent,
+    };
+  };
 
-  //   return {
-  //     successCount,
-  //     pendingCount,
-  //     failedCount,
-  //     verifiedPercent,
-  //     pendingPercent,
-  //   };
-  // };
-
-  // const stats: VerificationStats = getVerificationStats(
-  //   queryData?.data?.data ?? []
-  // );
+  const stats: VerificationStats = getVerificationStats(
+    queryData?.data?.data ?? []
+  );
 
   return (
     <DashboardLayout>
@@ -449,7 +225,7 @@ function DashboardAdmin() {
                 weight='bold'
                 className='text-primary-600 lg:hidden text-[32px] md:text-start text-center my-4'
               >
-                Data Tim CTF
+                Data Write Up
               </Typography>
             </div>
             <div className='flex gap-x-4'>
@@ -473,7 +249,7 @@ function DashboardAdmin() {
           </div>
 
           <div className='w-full h-full flex justify-start gap-6 max-md:justify-center max-xl:flex-wrap max-xl:gap-5 mx-auto container'>
-            {/* <ArloCard
+            <ArloCard
               as='team-info'
               variant='blue'
               title='Peserta Terdaftar'
@@ -483,17 +259,17 @@ function DashboardAdmin() {
             <ArloCard
               as='team-info'
               variant='green'
-              title='Peserta Terverifikasi'
+              title='Data WriteUp Peserta'
               caption={`${stats.successCount} tim`}
               addInfo={{ percent: stats.verifiedPercent }}
             />
             <ArloCard
               as='team-info'
               variant='brown'
-              title='Peserta Belum Terverifikasi'
-              caption={`${stats.pendingCount + stats.failedCount} tim`}
-              addInfo={{ percent: stats.pendingPercent }}
-            /> */}
+              title='Data WriteUp Null'
+              caption={`${stats.failedCount} tim`}
+              addInfo={{ percent: stats.failedPercent }}
+            />
           </div>
 
           <ServerTable
@@ -501,12 +277,6 @@ function DashboardAdmin() {
             data={
               queryData?.data.data
                 ? queryData?.data.data.filter((item) => {
-                    if (
-                      selectedStatus &&
-                      item?.pembayaran?.status?.status !== selectedStatus
-                    ) {
-                      return false;
-                    }
                     const searchValue = tableStates.globalFilter.toLowerCase();
                     return item?.team_name.toLowerCase().includes(searchValue);
                   })
@@ -517,6 +287,7 @@ function DashboardAdmin() {
             setTableState={setTableState}
             withFilter={true}
             className='text-center text-white font-poppins'
+            withStatus={false}
             selectedStatus={selectedStatus}
             handleStatusSelectChange={handleStatusSelectChange}
             searchValue={tableStates.globalFilter}

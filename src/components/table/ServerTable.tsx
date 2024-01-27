@@ -74,7 +74,7 @@ export default function ServerTable<T extends object>({
     data,
     columns,
     columnResizeMode,
-    pageCount: meta?.total,
+    pageCount: meta?.lastPage,
     state: {
       ...tableState,
     },
@@ -152,7 +152,7 @@ export default function ServerTable<T extends object>({
           </TOption>
         </div>
       </div>
-      <div className='-my-2 -mx-4 mt-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+      <div className='-my-2 -mx-4 mt-2  flex flex-col items-start overflow-x-auto sm:-mx-6 lg:-mx-8'>
         <div className='inline-block py-2 align-middle md:px-6 lg:px-8 overflow-x-auto w-auto'>
           <div className='overflow-hidden shadow ring-1 ring-black-500 ring-opacity-5 rounded-xl'>
             <table className='min-w-full divide-y divide-primary-100'>

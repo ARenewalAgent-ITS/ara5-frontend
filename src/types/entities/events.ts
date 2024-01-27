@@ -21,7 +21,13 @@ export type AdminCTF = {
   bukti_repost: string;
   createdAt: string;
   updatedAt: string;
-  Write_up_ctf: string | null;
+  write_up_ctf: {
+    id: string;
+    team_id: string;
+    write_up: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   kupon: {
     kupon: string | null;
   };
