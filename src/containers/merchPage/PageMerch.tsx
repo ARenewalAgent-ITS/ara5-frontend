@@ -23,6 +23,7 @@ import NextImage from '@/components/NextImage';
 import { showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
+import MerchModal from '@/containers/merchPage/MerchModal';
 import clsxm from '@/lib/clsxm';
 import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
@@ -59,7 +60,18 @@ export default function PageMerch() {
   const [hoveredProductId, setHoveredProductId] = useState<string | null>(null);
   const [showCatDropdown, setShowCatDropdown] = useState(false);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [merchModal, setMerchModal] = useState<boolean>(false);
+  const [selectedProduct, setSelectedProduct] = useState<TMerchCatalogue>();
   const { insertMerch, setModalOpen } = useMerchStore();
+
+  const handleCloseMerchModal = () => {
+    setMerchModal(false);
+  };
+
+  const handleOpenMerchModal = (product: TMerchCatalogue) => {
+    setSelectedProduct(product);
+    setMerchModal(true);
+  };
 
   const uniqueCategories = Array.from(
     new Set(products.map((product: TMerchCatalogue) => product.kategori_produk))
@@ -312,8 +324,18 @@ export default function PageMerch() {
                   onMouseLeave={() => setHoveredProductId(null)}
                   className='my-3 mx-4 sm:mx-2'
                 >
+                  {merchModal && selectedProduct ? (
+                    <MerchModal
+                      isOpen={merchModal}
+                      setModalClose={handleCloseMerchModal}
+                      merchData={selectedProduct}
+                    />
+                  ) : null}
                   <div className='relative overflow-hidden'>
-                    <div className='relative overflow-hidden bg-primary-200 bg-opacity-25 rounded-t-[15px]'>
+                    <div
+                      onClick={() => handleOpenMerchModal(product)}
+                      className='relative overflow-hidden bg-primary-200 bg-opacity-25 rounded-t-[15px]'
+                    >
                       <Image
                         src={`https://ara-its.id/uploads/merch/${product.image_path}`}
                         width={200}
