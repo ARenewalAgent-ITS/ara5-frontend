@@ -113,7 +113,7 @@ function DashboardAdmin() {
           description='Dashboard Referral Admin ARA 5.0 | ARA (A Renewal Agent) 5.0 adalah kegiatan yang diselenggarakan oleh HMIT (Himpunan Mahasiswa Teknologi Informasi) ITS periode 2023-2024 yang dimana event ini akan menjadi media untuk menyalurkan minat di bidang IT (teknologi informasi) bagi siswa SMA/SMK dan mahasiswa.'
         />
         <div className='min-h-screen flex flex-col gap-6 pb-20'>
-          <div className='flex justify-between md:flex-row flex-col items-center'>
+          <div className='flex justify-between flex-col'>
             <Typography
               as='h6'
               variant='h6'
@@ -140,30 +140,6 @@ function DashboardAdmin() {
               List Kupon
             </Typography>
           </div>
-
-          {/* <div className='w-full h-full flex justify-start gap-6 max-md:justify-center max-xl:flex-wrap max-xl:gap-5 mx-auto container'>
-            <ArloCard
-              as='team-info'
-              variant='blue'
-              title='Peserta Terdaftar'
-              caption={`${queryData?.data?.meta?.total} tim`}
-              addInfo={{}}
-            />
-            <ArloCard
-              as='team-info'
-              variant='green'
-              title='Peserta Terverifikasi'
-              caption={`${stats.successCount} tim`}
-              addInfo={{ percent: stats.verifiedPercent }}
-            />
-            <ArloCard
-              as='team-info'
-              variant='brown'
-              title='Peserta Belum Terverifikasi'
-              caption={`${stats.pendingCount + stats.failedCount} tim`}
-              addInfo={{ percent: stats.pendingPercent }}
-            />
-          </div> */}
 
           <ServerTable
             columns={columns}
