@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { IoIosArrowDown } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
-import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
+import SwiperCore, { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Button from '@/components/buttons/Button';
@@ -29,18 +29,19 @@ import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
 const paginationStyle = {
-  '--swiper-pagination-color': '#212121',
-  '--swiper-pagination-bullet-inactive-color': '#212121',
+  '--swiper-pagination-color': '#2AC3FF',
+  '--swiper-pagination-bullet-inactive-color': '#fff',
   '--swiper-pagination-bullet-inactive-opacity': '0.5',
   '--swiper-pagination-bullet-active-opacity': '1',
-  '--swiper-pagination-bullet-size': '0.65rem',
+  '--swiper-pagination-bullet-size': '0.6rem',
 } as React.CSSProperties;
 
 const images = [
-  '/img/merchpage/banner.svg',
-  '/img/merchpage/banner2.svg',
-  '/img/merchpage/banner3.svg',
-  '/img/merchpage/banner4.svg',
+  '/images/merchandise/banner_bundle.png',
+  '/images/merchandise/banner_free.png',
+  '/images/merchandise/banner_it_reborn.png',
+  '/images/merchandise/banner_po.png',
+  '/images/merchandise/banner_satuan.png',
 ];
 
 const sizes: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
@@ -162,10 +163,10 @@ export default function PageMerch() {
       <Navbar />
       <CheckoutDialog />
       <Swiper
-        modules={[A11y, Navigation, Pagination]}
+        modules={[Pagination]}
         spaceBetween={0}
         slidesPerView={1}
-        pagination={{ clickable: true }}
+        pagination={{ dynamicBullets: true }}
         autoplay={{ delay: 3000 }}
         loop={true}
         centeredSlides={true}
@@ -338,11 +339,11 @@ export default function PageMerch() {
                     >
                       <Image
                         src={`https://ara-its.id/uploads/merch/${product.image_path}`}
-                        width={200}
-                        height={200}
+                        width={180}
+                        height={180}
                         alt='productimage'
                         className={clsxm(
-                          'w-full object-none duration-300 h-[450px]',
+                          'w-full object-none duration-300 h-[350px] sm:h-[400px] md:h-[450px] ',
                           hoveredProductId === product.id ? 'scale-110' : ''
                         )}
                         style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
