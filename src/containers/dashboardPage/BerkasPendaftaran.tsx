@@ -3,6 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { serialize } from 'object-to-formdata';
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { BiSolidCheckCircle } from 'react-icons/bi';
 
 import Button from '@/components/buttons/Button';
@@ -30,6 +31,7 @@ export default function BerkasPendaftaran({
   userData,
   refetchData,
 }: BerkasPendaftaranProps) {
+  const toastId = React.useRef<string | null>(null);
   const event = userData?.event?.toLocaleLowerCase();
   const pembayaranId = userData?.pembayaran_id;
 
@@ -249,23 +251,26 @@ export default function BerkasPendaftaran({
     }
   };
 
-  const { mutate: postWriteup } = useMutation(writeupRegister, {
-    onSuccess: () => {
-      showToast('Persyaratan updated successfully', SUCCESS_TOAST);
-      resetPersyaratanForm({
-        bukti_follow: undefined,
-        bukti_repost: undefined,
-      });
-      refetchData();
-    },
-    onError: (error: CustomAxiosError) => {
-      if (error.response) {
-        showToast(error.response.data.message, DANGER_TOAST);
-      } else {
-        showToast('An unknown error occurred', DANGER_TOAST);
-      }
-    },
-  });
+  const { mutate: postWriteup, isLoading: postWuIsLoading } = useMutation(
+    writeupRegister,
+    {
+      onSuccess: () => {
+        showToast('Persyaratan updated successfully', SUCCESS_TOAST);
+        resetPersyaratanForm({
+          bukti_follow: undefined,
+          bukti_repost: undefined,
+        });
+        refetchData();
+      },
+      onError: (error: CustomAxiosError) => {
+        if (error.response) {
+          showToast(error.response.data.message, DANGER_TOAST);
+        } else {
+          showToast('An unknown error occurred', DANGER_TOAST);
+        }
+      },
+    }
+  );
 
   const writeupPatch = async (data: TWriteup | FormData) => {
     try {
@@ -289,23 +294,26 @@ export default function BerkasPendaftaran({
     }
   };
 
-  const { mutate: patchWriteup } = useMutation(writeupPatch, {
-    onSuccess: () => {
-      showToast('Persyaratan updated successfully', SUCCESS_TOAST);
-      resetPersyaratanForm({
-        bukti_follow: undefined,
-        bukti_repost: undefined,
-      });
-      refetchData();
-    },
-    onError: (error: CustomAxiosError) => {
-      if (error.response) {
-        showToast(error.response.data.message, DANGER_TOAST);
-      } else {
-        showToast('An unknown error occurred', DANGER_TOAST);
-      }
-    },
-  });
+  const { mutate: patchWriteup, isLoading: patchWuIsLoading } = useMutation(
+    writeupPatch,
+    {
+      onSuccess: () => {
+        showToast('Persyaratan updated successfully', SUCCESS_TOAST);
+        resetPersyaratanForm({
+          bukti_follow: undefined,
+          bukti_repost: undefined,
+        });
+        refetchData();
+      },
+      onError: (error: CustomAxiosError) => {
+        if (error.response) {
+          showToast(error.response.data.message, DANGER_TOAST);
+        } else {
+          showToast('An unknown error occurred', DANGER_TOAST);
+        }
+      },
+    }
+  );
 
   const writeupOnSubmit = (data: TWriteup) => {
     const isAnyFileUploaded = data.write_up?.[0];
@@ -322,6 +330,17 @@ export default function BerkasPendaftaran({
       patchWriteup(serialize(body));
     }
   };
+
+  React.useEffect(() => {
+    if (patchWuIsLoading || postWuIsLoading) {
+      toastId.current = toast.loading('Loading...');
+    } else {
+      if (toastId.current) {
+        toast.dismiss(toastId.current);
+        toastId.current = null;
+      }
+    }
+  }, [patchWuIsLoading, postWuIsLoading]);
 
   const paymentStatus = userData?.pembayaran?.status_pembayaran;
   let statusElement;
@@ -797,6 +816,7 @@ export default function BerkasPendaftaran({
                     <FileInput
                       id='write_up'
                       accept={{ 'application/pdf': ['.pdf'] }}
+                      maxFileSize={25000000}
                     />
                   </form>
                 </FormProvider>

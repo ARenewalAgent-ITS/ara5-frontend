@@ -21,6 +21,7 @@ export type FileInputProps = {
   accept?: Accept;
   acceptTypes?: string;
   maxFiles?: number;
+  maxFileSize?: number;
 };
 
 export default function FileInput({
@@ -29,6 +30,7 @@ export default function FileInput({
   validation,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
   maxFiles = 1,
+  maxFileSize = 1000000,
 }: FileInputProps) {
   const {
     control,
@@ -74,7 +76,7 @@ export default function FileInput({
             rejectedFiles &&
             `${
               rejectedFiles[0].errors[0].code === 'file-too-large'
-                ? 'File tidak boleh lebih dari 1MB'
+                ? `File tidak boleh lebih dari ${maxFileSize / 1000000}MB`
                 : rejectedFiles[0].errors[0].code === 'file-invalid-type'
                 ? 'Tipe file tidak didukung'
                 : rejectedFiles[0].errors[0].message
@@ -96,7 +98,7 @@ export default function FileInput({
         clearErrors(id);
       }
     },
-    [clearErrors, files, id, maxFiles, setError, setValue]
+    [clearErrors, files, id, maxFiles, maxFileSize, setError, setValue]
   );
 
   React.useEffect(() => {
@@ -111,7 +113,7 @@ export default function FileInput({
     onDrop,
     accept,
     maxFiles,
-    maxSize: 1000000,
+    maxSize: maxFileSize,
   });
 
   const backgroundClass =
