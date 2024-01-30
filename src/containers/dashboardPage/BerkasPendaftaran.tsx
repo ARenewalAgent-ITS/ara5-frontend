@@ -3,13 +3,16 @@ import axios, { AxiosError } from 'axios';
 import { serialize } from 'object-to-formdata';
 import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { BiSolidCheckCircle } from 'react-icons/bi';
 
 import Button from '@/components/buttons/Button';
 import FileInput from '@/components/form/FileInput';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import { DANGER_TOAST, showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import api from '@/lib/api';
+import clsxm from '@/lib/clsxm';
 import { ApiError, CustomAxiosError } from '@/types/api';
 import { UserLogin } from '@/types/entities/login';
 import {
@@ -28,7 +31,7 @@ export default function BerkasPendaftaran({
   userData,
   refetchData,
 }: BerkasPendaftaranProps) {
-  // const toastId = React.useRef<string | null>(null);
+  const toastId = React.useRef<string | null>(null);
   const event = userData?.event?.toLocaleLowerCase();
   const pembayaranId = userData?.pembayaran_id;
 
@@ -43,17 +46,17 @@ export default function BerkasPendaftaran({
     listBank = '1';
   }
 
-  // function formatDates(dateString: Date) {
-  //   const date = new Date(dateString);
-  //   const day = date.getDate().toString().padStart(2, '0');
-  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  //   const year = date.getFullYear();
-  //   const hours = date.getHours().toString().padStart(2, '0');
-  //   const minutes = date.getMinutes().toString().padStart(2, '0');
-  //   const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
+  function formatDates(dateString: Date) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
 
-  //   return formattedDate;
-  // }
+    return formattedDate;
+  }
 
   //#region  //*=========== Reupload Foto API & Form ===========
 
@@ -229,120 +232,121 @@ export default function BerkasPendaftaran({
   //#region  //*=========== Reupload CTF API & Form ===========
 
   const writeupMethods = useForm<TWriteup>();
-  // const { reset: resetWriteUp } = writeupMethods;
+  const { reset: resetWriteUp } = writeupMethods;
 
-  // const writeupRegister = async (data: TWriteup | FormData) => {
-  //   try {
-  //     await api.post(`/ctf/write-up`, data, {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data',
-  //       },
-  //     });
-  //   } catch (error: unknown) {
-  //     if (axios.isAxiosError(error)) {
-  //       const serverError = error as AxiosError<ApiError>;
-  //       if (serverError && serverError.response) {
-  //         throw new Error(serverError.response.data.message);
-  //       }
-  //     }
-  //     throw error;
-  //   }
-  // };
+  const writeupRegister = async (data: TWriteup | FormData) => {
+    try {
+      await api.post(`/ctf/write-up`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
+    }
+  };
 
-  // const { mutate: postWriteup, isLoading: postWuIsLoading } = useMutation(
-  //   writeupRegister,
-  //   {
-  //     onSuccess: () => {
-  //       showToast('Persyaratan updated successfully', SUCCESS_TOAST);
-  //       resetWriteUp({
-  //         write_up: undefined,
-  //       });
-  //     },
-  //     onError: (error: CustomAxiosError) => {
-  //       if (error.response) {
-  //         showToast(error.response.data.message, DANGER_TOAST);
-  //       } else {
-  //         showToast('An unknown error occurred', DANGER_TOAST);
-  //       }
-  //     },
-  //   }
-  // );
+  const { mutate: postWriteup, isLoading: postWuIsLoading } = useMutation(
+    writeupRegister,
+    {
+      onSuccess: () => {
+        showToast('Persyaratan updated successfully', SUCCESS_TOAST);
+        resetWriteUp({
+          write_up: undefined,
+        });
+        refetchData();
+      },
+      onError: (error: CustomAxiosError) => {
+        if (error.response) {
+          showToast(error.response.data.message, DANGER_TOAST);
+        } else {
+          showToast('An unknown error occurred', DANGER_TOAST);
+        }
+      },
+    }
+  );
 
-  // const writeupPatch = async (data: TWriteup | FormData) => {
-  //   try {
-  //     await api.patch(
-  //       `/ctf/write-up/${userData?.write_up_ctf?.id}/update`,
-  //       data,
-  //       {
-  //         headers: {
-  //           'Content-Type': 'multipart/form-data',
-  //         },
-  //       }
-  //     );
-  //   } catch (error: unknown) {
-  //     if (axios.isAxiosError(error)) {
-  //       const serverError = error as AxiosError<ApiError>;
-  //       if (serverError && serverError.response) {
-  //         throw new Error(serverError.response.data.message);
-  //       }
-  //     }
-  //     throw error;
-  //   }
-  // };
+  const writeupPatch = async (data: TWriteup | FormData) => {
+    try {
+      await api.patch(
+        `/ctf/write-up/${userData?.write_up_ctf?.id}/update`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const serverError = error as AxiosError<ApiError>;
+        if (serverError && serverError.response) {
+          throw new Error(serverError.response.data.message);
+        }
+      }
+      throw error;
+    }
+  };
 
-  // const { mutate: patchWriteup, isLoading: patchWuIsLoading } = useMutation(
-  //   writeupPatch,
-  //   {
-  //     onSuccess: () => {
-  //       showToast('Persyaratan updated successfully', SUCCESS_TOAST);
-  //       resetWriteUp({
-  //         write_up: undefined,
-  //       });
-  //     },
-  //     onError: (error: CustomAxiosError) => {
-  //       if (error.response) {
-  //         showToast(error.response.data.message, DANGER_TOAST);
-  //       } else {
-  //         showToast('An unknown error occurred', DANGER_TOAST);
-  //       }
-  //     },
-  //   }
-  // );
+  const { mutate: patchWriteup, isLoading: patchWuIsLoading } = useMutation(
+    writeupPatch,
+    {
+      onSuccess: () => {
+        showToast('Persyaratan updated successfully', SUCCESS_TOAST);
+        resetWriteUp({
+          write_up: undefined,
+        });
+      },
+      onError: (error: CustomAxiosError) => {
+        if (error.response) {
+          showToast(error.response.data.message, DANGER_TOAST);
+        } else {
+          showToast('An unknown error occurred', DANGER_TOAST);
+        }
+      },
+    }
+  );
 
-  // const writeupOnSubmit = (data: TWriteup) => {
-  //   const isAnyFileUploaded = data.write_up?.[0];
-  //   if (!isAnyFileUploaded) {
-  //     showToast('Write up cannot be empty', DANGER_TOAST);
-  //     return;
-  //   }
-  //   const body = {
-  //     write_up: data.write_up?.[0] ?? undefined,
-  //   };
-  //   if (userData?.write_up_ctf === null) {
-  //     postWriteup(serialize(body));
-  //   } else {
-  //     patchWriteup(serialize(body));
-  //   }
-  // };
+  const writeupOnSubmit = (data: TWriteup) => {
+    const isAnyFileUploaded = data.write_up?.[0];
+    if (!isAnyFileUploaded) {
+      showToast('Write up cannot be empty', DANGER_TOAST);
+      return;
+    }
+    const body = {
+      write_up: data.write_up?.[0] ?? undefined,
+    };
+    if (userData?.write_up_ctf === null) {
+      postWriteup(serialize(body));
+    } else {
+      patchWriteup(serialize(body));
+    }
+  };
 
-  // React.useEffect(() => {
-  //   if (patchWuIsLoading || postWuIsLoading) {
-  //     toastId.current = toast.loading('Loading...');
-  //   } else {
-  //     if (toastId.current) {
-  //       toast.dismiss(toastId.current);
-  //       toastId.current = null;
-  //     }
-  //   }
-  // }, [patchWuIsLoading, postWuIsLoading]);
+  React.useEffect(() => {
+    if (patchWuIsLoading || postWuIsLoading) {
+      toastId.current = toast.loading('Loading...');
+    } else {
+      if (toastId.current) {
+        toast.dismiss(toastId.current);
+        toastId.current = null;
+      }
+    }
+  }, [patchWuIsLoading, postWuIsLoading]);
 
   const paymentStatus = userData?.pembayaran?.status_pembayaran;
   let statusElement;
   switch (paymentStatus) {
     case 'AWAITING VERIFICATION':
       statusElement = (
-        <div
-          // href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
+        <UnstyledLink
+          href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
           className='flex w-full items-center justify-between group'
         >
           <div className='flex flex-col'>
@@ -353,7 +357,7 @@ export default function BerkasPendaftaran({
             >
               MENUNGGU VERIFIKASI
             </Typography>
-            {/* <UnstyledLink
+            <UnstyledLink
               href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
             >
               <Typography
@@ -364,16 +368,16 @@ export default function BerkasPendaftaran({
                   ? parseFilename(userData.pembayaran.bukti_pembayaran)
                   : 'Nama File'}
               </Typography>
-            </UnstyledLink> */}
+            </UnstyledLink>
           </div>
           <WaitingVerifLogo />
-        </div>
+        </UnstyledLink>
       );
       break;
     case 'SUCCESS':
       statusElement = (
-        <div
-          // href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
+        <UnstyledLink
+          href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
           className='flex items-center group justify-between w-full'
         >
           <div className='flex flex-col'>
@@ -384,17 +388,17 @@ export default function BerkasPendaftaran({
             >
               PEMBAYARAN SUKSES
             </Typography>
-            {/* <Typography
+            <Typography
               font='poppins'
               className='text-whites-1100 xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis md:text-[14px] text-[11px] group-hover:underline'
             >
               {userData?.pembayaran?.bukti_pembayaran
                 ? parseFilename(userData.pembayaran.bukti_pembayaran)
                 : 'Nama File'}
-            </Typography> */}
+            </Typography>
           </div>
           <BiSolidCheckCircle className=' text-success-600 w-11 md:w-12 h-11 md:h-12' />
-        </div>
+        </UnstyledLink>
       );
       break;
     case 'FAILED':
@@ -425,8 +429,8 @@ export default function BerkasPendaftaran({
       break;
     default:
       statusElement = (
-        <div
-          // href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
+        <UnstyledLink
+          href={`https://ara-its.id/uploads/pembayaran/${userData?.pembayaran?.bukti_pembayaran}`}
           className='flex items-center group'
         >
           <div className='flex flex-col'>
@@ -438,23 +442,23 @@ export default function BerkasPendaftaran({
               MENUNGGU VERIFIKASI
             </Typography>
 
-            {/* <Typography
+            <Typography
               font='poppins'
               className='text-whites-1100 md:text-[14px] text-[11px] group-hover:underline'
             >
               {userData?.pembayaran?.bukti_pembayaran}
-            </Typography> */}
+            </Typography>
           </div>
           <WaitingVerifLogo />
-        </div>
+        </UnstyledLink>
       );
   }
 
-  // function parseFilename(filename: string) {
-  //   const parts = filename.split('_');
-  //   parts.shift();
-  //   return parts.join('_');
-  // }
+  function parseFilename(filename: string) {
+    const parts = filename.split('_');
+    parts.shift();
+    return parts.join('_');
+  }
 
   return (
     <>
@@ -481,9 +485,9 @@ export default function BerkasPendaftaran({
               >
                 Profil Tim
               </Typography>
-              <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
-                <div
-                  // href={`https://ara-its.id/uploads/${event}/${userData?.ketua?.ktp_ketua}`}
+              <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+                <UnstyledLink
+                  href={`https://ara-its.id/uploads/${event}/${userData?.ketua?.ktp_ketua}`}
                   className='flex flex-col group'
                 >
                   <Typography
@@ -495,14 +499,14 @@ export default function BerkasPendaftaran({
                   >
                     Nama Ketua
                   </Typography>
-                  {/* <Typography
+                  <Typography
                     variant='c14'
                     font='poppins'
                     className='text-whites-1100 text-[12px] leading-[24px] group-hover:underline'
                   >
                     {userData ? `${userData.ketua.nama_ketua}` : 'Nama Ketua'}
-                  </Typography> */}
-                </div>
+                  </Typography>
+                </UnstyledLink>
                 {paymentStatus === 'SUCCESS' ? (
                   <BiSolidCheckCircle className=' text-success-600 w-7 md:w-9 h-7 md:h-9' />
                 ) : (
@@ -514,9 +518,9 @@ export default function BerkasPendaftaran({
                 )}
               </div>
               {userData?.anggota1.nama_anggota1 ? (
-                <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
-                  <div
-                    // href={`https://ara-its.id/uploads/${event}/${userData?.anggota1?.ktp_anggota1}`}
+                <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+                  <UnstyledLink
+                    href={`https://ara-its.id/uploads/${event}/${userData?.anggota1?.ktp_anggota1}`}
                     className='flex flex-col group'
                   >
                     <Typography
@@ -528,7 +532,7 @@ export default function BerkasPendaftaran({
                     >
                       Nama Anggota
                     </Typography>
-                    {/* <Typography
+                    <Typography
                       variant='c14'
                       font='poppins'
                       className='text-whites-1100 text-[12px] leading-[24px] group-hover:underline'
@@ -536,8 +540,8 @@ export default function BerkasPendaftaran({
                       {userData
                         ? `${userData.anggota1.nama_anggota1}`
                         : 'Nama Anggota 1'}
-                    </Typography> */}
-                  </div>
+                    </Typography>
+                  </UnstyledLink>
                   {paymentStatus === 'SUCCESS' ? (
                     <BiSolidCheckCircle className=' text-success-600 w-7 md:w-9 h-7 md:h-9' />
                   ) : (
@@ -550,9 +554,9 @@ export default function BerkasPendaftaran({
                 </div>
               ) : null}
               {userData?.anggota2.nama_anggota2 ? (
-                <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
-                  <div
-                    // href={`https://ara-its.id/uploads/${event}/${userData?.anggota2?.ktp_anggota2}`}
+                <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+                  <UnstyledLink
+                    href={`https://ara-its.id/uploads/${event}/${userData?.anggota2?.ktp_anggota2}`}
                     className='flex flex-col group'
                   >
                     <Typography
@@ -564,7 +568,7 @@ export default function BerkasPendaftaran({
                     >
                       Nama Anggota
                     </Typography>
-                    {/* <Typography
+                    <Typography
                       variant='c14'
                       font='poppins'
                       className='text-whites-1100 text-[12px] leading-[24px] group-hover:underline'
@@ -572,8 +576,8 @@ export default function BerkasPendaftaran({
                       {userData
                         ? `${userData.anggota2?.nama_anggota2}`
                         : 'Nama Anggota 2'}
-                    </Typography> */}
-                  </div>
+                    </Typography>
+                  </UnstyledLink>
                   {paymentStatus === 'SUCCESS' ? (
                     <BiSolidCheckCircle className=' text-success-600 w-7 md:w-9 h-7 md:h-9' />
                   ) : (
@@ -617,9 +621,9 @@ export default function BerkasPendaftaran({
               >
                 Bukti Persyaratan
               </Typography>
-              <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
-                <div
-                  // href={`https://ara-its.id/uploads/persyaratan/${userData?.bukti_follow}`}
+              <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+                <UnstyledLink
+                  href={`https://ara-its.id/uploads/persyaratan/${userData?.bukti_follow}`}
                   className='flex flex-col group'
                 >
                   <Typography
@@ -631,7 +635,7 @@ export default function BerkasPendaftaran({
                   >
                     Bukti Follow
                   </Typography>
-                  {/* <Typography
+                  <Typography
                     variant='c14'
                     font='poppins'
                     className='text-whites-1100 w-[170px] xl:w-[220px] line-clamp-1 overflow-ellipsis text-[12px] leading-[24px] group-hover:underline'
@@ -639,8 +643,8 @@ export default function BerkasPendaftaran({
                     {userData?.bukti_follow
                       ? `${parseFilename(userData.bukti_follow)}`
                       : 'Bukti_Follow.png'}
-                  </Typography> */}
-                </div>
+                  </Typography>
+                </UnstyledLink>
                 {paymentStatus === 'SUCCESS' ? (
                   <BiSolidCheckCircle className=' text-success-600 w-7 md:w-9 h-7 md:h-9' />
                 ) : (
@@ -651,9 +655,9 @@ export default function BerkasPendaftaran({
                   </FormProvider>
                 )}
               </div>
-              <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
-                <div
-                  // href={`https://ara-its.id/uploads/persyaratan/${userData?.bukti_repost}`}
+              <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+                <UnstyledLink
+                  href={`https://ara-its.id/uploads/persyaratan/${userData?.bukti_repost}`}
                   className='flex flex-col group'
                 >
                   <Typography
@@ -665,7 +669,7 @@ export default function BerkasPendaftaran({
                   >
                     Bukti Repost
                   </Typography>
-                  {/* <Typography
+                  <Typography
                     variant='c14'
                     font='poppins'
                     className='text-whites-1100 xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis text-[12px] leading-[24px] group-hover:underline'
@@ -673,8 +677,8 @@ export default function BerkasPendaftaran({
                     {userData?.bukti_repost
                       ? `${parseFilename(userData.bukti_repost)}`
                       : 'Bukti_Repost.png'}
-                  </Typography>  */}
-                </div>
+                  </Typography>
+                </UnstyledLink>
                 {paymentStatus === 'SUCCESS' ? (
                   <BiSolidCheckCircle className=' text-success-600 w-7 md:w-9 h-7 md:h-9' />
                 ) : (
@@ -722,7 +726,7 @@ export default function BerkasPendaftaran({
             >
               Bukti Pembayaran
             </Typography>
-            <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+            <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
               {statusElement}
             </div>
             {paymentStatus === 'FAILED' ? (
@@ -759,7 +763,7 @@ export default function BerkasPendaftaran({
             >
               CTF
             </Typography>
-            <div className='mt-5 bg-whites-1000 bg-opacity-10 md:space-y-6 h-fit md:w-[26rem] w-72 rounded-[10.5px] px-7 py-6 md:px-10 md:py-10'>
+            <div className='mt-5 bg-primary-400 bg-opacity-10 md:space-y-6 h-fit md:w-[26rem] w-72 rounded-[10.5px] px-7 py-6 md:px-10 md:py-10'>
               <Typography
                 as='h6'
                 variant='h6'
@@ -769,9 +773,9 @@ export default function BerkasPendaftaran({
               >
                 Upload File Write-Up
               </Typography>
-              <div className='mt-5 bg-whites-600 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
+              <div className='mt-5 bg-whites-100 h-fit rounded-[11.2px] md:rounded-2xl py-2 px-3 md:py-3 md:px-5 flex justify-between items-center'>
                 <div className='flex flex-col'>
-                  {/* <Typography
+                  <Typography
                     as='p'
                     variant='p'
                     weight='bold'
@@ -786,8 +790,8 @@ export default function BerkasPendaftaran({
                     {userData.write_up_ctf === null
                       ? 'Belum Ada File Terupload'
                       : userData.write_up_ctf?.write_up}
-                  </Typography> */}
-                  {/* <Typography
+                  </Typography>
+                  <Typography
                     variant='c14'
                     font='poppins'
                     className='text-whites-1100 text-[12px] leading-[24px] w-[170px] xl:w-[230px] line-clamp-1 overflow-ellipsis'
@@ -797,9 +801,9 @@ export default function BerkasPendaftaran({
                       : `Diupload pada ${formatDates(
                           userData.write_up_ctf?.updatedAt ?? new Date()
                         )}`}
-                  </Typography> */}
+                  </Typography>
                 </div>
-                {/* <FormProvider {...writeupMethods}>
+                <FormProvider {...writeupMethods}>
                   <form>
                     <FileInput
                       id='write_up'
@@ -807,16 +811,14 @@ export default function BerkasPendaftaran({
                       maxFileSize={25000000}
                     />
                   </form>
-                </FormProvider> */}
+                </FormProvider>
               </div>
               <FormProvider {...writeupMethods}>
-                <form
-                // onSubmit={writeupMethods.handleSubmit(writeupOnSubmit)}
-                >
+                <form onSubmit={writeupMethods.handleSubmit(writeupOnSubmit)}>
                   <Button
-                    // type='submit'
-                    className='px-6 md:px-10 py-2 mt-5 md:mt-0 rounded-lg bg-whites-900 active:bg-whites-900 hover:bg-whites-900'
-                    // onClick={(e) => e.stopPropagation()}
+                    type='submit'
+                    className='px-6 md:px-10 py-2 mt-5 md:mt-0 rounded-lg'
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Typography
                       variant='bt'
