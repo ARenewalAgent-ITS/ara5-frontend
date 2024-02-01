@@ -58,7 +58,7 @@ export default function SponsorSection() {
 
   return (
     <section className='sponsor-media-section bg-primary-1100 relative -mt-[1rem]'>
-      <section className='sponsor-section py-[85px] md:pt-[91px] md:pb-[183px]'>
+      <section className='sponsor-section py-[85px] md:pt-[91px]'>
         <div className='upper-sponsor flex justify-center items-center mb-[70px]'>
           <NextImage
             src={'/svg/landpage/our_sponsors.svg'}
@@ -75,6 +75,27 @@ export default function SponsorSection() {
               line={sponsorLine}
             />
           ))}
+        </div>
+      </section>
+      <section className='cloud-hosting py-[50px] md:pb-[120px]'>
+        <div className='flex justify-center items-center mb-[70px]'>
+          <NextImage
+            src={'/svg/landpage/cloud_hosting.svg'}
+            alt='cloud hosting by'
+            width={368}
+            height={53}
+          />
+        </div>
+        <div className='flex justify-center items-center'>
+          <div className='w-[240px] h-[80px] sm:w-[420px] sm:h-[125px] md:w-[500px] md:h-[180px] mx-[15px] sm:mx-[25px] md:mx-[35px] rounded-xl bg-white flex justify-center items-center'>
+            <NextImage
+              src={'/images/sponsor/dewaweb_partner.png'}
+              alt='cloud hosting partner'
+              width={430}
+              height={161}
+              className='scale-[0.8] md:scale-[1] h-auto'
+            />
+          </div>
         </div>
       </section>
       <section className='media-section py-[85px] md:pt-[80px] md:pb-[120px]'>
