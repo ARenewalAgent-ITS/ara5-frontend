@@ -367,6 +367,15 @@ export default function OrderMerchandise() {
                 },
               }}
             />
+            <Input
+              id='alamat'
+              label='Alamat Pengiriman'
+              placeholder='Masukkan alamat pengiriman anda'
+              helperText='Dengan format Nama Jalan dan No. Rumah RT/RT, Kabupaten/Kota, Provinsi, Kode pos'
+              validation={{
+                required: 'Alamat cannot be empty',
+              }}
+            />
             <TextArea
               id='deskripsi_order'
               label='Deskripsi Order'

@@ -20,8 +20,8 @@ import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
 import { getToken, removeToken } from '@/lib/cookies';
+import useMerchStore from '@/store/useMerchStore';
 
-// import useMerchStore from '@/store/useMerchStore';
 import Ellipse from './nav-img/Ellipse.png';
 import ExploIT from './nav-img/ExploIT.png';
 import Olimpiade from './nav-img/Group.png';
@@ -36,7 +36,7 @@ function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
   const users = FetchUser();
   const [isOnMerchPage, setIsOnMerchPage] = useState(false);
-  // const { setModalOpen } = useMerchStore();
+  const { setModalOpen } = useMerchStore();
 
   useEffect(() => {
     if (users !== undefined && token !== undefined) {
@@ -460,14 +460,8 @@ function Navbar() {
             )}
             {isOnMerchPage && (
               <HiOutlineShoppingCart
-                onClick={() => {
-                  // setModalOpen();
-                  showToast(
-                    'Order merch akan segera dibuka di website !',
-                    WARNING_TOAST
-                  );
-                }}
-                className='w-7 h-7 text-whites-900 cursor-pointer'
+                onClick={setModalOpen}
+                className='w-7 h-7 text-primary-600 cursor-pointer'
               />
             )}
           </div>
@@ -475,14 +469,8 @@ function Navbar() {
           {isOnMerchPage ? (
             <div className='flex items-center gap-4 lg:hidden'>
               <HiOutlineShoppingCart
-                onClick={() => {
-                  // setModalOpen();
-                  showToast(
-                    'Order merch akan segera dibuka di website !',
-                    WARNING_TOAST
-                  );
-                }}
-                className='w-7 h-7 text-whites-900 cursor-pointer'
+                onClick={setModalOpen}
+                className='w-7 h-7 text-primary-600 cursor-pointer'
               />
               <div
                 onClick={toggle4}

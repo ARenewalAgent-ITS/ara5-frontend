@@ -19,12 +19,12 @@ import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Loading from '@/components/Loading';
 import NextImage from '@/components/NextImage';
-import { showToast, WARNING_TOAST } from '@/components/Toast';
+import { showToast, SUCCESS_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
 import MerchModal from '@/containers/merchPage/MerchModal';
 import clsxm from '@/lib/clsxm';
-// import useMerchStore from '@/store/useMerchStore';
+import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
 const paginationStyle = {
@@ -62,7 +62,7 @@ export default function PageMerch() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [merchModal, setMerchModal] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<TMerchCatalogue>();
-  // const { insertMerch, setModalOpen } = useMerchStore();
+  const { insertMerch } = useMerchStore();
 
   const handleCloseMerchModal = () => {
     setMerchModal(false);
@@ -421,14 +421,10 @@ export default function PageMerch() {
                             if (product.kategori_produk === 'KAOS') {
                               handleDropdownClick(product.id);
                             } else {
-                              // insertMerch(product, size);
-                              // showToast(
-                              //   `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                              //   SUCCESS_TOAST
-                              // );
+                              insertMerch(product);
                               showToast(
-                                'Order merch akan segera dibuka di website !',
-                                WARNING_TOAST
+                                `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                                SUCCESS_TOAST
                               );
                             }
                           }}
@@ -452,14 +448,10 @@ export default function PageMerch() {
                             {sizes.map((size, index) => (
                               <div
                                 onClick={() => {
-                                  // insertMerch(product, size);
-                                  // showToast(
-                                  //   `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                                  //   SUCCESS_TOAST
-                                  // );
+                                  insertMerch(product, size);
                                   showToast(
-                                    'Order merch akan segera dibuka di website !',
-                                    WARNING_TOAST
+                                    `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                                    SUCCESS_TOAST
                                   );
                                 }}
                                 key={index}

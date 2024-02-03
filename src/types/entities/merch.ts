@@ -1,5 +1,6 @@
 export type TMerchOrder = {
   no_telp: string;
+  alamat: string;
   deskripsi_order: string;
   list_bank_id: number;
   dp: boolean;
