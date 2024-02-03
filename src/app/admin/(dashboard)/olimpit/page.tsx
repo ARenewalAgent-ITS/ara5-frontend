@@ -6,6 +6,7 @@ import { AxiosResponse } from 'axios';
 import * as React from 'react';
 import { BiSpreadsheet } from 'react-icons/bi';
 
+import ArloCard from '@/app/dashboard/user/__containers/ArloCard';
 import Button from '@/components/buttons/Button';
 import withAuth from '@/components/hoc/withAuth';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout';
@@ -19,7 +20,6 @@ import {
   WARNING_TOAST,
 } from '@/components/Toast';
 import Typography from '@/components/Typography';
-import ArloCard from '@/app/dashboard/user/__containers/ArloCard';
 import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
