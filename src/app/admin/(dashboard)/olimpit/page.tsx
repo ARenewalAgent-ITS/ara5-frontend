@@ -19,7 +19,7 @@ import {
   WARNING_TOAST,
 } from '@/components/Toast';
 import Typography from '@/components/Typography';
-import ArloCard from '@/containers/dashboardPage/ArloCard';
+import ArloCard from '@/app/dashboard/user/__containers/ArloCard';
 import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
 import clsxm from '@/lib/clsxm';
