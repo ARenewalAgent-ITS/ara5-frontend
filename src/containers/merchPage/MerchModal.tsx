@@ -4,9 +4,9 @@ import React, { Fragment } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 
-import { showToast, SUCCESS_TOAST } from '@/components/Toast';
+import { showToast, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
-import useMerchStore from '@/store/useMerchStore';
+// import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
 interface MerchModalProps {
@@ -25,7 +25,7 @@ export default function MerchModal({
   const [activeDropdownId, setActiveDropdownId] = React.useState<string | null>(
     null
   );
-  const { insertMerch } = useMerchStore();
+  // const { insertMerch } = useMerchStore();
 
   const handleDropdownClick = (id: string) => {
     if (activeDropdownId === id) {
@@ -120,10 +120,14 @@ export default function MerchModal({
                             if (merchData.kategori_produk === 'KAOS') {
                               handleDropdownClick(merchData.id);
                             } else {
-                              insertMerch(merchData);
+                              // insertMerch(merchData);
+                              // showToast(
+                              //   `Berhasil menambahkan ${merchData.nama_produk} ke keranjang belanja !`,
+                              //   SUCCESS_TOAST
+                              // );
                               showToast(
-                                `Berhasil menambahkan ${merchData.nama_produk} ke keranjang belanja !`,
-                                SUCCESS_TOAST
+                                'Order merch akan segera dibuka di website !',
+                                WARNING_TOAST
                               );
                             }
                           }}
@@ -148,10 +152,14 @@ export default function MerchModal({
                             {sizes.map((size, index) => (
                               <div
                                 onClick={() => {
-                                  insertMerch(merchData, size);
+                                  // insertMerch(merchData, size);
+                                  // showToast(
+                                  //   `Berhasil menambahkan ${merchData.nama_produk} ke keranjang belanja !`,
+                                  //   SUCCESS_TOAST
+                                  // );
                                   showToast(
-                                    `Berhasil menambahkan ${merchData.nama_produk} ke keranjang belanja !`,
-                                    SUCCESS_TOAST
+                                    'Order merch akan segera dibuka di website !',
+                                    WARNING_TOAST
                                   );
                                 }}
                                 key={index}

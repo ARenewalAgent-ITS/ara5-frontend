@@ -9,7 +9,6 @@ import axios from 'axios';
 import Image from 'next/image';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { IoIosArrowDown } from 'react-icons/io';
 import { PiShoppingCartSimpleFill } from 'react-icons/pi';
 import SwiperCore, { Autoplay, Pagination } from 'swiper';
@@ -20,12 +19,12 @@ import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Loading from '@/components/Loading';
 import NextImage from '@/components/NextImage';
-import { showToast, SUCCESS_TOAST } from '@/components/Toast';
+import { showToast, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
 import MerchModal from '@/containers/merchPage/MerchModal';
 import clsxm from '@/lib/clsxm';
-import useMerchStore from '@/store/useMerchStore';
+// import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
 const paginationStyle = {
@@ -63,7 +62,7 @@ export default function PageMerch() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [merchModal, setMerchModal] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<TMerchCatalogue>();
-  const { insertMerch, setModalOpen } = useMerchStore();
+  // const { insertMerch, setModalOpen } = useMerchStore();
 
   const handleCloseMerchModal = () => {
     setMerchModal(false);
@@ -199,14 +198,10 @@ export default function PageMerch() {
               >
                 Katalog Merchandise
               </Typography>
-              <HiOutlineShoppingCart
-                onClick={setModalOpen}
-                className='w-7 h-7 text-primary-600 cursor-pointer block lg:hidden'
-              />
-              <div className='lg:flex gap-5 hidden'>
+              <div className='gap-5 flex'>
                 <div
                   onClick={CatDropdownClick}
-                  className='hidden z-10 cursor-pointer lg:block items-center flex-col bg-whites-100 w-full h-10 p-2 border-[1px] border-whites-1100 rounded-md'
+                  className='z-10 cursor-pointer items-center flex-col bg-whites-100 w-full h-10 p-2 border-[1px] border-whites-1100 rounded-md'
                 >
                   <div className='flex justify-between items-center'>
                     <div className='flex'>
@@ -216,7 +211,10 @@ export default function PageMerch() {
                             <Typography
                               weight='medium'
                               font='poppins'
-                              className='text-whites-100 px-5 mx-1 rounded-md bg-primary-600 lg:text-[12px]'
+                              className={clsxm(
+                                'text-whites-100 px-5 mx-1 rounded-md bg-primary-600 lg:text-[12px]',
+                                index > 0 ? 'hidden sm:flex' : ''
+                              )}
                             >
                               {category}
                             </Typography>
@@ -316,14 +314,14 @@ export default function PageMerch() {
             </div>
           </div>
 
-          <div className='mt-4 mx-2 sm:mx-6 lg:mx-10 xl:mx-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4'>
+          <div className='mt-4 mx-2 sm:mx-6 lg:mx-10 xl:mx-20 grid grid-cols-2 lg:grid-cols-3 lg:gap-4'>
             {filteredProducts ? (
               filteredProducts.map((product: TMerchCatalogue) => (
                 <div
                   key={product.id}
                   onMouseEnter={() => setHoveredProductId(product.id)}
                   onMouseLeave={() => setHoveredProductId(null)}
-                  className='my-3 mx-4 sm:mx-2'
+                  className='my-2 mx-2 sm:mx-2'
                 >
                   {merchModal && selectedProduct ? (
                     <MerchModal
@@ -335,7 +333,7 @@ export default function PageMerch() {
                   <div className='relative overflow-hidden'>
                     <div
                       onClick={() => handleOpenMerchModal(product)}
-                      className='relative overflow-hidden bg-primary-200 bg-opacity-25 rounded-t-[15px]'
+                      className='relative overflow-hidden bg-primary-200 bg-opacity-25 rounded-t-lg sm:rounded-t-[15px]'
                     >
                       <Image
                         src={`https://ara-its.id/uploads/merch/${product.image_path}`}
@@ -343,7 +341,7 @@ export default function PageMerch() {
                         height={180}
                         alt='productimage'
                         className={clsxm(
-                          'w-full object-none duration-300 h-[350px] sm:h-[400px] md:h-[450px] ',
+                          'w-full object-none duration-300 h-[260px] sm:h-[330px] md:h-[430px] ',
                           hoveredProductId === product.id ? 'scale-110' : ''
                         )}
                         style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
@@ -398,13 +396,14 @@ export default function PageMerch() {
                     >
                       {product.kategori_produk}
                     </Typography>
-                    <div className='bg-primary-600 rounded-b-3xl px-6 py-5'>
+                    <div className='bg-primary-600 rounded-b-2xl sm:rounded-b-3xl px-4 py-3 sm:px-6 sm:py-5 lg:py-7'>
                       <div className='lg:flex-row lg:justify-between lg:items-center flex flex-col justify-center relative'>
                         <div className='lg:flex-col'>
                           <Typography
                             weight='medium'
                             font='poppins'
-                            className='text-whites-100 text-[16px] leading-[24px]'
+                            variant='t'
+                            className='text-whites-100 text-[14px] leading-[24px] sm:text-[20px]'
                           >
                             {product.nama_produk}
                           </Typography>
@@ -412,7 +411,7 @@ export default function PageMerch() {
                             weight='bold'
                             font='poppins'
                             variant='p'
-                            className='text-whites-100 text-[14px] leading-[24px]'
+                            className='text-whites-100 text-[12px] leading-[24px] sm:text-[18px]'
                           >
                             Rp{product.harga.toLocaleString('id-ID')}
                           </Typography>
@@ -422,14 +421,18 @@ export default function PageMerch() {
                             if (product.kategori_produk === 'KAOS') {
                               handleDropdownClick(product.id);
                             } else {
-                              insertMerch(product);
+                              // insertMerch(product, size);
+                              // showToast(
+                              //   `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                              //   SUCCESS_TOAST
+                              // );
                               showToast(
-                                `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                                SUCCESS_TOAST
+                                'Order merch akan segera dibuka di website !',
+                                WARNING_TOAST
                               );
                             }
                           }}
-                          className='w-full sm:w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-2 px-5 h-fit gap-1 rounded-md mt-2'
+                          className='w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-1 px-3 sm:py-2 sm:px-5 h-fit gap-1 rounded-md mt-2'
                         >
                           <Typography
                             weight='bold'
@@ -449,10 +452,14 @@ export default function PageMerch() {
                             {sizes.map((size, index) => (
                               <div
                                 onClick={() => {
-                                  insertMerch(product, size);
+                                  // insertMerch(product, size);
+                                  // showToast(
+                                  //   `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                                  //   SUCCESS_TOAST
+                                  // );
                                   showToast(
-                                    `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                                    SUCCESS_TOAST
+                                    'Order merch akan segera dibuka di website !',
+                                    WARNING_TOAST
                                   );
                                 }}
                                 key={index}

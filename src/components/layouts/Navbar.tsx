@@ -20,8 +20,8 @@ import Typography from '@/components/Typography';
 import { FetchUser } from '@/hooks/navbarMutation';
 import clsxm from '@/lib/clsxm';
 import { getToken, removeToken } from '@/lib/cookies';
-import useMerchStore from '@/store/useMerchStore';
 
+// import useMerchStore from '@/store/useMerchStore';
 import Ellipse from './nav-img/Ellipse.png';
 import ExploIT from './nav-img/ExploIT.png';
 import Olimpiade from './nav-img/Group.png';
@@ -36,7 +36,7 @@ function Navbar() {
   const [isLogin, setIsLogin] = useState(false);
   const users = FetchUser();
   const [isOnMerchPage, setIsOnMerchPage] = useState(false);
-  const { setModalOpen } = useMerchStore();
+  // const { setModalOpen } = useMerchStore();
 
   useEffect(() => {
     if (users !== undefined && token !== undefined) {
@@ -460,20 +460,49 @@ function Navbar() {
             )}
             {isOnMerchPage && (
               <HiOutlineShoppingCart
-                onClick={setModalOpen}
-                className='w-7 h-7 text-primary-600 cursor-pointer'
+                onClick={() => {
+                  // setModalOpen();
+                  showToast(
+                    'Order merch akan segera dibuka di website !',
+                    WARNING_TOAST
+                  );
+                }}
+                className='w-7 h-7 text-whites-900 cursor-pointer'
               />
             )}
           </div>
 
-          <div
-            onClick={toggle4}
-            className='flex justify-between items-center cursor-pointer lg:hidden'
-          >
-            <div className='text-[2rem]'>
-              <FontAwesomeIcon icon={faBars} />
+          {isOnMerchPage ? (
+            <div className='flex items-center gap-4 lg:hidden'>
+              <HiOutlineShoppingCart
+                onClick={() => {
+                  // setModalOpen();
+                  showToast(
+                    'Order merch akan segera dibuka di website !',
+                    WARNING_TOAST
+                  );
+                }}
+                className='w-7 h-7 text-whites-900 cursor-pointer'
+              />
+              <div
+                onClick={toggle4}
+                className='flex justify-between items-center cursor-pointer'
+              >
+                <div className='text-[2rem]'>
+                  <FontAwesomeIcon icon={faBars} />
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div
+              onClick={toggle4}
+              className='flex justify-between items-center cursor-pointer lg:hidden'
+            >
+              <div className='text-[2rem]'>
+                <FontAwesomeIcon icon={faBars} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
