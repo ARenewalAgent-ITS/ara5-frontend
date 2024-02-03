@@ -4,6 +4,13 @@ export interface loginForm {
   remember: boolean;
 }
 
+export interface writeUp {
+  id: string;
+  write_up: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface UserLogin {
   anggota1: {
     ktp_anggota1: string | null;
@@ -32,10 +39,5 @@ export interface UserLogin {
   };
   team_name: string | undefined;
   team_provinsi: string | undefined;
-  write_up_ctf?: {
-    id: string;
-    write_up: string;
-    createdAt: Date;
-    updatedAt: Date;
-  } | null;
+  write_up_ctf?: writeUp | null;
 }
