@@ -40,6 +40,7 @@ export default function BerkasForm<T extends FieldValues>({
   methods,
 }: BerkasFormProps<T>) {
   const { parseFilename, formatDates } = useBerkasUtils();
+  const [showInput, setShowInput] = React.useState(false);
 
   const BuktiPembayaranContent = () => (
     <>
@@ -113,18 +114,20 @@ export default function BerkasForm<T extends FieldValues>({
               weight='bold'
               font='poppins'
               className={clsxm(
-                'text-[14px] xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis',
-                write_up_ctf === null ? 'text-danger-600' : 'text-success-600'
+                'text-[14px] ',
+                write_up_ctf === null
+                  ? 'text-danger-600'
+                  : 'text-success-600 xl:w-[220px] w-[170px] line-clamp-1 overflow-ellipsis'
               )}
             >
-              {write_up_ctf?.write_up === null
+              {write_up_ctf === null
                 ? 'Belum Ada File Terupload'
                 : parseFilename(write_up_ctf?.write_up)}
             </Typography>
             <Typography
               variant='c14'
               font='poppins'
-              className='text-whites-1100 text-[12px] leading-[24px] w-[170px] xl:w-[230px] line-clamp-1 overflow-ellipsis'
+              className='text-whites-1100 text-[12px] leading-[24px] w-[190px] md:w-[230px] line-clamp-1 overflow-ellipsis'
             >
               {write_up_ctf === null
                 ? 'File harus memiliki format .pdf'
@@ -133,11 +136,40 @@ export default function BerkasForm<T extends FieldValues>({
                   )}`}
             </Typography>
           </div>
-          <FormProvider {...methods}>
-            <form>
-              <FileInput id={id} accept={accept} maxFileSize={maxFileSize} />
-            </form>
-          </FormProvider>
+          {write_up_ctf?.write_up ? (
+            <div
+              onMouseEnter={() => setShowInput(true)}
+              onMouseLeave={() => setShowInput(false)}
+              className='relative'
+            >
+              <BiSolidCheckCircle
+                className={clsxm(
+                  'text-success-600 w-7 md:w-9 h-7 md:h-9 transition-opacity duration-500',
+                  showInput ? 'opacity-0' : 'opacity-100'
+                )}
+              />
+              <FormProvider {...methods}>
+                <form
+                  className={clsxm(
+                    'absolute inset-0 transition-opacity duration-500',
+                    showInput ? 'opacity-100' : 'opacity-0'
+                  )}
+                >
+                  <FileInput
+                    id={id}
+                    accept={accept}
+                    maxFileSize={maxFileSize}
+                  />
+                </form>
+              </FormProvider>
+            </div>
+          ) : (
+            <FormProvider {...methods}>
+              <form>
+                <FileInput id={id} accept={accept} maxFileSize={maxFileSize} />
+              </form>
+            </FormProvider>
+          )}
         </>
       ) : (
         <>
