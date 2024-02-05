@@ -884,6 +884,19 @@ function Navbar() {
                   </Typography>
                 </UnstyledLink>
               </div>
+              <div className='mt-3 cursor-pointer w-[100%] flex justify-center items-center'>
+                <UnstyledLink href='/merch' className='flex gap-2'>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    color='white'
+                    weight='bold'
+                    className='text-[20px]'
+                  >
+                    Merchandise
+                  </Typography>
+                </UnstyledLink>
+              </div>
             </>
           )}
         </>

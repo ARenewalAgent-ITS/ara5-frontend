@@ -157,6 +157,14 @@ export default function PageMerch() {
 
   SwiperCore.use([Autoplay]);
 
+  // const containerRef = React.useRef<HTMLDivElement>(null);
+  // const { width: containerWidth } = useComponentResize(containerRef);
+
+  // const { windowWidth } = useWindowResize();
+  // const getPageWidth = () => {
+  //   return Number(windowWidth);
+  // };
+
   return (
     <>
       <Navbar />
@@ -341,7 +349,7 @@ export default function PageMerch() {
                         height={180}
                         alt='productimage'
                         className={clsxm(
-                          'w-full object-none duration-300 h-[260px] sm:h-[330px] md:h-[430px] ',
+                          'w-full object-none duration-300 h-[260px] sm:h-[330px] md:h-[400px] ',
                           hoveredProductId === product.id ? 'scale-110' : ''
                         )}
                         style={{ borderRadius: '0.5rem 0.5rem 0 0' }}
@@ -398,55 +406,57 @@ export default function PageMerch() {
                     </Typography>
                     <div className='bg-primary-600 rounded-b-2xl sm:rounded-b-3xl px-4 py-3 sm:px-6 sm:py-5 lg:py-7'>
                       <div className='lg:flex-row lg:justify-between lg:items-center flex flex-col justify-center relative'>
-                        <div className='lg:flex-col'>
+                        <div className='lg:flex-col w-full'>
                           <Typography
                             weight='medium'
                             font='poppins'
-                            variant='t'
-                            className='text-whites-100 text-[14px] leading-[24px] sm:text-[20px]'
+                            // variant='t'
+                            className='text-whites-100 text-[14px] leading-[24px]'
                           >
                             {product.nama_produk}
                           </Typography>
-                          <Typography
-                            weight='bold'
-                            font='poppins'
-                            variant='p'
-                            className='text-whites-100 text-[12px] leading-[24px] sm:text-[18px]'
-                          >
-                            Rp{product.harga.toLocaleString('id-ID')}
-                          </Typography>
+                          <div className='max-[425px]:flex-col max-[425px]:items-start flex items-center w-full justify-between min-[425px]:mt-2'>
+                            <Typography
+                              weight='bold'
+                              font='poppins'
+                              variant='p'
+                              className='text-whites-100 text-[14px] leading-[24px] sm:text-[18px]'
+                            >
+                              Rp{product.harga.toLocaleString('id-ID')}
+                            </Typography>
+                            <Button
+                              onClick={() => {
+                                if (product.kategori_produk === 'KAOS') {
+                                  handleDropdownClick(product.id);
+                                } else {
+                                  // insertMerch(product, size);
+                                  // showToast(
+                                  //   `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
+                                  //   SUCCESS_TOAST
+                                  // );
+                                  showToast(
+                                    'Order merch akan segera dibuka di website !',
+                                    WARNING_TOAST
+                                  );
+                                }
+                              }}
+                              className='mt-2 min-[425px]:mt-0 w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-1 px-3 sm:py-2 sm:px-5 h-fit gap-1 rounded-md'
+                            >
+                              <Typography
+                                weight='semibold'
+                                font='poppins'
+                                // variant='c14'
+                                className='text-whites-100 text-[14px] leading-[24px] flex items-center'
+                              >
+                                Beli
+                                <PiShoppingCartSimpleFill
+                                  color='#ffffff'
+                                  className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
+                                />
+                              </Typography>
+                            </Button>
+                          </div>
                         </div>
-                        <Button
-                          onClick={() => {
-                            if (product.kategori_produk === 'KAOS') {
-                              handleDropdownClick(product.id);
-                            } else {
-                              // insertMerch(product, size);
-                              // showToast(
-                              //   `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                              //   SUCCESS_TOAST
-                              // );
-                              showToast(
-                                'Order merch akan segera dibuka di website !',
-                                WARNING_TOAST
-                              );
-                            }
-                          }}
-                          className='w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-1 px-3 sm:py-2 sm:px-5 h-fit gap-1 rounded-md mt-2'
-                        >
-                          <Typography
-                            weight='bold'
-                            font='poppins'
-                            variant='c14'
-                            className='text-whites-100 text-[14px] leading-[24px] flex items-center'
-                          >
-                            Beli
-                            <PiShoppingCartSimpleFill
-                              color='#ffffff'
-                              className='mx-1 w-4 group-hover:translate-x-[6px] transition-all duration-300 ease-in-out delay-200'
-                            />
-                          </Typography>
-                        </Button>
                         {activeDropdownId === product.id && (
                           <div className='flex-col -ml-2 bg-whites-100 py-2 mt-3 absolute justify-center px-3 right-2 bottom-14 w-fit border-[1px] shadow-40 rounded-md'>
                             {sizes.map((size, index) => (
