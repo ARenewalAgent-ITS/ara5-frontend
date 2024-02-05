@@ -23,8 +23,9 @@ import { showToast, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
 import MerchModal from '@/containers/merchPage/MerchModal';
-import clsxm from '@/lib/clsxm';
 // import useMerchStore from '@/store/useMerchStore';
+import useWindowResize from '@/hooks/useWindowsResize';
+import clsxm from '@/lib/clsxm';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
 const paginationStyle = {
@@ -160,10 +161,18 @@ export default function PageMerch() {
   // const containerRef = React.useRef<HTMLDivElement>(null);
   // const { width: containerWidth } = useComponentResize(containerRef);
 
-  // const { windowWidth } = useWindowResize();
-  // const getPageWidth = () => {
-  //   return Number(windowWidth);
-  // };
+  const [desktop, setDesktop] = useState(true);
+  const { windowWidth } = useWindowResize();
+
+  useEffect(() => {
+    if (windowWidth) {
+      if (windowWidth < 768 && windowWidth) {
+        setDesktop(false);
+      } else {
+        setDesktop(true);
+      }
+    }
+  }, [windowWidth]);
 
   return (
     <>
@@ -345,8 +354,8 @@ export default function PageMerch() {
                     >
                       <Image
                         src={`https://ara-its.id/uploads/merch/${product.image_path}`}
-                        width={180}
-                        height={180}
+                        width={desktop ? 180 : 120}
+                        height={desktop ? 180 : 120}
                         alt='productimage'
                         className={clsxm(
                           'w-full object-none duration-300 h-[260px] sm:h-[330px] md:h-[400px] ',
