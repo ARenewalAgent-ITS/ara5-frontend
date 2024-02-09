@@ -127,7 +127,7 @@ export default function DropzoneInput({
     onDrop,
     accept,
     maxFiles,
-    maxSize: 1000000,
+    maxSize: 3545728,
   });
 
   return (

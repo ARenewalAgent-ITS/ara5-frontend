@@ -71,8 +71,8 @@ export default function TextArea({
           className={clsxm(
             'w-full h-full pl-2 md:pl-3 pr-10 py-[6px] md:py-2 border-[1px] border-whites-1100 rounded-[5px]',
             'focus:ring-0 focus:border-success-600 bg-whites-100',
-            'font-primary font-medium text-whites-900 text-xs md:text-sm',
-            'placeholder:font-primary placeholder:text-whites-900 placeholder:text-xs md:placeholder:text-sm placeholder:font-medium',
+            'font-primary font-medium text-whites-900 text-md',
+            'placeholder:font-primary placeholder:text-whites-900 placeholder:text-sm placeholder:font-medium',
             readOnly && 'cursor-not-allowed',
             error ? 'border-danger-600' : 'focus:border-success-600',
             className
