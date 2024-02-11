@@ -1,11 +1,18 @@
+'use client';
 import React from 'react';
 
+import Button from '@/components/buttons/Button';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import SEO from '@/components/SEO';
+import { INFO_TOAST, showToast } from '@/components/Toast';
 import Typography from '@/components/Typography';
 
 export default function RegisterPage() {
+  function clicked() {
+    showToast('coming soon', INFO_TOAST);
+  }
+
   return (
     <div className='flex flex-col justify-center gap-6 px-12 lg:px-0'>
       <SEO
@@ -59,7 +66,42 @@ export default function RegisterPage() {
         </Typography>
       </div>
       <ButtonLink
-        href='/ctf/register'
+        href='/exploit/register-tenant'
+        type='submit'
+        size='lg'
+        variant='primary'
+        className='w-full hover:bg-primary-700 drop-shadow-md py-3'
+      >
+        <Typography
+          as={'p'}
+          font='poppins'
+          className='text-[14px] md:text-[16px] leading-[20px] text-whites-100'
+          weight='bold'
+        >
+          ExploIT - Tenant
+        </Typography>
+      </ButtonLink>
+      {/* <UnstyledLink href='/exploit/register-peserta'> */}
+      <Button
+        onClick={clicked}
+        // disabled={true}
+        // type='submit'
+        size='lg'
+        variant='primary'
+        className='w-full hover:bg-primary-700 drop-shadow-md py-3'
+      >
+        <Typography
+          as={'p'}
+          font='poppins'
+          className='text-[14px] md:text-[16px] leading-[20px] text-whites-100'
+          weight='bold'
+        >
+          ExploIT - Peserta
+        </Typography>
+      </Button>
+      {/* </UnstyledLink> */}
+      <Button
+        disabled={true}
         type='submit'
         size='lg'
         variant='primary'
@@ -73,9 +115,9 @@ export default function RegisterPage() {
         >
           Capture the Flag
         </Typography>
-      </ButtonLink>
-      <ButtonLink
-        href='/olimpit/register'
+      </Button>
+      <Button
+        disabled={true}
         type='submit'
         size='lg'
         variant='primary'
@@ -89,7 +131,7 @@ export default function RegisterPage() {
         >
           Olimpiade IT
         </Typography>
-      </ButtonLink>
+      </Button>
       <Typography
         as={'p'}
         font='poppins'
