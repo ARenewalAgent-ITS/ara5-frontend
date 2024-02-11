@@ -2,6 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import * as React from 'react';
 import { FiX } from 'react-icons/fi';
 
+import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { ExtractProps } from '@/types/helper';
 
@@ -94,15 +95,18 @@ export function ModalRoot({
 
 function Title({ className, ...rest }: ExtractProps<typeof Dialog.Title>) {
   return (
-    <Dialog.Title
+    <Typography
+      font='poppins'
       as='h1'
+      weight='bold'
       className={clsxm(
-        'text-2xl font-extrabold leading-6 text-neutral-100 md:text-2xl',
+        'text-2xl leading-6 text-primary-600 md:text-2xl',
         'pr-10',
         className
       )}
-      {...rest}
-    />
+    >
+      <Dialog.Title {...rest} />
+    </Typography>
   );
 }
 
