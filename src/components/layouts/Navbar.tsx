@@ -431,7 +431,7 @@ function Navbar() {
                             <UnstyledLink
                               href='/olimpit/register'
                               className={clsxm(
-                                'px-[22px] py-3 text-center text-sm max-w-xs rounded-b-md font-medium hover:bg-[#393737]'
+                                'px-[22px] py-3 text-center text-sm max-w-xs font-medium hover:bg-[#393737]'
                               )}
                             >
                               <Menu.Item as='button' className='flex'>
@@ -447,6 +447,28 @@ function Navbar() {
                                     className='w-6 h-6 mr-4'
                                   />
                                   Olimpiade
+                                </Typography>
+                              </Menu.Item>
+                            </UnstyledLink>
+                            <UnstyledLink
+                              href='/register'
+                              className={clsxm(
+                                'px-[22px] py-3 text-center text-sm max-w-xs rounded-b-md font-medium hover:bg-[#393737]'
+                              )}
+                            >
+                              <Menu.Item as='button' className='flex'>
+                                <Typography
+                                  as={'p'}
+                                  variant='p'
+                                  className='text-center flex justify-center'
+                                  color='white'
+                                >
+                                  <Image
+                                    src={ExploIT}
+                                    alt='olim'
+                                    className='w-6 h-6 mr-4'
+                                  />
+                                  ExploIT
                                 </Typography>
                               </Menu.Item>
                             </UnstyledLink>
@@ -684,6 +706,16 @@ function Navbar() {
                     className='p-2 bg-[#00B8FF] border-2 border-[#00B8FF] rounded-md active:bg-primary-700'
                   >
                     Login
+                  </Typography>
+                </UnstyledLink>
+                <UnstyledLink href='/register' className='text-center'>
+                  <Typography
+                    as={'p'}
+                    variant='p'
+                    weight='semibold'
+                    className='p-2 border-2 border-[#00B8FF] text-[#00B8FF] rounded-md mt-4 hover:bg-[#00B8FF] hover:text-white active:bg-primary-700'
+                  >
+                    Register ExploIT
                   </Typography>
                 </UnstyledLink>
                 <UnstyledLink href='/ctf/register' className='text-center'>
