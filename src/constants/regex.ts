@@ -19,6 +19,6 @@ export const REG_FULL_NAME = /^[A-Za-z\s'-]+$/;
 
 export const REG_SHORT_NAME = /^[A-Za-z\s]+$/;
 
-export const REG_GENERAL = /^[A-Za-z\s'-]+$/;
+export const REG_GENERAL = /^[A-Za-z0-9\s'-]+$/;
 
 export const REG_NISN = /^\d{10}$/;
