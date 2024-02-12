@@ -259,11 +259,7 @@ export default function OrderMerchandise() {
 
       let cheapest = courierResult.costs[0];
       courierResult.costs.forEach((cost) => {
-        if (
-          cost.cost &&
-          cost.cost.length > 0 &&
-          cost.cost[0].value < cheapest.cost[0].value
-        ) {
+        if (cost.service === 'REG') {
           cheapest = cost;
         }
       });
