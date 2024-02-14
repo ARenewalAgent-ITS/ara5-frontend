@@ -35,7 +35,7 @@ export default function DropzoneInput({
   validation,
   helperText,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
-  maxFiles = 10,
+  maxFiles = 1,
   className,
 }: DropzoneInputProps) {
   const {
@@ -197,16 +197,18 @@ export default function DropzoneInput({
                 </div>
               </div>
             )}
-            <Button className='mt-3 py-2 px-4'>
-              <Typography
-                variant='btn'
-                weight='bold'
-                className='md:text-[14px] font-poppins text-white flex items-center gap-2'
-              >
-                Upload File
-                <GoUpload className='text-[20px] font-medium' />
-              </Typography>
-            </Button>
+            {files.length === 0 && (
+              <Button className='mt-3 py-2 px-4'>
+                <Typography
+                  variant='btn'
+                  weight='bold'
+                  className='md:text-[14px] font-poppins text-white flex items-center gap-2'
+                >
+                  Upload File
+                  <GoUpload className='text-[20px] font-medium' />
+                </Typography>
+              </Button>
+            )}
           </div>
         )}
       />
