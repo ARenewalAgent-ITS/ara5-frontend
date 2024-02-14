@@ -68,7 +68,7 @@ export default function DropzoneInput({
             rejectedFiles &&
             `${
               rejectedFiles[0].errors[0].code === 'file-too-large'
-                ? 'File tidak boleh lebih dari 1MB'
+                ? 'File tidak boleh lebih dari 3MB'
                 : rejectedFiles[0].errors[0].code === 'file-invalid-type'
                 ? 'Tipe file tidak didukung'
                 : rejectedFiles[0].errors[0].message
