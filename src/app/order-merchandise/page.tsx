@@ -119,6 +119,12 @@ export default function OrderMerchandise() {
   }, [totalHarga, methods]);
 
   React.useEffect(() => {
+    if (cheapestCostDetails) {
+      methods.setValue('biaya_ongkir', cheapestCostDetails.value);
+    }
+  }, [methods, cheapestCostDetails]);
+
+  React.useEffect(() => {
     let deskripsi = merchCatalogue
       .map((merch) => {
         const sizeInfo = merch.size ? ` (Size: ${merch.size})` : '';
@@ -352,6 +358,14 @@ export default function OrderMerchandise() {
         <FormProvider {...methods}>
           <form className='space-y-6'>
             <Input
+              id='nama'
+              label='Nama'
+              placeholder='Masukkan nama anda'
+              validation={{
+                required: 'Nama cannot be empty',
+              }}
+            />
+            <Input
               id='no_telp'
               label='Nomor Telepon'
               placeholder='Masukkan nomor telepon anda'
@@ -435,8 +449,9 @@ export default function OrderMerchandise() {
             <Button
               type='submit'
               variant='success'
+              size='lg'
               className={clsxm(
-                'w-full drop-shadow-md',
+                'drop-shadow-md',
                 ongkirIsLoading ? 'bg-success-700' : ''
               )}
             >
@@ -457,6 +472,15 @@ export default function OrderMerchandise() {
             onSubmit={methods.handleSubmit(orderOnSubmit)}
             className='space-y-6'
           >
+            <Input
+              id='biaya_ongkir'
+              label='Biaya Ongkir'
+              placeholder='Biaya ongkir akan automatis terisi'
+              readOnly
+              validation={{
+                required: 'Biaya ongkir cannot be empty',
+              }}
+            />
             <div className='space-y-3'>
               <SelectInput
                 id='list_bank_id'

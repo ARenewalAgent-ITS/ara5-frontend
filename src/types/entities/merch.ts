@@ -1,9 +1,11 @@
 export type TMerchOrder = {
+  nama: string;
   no_telp: string;
   alamat: string;
   deskripsi_order: string;
   list_bank_id: number;
   dp: boolean;
+  biaya_ongkir: number;
   pembayaran: FileList;
   merch_id: string;
   harga_total: number;
