@@ -312,7 +312,7 @@ export default function OrderMerchandise() {
 
   return (
     <div className='lg:px-4 xl:px-12 2xl:px-14'>
-      <div className='flex flex-col justify-center gap-6 px-12 py-7 lg:px-0'>
+      <div className='flex flex-col justify-center gap-5 px-12 py-7 lg:px-0'>
         <div className='flex flex-col mb-5 sm:flex-row sm:gap-1 sm:mx-auto lg:flex-col lg:mx-0'>
           <Typography
             variant='h3'
@@ -331,27 +331,29 @@ export default function OrderMerchandise() {
             Merchandise
           </Typography>
         </div>
-        <div className='w-full flex flex-col justify-start'>
-          <Typography
-            variant='t'
-            font='poppins'
-            weight='medium'
-            className='text-[18px] leading-[24px] text-whites-1100'
-          >
-            Total Tagihan
-          </Typography>
-          <div className='flex flex-col md:flex-row items-start justify-start md:items-center md:justify-between'>
+        <div className='sticky top-0 z-10 bg-white/20 backdrop-blur-xl rounded-b-2xl'>
+          <div className='w-full flex flex-col justify-start px-2 py-2'>
             <Typography
-              variant='h4'
+              variant='t'
               font='poppins'
-              weight='bold'
-              className={clsxm(
-                'text-[48px] leading-[64px]',
-                isDp ? 'text-secondary-600' : 'text-whites-1100'
-              )}
+              weight='medium'
+              className='text-[18px] leading-[24px] text-whites-1100'
             >
-              Rp{showTotalHarga(totalHargaOngkir, isDp)}
+              Total Tagihan
             </Typography>
+            <div className='flex flex-col md:flex-row items-start justify-start md:items-center md:justify-between'>
+              <Typography
+                variant='h4'
+                font='poppins'
+                weight='bold'
+                className={clsxm(
+                  'text-[32px] leading-[48px]',
+                  isDp ? 'text-secondary-600' : 'text-whites-1100'
+                )}
+              >
+                Rp{showTotalHarga(totalHargaOngkir, isDp)}
+              </Typography>
+            </div>
           </div>
         </div>
 
