@@ -2,6 +2,7 @@ import { BiSolidCoupon } from 'react-icons/bi';
 import { BiSolidNotepad } from 'react-icons/bi';
 import { FaFlag } from 'react-icons/fa';
 import { FaGlobe } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { HiTrophy } from 'react-icons/hi2';
 
 import { Navigation } from '@/types/navigate';
@@ -34,6 +35,13 @@ export const adminNavigations: Navigation[] = [
     href: '/admin/kupon',
     exactMatch: true,
     icon: BiSolidCoupon,
+    permissions: ['ADMIN'],
+  },
+  {
+    name: 'Order Merch',
+    href: '/admin/order-merch',
+    exactMatch: true,
+    icon: FaShoppingCart,
     permissions: ['ADMIN'],
   },
 ];

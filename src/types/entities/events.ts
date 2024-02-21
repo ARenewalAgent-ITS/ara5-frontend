@@ -87,3 +87,23 @@ export type AdminKupon = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type AdminMerch = {
+  id: string;
+  no_telp: string;
+  deskripsi_order: string;
+  alamat: string;
+  total_harga: number;
+  list_bank_id: number;
+  pembayaran: string;
+  dp: boolean;
+  createdAt: string;
+  updatedAt: string;
+  Pesanan_has_merch: {
+    merch_id: number;
+    jumlah: number;
+    merch: {
+      nama_produk: string;
+    };
+  }[];
+};
