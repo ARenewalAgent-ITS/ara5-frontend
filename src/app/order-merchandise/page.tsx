@@ -29,6 +29,7 @@ import {
   TMerchOrder,
   TProvince,
 } from '@/types/entities/merch';
+import { TReferal } from '@/types/entities/pembayaran';
 
 export default function OrderMerchandise() {
   const router = useRouter();
@@ -232,6 +233,36 @@ export default function OrderMerchandise() {
       setKabupatenData(filteredCities || []);
     }
   }, [selectedProvinsiId, cityData]);
+
+  //#region  //*=========== Kupon ===========
+
+  const referalMethods = useForm<TReferal>();
+
+  const getKuponQuery = async (kupon: string) => {
+    try {
+      const response = await api.get(`/kupon/${kupon}`);
+      return response;
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam mengambil kupon');
+    }
+  };
+
+  const { mutate: getKupon } = useMutation(getKuponQuery, {
+    onSuccess: (data) => {
+      if (data.data.kuponStatus) {
+        showToast('Referral code successfully used!', SUCCESS_TOAST);
+        methods.setValue('kode_referral', data.data.kuponStatus.kupon);
+      }
+    },
+    onError: () => {
+      showToast('Referral code is not available', DANGER_TOAST);
+      methods.setValue('kode_referral', '');
+    },
+  });
+
+  const referalOnSubmit = (data: TReferal) => {
+    getKupon(data.kupon);
+  };
 
   const postOngkir = async (data: TCostRequest | FormData) => {
     try {
@@ -470,10 +501,7 @@ export default function OrderMerchandise() {
         </FormProvider>
 
         <FormProvider {...methods}>
-          <form
-            onSubmit={methods.handleSubmit(orderOnSubmit)}
-            className='space-y-6'
-          >
+          <form className='space-y-6'>
             <Input
               id='biaya_ongkir'
               label='Biaya Ongkir'
@@ -483,6 +511,43 @@ export default function OrderMerchandise() {
                 required: 'Biaya ongkir cannot be empty',
               }}
             />
+          </form>
+        </FormProvider>
+
+        <FormProvider {...referalMethods}>
+          <form
+            onSubmit={referalMethods.handleSubmit(referalOnSubmit)}
+            className='flex flex-col md:flex-row md:items-center md:gap-x-3'
+          >
+            <Input
+              id='kupon'
+              label='Kode Referal'
+              helperText='Gunakan kode referal'
+              placeholder='Masukan kode referal (opsional)'
+            />
+            <Button
+              type='submit'
+              variant='primary'
+              className={clsxm(
+                'h-fit w-32 md:w-28 py-[6px] mt-[10.8px] lg:mt-[8.5px]'
+              )}
+            >
+              <Typography
+                variant='bt'
+                weight='bold'
+                className='w-24 text-whites-100'
+              >
+                Cek Kupon
+              </Typography>
+            </Button>
+          </form>
+        </FormProvider>
+
+        <FormProvider {...methods}>
+          <form
+            onSubmit={methods.handleSubmit(orderOnSubmit)}
+            className='space-y-6'
+          >
             <div className='space-y-3'>
               <SelectInput
                 id='list_bank_id'
