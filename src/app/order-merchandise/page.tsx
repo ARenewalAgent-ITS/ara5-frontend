@@ -108,6 +108,7 @@ export default function OrderMerchandise() {
       list_bank_id: 1,
       dp: false,
       merch_id: merchIdString,
+      kode_referral: null,
     },
   });
 
@@ -256,7 +257,7 @@ export default function OrderMerchandise() {
     },
     onError: () => {
       showToast('Referral code is not available', DANGER_TOAST);
-      methods.setValue('kode_referral', '');
+      methods.setValue('kode_referral', null);
     },
   });
 

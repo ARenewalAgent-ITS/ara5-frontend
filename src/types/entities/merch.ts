@@ -9,7 +9,7 @@ export type TMerchOrder = {
   pembayaran: FileList;
   merch_id: string;
   harga_total: number;
-  kode_referral: string;
+  kode_referral?: string | undefined | null;
 };
 
 export type TMerchCatalogue = {
