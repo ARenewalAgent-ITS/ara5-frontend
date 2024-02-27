@@ -10,6 +10,13 @@ import Button from '@/components/buttons/Button';
 import LineLogo from '@/components/LineLogo';
 import NextImage from '@/components/NextImage';
 import Typography from '@/components/Typography';
+import { contactCtf } from '@/constants/contacts';
+import { TContact } from '@/types/entities/contacts';
+
+interface ContactOptionsProps {
+  data: TContact;
+  key: string;
+}
 
 export default function ContactPersonCtf() {
   useEffect(() => {
@@ -18,7 +25,6 @@ export default function ContactPersonCtf() {
 
   const [isHovered, setIsHovered] = useState(false);
   const [isBlink, setIsBlinked] = useState(false);
-  const [lineTooltips, setLineTooltips] = useState<Record<string, boolean>>({});
 
   const handleHover = () => {
     setIsHovered(true);
@@ -30,9 +36,6 @@ export default function ContactPersonCtf() {
     setIsBlinked(false);
   };
 
-  const toggleLineTooltip = (contactId: string) => {
-    setLineTooltips((prev) => ({ ...prev, [contactId]: !prev[contactId] }));
-  };
   return (
     <section className='bg-[#0F223A] overflow-hidden relative flex w-full h-full px-10 py-10 md:px-16 md:py-20 lg:px-28 lg:pt-24 lg:pb-40 xl:px-32 xl:pt-28 xl:pb-52 2xl:px-36 2xl:pb-72'>
       <div className='flex z-20 flex-col gap-y-5 md:gap-y-10 '>
@@ -54,136 +57,9 @@ export default function ContactPersonCtf() {
           </Typography>
         </div>
         <div className='flex flex-col gap-y-4 w-full h-full'>
-          <div
-            className='flex flex-col gap-y-3'
-            data-aos='fade-up'
-            data-aos-delay='300'
-          >
-            <Typography
-              variant='h4'
-              font='poppins'
-              weight='bold'
-              className='text-whites-100 text-[18px] md:text-[40px] md:leading-[60px] leading-6'
-            >
-              Siti Nur Ellyzah
-            </Typography>
-            <div className='flex gap-x-3'>
-              <Link target='_blank' href={'http://wa.me/6285710342998'}>
-                <Button
-                  variant='success'
-                  leftIcon={TbBrandWhatsapp}
-                  leftIconClassName='text-whites-100'
-                  size='lg'
-                >
-                  <Typography
-                    variant='btn'
-                    font='poppins'
-                    weight='bold'
-                    className='text-whites-100 text-[10px] leading-[24px]'
-                  >
-                    Whatsapp
-                  </Typography>
-                </Button>
-              </Link>
-              <Button
-                variant='success'
-                leftIcon={LineLogo}
-                leftIconClassName='text-whites-100'
-                size='lg'
-                className='relative'
-                onClick={() => toggleLineTooltip('ely')}
-              >
-                <Typography
-                  variant='btn'
-                  font='poppins'
-                  weight='bold'
-                  className='text-whites-100 text-[10px] leading-[24px]'
-                >
-                  LINE
-                </Typography>
-                {lineTooltips['ely'] && (
-                  <>
-                    <div className='absolute -top-[1px] -right-[6.1rem] md:-right-[8.95rem] z-20 bg-success-200 border-[1px] border-[#A7AFB2] text-white px-2 py-1 rounded-[4px] md:py-3 md:px-3'>
-                      <Typography
-                        variant='bt'
-                        font='poppins'
-                        weight='bold'
-                        className='text-[10px] leading-[24px] text-whites-1000'
-                      >
-                        ellyzah2594
-                      </Typography>
-                    </div>
-                    <div className='absolute top-[14px] md:top-6 -right-6 md:w-1 md:h-1 z-10 w-[3.5px] p-[3.5px] bg-success-200 border-[1px] border-[#A7AFB2] rotate-45' />
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
-          <div
-            className='flex flex-col gap-y-3'
-            data-aos='fade-up'
-            data-aos-delay='400'
-          >
-            <Typography
-              variant='h4'
-              font='poppins'
-              weight='bold'
-              className='text-whites-100 text-[18px] md:text-[40px] md:leading-[60px] leading-6'
-            >
-              Amoes Noland
-            </Typography>
-            <div className='flex gap-x-3'>
-              <Link target='_blank' href={'http://wa.me/6282112121911'}>
-                <Button
-                  variant='success'
-                  leftIcon={TbBrandWhatsapp}
-                  leftIconClassName='text-whites-100'
-                  size='lg'
-                >
-                  <Typography
-                    variant='btn'
-                    font='poppins'
-                    weight='bold'
-                    className='text-whites-100 text-[10px] leading-[24px] scale'
-                  >
-                    Whatsapp
-                  </Typography>
-                </Button>
-              </Link>
-              <Button
-                variant='success'
-                leftIcon={LineLogo}
-                leftIconClassName='text-whites-100'
-                size='lg'
-                className='relative'
-                onClick={() => toggleLineTooltip('amoes')}
-              >
-                <Typography
-                  variant='btn'
-                  font='poppins'
-                  weight='bold'
-                  className='text-whites-100 text-[10px] leading-[24px]'
-                >
-                  LINE
-                </Typography>
-                {lineTooltips['amoes'] && (
-                  <>
-                    <div className='absolute -top-[1px] -right-[6.7rem] md:-right-[9.9rem] z-20 bg-success-200 border-[1px] border-[#A7AFB2] text-white px-2 py-1 rounded-[4px] md:py-3 md:px-3'>
-                      <Typography
-                        variant='bt'
-                        font='poppins'
-                        weight='bold'
-                        className='text-[10px] leading-[24px] text-whites-1000'
-                      >
-                        amoesnoland
-                      </Typography>
-                    </div>
-                    <div className='absolute top-[14px] md:top-6 -right-6 md:w-1 md:h-1 z-10 w-[3.5px] p-[3.5px] bg-success-200 border-[1px] border-[#A7AFB2] rotate-45' />
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
+          {contactCtf.map((data) => (
+            <ContactOptions key={data.id_line} data={data} />
+          ))}
         </div>
       </div>
       {/* arlo */}
@@ -233,5 +109,89 @@ export default function ContactPersonCtf() {
         className='absolute -bottom-7 left-0 w-[92px] md:-bottom-20 lg:-bottom-28 xl:-bottom-32 md:w-[200px] lg:w-[250px] xl:w-[320px] 2xl:w-[350px]'
       />
     </section>
+  );
+}
+
+function ContactOptions({ data, key }: ContactOptionsProps) {
+  const { name, phone_number, id_line } = data;
+
+  const [lineTooltips, setLineTooltips] = useState<Record<string, boolean>>({});
+  const toggleLineTooltip = (contactId: string) => {
+    setLineTooltips((prev) => ({ ...prev, [contactId]: !prev[contactId] }));
+  };
+
+  return (
+    <div
+      className='flex flex-col gap-y-3'
+      data-aos='fade-up'
+      data-aos-delay='400'
+      key={key}
+    >
+      <Typography
+        variant='h4'
+        font='poppins'
+        weight='bold'
+        className='text-whites-100 text-[18px] md:text-[40px] md:leading-[60px] leading-6'
+      >
+        {name}
+      </Typography>
+      <div className='flex gap-x-3'>
+        <Link target='_blank' href={`http://wa.me/${phone_number}`}>
+          <Button
+            variant='success'
+            leftIcon={TbBrandWhatsapp}
+            leftIconClassName='text-whites-100'
+            size='lg'
+          >
+            <Typography
+              variant='btn'
+              font='poppins'
+              weight='bold'
+              className='text-whites-100 text-[10px] leading-[24px] scale'
+            >
+              Whatsapp
+            </Typography>
+          </Button>
+        </Link>
+        <Button
+          variant='success'
+          leftIcon={LineLogo}
+          leftIconClassName='text-whites-100'
+          size='lg'
+          className='relative'
+          onClick={() => toggleLineTooltip(id_line)}
+        >
+          <Typography
+            variant='btn'
+            font='poppins'
+            weight='bold'
+            className='text-whites-100 text-[10px] leading-[24px]'
+          >
+            LINE
+          </Typography>
+          {lineTooltips[id_line] && (
+            <>
+              <div
+                className='absolute top-1 -right-[90px] md:top-0 md:-right-[140px] z-20 bg-success-200 border-[1px] border-[#A7AFB2]
+             text-white w-[72px] md:w-28 rounded-[4px] md:py-3'
+              >
+                <Typography
+                  variant='bt'
+                  font='poppins'
+                  weight='bold'
+                  className='text-[10px] leading-[24px] text-whites-1000'
+                >
+                  {id_line}
+                </Typography>
+              </div>
+              <div
+                className='absolute top-[14px] md:top-[22px] -right-6 md:-right-[33px] md:w-1 md:h-1 z-10 w-[3.5px] p-[3.5px] 
+              bg-success-200 border-[1px] border-[#A7AFB2] rotate-45'
+              />
+            </>
+          )}
+        </Button>
+      </div>
+    </div>
   );
 }

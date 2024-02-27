@@ -35,7 +35,7 @@ export default function DropzoneInput({
   validation,
   helperText,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
-  maxFiles = 10,
+  maxFiles = 1,
   className,
 }: DropzoneInputProps) {
   const {
@@ -68,7 +68,7 @@ export default function DropzoneInput({
             rejectedFiles &&
             `${
               rejectedFiles[0].errors[0].code === 'file-too-large'
-                ? 'File tidak boleh lebih dari 1MB'
+                ? 'File tidak boleh lebih dari 3MB'
                 : rejectedFiles[0].errors[0].code === 'file-invalid-type'
                 ? 'Tipe file tidak didukung'
                 : rejectedFiles[0].errors[0].message
@@ -127,7 +127,7 @@ export default function DropzoneInput({
     onDrop,
     accept,
     maxFiles,
-    maxSize: 1000000,
+    maxSize: 3545728,
   });
 
   return (
@@ -197,16 +197,18 @@ export default function DropzoneInput({
                 </div>
               </div>
             )}
-            <Button className='mt-3'>
-              <Typography
-                variant='btn'
-                weight='bold'
-                className='md:text-[14px] font-poppins text-white flex items-center gap-2'
-              >
-                Upload File
-                <GoUpload className='text-[20px] font-medium' />
-              </Typography>
-            </Button>
+            {files.length === 0 && (
+              <Button className='mt-3 py-2 px-4'>
+                <Typography
+                  variant='btn'
+                  weight='bold'
+                  className='md:text-[14px] font-poppins text-white flex items-center gap-2'
+                >
+                  Upload File
+                  <GoUpload className='text-[20px] font-medium' />
+                </Typography>
+              </Button>
+            )}
           </div>
         )}
       />
