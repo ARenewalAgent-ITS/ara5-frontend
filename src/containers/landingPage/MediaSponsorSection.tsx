@@ -52,8 +52,8 @@ export default function SponsorSection() {
   for (let i = 0; i < medias.length; i += 3) {
     chunkedMedia.push(medias.slice(i, i + 3));
   }
-  for (let i = 0; i < sponsor.length; i += 4) {
-    chunkedSponsors.push(sponsor.slice(i, i + 4));
+  for (let i = 0; i < sponsor.length; i += 3) {
+    chunkedSponsors.push(sponsor.slice(i, i + 3));
   }
 
   return (
