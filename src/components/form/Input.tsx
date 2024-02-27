@@ -61,7 +61,7 @@ export default function Input({
           >
             {label}
           </Typography>
-          {validation?.required && (
+          {validation?.required && !readOnly && (
             <Typography className='text-danger-600'>*</Typography>
           )}
         </label>
@@ -100,7 +100,7 @@ export default function Input({
               'font-primary font-medium text-whites-900 text-xs md:text-sm',
               'placeholder:font-primary placeholder:text-whites-900 placeholder:text-xs md:placeholder:text-sm placeholder:font-medium',
               readOnly &&
-                'cursor-not-allowed border-whites-900 placeholder:text-whites-900 text-whites-900',
+                'cursor-not-allowed border-whites-900 bg-whites-400 placeholder:text-whites-900 text-whites-900',
               error ? 'border-danger-600' : 'focus:border-success-600',
               className
             )}

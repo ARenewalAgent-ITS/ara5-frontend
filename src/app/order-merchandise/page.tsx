@@ -21,6 +21,7 @@ import clsxm from '@/lib/clsxm';
 import useMerchStore from '@/store/useMerchStore';
 import { ApiError, CustomAxiosError } from '@/types/api';
 import {
+  TAmbil,
   TCheapest,
   TCity,
   TCostRequest,
@@ -182,9 +183,9 @@ export default function OrderMerchandise() {
   });
 
   const orderOnSubmit = (data: TMerchOrder) => {
-    if (!isCourier) {
+    if (!isAmbil && !isCourier) {
       showToast(
-        'Please fill out and submit courier information first',
+        'Please choose either self-pickup or select and confirm a courier service before submitting',
         DANGER_TOAST
       );
       return;
@@ -193,6 +194,7 @@ export default function OrderMerchandise() {
       ...data,
       pembayaran: data.pembayaran?.[0],
     };
+
     order(serialize(body));
   };
 
@@ -342,6 +344,28 @@ export default function OrderMerchandise() {
     ongkir(body);
   };
 
+  const ambilMethods = useForm<TAmbil>({
+    defaultValues: {
+      isAmbil: false,
+    },
+  });
+
+  const isAmbil = ambilMethods.watch('isAmbil');
+
+  React.useEffect(() => {
+    if (isAmbil) {
+      methods.setValue('alamat', 'ITS');
+      methods.setValue('biaya_ongkir', 0);
+      kurirMethods.setValue('test', '');
+      kurirMethods.setValue('destination', '');
+      kurirMethods.setValue('courier', '');
+      setTotalHargaOngkir(totalHarga);
+    } else {
+      methods.setValue('alamat', '');
+      methods.setValue('biaya_ongkir', 0);
+    }
+  }, [isAmbil, methods, kurirMethods, totalHarga]);
+
   return (
     <div className='lg:px-4 xl:px-12 2xl:px-14'>
       <div className='flex flex-col justify-center gap-5 px-12 py-7 lg:px-0'>
@@ -416,14 +440,25 @@ export default function OrderMerchandise() {
               label='Alamat Pengiriman'
               placeholder='Masukkan alamat pengiriman anda'
               helperText='Dengan format Nama Jalan dan No. Rumah, RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi, Kode pos'
+              readOnly={isAmbil}
               validation={{
                 required: 'Alamat cannot be empty',
               }}
             />
+          </form>
+        </FormProvider>
+        <FormProvider {...ambilMethods}>
+          <form className='-mt-3'>
+            <Checkbox name='isAmbil' label='Ambil di ITS' hideError={true} />
+          </form>
+        </FormProvider>
+        <FormProvider {...methods}>
+          <form className='space-y-6'>
             <TextArea
               id='deskripsi_order'
               label='Deskripsi Order'
               placeholder='Masukkan deskripsi order'
+              helperText='Harap cek deskripsi dengan teliti sebelum membeli untuk memastikan pesanan sesuai.'
               validation={{
                 required: 'Deskripsi order cannot be empty',
               }}
@@ -442,6 +477,7 @@ export default function OrderMerchandise() {
               validation={{
                 required: 'Provinsi cannot be empty',
               }}
+              readOnly={isAmbil}
               placeholder='Masukkan provinsi sekolah / institusi tujuan pengiriman'
               onChange={(e) => setSelectedProvinsiId(e.target.value)}
             >
@@ -457,6 +493,7 @@ export default function OrderMerchandise() {
               validation={{
                 required: 'Kota / Kabupaten cannot be empty',
               }}
+              readOnly={isAmbil}
               placeholder='Masukkan kota / kabupaten tujuan pengiriman'
               onChange={(e) =>
                 kurirMethods.setValue('destination', e.target.value)
@@ -471,6 +508,7 @@ export default function OrderMerchandise() {
             <SelectInput
               id='courier'
               label='Kurir'
+              readOnly={isAmbil}
               validation={{
                 required: 'Kurir cannot be empty',
               }}
@@ -484,6 +522,7 @@ export default function OrderMerchandise() {
               type='submit'
               variant='success'
               size='lg'
+              disabled={isAmbil}
               className={clsxm(
                 'drop-shadow-md',
                 ongkirIsLoading ? 'bg-success-700' : ''

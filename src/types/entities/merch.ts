@@ -42,10 +42,11 @@ export type TCity = {
 };
 
 export type TCostRequest = {
+  test: string;
   origin: string;
   destination: string;
   weight: number;
-  courier: 'jne' | 'pos' | 'tiki';
+  courier: 'jne' | 'pos' | 'tiki' | '';
 };
 
 type TOriginDetails = {
@@ -93,4 +94,8 @@ export type TCheapest = {
   etd: string;
   courier: string;
   description: string;
+};
+
+export type TAmbil = {
+  isAmbil: boolean;
 };
