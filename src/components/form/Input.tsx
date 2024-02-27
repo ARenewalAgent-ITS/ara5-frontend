@@ -101,7 +101,7 @@ export default function Input({
               'placeholder:font-primary placeholder:text-whites-900 placeholder:text-sm placeholder:font-medium',
               readOnly &&
                 'cursor-not-allowed border-whites-900 placeholder:text-whites-900 text-whites-900',
-              error ? 'border-danger-600' : 'focus:border-success-600',=======
+              error ? 'border-danger-600' : 'focus:border-success-600',
               className
             )}
             aria-describedby={id}
