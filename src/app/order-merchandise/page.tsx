@@ -613,11 +613,37 @@ export default function OrderMerchandise() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                Submit
+                Order Merchandise
               </Typography>
             </Button>
           </form>
         </FormProvider>
+        <div className='w-full max-w-[17rem] md:max-w-xs mt-1 mx-auto relative h-fit flex flex-col items-center py-2 px-3 md:py-3 md:px-5 rounded-[10px] bg-primary-900 lg:hidden'>
+          <Typography
+            variant='t'
+            font='baloo'
+            weight='bold'
+            className='mb-0.5 md:mb-1 text-[#FFF1E3] text-[16px] leading-[24px]'
+          >
+            Contact Person
+          </Typography>
+          <Typography
+            variant='c14'
+            font='baloo'
+            weight='bold'
+            className='text-[#FFF1E3] mb-[-5px] md:mb-[-3px] text-[12px] leading-[24px]'
+          >
+            Zulfa (089688276157/hafizhkusuma88)
+          </Typography>
+          <Typography
+            variant='c14'
+            font='baloo'
+            weight='bold'
+            className='text-[#FFF1E3] text-[12px] leading-[24px]'
+          >
+            Alma (082123626051/almaamiradewani)
+          </Typography>
+        </div>
       </div>
     </div>
   );
