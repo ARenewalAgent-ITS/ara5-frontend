@@ -90,10 +90,17 @@ export type AdminKupon = {
 
 export type AdminMerch = {
   id: string;
+  nama: string;
   no_telp: string;
   deskripsi_order: string;
   alamat: string;
   total_harga: number;
+  biaya_ongkir: number;
+  kode_referral_id: number | null;
+  kode_referral?: {
+    id: number;
+    kupon: string;
+  };
   list_bank_id: number;
   pembayaran: string;
   dp: boolean;

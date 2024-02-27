@@ -63,6 +63,11 @@ function DashboardAdmin() {
       header: 'No',
     },
     {
+      id: 'nama',
+      accessorKey: 'nama',
+      header: 'Nama',
+    },
+    {
       id: 'no_telp',
       accessorKey: 'no_telp',
       header: 'No Telp',
@@ -70,6 +75,20 @@ function DashboardAdmin() {
     {
       id: 'deskripsi_order',
       accessorKey: 'deskripsi_order',
+      cell: (info) => {
+        return (
+          <div>
+            {info.row.original.deskripsi_order.split('\n').map((desc, idx) => (
+              <>
+                <Typography variant='p' as='p' key={idx}>
+                  {desc}
+                </Typography>
+                <br />
+              </>
+            ))}
+          </div>
+        );
+      },
       header: 'Deskripsi Order',
     },
     {
@@ -81,6 +100,11 @@ function DashboardAdmin() {
       id: 'total_harga',
       accessorKey: 'total_harga',
       header: 'Total Harga',
+    },
+    {
+      id: 'biaya_ongkir',
+      accessorKey: 'biaya_ongkir',
+      header: 'Biaya Ongkir',
     },
     {
       id: 'list_bank_id',
@@ -116,20 +140,30 @@ function DashboardAdmin() {
       header: 'Merch',
       cell: (info) => {
         return (
-          <div className='flex justify-center'>
+          <div>
             {info.row.original.Pesanan_has_merch.map((psn, idx) => (
-              <Typography
-                variant='p'
-                as='p'
-                key={idx}
-                className='whitespace-pre'
-              >
-                {psn.merch.nama_produk} ({psn.jumlah});
-              </Typography>
+              <>
+                <Typography variant='p' as='p' key={idx}>
+                  {psn.merch.nama_produk} ({psn.jumlah})
+                </Typography>
+                <br />
+              </>
             ))}
           </div>
         );
       },
+    },
+    {
+      id: 'kode_referral',
+      accessorKey: 'kode_referral["kupon"]',
+      cell: (info) => {
+        return (
+          <Typography variant='p' as='p'>
+            {info.row.original.kode_referral?.kupon}
+          </Typography>
+        );
+      },
+      header: 'Kode Referral',
     },
     {
       id: 'createdAt',
