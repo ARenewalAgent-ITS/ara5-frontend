@@ -15,6 +15,7 @@ import SwiperCore, { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Button from '@/components/buttons/Button';
+import withAuth from '@/components/hoc/withAuth';
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Loading from '@/components/Loading';
@@ -46,7 +47,9 @@ const images = [
 
 const sizes: string[] = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 
-export default function PageMerch() {
+export default withAuth(PageMerch, ['all']);
+
+function PageMerch() {
   const [products, setProducts] = useState<TMerchCatalogue[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isFiltered, setIsFiltered] = useState(false);
