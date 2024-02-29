@@ -1,11 +1,15 @@
 export type TMerchOrder = {
+  nama: string;
   no_telp: string;
+  alamat: string;
   deskripsi_order: string;
   list_bank_id: number;
   dp: boolean;
+  biaya_ongkir: number;
   pembayaran: FileList;
   merch_id: string;
   harga_total: number;
+  kode_referral?: string | undefined | null;
 };
 
 export type TMerchCatalogue = {
@@ -38,10 +42,11 @@ export type TCity = {
 };
 
 export type TCostRequest = {
+  test: string;
   origin: string;
   destination: string;
   weight: number;
-  courier: 'jne' | 'pos' | 'tiki';
+  courier: 'jne' | 'pos' | 'tiki' | '';
 };
 
 type TOriginDetails = {
@@ -89,4 +94,8 @@ export type TCheapest = {
   etd: string;
   courier: string;
   description: string;
+};
+
+export type TAmbil = {
+  isAmbil: boolean;
 };
