@@ -43,17 +43,33 @@ export type TRegisterCtf = {
   ktp_anggota_2?: string;
 };
 
-export type RegisterExploTenant = {
+export type AddRegisterExploTenant = {
   nama_tenant: string;
   institusi: string;
   bidang_teknologi: string;
   nama_ketua: string;
   nisn_ketua: string;
-  kartu_pelajar: FileList;
+  kartu_pelajar?: FileList;
   email_ketua: string;
   no_wa_ketua: string;
   nama_produk: string;
   detail_produk: string;
-  foto_produk: FileList;
+  foto_produk?: FileList;
+  link_gdrive: string;
+};
+
+export type RegisterExploTenant = {
+  id: string;
+  nama_tenant: string;
+  institusi: string;
+  bidang_teknologi: string;
+  nama_ketua: string;
+  nisn_ketua: number;
+  kartu_pelajar: string;
+  email_ketua: string;
+  no_wa_ketua: string;
+  nama_produk: string;
+  detail_produk: string;
+  foto_produk: string;
   link_gdrive: string;
 };

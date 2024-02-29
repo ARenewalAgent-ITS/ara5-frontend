@@ -49,7 +49,7 @@ export default function MerchModal({
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-95'
             >
-              <Dialog.Panel className='rounded-2xl overflow-hidden border-whites-1100 border-2 bg-whites-100 border-solid transition-all'>
+              <Dialog.Panel className='rounded-2xl overflow-hidden border-whites-1100 border-2 bg-whites-100 border-solid transition-all relative'>
                 <div key={merchData?.id} className='lg:flex'>
                   <div className='relative lg:w-[400px] lg:h-[400px] md:w-[388px] md:h-[388px] w-[288px] h-[288px] overflow-hidden border-b-2 lg:border-b-0 lg:border-r-2 border-whites-1100 bg-primary-200 bg-opacity-25'>
                     <div className='flex justify-center items-center h-full'>
