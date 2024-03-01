@@ -329,7 +329,7 @@ export default function CheckoutDialog() {
                               weight='bold'
                               className='text-[14px] leading-[24px] ml-2 text-[#FFF1E3]'
                             >
-                              - Kaos putih: SeaBreeze Pawrade Kaos <br /> -
+                              - Kaos putih: SeaBreeze Pawrade Kaos <br /> - Kaos
                               hitam: Chroma Quest
                             </Typography>
                             <Typography
