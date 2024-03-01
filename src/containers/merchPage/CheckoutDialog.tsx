@@ -302,7 +302,7 @@ export default function CheckoutDialog() {
                           </Typography>
                         </Button>
                       </div>
-                      <div className=' h-full mt-10 mx-10 relative mb-10'>
+                      <div className='h-fit w-fit mt-10 mx-10 relative mb-10'>
                         <div className='z-20 relative h-fit px-10 py-7 gap-y-3 flex rounded-xl flex-col items-center bg-primary-900'>
                           <Typography
                             font='baloo'
