@@ -21,6 +21,7 @@ import clsxm from '@/lib/clsxm';
 import useMerchStore from '@/store/useMerchStore';
 import { ApiError, CustomAxiosError } from '@/types/api';
 import {
+  TAmbil,
   TCheapest,
   TCity,
   TCostRequest,
@@ -29,6 +30,7 @@ import {
   TMerchOrder,
   TProvince,
 } from '@/types/entities/merch';
+import { TReferal } from '@/types/entities/pembayaran';
 
 export default function OrderMerchandise() {
   const router = useRouter();
@@ -107,6 +109,7 @@ export default function OrderMerchandise() {
       list_bank_id: 1,
       dp: false,
       merch_id: merchIdString,
+      kode_referral: null,
     },
   });
 
@@ -117,6 +120,12 @@ export default function OrderMerchandise() {
       methods.setValue('harga_total', totalHarga);
     }
   }, [totalHarga, methods]);
+
+  React.useEffect(() => {
+    if (cheapestCostDetails) {
+      methods.setValue('biaya_ongkir', cheapestCostDetails.value);
+    }
+  }, [methods, cheapestCostDetails]);
 
   React.useEffect(() => {
     let deskripsi = merchCatalogue
@@ -174,9 +183,9 @@ export default function OrderMerchandise() {
   });
 
   const orderOnSubmit = (data: TMerchOrder) => {
-    if (!isCourier) {
+    if (!isAmbil && !isCourier) {
       showToast(
-        'Please fill out and submit courier information first',
+        'Please choose either self-pickup or select and confirm a courier service before submitting',
         DANGER_TOAST
       );
       return;
@@ -185,6 +194,7 @@ export default function OrderMerchandise() {
       ...data,
       pembayaran: data.pembayaran?.[0],
     };
+
     order(serialize(body));
   };
 
@@ -227,6 +237,36 @@ export default function OrderMerchandise() {
     }
   }, [selectedProvinsiId, cityData]);
 
+  //#region  //*=========== Kupon ===========
+
+  const referalMethods = useForm<TReferal>();
+
+  const getKuponQuery = async (kupon: string) => {
+    try {
+      const response = await api.get(`/kupon/${kupon}`);
+      return response;
+    } catch (error) {
+      throw new Error('Terjadi kesalahan dalam mengambil kupon');
+    }
+  };
+
+  const { mutate: getKupon } = useMutation(getKuponQuery, {
+    onSuccess: (data) => {
+      if (data.data.kuponStatus) {
+        showToast('Referral code successfully used!', SUCCESS_TOAST);
+        methods.setValue('kode_referral', data.data.kuponStatus.kupon);
+      }
+    },
+    onError: () => {
+      showToast('Referral code is not available', DANGER_TOAST);
+      methods.setValue('kode_referral', null);
+    },
+  });
+
+  const referalOnSubmit = (data: TReferal) => {
+    getKupon(data.kupon);
+  };
+
   const postOngkir = async (data: TCostRequest | FormData) => {
     try {
       const res = await api.post('/ongkir/cost', data);
@@ -259,11 +299,7 @@ export default function OrderMerchandise() {
 
       let cheapest = courierResult.costs[0];
       courierResult.costs.forEach((cost) => {
-        if (
-          cost.cost &&
-          cost.cost.length > 0 &&
-          cost.cost[0].value < cheapest.cost[0].value
-        ) {
+        if (cost.service === 'REG') {
           cheapest = cost;
         }
       });
@@ -308,9 +344,31 @@ export default function OrderMerchandise() {
     ongkir(body);
   };
 
+  const ambilMethods = useForm<TAmbil>({
+    defaultValues: {
+      isAmbil: false,
+    },
+  });
+
+  const isAmbil = ambilMethods.watch('isAmbil');
+
+  React.useEffect(() => {
+    if (isAmbil) {
+      methods.setValue('alamat', 'ITS');
+      methods.setValue('biaya_ongkir', 0);
+      kurirMethods.setValue('test', '');
+      kurirMethods.setValue('destination', '');
+      kurirMethods.setValue('courier', '');
+      setTotalHargaOngkir(totalHarga);
+    } else {
+      methods.setValue('alamat', '');
+      methods.setValue('biaya_ongkir', 0);
+    }
+  }, [isAmbil, methods, kurirMethods, totalHarga]);
+
   return (
     <div className='lg:px-4 xl:px-12 2xl:px-14'>
-      <div className='flex flex-col justify-center gap-6 px-12 py-7 lg:px-0'>
+      <div className='flex flex-col justify-center gap-5 px-12 py-7 lg:px-0'>
         <div className='flex flex-col mb-5 sm:flex-row sm:gap-1 sm:mx-auto lg:flex-col lg:mx-0'>
           <Typography
             variant='h3'
@@ -329,32 +387,42 @@ export default function OrderMerchandise() {
             Merchandise
           </Typography>
         </div>
-        <div className='w-full flex flex-col justify-start'>
-          <Typography
-            variant='t'
-            font='poppins'
-            weight='medium'
-            className='text-[18px] leading-[24px] text-whites-1100'
-          >
-            Total Tagihan
-          </Typography>
-          <div className='flex flex-col md:flex-row items-start justify-start md:items-center md:justify-between'>
+        <div className='sticky top-0 z-10 bg-white/20 backdrop-blur-xl rounded-b-2xl'>
+          <div className='w-full flex flex-col justify-start px-2 py-2'>
             <Typography
-              variant='h4'
+              variant='t'
               font='poppins'
-              weight='bold'
-              className={clsxm(
-                'text-[48px] leading-[64px]',
-                isDp ? 'text-secondary-600' : 'text-whites-1100'
-              )}
+              weight='medium'
+              className='text-[18px] leading-[24px] text-whites-1100'
             >
-              Rp{showTotalHarga(totalHargaOngkir, isDp)}
+              Total Tagihan
             </Typography>
+            <div className='flex flex-col md:flex-row items-start justify-start md:items-center md:justify-between'>
+              <Typography
+                variant='h4'
+                font='poppins'
+                weight='bold'
+                className={clsxm(
+                  'text-[32px] leading-[48px]',
+                  isDp ? 'text-secondary-600' : 'text-whites-1100'
+                )}
+              >
+                Rp{showTotalHarga(totalHargaOngkir, isDp)}
+              </Typography>
+            </div>
           </div>
         </div>
 
         <FormProvider {...methods}>
           <form className='space-y-6'>
+            <Input
+              id='nama'
+              label='Nama'
+              placeholder='Masukkan nama anda'
+              validation={{
+                required: 'Nama cannot be empty',
+              }}
+            />
             <Input
               id='no_telp'
               label='Nomor Telepon'
@@ -367,10 +435,30 @@ export default function OrderMerchandise() {
                 },
               }}
             />
+            <Input
+              id='alamat'
+              label='Alamat Pengiriman'
+              placeholder='Masukkan alamat pengiriman anda'
+              helperText='Dengan format Nama Jalan dan No. Rumah, RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi, Kode pos'
+              readOnly={isAmbil}
+              validation={{
+                required: 'Alamat cannot be empty',
+              }}
+            />
+          </form>
+        </FormProvider>
+        <FormProvider {...ambilMethods}>
+          <form className='-mt-3'>
+            <Checkbox name='isAmbil' label='Ambil di ITS' hideError={true} />
+          </form>
+        </FormProvider>
+        <FormProvider {...methods}>
+          <form className='space-y-6'>
             <TextArea
               id='deskripsi_order'
               label='Deskripsi Order'
               placeholder='Masukkan deskripsi order'
+              helperText='Harap cek deskripsi dengan teliti sebelum membeli untuk memastikan pesanan sesuai.'
               validation={{
                 required: 'Deskripsi order cannot be empty',
               }}
@@ -389,6 +477,7 @@ export default function OrderMerchandise() {
               validation={{
                 required: 'Provinsi cannot be empty',
               }}
+              readOnly={isAmbil}
               placeholder='Masukkan provinsi sekolah / institusi tujuan pengiriman'
               onChange={(e) => setSelectedProvinsiId(e.target.value)}
             >
@@ -404,6 +493,7 @@ export default function OrderMerchandise() {
               validation={{
                 required: 'Kota / Kabupaten cannot be empty',
               }}
+              readOnly={isAmbil}
               placeholder='Masukkan kota / kabupaten tujuan pengiriman'
               onChange={(e) =>
                 kurirMethods.setValue('destination', e.target.value)
@@ -418,6 +508,7 @@ export default function OrderMerchandise() {
             <SelectInput
               id='courier'
               label='Kurir'
+              readOnly={isAmbil}
               validation={{
                 required: 'Kurir cannot be empty',
               }}
@@ -430,8 +521,10 @@ export default function OrderMerchandise() {
             <Button
               type='submit'
               variant='success'
+              size='lg'
+              disabled={isAmbil}
               className={clsxm(
-                'w-full drop-shadow-md',
+                'drop-shadow-md',
                 ongkirIsLoading ? 'bg-success-700' : ''
               )}
             >
@@ -442,6 +535,49 @@ export default function OrderMerchandise() {
                 weight='bold'
               >
                 {ongkirIsLoading ? 'Cek...' : 'Cek Ongkir'}
+              </Typography>
+            </Button>
+          </form>
+        </FormProvider>
+
+        <FormProvider {...methods}>
+          <form className='space-y-6'>
+            <Input
+              id='biaya_ongkir'
+              label='Biaya Ongkir'
+              placeholder='Biaya ongkir akan automatis terisi'
+              readOnly
+              validation={{
+                required: 'Biaya ongkir cannot be empty',
+              }}
+            />
+          </form>
+        </FormProvider>
+
+        <FormProvider {...referalMethods}>
+          <form
+            onSubmit={referalMethods.handleSubmit(referalOnSubmit)}
+            className='flex flex-col md:flex-row md:items-center md:gap-x-3'
+          >
+            <Input
+              id='kupon'
+              label='Kode Referal'
+              helperText='Gunakan kode referal'
+              placeholder='Masukan kode referal (opsional)'
+            />
+            <Button
+              type='submit'
+              variant='primary'
+              className={clsxm(
+                'h-fit w-32 md:w-28 py-[6px] mt-[10.8px] lg:mt-[8.5px]'
+              )}
+            >
+              <Typography
+                variant='bt'
+                weight='bold'
+                className='w-24 text-whites-100'
+              >
+                Cek Kupon
               </Typography>
             </Button>
           </form>
@@ -516,11 +652,37 @@ export default function OrderMerchandise() {
                 className='text-[11.86px] leading-[20.32px] text-whites-100'
                 weight='bold'
               >
-                Submit
+                Order Merchandise
               </Typography>
             </Button>
           </form>
         </FormProvider>
+        <div className='w-full max-w-[17rem] md:max-w-xs mt-1 mx-auto relative h-fit flex flex-col items-center py-2 px-3 md:py-3 md:px-5 rounded-[10px] bg-primary-900 lg:hidden'>
+          <Typography
+            variant='t'
+            font='baloo'
+            weight='bold'
+            className='mb-0.5 md:mb-1 text-[#FFF1E3] text-[16px] leading-[24px]'
+          >
+            Contact Person
+          </Typography>
+          <Typography
+            variant='c14'
+            font='baloo'
+            weight='bold'
+            className='text-[#FFF1E3] mb-[-5px] md:mb-[-3px] text-[12px] leading-[24px]'
+          >
+            Zulfa (089688276157/hafizhkusuma88)
+          </Typography>
+          <Typography
+            variant='c14'
+            font='baloo'
+            weight='bold'
+            className='text-[#FFF1E3] text-[12px] leading-[24px]'
+          >
+            Alma (082123626051/almaamiradewani)
+          </Typography>
+        </div>
       </div>
     </div>
   );

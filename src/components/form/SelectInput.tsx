@@ -46,11 +46,14 @@ export default function SelectInput({
             weight='bold'
             variant='t'
             color='label'
-            className='text-[16px] leading-[24px] text-whites-1100'
+            className={clsxm(
+              readOnly ? 'text-whites-1000' : 'text-whites-1100',
+              'text-[16px] leading-[24px]'
+            )}
           >
             {label}
           </Typography>
-          {validation?.required && (
+          {validation?.required && !readOnly && (
             <Typography className='text-danger-500'>*</Typography>
           )}
         </label>
@@ -68,9 +71,9 @@ export default function SelectInput({
           'font-primary font-medium text-whites-900 text-xs md:text-sm',
           'placeholder:font-primary placeholder:text-whites-900 placeholder:text-xs md:placeholder:text-sm placeholder:font-medium',
           readOnly &&
-            'cursor-not-allowed border-whites-800 placeholder:text-whites-800 text-whites-800',
+            'cursor-not-allowed border-whites-900 bg-whites-400 placeholder:text-whites-900 text-whites-900',
           error ? 'border-danger-600' : 'focus:border-success-600',
-          !value && !readOnly && 'text-typo-secondary',
+          !value && !readOnly && 'text-whites-900 ',
           className
         )}
         aria-describedby={id}

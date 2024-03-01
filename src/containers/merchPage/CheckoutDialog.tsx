@@ -302,6 +302,50 @@ export default function CheckoutDialog() {
                           </Typography>
                         </Button>
                       </div>
+                      <div className=' h-full mt-10 mx-10 relative mb-10'>
+                        <div className='z-20 relative h-fit px-10 py-7 gap-y-3 flex rounded-xl flex-col items-center bg-primary-900'>
+                          <Typography
+                            font='baloo'
+                            variant='h6'
+                            weight='bold'
+                            className='text-[24px] leading-[32px] text-[#FFF1E3]'
+                          >
+                            Perhatian!
+                          </Typography>
+                          <div className='flex flex-col gap-y-1'>
+                            <Typography
+                              font='baloo'
+                              variant='c14'
+                              weight='bold'
+                              className='text-[14px] leading-[24px] text-[#FFF1E3]'
+                            >
+                              Khusus untuk pembeli yang memilih bundle reguler
+                              atau bundle kolektif yang yang memiliki salah satu
+                              item dibawah ini:
+                            </Typography>
+                            <Typography
+                              font='baloo'
+                              variant='c14'
+                              weight='bold'
+                              className='text-[14px] leading-[24px] ml-2 text-[#FFF1E3]'
+                            >
+                              - Kaos putih: SeaBreeze Pawrade Kaos <br /> - Kaos
+                              hitam: Chroma Quest
+                            </Typography>
+                            <Typography
+                              font='baloo'
+                              variant='c14'
+                              weight='bold'
+                              className='text-[14px] leading-[24px] text-[#FFF1E3]'
+                            >
+                              dikenakan biaya tambahan Rp10.000 di luar nominal
+                              yang tertera di atas, untuk setiap item yang
+                              diinginkan memiliki ukuran di atas XL.
+                            </Typography>
+                          </div>
+                        </div>
+                        <div className='z-0 absolute -right-2 -bottom-2 w-full h-full flex rounded-xl flex-col items-center bg-black-900/20' />
+                      </div>
                     </div>
                   </Dialog.Panel>
                 </div>
