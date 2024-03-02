@@ -28,18 +28,11 @@ export const sponsors = [
     className: 'w-[180px] sm:w-[290px] md:w-[430px] h-auto',
   },
   {
-    source: '/images/sponsor/medco.png',
-    alt: 'MEDCO',
-    width: 315,
-    height: 246,
-    className: 'w-[80px] sm:w-[120px] md:w-[190px] h-auto',
-  },
-  {
-    source: '/images/sponsor/skk.png',
-    alt: 'SKK MIGAS',
-    width: 315,
-    height: 211,
-    className: 'w-[100px] sm:w-[140px] md:w-[211px] h-auto',
+    source: '/images/sponsor/skk_medco.png',
+    alt: 'Sponsorship',
+    width: 320,
+    height: 127,
+    className: 'w-[140px] sm:w-[220px] md:w-[320px] h-auto',
   },
 ];
 
