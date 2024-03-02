@@ -28,7 +28,7 @@ export const sponsors = [
     className: 'w-[180px] sm:w-[290px] md:w-[430px] h-auto',
   },
   {
-    source: '/images/sponsor/skk_medco.png',
+    source: '/images/sponsor/skk_medcos.png',
     alt: 'Sponsorship',
     width: 320,
     height: 127,
