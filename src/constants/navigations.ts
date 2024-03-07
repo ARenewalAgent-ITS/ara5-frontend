@@ -3,6 +3,7 @@ import { BiSolidNotepad } from 'react-icons/bi';
 import { BsFillCalendar2EventFill } from 'react-icons/bs';
 import { FaFlag } from 'react-icons/fa';
 import { FaGlobe } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { HiTrophy } from 'react-icons/hi2';
 import { IoIosPeople } from 'react-icons/io';
 import { IoDocuments } from 'react-icons/io5';
@@ -54,6 +55,13 @@ export const adminNavigations: Navigation[] = [
     href: '/admin/tenants',
     exactMatch: true,
     icon: IoIosPeople,
+    permissions: ['ADMIN'],
+  },
+  {
+    name: 'Order Merch',
+    href: '/admin/order-merch',
+    exactMatch: true,
+    icon: FaShoppingCart,
     permissions: ['ADMIN'],
   },
 ];

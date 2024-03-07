@@ -88,6 +88,33 @@ export type AdminKupon = {
   updatedAt: string;
 };
 
+export type AdminMerch = {
+  id: string;
+  nama: string;
+  no_telp: string;
+  deskripsi_order: string;
+  alamat: string;
+  total_harga: number;
+  biaya_ongkir: number;
+  kode_referral_id: number | null;
+  kode_referral?: {
+    id: number;
+    kupon: string;
+  };
+  list_bank_id: number;
+  pembayaran: string;
+  dp: boolean;
+  createdAt: string;
+  updatedAt: string;
+  Pesanan_has_merch: {
+    merch_id: number;
+    jumlah: number;
+    merch: {
+      nama_produk: string;
+    };
+  }[];
+};
+
 export type AdminTenants = {
   id: string;
   nama_tenant: string;

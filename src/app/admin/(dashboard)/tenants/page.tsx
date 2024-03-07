@@ -9,6 +9,7 @@ import { BiSpreadsheet } from 'react-icons/bi';
 import Button from '@/components/buttons/Button';
 import withAuth from '@/components/hoc/withAuth';
 import DashboardLayout from '@/components/layouts/dashboard/DashboardLayout';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import SEO from '@/components/SEO';
 import ServerTable from '@/components/table/ServerTable';
 import Typography from '@/components/Typography';
@@ -94,7 +95,20 @@ function DashboardAdmin() {
     {
       id: 'kartu_pelajar',
       header: 'Kartu Pelajar',
-      accessorKey: 'kartu_pelajar',
+      cell: (info) => (
+        <div className='flex justify-center'>
+          <UnstyledLink
+            href={`https://ara-its.id/uploads/tenants/${info.row.original.kartu_pelajar}`}
+          >
+            <Button
+              disabled={true}
+              className='bg-primary-500 text-white hover:bg-primary-700'
+            >
+              Kartu Pelajar
+            </Button>
+          </UnstyledLink>
+        </div>
+      ),
       size: 18,
     },
     {
