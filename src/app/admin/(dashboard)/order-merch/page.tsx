@@ -231,9 +231,17 @@ function DashboardAdmin() {
 
           <ServerTable
             columns={columns}
-            data={queryData?.data.data ? queryData.data.data : []}
+            data={
+              queryData?.data.data
+                ? queryData?.data.data.filter((item) => {
+                    const searchValue = tableStates.globalFilter.toLowerCase();
+                    return item?.nama.toLowerCase().includes(searchValue);
+                  })
+                : []
+            }
             meta={queryData?.data.meta}
             tableState={tableState}
+            withFilter={true}
             setTableState={setTableState}
             className='text-center text-white font-poppins'
             selectedStatus={selectedStatus}
