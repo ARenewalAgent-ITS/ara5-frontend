@@ -5,13 +5,13 @@ import Button from '@/components/buttons/Button';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import SEO from '@/components/SEO';
-import { INFO_TOAST, showToast } from '@/components/Toast';
+// import { INFO_TOAST, showToast } from '@/components/Toast';
 import Typography from '@/components/Typography';
 
 export default function RegisterPage() {
-  function clicked() {
-    showToast('coming soon', INFO_TOAST);
-  }
+  // function clicked() {
+  //   showToast('coming soon', INFO_TOAST);
+  // }
 
   return (
     <div className='flex flex-col justify-center gap-6 px-12 lg:px-0'>
@@ -82,8 +82,9 @@ export default function RegisterPage() {
         </Typography>
       </ButtonLink>
       {/* <UnstyledLink href='/exploit/register-peserta'> */}
-      <Button
-        onClick={clicked}
+      <ButtonLink
+        href='/exploit/register-peserta'
+        // onClick={clicked}
         // disabled={true}
         // type='submit'
         size='lg'
@@ -98,7 +99,7 @@ export default function RegisterPage() {
         >
           ExploIT - Peserta
         </Typography>
-      </Button>
+      </ButtonLink>
       {/* </UnstyledLink> */}
       <Button
         disabled={true}

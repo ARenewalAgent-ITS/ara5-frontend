@@ -73,3 +73,14 @@ export type RegisterExploTenant = {
   foto_produk: string;
   link_gdrive: string;
 };
+
+export type RegisterExploPeserta = {
+  id: string;
+  nama: string;
+  email: string;
+  no_wa: string;
+  institusi: string;
+  ss_repost_poster: string;
+  ss_follow_ig_tiktok: string;
+  ss_follow_sponsor: string;
+};
