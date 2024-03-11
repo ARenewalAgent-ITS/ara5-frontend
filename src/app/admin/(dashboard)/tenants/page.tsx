@@ -98,10 +98,10 @@ function DashboardAdmin() {
       cell: (info) => (
         <div className='flex justify-center'>
           <UnstyledLink
-            href={`https://ara-its.id/uploads/tenants/${info.row.original.kartu_pelajar}`}
+            href={`https://ara-its.id/uploads/exploit/${info.row.original.kartu_pelajar}`}
           >
             <Button
-              disabled={true}
+              disabled={false}
               className='bg-primary-500 text-white hover:bg-primary-700'
             >
               Kartu Pelajar
