@@ -114,3 +114,22 @@ export type AdminMerch = {
     };
   }[];
 };
+
+export type AdminTenants = {
+  id: string;
+  nama_tenant: string;
+  institusi: string;
+  bidang_teknologi: string;
+  nama_ketua: string;
+  nisn_ketua: number;
+  kartu_pelajar: string;
+  email_ketua: string;
+  no_wa_ketua: string;
+  nama_produk: string;
+  detail_produk: string;
+  foto_produk: string;
+  link_gdrive: string;
+  jumlah_suara: number;
+  created_at: string;
+  updated_at: string;
+};

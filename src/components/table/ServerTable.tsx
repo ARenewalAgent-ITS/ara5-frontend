@@ -99,7 +99,7 @@ export default function ServerTable<T extends object>({
               type='text'
               value={searchValue}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder='Cari Tim'
+              placeholder='Search...'
               className={clsxm(
                 'block rounded-lg pl-9 text-black-500 pr-20 text-base shadow-sm transition duration-100',
                 'border-typo-primary focus:border-typo-primary focus:ring-0',
