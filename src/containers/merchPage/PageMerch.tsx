@@ -20,13 +20,13 @@ import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 import Loading from '@/components/Loading';
 import NextImage from '@/components/NextImage';
-import { showToast, SUCCESS_TOAST } from '@/components/Toast';
+import { showToast, WARNING_TOAST } from '@/components/Toast';
 import Typography from '@/components/Typography';
 import CheckoutDialog from '@/containers/merchPage/CheckoutDialog';
 import MerchModal from '@/containers/merchPage/MerchModal';
 import useWindowResize from '@/hooks/useWindowsResize';
 import clsxm from '@/lib/clsxm';
-import useMerchStore from '@/store/useMerchStore';
+// import useMerchStore from '@/store/useMerchStore';
 import { TMerchCatalogue } from '@/types/entities/merch';
 
 const paginationStyle = {
@@ -66,7 +66,7 @@ function PageMerch() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [merchModal, setMerchModal] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<TMerchCatalogue>();
-  const { insertMerch } = useMerchStore();
+  // const { insertMerch } = useMerchStore();
 
   const handleCloseMerchModal = () => {
     setMerchModal(false);
@@ -438,10 +438,10 @@ function PageMerch() {
                                 if (product.kategori_produk === 'KAOS') {
                                   handleDropdownClick(product.id);
                                 } else {
-                                  insertMerch(product);
+                                  // insertMerch(product);
                                   showToast(
-                                    `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                                    SUCCESS_TOAST
+                                    'Pre-Order telah ditutup',
+                                    WARNING_TOAST
                                   );
                                 }
                               }}
@@ -467,10 +467,10 @@ function PageMerch() {
                             {sizes.map((size, index) => (
                               <div
                                 onClick={() => {
-                                  insertMerch(product, size);
+                                  // insertMerch(product, size);
                                   showToast(
-                                    `Berhasil menambahkan ${product.nama_produk} ke keranjang belanja !`,
-                                    SUCCESS_TOAST
+                                    'Pre-Order telah ditutup',
+                                    WARNING_TOAST
                                   );
                                 }}
                                 key={index}
