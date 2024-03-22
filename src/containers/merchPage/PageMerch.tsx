@@ -445,7 +445,7 @@ function PageMerch() {
                                   );
                                 }
                               }}
-                              className='mt-2 min-[425px]:mt-0 w-fit border-[1px] relative group hover:bg-primary-700 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-1 px-3 sm:py-2 sm:px-5 h-fit gap-1 rounded-md'
+                              className='mt-2 min-[425px]:mt-0 w-fit border-[1px] relative group bg-black-200 transition-all duration-300 ease-in-out delay-200 border-whites-100 py-1 px-3 sm:py-2 sm:px-5 h-fit gap-1 rounded-md'
                             >
                               <Typography
                                 weight='semibold'

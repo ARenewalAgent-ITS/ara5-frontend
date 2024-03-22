@@ -486,7 +486,7 @@ function Navbar() {
                   // setModalOpen();
                   showToast('Pre-Order telah ditutup', WARNING_TOAST);
                 }}
-                className='w-7 h-7 text-primary-600 cursor-pointer'
+                className='w-7 h-7 text-black-300 cursor-pointer'
               />
             )}
           </div>
@@ -498,7 +498,7 @@ function Navbar() {
                   // setModalOpen();
                   showToast('Pre-Order telah ditutup', WARNING_TOAST);
                 }}
-                className='w-7 h-7 text-primary-600 cursor-pointer'
+                className='w-7 h-7 text-black-300 cursor-pointer'
               />
               <div
                 onClick={toggle4}
