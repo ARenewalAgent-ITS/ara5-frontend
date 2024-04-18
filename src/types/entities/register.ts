@@ -73,3 +73,33 @@ export type RegisterExploTenant = {
   foto_produk: string;
   link_gdrive: string;
 };
+
+export type AddRegisterVisitor = {
+  nama: string;
+  email: string;
+  no_wa: string;
+  institusi: string;
+  link_post_twibbon: string;
+  ss_repost_poster: FileList;
+  ss_follow_ig_tiktok: FileList;
+  ss_follow_sponsor: FileList;
+};
+
+export type RegisterExploVisitor = {
+  id: string;
+  nama: string;
+  email: string;
+  no_wa: string;
+  institusi: string;
+  token: {
+    id: string;
+    token: string;
+    is_used: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
+  link_post_twibbon: string;
+  ss_repost_poster: string;
+  ss_follow_ig_tiktok: string;
+  ss_follow_sponsor: string;
+};
