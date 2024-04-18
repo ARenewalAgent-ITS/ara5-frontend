@@ -83,7 +83,7 @@ export default function RegisterPage() {
       </ButtonLink>
       {/* <UnstyledLink href='/exploit/register-peserta'> */}
       <ButtonLink
-        href='/exploit/register-peserta'
+        href='/exploit/register-visitor'
         // onClick={clicked}
         // disabled={true}
         // type='submit'
