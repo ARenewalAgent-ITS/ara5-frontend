@@ -63,6 +63,18 @@ function DashboardAdmin() {
       size: 18,
     },
     {
+      id: 'nisn_ketua',
+      header: 'NISN Ketua',
+      accessorKey: 'nisn_ketua',
+      size: 18,
+    },
+    {
+      id: 'nama_ketua',
+      header: 'Nama Ketua',
+      accessorKey: 'nama_ketua',
+      size: 18,
+    },
+    {
       id: 'nama_tenant',
       header: 'Nama Tenant',
       accessorKey: 'nama_tenant',
@@ -81,15 +93,15 @@ function DashboardAdmin() {
       size: 18,
     },
     {
-      id: 'nama_ketua',
-      header: 'Nama Ketua',
-      accessorKey: 'bidang_teknologi',
+      id: 'email_ketua',
+      header: 'Email Ketua',
+      accessorKey: 'email_ketua',
       size: 18,
     },
     {
-      id: 'nisn_ketua',
-      header: 'NISN Ketua',
-      accessorKey: 'nisn_ketua',
+      id: 'no_wa_ketua',
+      header: 'No WA Ketua',
+      accessorKey: 'no_wa_ketua',
       size: 18,
     },
     {
@@ -109,18 +121,6 @@ function DashboardAdmin() {
           </UnstyledLink>
         </div>
       ),
-      size: 18,
-    },
-    {
-      id: 'email_ketua',
-      header: 'Email Ketua',
-      accessorKey: 'email_ketua',
-      size: 18,
-    },
-    {
-      id: 'no_wa_ketua',
-      header: 'No WA Ketua',
-      accessorKey: 'no_wa_ketua',
       size: 18,
     },
     {
