@@ -15,6 +15,7 @@ import ServerTable from '@/components/table/ServerTable';
 import Typography from '@/components/Typography';
 import useServerTable from '@/hooks/useServerTable';
 import api from '@/lib/api';
+import clsxm from '@/lib/clsxm';
 import { getCsv } from '@/lib/csv';
 import { buildPaginatedTableURL } from '@/lib/table';
 import useAuthStore from '@/store/useAuthStore';
@@ -145,6 +146,43 @@ function DashboardAdmin() {
       id: 'link_gdrive',
       header: 'Link GDrive',
       accessorKey: 'link_gdrive',
+      size: 18,
+    },
+    {
+      id: 'created_at',
+      header: 'Waktu Daftar',
+      cell: (info) => {
+        const waktuDaftar = info.row.original.created_at;
+        if (!waktuDaftar) {
+          return (
+            <Typography
+              as='td'
+              className={clsxm(
+                'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
+              )}
+            >
+              {' '}
+            </Typography>
+          );
+        } else {
+          const waktuLengkap = waktuDaftar.toString();
+          const tanggal = waktuLengkap.split('T')[0];
+          const Jam = waktuLengkap.split('T')[1].split('.')[0];
+          const sliceDecimal = Jam.slice(0);
+          const waktuAkhir = `${tanggal} - ${sliceDecimal}`;
+
+          return (
+            <Typography
+              as='td'
+              className={clsxm(
+                'truncate whitespace-nowrap py-3 px-10 lg:text-[16px] text-[14px]'
+              )}
+            >
+              {waktuAkhir}
+            </Typography>
+          );
+        }
+      },
       size: 18,
     },
   ];
