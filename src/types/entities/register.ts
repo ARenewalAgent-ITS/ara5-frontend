@@ -83,7 +83,7 @@ export type AddRegisterVisitor = {
   ss_repost_poster: FileList;
   ss_follow_ig: FileList;
   ss_follow_tiktok: FileList;
-  ss_follow_sponsor: FileList;
+  // ss_follow_sponsor: FileList;
 };
 
 export type RegisterExploVisitor = {
