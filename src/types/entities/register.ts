@@ -79,7 +79,7 @@ export type AddRegisterVisitor = {
   email: string;
   no_wa: string;
   institusi: string;
-  link_post_twibbon: string;
+  // link_post_twibbon: string;
   ss_repost_poster: FileList;
   ss_follow_ig: FileList;
   ss_follow_tiktok: FileList;
