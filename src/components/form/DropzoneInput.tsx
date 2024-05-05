@@ -13,6 +13,7 @@ import Button from '@/components/buttons/Button';
 import ErrorMessage from '@/components/form/ErrorMessage';
 import FilePreview from '@/components/form/FilePreview';
 import HelperText from '@/components/form/HelperText';
+import UnstyledLink from '@/components/links/UnstyledLink';
 import Typography from '@/components/Typography';
 import clsxm from '@/lib/clsxm';
 import { FileWithPreview } from '@/types/form/dropzone';
@@ -21,6 +22,8 @@ export type DropzoneInputProps = {
   id: string;
   label?: string;
   helperText?: string;
+  link?: string;
+  forWhat?: string;
   hideError?: boolean;
   validation?: RegisterOptions;
   accept?: Accept;
@@ -34,6 +37,8 @@ export default function DropzoneInput({
   label,
   validation,
   helperText,
+  link,
+  forWhat,
   accept = { 'image/*': ['.jpg', '.jpeg', '.png'] },
   maxFiles = 1,
   className,
@@ -212,7 +217,14 @@ export default function DropzoneInput({
           </div>
         )}
       />
-
+      {link && (
+        <Typography variant='c12' font='poppins' weight='semibold'>
+          Link {forWhat}:{' '}
+          <UnstyledLink href={link} className='text-primary-500'>
+            {link}
+          </UnstyledLink>
+        </Typography>
+      )}
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       {!error && helperText && <HelperText>{helperText}</HelperText>}
     </div>
