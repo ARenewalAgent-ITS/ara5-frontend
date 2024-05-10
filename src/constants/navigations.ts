@@ -51,12 +51,31 @@ export const adminNavigations: Navigation[] = [
     ],
   },
   {
-    name: 'Tenants',
-    href: '/admin/tenants',
-    exactMatch: true,
+    name: 'Exploit',
+    href: '#',
     icon: IoIosPeople,
-    permissions: ['ADMIN'],
+    children: [
+      {
+        name: 'Tenants',
+        href: '/admin/tenants',
+        icon: IoIosPeople,
+        permissions: ['ADMIN'],
+      },
+      {
+        name: 'Visitor',
+        href: '/admin/visitor',
+        icon: IoIosPeople,
+        permissions: ['ADMIN'],
+      },
+    ],
   },
+  // {
+  //   name: 'Tenants',
+  //   href: '/admin/tenants',
+  //   exactMatch: true,
+  //   icon: IoIosPeople,
+  //   permissions: ['ADMIN'],
+  // },
   {
     name: 'Order Merch',
     href: '/admin/order-merch',

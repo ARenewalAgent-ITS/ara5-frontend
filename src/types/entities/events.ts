@@ -133,3 +133,15 @@ export type AdminTenants = {
   created_at: string;
   updated_at: string;
 };
+
+export type AdminVisitors = {
+  id: string;
+  nama: string;
+  email: string;
+  no_wa: string;
+  institusi: string;
+  token: {
+    id: string;
+    token: string;
+  };
+};
