@@ -149,6 +149,12 @@ function DashboardAdmin() {
       size: 18,
     },
     {
+      id: 'jumlah_suara',
+      header: 'Jumlah Suara',
+      accessorKey: 'jumlah_suara',
+      size: 18,
+    },
+    {
       id: 'created_at',
       header: 'Waktu Daftar',
       cell: (info) => {
